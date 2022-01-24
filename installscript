@@ -19,10 +19,6 @@ touch $HOME/.zshrc_custom
 rm $HOME/.vimrc
 ln -s $HOME/.dotfiles/shell/.vimrc $HOME/.vimrc
 
-# Symlink vim prefs
-rm -r $HOME/.config/ckb-next
-ln -s $HOME/.dotfiles/config/ckb-next $HOME/.config/ckb-next
-
 # Symlink .Xresources
 rm -r $HOME/.config/.Xresources
 ln -s $HOME/.dotfiles/config/.Xresources $HOME/.Xresources
@@ -59,7 +55,16 @@ if [ "$configi3" != "${configi3#[Yy]}" ] ;then
   ln -s $HOME/.dotfiles/config/rofi $HOME/.config/rofi
 fi
 
-#sudo pacman -S mpv streamlink
+read -p "Setup Perso (Y/n)?" personalConfig
+personalConfig=${personalConfig:-Y}
+
+if [ "$personalConfig" != "${personalConfig#[Yy]}" ] ;then
+   sudo pacman -S mpv streamlink
+   # Corsair Keyboard 
+   rm -r $HOME/.config/ckb-next
+   ln -s $HOME/.dotfiles/config/ckb-next $HOME/.config/ckb-next
+fi
+   
 
 echo '++++++++++++++++++++++++++++++'
 echo '++++++++++++++++++++++++++++++'
