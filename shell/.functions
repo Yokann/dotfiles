@@ -1,0 +1,7 @@
+# Remove merged br
+git-clean-br() {
+  for br in $(git branch --merged | egrep -v '(^\*|master)'); do
+    git branch -d ${br};
+  done
+  git fetch --prune
+}

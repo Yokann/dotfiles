@@ -1,0 +1,5 @@
+#!/bin/env bash 
+
+cd ~/localbox 
+make start 
+make terminal

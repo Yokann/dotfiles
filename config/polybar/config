@@ -1,0 +1,220 @@
+; Doc: https://github.com/jaagr/polybar
+; Wiki: https://github.com/jaagr/polybar/wiki
+
+[colors]
+active = ${xrdb:color6}
+background = ${xrdb:background}
+foreground = ${xrdb:foreground}
+urgent = ${xrdb:color9}
+secondary = ${xrdb:color2}
+underline = ${xrdb:color2}
+ram = ${xrdb:color14}
+cpu = ${xrdb:color13}
+spotify = #1db954
+power= ${colors.urgent}
+
+[bar/default]
+height = 32
+offset-y = 0
+top = true
+fixed-center = true 
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+padding-left = 0
+padding-right = 3
+module-margin = 2
+
+#font-0 = Tw Cen MT:size=11;2
+font-0 = Inconsolata Medium-Expanded:size=12;2
+font-1 = Font Awesome 5 Free:style=Regular:size=11;3
+font-2 = Font Awesome 5 Free:style=Solid:size=11;3
+font-3 = Font Awesome 5 Brands:size=11;3
+
+modules-left =  i3 spotify
+#modules-center = xwindow
+modules-center = date
+modules-right =  cpu memory battery powermenu
+tray-padding = 0
+tray-detached = false 
+tray-position = ${env:TRAY_POSITION:right}
+monitor = ${env:MONITOR1}
+
+;[bar/left]
+;inherit = bar/default
+;monitor = eDP1
+;modules-left = i3 
+;padding-left = 3
+
+[bar/right]
+inherit = bar/default
+monitor = ${env:MONITOR2}
+module-left = i3
+modules-right =  
+
+[module/i3]
+type = internal/i3
+pin-workspaces = true
+index-sort = true
+enable-click = true
+enable-scroll = false
+wrapping-scroll = false
+reverse-scroll = false
+fuzzy-match = true
+format = <label-mode><label-state>
+label-mode-padding = 2
+label-focused = %index%  %icon%
+label-focused-padding = 2
+label-unfocused = %index%  %icon%
+label-unfocused-padding = 2
+label-visible = %index%  %icon%
+label-visible-padding = 2 
+label-urgent = %index%  %icon%
+label-urgent-padding = 2
+label-focused-foreground = ${colors.active}
+label-focused-background = #29373d
+label-focused-underline = ${colors.underline}
+label-visible-foreground = ${colors.active}
+label-unfocused-foreground = ${colors.secondary}
+label-urgent-foreground = ${colors.urgent} 
+
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-7 = 8;
+
+[module/spotify]
+type = custom/script
+exec-if = ~/.dotfiles/config/polybar/spotify.sh --isPlaying
+exec = ~/.dotfiles/config/polybar/spotify.sh --title
+click-left = i3-msg 'workspace 7'
+interval = 5
+label = %output% 
+format-prefix = "  "
+format-foreground= ${colors.spotify}
+format-underline = ${colors.spotify}
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:30:...%
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+mount-0 = /
+label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = ${colors.secondary}
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format = <label>
+format-prefix = "  "
+label = %percentage%%
+format-foreground = ${colors.cpu}
+label-foreground = ${colors.cpu}
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = " "
+label = %percentage_used%%
+format-foreground = ${colors.ram}
+label-foreground = ${colors.ram}
+
+[module/date]
+type = internal/date
+#date = %{F#D8DEE9} %{F#00ABC6}%B %d %{F#D8DEE9}%H:%M
+date = %{F#D8DEE9}%d %B %Y - %{F#D8DEE9}%H:%M
+
+[module/volume]
+type = internal/alsa
+format-volume = <ramp-volume> <bar-volume>
+format-muted =  
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-3 = 
+ramp-volume-foreground = ${colors.secondary}
+bar-volume-width = 6
+bar-volume-indicator =
+bar-volume-fill = 
+bar-volume-fill-font = 3
+bar-volume-fill-foreground = ${colors.foreground}
+bar-volume-empty = 
+bar-volume-empty-font = 3
+bar-volume-empty-foreground = ${colors.secondary}
+
+[module/wired]
+type = internal/network
+interface = wlo1
+interval = 3.0
+format-connected = <label-connected>
+#format-connected-underline = #5f819d
+;format-disconnected = <label-disconnected>
+label-connected =%downspeed:9%%upspeed:9%
+label-disconnected =  Pas connecté
+udspeed-minwidth = 5
+
+[module/battery]
+type = internal/battery
+full-at = 100
+battery = BAT0
+adapter = AC
+poll-interval = 5
+format-charging = <animation-charging> <label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
+label-charging = %percentage%%
+label-discharging = %percentage%%
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-framerate = 750
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+animation-discharging-framerate = 500
+
+[module/powermenu]
+type = custom/menu
+label-active-font = 1
+format-spacing = 1
+label-open = 
+label-open-foreground = ${colors.power}
+label-close = 
+label-close-foreground = ${colors.power}
+label-separator = |
+label-separator-foreground = ${colors.secondary}
+
+menu-0-0 = reboot
+menu-0-0-foreground = ${colors.foreground}
+menu-0-0-exec = reboot
+menu-0-1 = power off
+menu-0-1-foreground = ${colors.foreground}
+menu-0-1-exec = poweroff
+
+[module/nautilus]
+type = custom/menu
+format =  Fichier
+click-left = nautilus
+
+[settings]
+screenchange-reload = true
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+
+

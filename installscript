@@ -1,0 +1,66 @@
+#!/bin/env bash
+sudo pacman -Syu
+
+echo 'Install zsh and zinit'
+echo '-----------------'
+sudo pacman -S zsh fzf htop starship
+rm -rf $HOME/.zinit
+
+# Add global gitignore
+ln -s $HOME/.dotfiles/shell/.global-gitignore $HOME/.global-gitignore
+git config --global core.excludesfile $HOME/.global-gitignore
+
+# Symlink zsh prefs
+rm $HOME/.zshrc
+ln -s $HOME/.dotfiles/shell/.zshrc $HOME/.zshrc
+touch $HOME/.zshrc_custom
+
+# Symlink vim prefs
+rm $HOME/.vimrc
+ln -s $HOME/.dotfiles/shell/.vimrc $HOME/.vimrc
+
+# Symlink vim prefs
+rm -r $HOME/.config/ckb-next
+ln -s $HOME/.dotfiles/config/ckb-next $HOME/.config/ckb-next
+
+# Symlink .Xresources
+rm -r $HOME/.config/.Xresources
+ln -s $HOME/.dotfiles/config/.Xresources $HOME/.Xresources
+
+# Install coding dependencies
+read -p "Installer les dependances de dev (Y/n)?" dev_deps
+dev_deps=${dev_deps:-Y}
+if [ "$dev_deps" != "${dev_deps#[Yy]}" ] ;then 
+  yay -S ttf-fira-code 
+  sudo yay -S docker docker-compose ctop-bin
+  sudo usermod -aG docker $USER
+fi
+
+# Setup for custom i3
+read -p "Voulez vous configurer i3 (Y/n)?" configi3
+configi3=${configi3:-Y}
+
+if [ "$configi3" != "${configi3#[Yy]}" ] ;then
+  # Install dependencies
+  ## Todo move on termite to alacritty
+  yay -S otf-font-awesome-5-free ttf-fira-code otf-hermit
+  sudo pacman -S termite rofi polybar nemo playerctl
+
+  #Config i3
+  rm $HOME/.i3/config
+  ln -s $HOME/.dotfiles/config/.i3/config $HOME/.i3/config
+
+  #Config termite
+  rm -rf $HOME/.config/termite
+  ln -s $HOME/.dotfiles/config/termite $HOME/.config/termite
+
+  #Config rofi
+  rm -rf $HOME/.config/rofi
+  ln -s $HOME/.dotfiles/config/rofi $HOME/.config/rofi
+fi
+
+#sudo pacman -S mpv streamlink
+
+echo '++++++++++++++++++++++++++++++'
+echo '++++++++++++++++++++++++++++++'
+echo 'All done!'

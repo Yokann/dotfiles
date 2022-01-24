@@ -1,0 +1,5 @@
+#!/bin/bash
+
+conky -c ~/.dotfiles/config/conky/conky_conf &&
+
+exit 0

@@ -1,0 +1,7 @@
+player=mpv --cache 1024 --geometry=25%x25%-10-10 --screen=1  --no-border
+title="{title} -- {author} -- {category}"
+default-stream=best
+twitch-low-latency
+hls-segment-stream-data
+hls-live-edge=1
+twitch-disable-ads
