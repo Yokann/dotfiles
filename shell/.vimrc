@@ -14,8 +14,8 @@ set viewdir=~/.local/var/vim/views
 
 " Indetation
 set autoindent
-set shiftwidth=2
-set softtabstop=2 
+set shiftwidth=4
+set softtabstop=4 
 set tabstop=1
 
 let g:netrw_liststyle = 3

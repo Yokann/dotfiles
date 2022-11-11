@@ -3,7 +3,7 @@ sudo pacman -Syu
 
 echo 'Install zsh and zinit'
 echo '-----------------'
-sudo pacman -S zsh fzf htop starship
+yay -S zsh fzf htop starship tmux the_silver_searcher git-delta
 rm -rf $HOME/.zinit
 
 # Add global gitignore
@@ -19,6 +19,11 @@ touch $HOME/.zshrc_custom
 rm $HOME/.vimrc
 ln -s $HOME/.dotfiles/shell/.vimrc $HOME/.vimrc
 
+# Config neovim
+yay -S neovim nvim-packer-git lua-language-server
+rm $HOME/.config/.nvim
+ln -s $HOME/.dotfiles/config/.nvim $HOME/.config/.nvim
+
 # Symlink .Xresources
 rm -r $HOME/.config/.Xresources
 ln -s $HOME/.dotfiles/config/.Xresources $HOME/.Xresources
@@ -27,9 +32,17 @@ ln -s $HOME/.dotfiles/config/.Xresources $HOME/.Xresources
 read -p "Installer les dependances de dev (Y/n)?" dev_deps
 dev_deps=${dev_deps:-Y}
 if [ "$dev_deps" != "${dev_deps#[Yy]}" ] ;then 
-  yay -S ttf-fira-code 
-  sudo yay -S docker docker-compose ctop-bin
+  yay -S ttf-fira-code go
+  yay -S docker docker-compose ctop-bin
   sudo usermod -aG docker $USER
+    
+  #Setup PHP
+  #yay -S php81 php81-bz2 php81-cli php81-curl php81-fpm php81-gd php81-iconv php81-imagick /
+  #php81-intl php81-ldap php81-mbstring php81-mcrypt php81-mysql php81-opcache php81-openssl /
+  #php81-pdo php81-phar php81-tokenizer php81-xdebug php81-xml php81-zip php81-dom php81-xsl
+  #VIM Debugger & LSP 
+  #yay -S phpactor 
+  #git clone https://github.com/xdebug/vscode-php-debug.git $HOME/.local/lib/vscode-php-debug
 fi
 
 # Setup for custom i3
