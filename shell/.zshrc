@@ -128,6 +128,7 @@ fi
 _my_zsh_custom_plugins=(    
 #    b4b4r07/enhancd
      Aloxaf/fzf-tab
+     joshskidmore/zsh-fzf-history-search
 )
 
 # Need to be load before everything else 
@@ -139,13 +140,9 @@ zinit wait lucid for \
     atload"unalias grv" \
         OMZP::git
    
-# Using normal load works
-#zinit depth=1 lucid nocd for \
-#    romkatv/powerlevel10k
-
 # OMZ plugins
 zinit wait lucid for \
-	  OMZP::docker-compose \
+      OMZP::docker-compose \
       OMZP::aws \
       OMZP::archlinux \
    atinit"zicompinit; zicdreplay" \

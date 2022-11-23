@@ -1,4 +1,4 @@
-export EDITOR='nano'
+export EDITOR='vim'
 
 # Make some commands not show up in history
 export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
@@ -8,7 +8,7 @@ export HISTORY_IGNORE="(ls|cd|cd -|pwd|exit|date|* --help)"
 export GREP_OPTIONS="--color=auto"
 
 # Enhancd zsh plugin
-export ENHANCD_FILTER="fzy:fzf"
+export ENHANCD_FILTER="fzf"
 export ENHANCD_DOT_ARG="..."
 
 
