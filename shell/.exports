@@ -11,4 +11,5 @@ export GREP_OPTIONS="--color=auto"
 export ENHANCD_FILTER="fzf"
 export ENHANCD_DOT_ARG="..."
 
-
+# Rust
+[[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"

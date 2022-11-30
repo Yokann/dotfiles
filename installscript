@@ -32,15 +32,22 @@ ln -s $HOME/.dotfiles/config/.Xresources $HOME/.Xresources
 read -p "Installer les dependances de dev (Y/n)?" dev_deps
 dev_deps=${dev_deps:-Y}
 if [ "$dev_deps" != "${dev_deps#[Yy]}" ] ;then 
-  yay -S ttf-fira-code go
+  yay -S ttf-fira-code
   yay -S docker docker-compose ctop-bin
   sudo usermod -aG docker $USER
     
+  # GoLang
+  yay -S go
+
+  #Rust
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path -y
+
   #Setup PHP
   #yay -S php81 php81-bz2 php81-cli php81-curl php81-fpm php81-gd php81-iconv php81-imagick /
   #php81-intl php81-ldap php81-mbstring php81-mcrypt php81-mysql php81-opcache php81-openssl /
   #php81-pdo php81-phar php81-tokenizer php81-xdebug php81-xml php81-zip php81-dom php81-xsl
-  #VIM Debugger & LSP 
+  
+  #VIM PHP Debugger & LSP 
   #yay -S phpactor 
   #git clone https://github.com/xdebug/vscode-php-debug.git $HOME/.local/lib/vscode-php-debug
 fi
