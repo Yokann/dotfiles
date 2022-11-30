@@ -173,4 +173,7 @@ zinit wait lucid depth=1  \
 # - - - - - - - - - - - - - - - - - - - -
 #[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 eval "$(starship init zsh)"
+# Keep Emacs style shell command Ctrl+A etc
+bindkey -e
+
 
