@@ -67,16 +67,18 @@ vim.o.showbreak = [[↪ ]] -- Options include -> '…', '↳ ', '→','↪ '
 vim.opt.termguicolors = true
 vim.opt.errorbells = false
 vim.opt.guicursor = ""
+vim.opt.scrolloff = 8
+vim.opt.colorcolumn = "128"
 
 -- }}}
 
 -- Indentation {{{
 
-opt.wrap = true
+opt.wrap = false
 opt.wrapmargin = true
 opt.tabstop = 4
 opt.softtabstop = 4
-opt.textwidth = 1024 
+opt.textwidth = 1024
 opt.shiftwidth = 4
 opt.expandtab = true
 opt.smarttab = true
@@ -91,7 +93,6 @@ vim.o.emoji = false
 -- Timings {{{
 
 opt.updatetime = 50
-
 
 -- }}}
 
@@ -110,3 +111,5 @@ vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
 -- }}}
+
+vim.opt.incsearch = true

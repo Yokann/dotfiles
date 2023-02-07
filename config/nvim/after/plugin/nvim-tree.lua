@@ -1,14 +1,15 @@
-local Remap = require("kerooz.keymap")
-local nnoremap = Remap.nnoremap
-
 require("nvim-tree").setup{
     update_focused_file = {
        enable = true
+    },
+    disable_netrw = true,
+    diagnostics = {
+        enable = true
     }
 }
 
 local api = require("nvim-tree.api")
-nnoremap('<leader>tt', function()
+vim.keymap.set("n", '<leader>tt', function()
   api.tree.toggle(false, false)
 end)
 
