@@ -141,9 +141,7 @@ require("lspconfig").phpactor.setup(config({
      }
 }))
 
-require("lspconfig").sumneko_lua.setup(config({
---	cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
-
+require("lspconfig").lua_ls.setup(config({
 	cmd = { "lua-language-server" },
 	settings = {
 		Lua = {

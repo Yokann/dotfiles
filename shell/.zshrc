@@ -89,21 +89,20 @@ zstyle ':fzf-tab:*' continuous-trigger '²'
 # Zinit
 # - - - - - - - - - - - - - - - - - - - -
 
-#typeset -g MY_ZSH_CONFIG_PATH=${ZDOTDIR:-$HOME/.config/zsh}
-typeset -g MY_ZINIT_PATH=${ZDOTDIR:-$HOME/.local/share}/zinit
+typeset -g ZINIT_PATH=${ZDOTDIR:-$HOME/.local/share}/zinit
 
-if [ ! -f $MY_ZINIT_PATH/bin/zinit.zsh ] && ((${+commands[git]})); then
+if [ ! -f $ZINIT_PATH/zinit.zsh ] && ((${+commands[git]})); then
     __zinit_just_installed=1
-    mkdir -p $MY_ZINIT_PATH && chmod g-rwX "$MY_ZINIT_PATH" && \
-      git clone --depth=1 https://github.com/zdharma/zinit.git $MY_ZINIT_PATH/bin
-  fi
+    mkdir -p $ZINIT_PATH && chmod g-rwX "$ZINIT_PATH" && \
+    git clone --depth=1 https://github.com/zdharma-continuum/zinit.git $ZINIT_PATH
+fi
 
-  if [ -f $MY_ZINIT_PATH/bin/zinit.zsh ]; then
+if [ -f $ZINIT_PATH/zinit.zsh ]; then
     declare -A ZINIT
 
-    ZINIT[HOME_DIR]="$MY_ZINIT_PATH"
+    ZINIT[HOME_DIR]="$ZINIT_PATH"
 
-    source $MY_ZINIT_PATH/bin/zinit.zsh
+    source $ZINIT_PATH/zinit.zsh
 
     if [ -z "$skip_global_compinit" ]; then
       autoload -Uz _zinit
@@ -113,7 +112,7 @@ if [ ! -f $MY_ZINIT_PATH/bin/zinit.zsh ] && ((${+commands[git]})); then
     [ -n "$__zinit_just_installed" ] && \
         zinit self-update
 
-    unset MY_ZINIT_PATH # Use ZINIT[HOME_DIR] from now on
+    unset ZINIT_PATH # Use ZINIT[HOME_DIR] from now on
 
     [ ${${(s:.:)ZSH_VERSION}[1]} -ge 5 ] && [ ${${(s:.:)ZSH_VERSION}[2]} -gt 2 ] && \
       MY_ZINIT_USE_TURBO=true
@@ -171,9 +170,9 @@ zinit wait lucid depth=1  \
 # - - - - - - - - - - - - - - - - - - - -
 # Theme / Prompt Customization
 # - - - - - - - - - - - - - - - - - - - -
-#[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 eval "$(starship init zsh)"
 # Keep Emacs style shell command Ctrl+A etc
 bindkey -e
 
 
+### End of Zinit's installer chunk

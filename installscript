@@ -1,9 +1,21 @@
-#!/bin/env bash
-sudo pacman -Syu
+#!/usr/bin/env bash
+
+if [[ "$OSTYPE" == "darwin"* ]]; then 
+    PACKAGE_INSTALLER="brew install"
+    brew update 
+    $PACKAGE_INSTALLER --cask homebrew/cask-fonts/font-fira-code-nerd-font 
+elif [[ "$OSTYPE" == "linux"* ]]; then  
+    PACKAGE_INSTALLER="yay -S"
+    pacman -Syu
+    $PACKAGE_INSTALLER ttf-fira-code
+else 
+    echo "System unknown" 
+    exit 1
+fi    
 
 echo 'Install zsh and zinit'
 echo '-----------------'
-yay -S zsh fzf htop starship tmux the_silver_searcher git-delta
+$PACKAGE_INSTALLER zsh fzf htop starship tmux the_silver_searcher git-delta
 rm -rf $HOME/.zinit
 
 # Add global gitignore
@@ -20,9 +32,9 @@ rm $HOME/.vimrc
 ln -s $HOME/.dotfiles/shell/.vimrc $HOME/.vimrc
 
 # Config neovim
-yay -S neovim nvim-packer-git lua-language-server
-rm $HOME/.config/.nvim
-ln -s $HOME/.dotfiles/config/.nvim $HOME/.config/.nvim
+$PACKAGE_INSTALLER neovim lua-language-server
+rm $HOME/.config/nvim
+ln -s $HOME/.dotfiles/config/.nvim $HOME/.config/nvim
 
 # Symlink .Xresources
 rm -r $HOME/.config/.Xresources
@@ -32,59 +44,62 @@ ln -s $HOME/.dotfiles/config/.Xresources $HOME/.Xresources
 read -p "Installer les dependances de dev (Y/n)?" dev_deps
 dev_deps=${dev_deps:-Y}
 if [ "$dev_deps" != "${dev_deps#[Yy]}" ] ;then 
-  yay -S ttf-fira-code
-  yay -S docker docker-compose ctop-bin
-  sudo usermod -aG docker $USER
-    
-  # GoLang
-  yay -S go
+  # Docker  
+  $PACKAGE_INSTALLER docker docker-compose ctop
+  if [[ "$OSTYPE" == "linux"* ]]; then
+    sudo usermod -aG docker $USER
+  fi
 
+  # GoLang
+  $PACKAGE_INSTALLER go
   #Rust
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path -y
 
   #Setup PHP
-  #yay -S php81 php81-bz2 php81-cli php81-curl php81-fpm php81-gd php81-iconv php81-imagick /
+  #$PACKAGE_INSTALLER php81 php81-bz2 php81-cli php81-curl php81-fpm php81-gd php81-iconv php81-imagick /
   #php81-intl php81-ldap php81-mbstring php81-mcrypt php81-mysql php81-opcache php81-openssl /
   #php81-pdo php81-phar php81-tokenizer php81-xdebug php81-xml php81-zip php81-dom php81-xsl
   
   #VIM PHP Debugger & LSP 
-  #yay -S phpactor 
+  #$PACKAGE_INSTALLER phpactor 
   #git clone https://github.com/xdebug/vscode-php-debug.git $HOME/.local/lib/vscode-php-debug
 fi
 
-# Setup for custom i3
-read -p "Voulez vous configurer i3 (Y/n)?" configi3
-configi3=${configi3:-Y}
 
-if [ "$configi3" != "${configi3#[Yy]}" ] ;then
-  # Install dependencies
-  ## Todo move on termite to alacritty
-  yay -S otf-font-awesome-5-free ttf-fira-code otf-hermit
-  sudo pacman -S termite rofi polybar nemo playerctl
+if [[ "$OSTYPE" == "linux"* ]]; then
+    # Setup for custom i3
+    read -p "Voulez vous configurer i3 (Y/n)?" configi3
+    configi3=${configi3:-Y}
 
-  #Config i3
-  rm $HOME/.i3/config
-  ln -s $HOME/.dotfiles/config/.i3/config $HOME/.i3/config
+    if [ "$configi3" != "${configi3#[Yy]}" ] ;then
+      # Install dependencies
+      ## Todo move on termite to alacritty
+      $PACKAGE_INSTALLER otf-font-awesome-5-free ttf-fira-code otf-hermit
+      sudo pacman -S termite rofi polybar nemo playerctl
 
-  #Config termite
-  rm -rf $HOME/.config/termite
-  ln -s $HOME/.dotfiles/config/termite $HOME/.config/termite
+      #Config i3
+      rm $HOME/.i3/config
+      ln -s $HOME/.dotfiles/config/.i3/config $HOME/.i3/config
 
-  #Config rofi
-  rm -rf $HOME/.config/rofi
-  ln -s $HOME/.dotfiles/config/rofi $HOME/.config/rofi
-fi
+      #Config termite
+      rm -rf $HOME/.config/termite
+      ln -s $HOME/.dotfiles/config/termite $HOME/.config/termite
 
-read -p "Setup Perso (Y/n)?" personalConfig
-personalConfig=${personalConfig:-Y}
+      #Config rofi
+      rm -rf $HOME/.config/rofi
+      ln -s $HOME/.dotfiles/config/rofi $HOME/.config/rofi
+    fi
 
-if [ "$personalConfig" != "${personalConfig#[Yy]}" ] ;then
-   sudo pacman -S mpv streamlink
-   # Corsair Keyboard 
-   rm -r $HOME/.config/ckb-next
-   ln -s $HOME/.dotfiles/config/ckb-next $HOME/.config/ckb-next
-fi
-   
+    read -p "Setup Perso (Y/n)?" personalConfig
+    personalConfig=${personalConfig:-Y}
+
+    if [ "$personalConfig" != "${personalConfig#[Yy]}" ] ;then
+       sudo pacman -S mpv streamlink
+       # Corsair Keyboard 
+       rm -r $HOME/.config/ckb-next
+       ln -s $HOME/.dotfiles/config/ckb-next $HOME/.config/ckb-next
+    fi
+fi   
 
 echo '++++++++++++++++++++++++++++++'
 echo '++++++++++++++++++++++++++++++'

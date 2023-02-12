@@ -10,10 +10,6 @@ alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
-alias chown='chown --preserve-root'
-alias chmod='chmod --preserve-root'
-alias chgrp='chgrp --preserve-root'
-
 # Git
 alias gc-="git checkout -"
 alias git-yolo='git commit --amend --no-edit && git push origin HEAD --force-with-lease'
@@ -25,6 +21,14 @@ alias sctl="sudo sctl"
 alias tailf='tail -f'
 alias hosts="sudo nano /etc/hosts"
 alias home="cd $HOME"
-alias nano="nano -c"
 alias vim="nvim"
+
+# Special linux 
+if [[ "$OSTYPE" == "linux"* ]]; then
+  alias chown='chown --preserve-root'
+  alias chmod='chmod --preserve-root'
+  alias chgrp='chgrp --preserve-root'
+  alias nano="nano -c"
+fi 
+
 
