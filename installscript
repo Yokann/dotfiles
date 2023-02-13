@@ -74,7 +74,7 @@ if [[ "$OSTYPE" == "linux"* ]]; then
     if [ "$configi3" != "${configi3#[Yy]}" ] ;then
       # Install dependencies
       ## Todo move on termite to alacritty
-      $PACKAGE_INSTALLER otf-font-awesome-5-free ttf-fira-code otf-hermit
+      $PACKAGE_INSTALLER otf-font-awesome-5-free otf-hermit
       sudo pacman -S termite rofi polybar nemo playerctl
 
       #Config i3
