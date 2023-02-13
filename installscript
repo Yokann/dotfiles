@@ -15,7 +15,7 @@ fi
 
 echo 'Install zsh and zinit'
 echo '-----------------'
-$PACKAGE_INSTALLER zsh fzf htop starship tmux the_silver_searcher git-delta
+$PACKAGE_INSTALLER zsh fzf htop starship tmux the_silver_searcher git-delta lazygit
 rm -rf $HOME/.zinit
 
 # Add global gitignore
