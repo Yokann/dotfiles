@@ -51,6 +51,7 @@ vim.o.fillchars = add {
   'foldsep:│',
   'foldclose:▸'
 }
+opt.laststatus = 3
 
 -- }}}
 
@@ -113,3 +114,4 @@ vim.opt.undofile = true
 -- }}}
 
 vim.opt.incsearch = true
+vim.g.gitblame_enabled = 0

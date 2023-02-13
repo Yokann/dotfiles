@@ -1,6 +1,6 @@
 -- Buffer
-vim.keymap.set("n", "<A-h>", "<Cmd>:bn<CR>", { desc = "Next buffer" })
-vim.keymap.set("n", "<A-l>", "<Cmd>:bp<CR>", { desc = "Previous buffer" })
+--vim.keymap.set("n", "<A-h>", "<Cmd>:bn<CR>", { desc = "Next buffer" })
+--vim.keymap.set("n", "<A-l>", "<Cmd>:bp<CR>", { desc = "Previous buffer" })
 vim.keymap.set("n", "<A-d>", "<Cmd>:bd<CR>:bn<CR>", { desc = "Close buffer" })
 vim.keymap.set("n", "<A-s>", "<Cmd>:w<CR>", { desc = "Save buffer" })
 -- quotes 

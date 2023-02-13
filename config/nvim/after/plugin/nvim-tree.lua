@@ -5,7 +5,8 @@ require("nvim-tree").setup{
     disable_netrw = true,
     diagnostics = {
         enable = true
-    }
+    },
+    filters = { custom = { "^.git$" } },
 }
 
 local api = require("nvim-tree.api")
