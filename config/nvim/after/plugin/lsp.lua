@@ -21,10 +21,10 @@ cmp.setup({
 
     mapping = cmp.mapping.preset.insert({
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
-		["<C-u>"] = cmp.mapping.scroll_docs(-4),
-		["<C-d>"] = cmp.mapping.scroll_docs(4),
-        ['<C-e>'] = cmp.mapping.abort(),
-		["<C-Space>"] = cmp.mapping.complete(),
+		--["<C-u>"] = cmp.mapping.scroll_docs(-4),
+		--["<C-d>"] = cmp.mapping.scroll_docs(4),
+        ['<A-e>'] = cmp.mapping.abort(),
+		["<A-Space>"] = cmp.mapping.complete(),
 
         ['<Tab>'] = cmp.mapping(function(fallback)
             local col = vim.fn.col('.') - 1
@@ -117,7 +117,7 @@ local function config(_config)
             }) end, { desc = "[V]iew [C]ode actions [O]thers" })
 			vim.keymap.set("n", "<leader>vcr", function() vim.lsp.buf.references() end, { desc = "[V]iew [C]ode [R]eferences" })
 			vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, { desc = "[V]iew [R]e[N]ame" })
-			vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, { desc = "View code signature" })
+			vim.keymap.set("i", "<A-h>", function() vim.lsp.buf.signature_help() end, { desc = "View code signature" })
 		end,
 	}, _config or {})
 end
