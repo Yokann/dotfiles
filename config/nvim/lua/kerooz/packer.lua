@@ -43,6 +43,7 @@ return packer.startup(function(use)
             "tpope/vim-repeat",
             "airblade/vim-rooter", -- load root dir at vim startup on a file
             "ggandor/leap.nvim", -- intersting way to move
+            "numToStr/Comment.nvim", -- comment block
         }
 
         -- Nvim Tree
@@ -60,11 +61,21 @@ return packer.startup(function(use)
         -- Treesitter
         use {
             "nvim-treesitter/nvim-treesitter",
-            run = ":TSUpdate"
+            run = ":TSUpdate",
+            requires = {
+                "JoosepAlviste/nvim-ts-context-commentstring"
+            }
         }
 
         -- LSP Config
-        use("neovim/nvim-lspconfig")
+        use {
+            "neovim/nvim-lspconfig",
+            requires = {
+                "williamboman/mason.nvim",
+                "williamboman/mason-lspconfig.nvim"
+            }
+        }
+
 
 
         -- Completion
@@ -110,7 +121,7 @@ return packer.startup(function(use)
         use {
             "kdheepak/lazygit.nvim",
             "airblade/vim-gitgutter",
-            "f-person/git-blame.nvim",
+            { "f-person/git-blame.nvim", config = function() vim.keymap.set("n", "<leader>gb", "<Cmd>GitBlameToggle<CR>") end },
             { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
         }
 
