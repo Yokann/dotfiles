@@ -1,24 +1,28 @@
 local M = {}
 
+-- Setup colors and icons of the breakpoint UI elements 
 local function configure()
+    vim.api.nvim_set_hl(0, "DapBreakpoint", { ctermbg = 0, fg = "#993939", bg = "#20222e" })
+    vim.api.nvim_set_hl(0, "DapLogPoint", { ctermbg = 0, fg = "#61afef", bg = "#20222e" })
+    vim.api.nvim_set_hl(0, "DapStopped", { ctermbg = 0, fg = "#98c379", bg = "#20222e" })
     local dap_breakpoint = {
         error = {
-            text = "🟥",
-            texthl = "LspDiagnosticsSignError",
-            linehl = "",
-            numhl = "",
+            text = "🛑",
+            texthl = "DapBreakpoint",
+            linehl = "DapBreakpoint",
+            numhl = "DapBreakpoint",
         },
         rejected = {
-            text = "",
-            texthl = "LspDiagnosticsSignHint",
-            linehl = "",
-            numhl = "",
+            text = "❌",
+            texthl = "DapBreakpoint",
+            linehl = "DapBreakpoint",
+            numhl = "DapBreakpoint",
         },
         stopped = {
-            text = "⭐️",
-            texthl = "LspDiagnosticsSignInformation",
-            linehl = "DiagnosticUnderlineInfo",
-            numhl = "LspDiagnosticsSignInformation",
+            text = "🖖",
+            texthl = "DapStopped",
+            linehl = "DapStopped",
+            numhl = "DapStopped",
         },
     }
 
@@ -58,7 +62,7 @@ function M.setup()
     require("kerooz.dap.keymaps").setup() -- Keymaps
 end
 
-require('dap').set_log_level('TRACE')
+-- require("dap").set_log_level("TRACE")
 
 
 

@@ -3,17 +3,12 @@ local M = {}
 function M.setup()
     local dap = require("dap")
     local dapui = require("dapui")
-    local function c(func, opts)
-        return function()
-            func(opts)
-        end
-    end
 
-    vim.keymap.set("n", "<F1>", c(dapui.toggle), { desc = "Debugger - Toggle UI", noremap=false })
-    vim.keymap.set("n", "<F9>", c(dap.continue), { desc = "Debugger - Start" })
-    vim.keymap.set("n", "<F3>", c(dap.toggle_breakpoint), { desc = "Debugger - Toggle breakpoint" })
-    vim.keymap.set("n", "<F5>", c(dap.step_over), { desc = "Debugger - Next Step" })
-    vim.keymap.set("n", "<F4>", c(dap.step_into), { desc = "Debugger - Step Into" })
+    vim.keymap.set("n", "<F1>", function() dapui.toggle() end, { desc = "Debugger - Toggle UI", noremap=false })
+    vim.keymap.set("n", "<F9>", function() dap.continue() end, { desc = "Debugger - Start" })
+    vim.keymap.set("n", "<F3>", function() dap.toggle_breakpoint() end, { desc = "Debugger - Toggle breakpoint" })
+    vim.keymap.set("n", "<F5>", function() dap.step_over() end, { desc = "Deugger - Next Step" })
+    vim.keymap.set("n", "<F4>", function() dap.step_into() end, { desc = "Debugger - Step Into" })
     vim.keymap.set("n", "<F7>", "<cmd>lua require'dap'.set_breakpoint(vim.fn.input '[Condition] > ')<cr>", { desc = "Debugger - Conditionnal breakpoint" })
     -- vim.keymap.set("n", "", c(dap), { desc = "" })
 
