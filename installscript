@@ -52,8 +52,6 @@ if [ "$dev_deps" != "${dev_deps#[Yy]}" ] ;then
 
   # GoLang
   $PACKAGE_INSTALLER go
-  go install golang.org/x/tools/gopls@latest
-  go install golang.org/go-delve/delve/cmd/dlv@latest
 
   #Rust
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path -y

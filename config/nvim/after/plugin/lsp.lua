@@ -1,6 +1,5 @@
 local cmp = require("cmp")
 local lspkind = require("lspkind")
---local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local luasnip = require("luasnip")
 local select_opts = { behavior = cmp.SelectBehavior.Select }
 
