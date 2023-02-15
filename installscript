@@ -15,7 +15,7 @@ fi
 
 echo 'Install zsh and zinit'
 echo '-----------------'
-$PACKAGE_INSTALLER zsh fzf htop starship tmux the_silver_searcher git-delta lazygit
+$PACKAGE_INSTALLER zsh fzf htop starship tmux the_silver_searcher git-delta lazygit xclip
 rm -rf $HOME/.zinit
 
 # Add global gitignore
@@ -52,6 +52,9 @@ if [ "$dev_deps" != "${dev_deps#[Yy]}" ] ;then
 
   # GoLang
   $PACKAGE_INSTALLER go
+  go install golang.org/x/tools/gopls@latest
+  go install golang.org/go-delve/delve/cmd/dlv@latest
+
   #Rust
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path -y
 

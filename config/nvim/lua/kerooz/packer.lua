@@ -34,48 +34,62 @@ packer.init({
 -- Install plugins here
 return packer.startup(function(use)
         -- Base
-        use("wbthomason/packer.nvim") -- Have packer manage itself
-        use("nvim-lua/popup.nvim") -- An implementation of the Popup API from vim in Neovim
-        use("nvim-lua/plenary.nvim") -- Useful lua functions used ny lots of plugins
-        use("nvim-lualine/lualine.nvim") -- Status bar
+        use {
+            "wbthomason/packer.nvim", -- Have packer manage itself
+            "nvim-lua/popup.nvim", -- An implementation of the Popup API from vim in Neovim
+            "nvim-lua/plenary.nvim", -- Useful lua functions used ny lots of plugins
+            "nvim-lualine/lualine.nvim", -- Status bar
+            "tpope/vim-surround",
+            "tpope/vim-repeat",
+            "airblade/vim-rooter", -- load root dir at vim startup on a file
+            "ggandor/leap.nvim", -- intersting way to move
+        }
+
+        -- Nvim Tree
         use {
             'nvim-tree/nvim-tree.lua',
             requires = {
                 'nvim-tree/nvim-web-devicons', -- optional, for file icons
             },
         }
+
         -- Telescope
         use("nvim-telescope/telescope.nvim")
-        use({ "kelly-lin/telescope-ag", requires = { { "nvim-telescope/telescope.nvim" } } })
+        use({ "kelly-lin/telescope-ag", requires = { "nvim-telescope/telescope.nvim" } })
+
+        -- Treesitter
         use {
             "nvim-treesitter/nvim-treesitter",
             run = ":TSUpdate"
         }
-        -- Git
-        --use {
-        --  "TimUntersberger/neogit",
-        --  requires = {"nvim-lua/plenary.nvim"}
-        --}
-        use {
-            "kdheepak/lazygit.nvim"
-        }
-        -- All the things
-        use("hrsh7th/cmp-nvim-lsp")
-        use("hrsh7th/cmp-buffer")
-        use("hrsh7th/nvim-cmp")
-        use("hrsh7th/cmp-path")
-        use("hrsh7th/cmp-cmdline")
-        use("onsails/lspkind-nvim")
-        -- use("glepnir/lspsaga.nvim") -- c'est vachement bien mais je sais pas encore m'en servir
+
+        -- LSP Config
         use("neovim/nvim-lspconfig")
+
+
+        -- Completion
         use {
-            "tzachar/cmp-tabnine",
-            run = "./install.sh",
-            requires = { "hrsh7th/nvim-cmp" }
+
+            "hrsh7th/nvim-cmp",
+            requires = {
+                "hrsh7th/cmp-path",
+                "hrsh7th/cmp-nvim-lsp",
+                "hrsh7th/cmp-buffer",
+                "hrsh7th/cmp-cmdline",
+                {
+                    "tzachar/cmp-tabnine",
+                    run = "./install.sh",
+                },
+                { "onsails/lspkind-nvim", requires = "neovim/nvim-lspconfig" },
+                -- Snippet
+                "saadparwaiz1/cmp_luasnip",
+                {
+                    "L3MON4D3/LuaSnip",
+                    requires = { "rafamadriz/friendly-snippets" },
+                },
+                -- use("glepnir/lspsaga.nvim") -- c'est vachement bien mais je sais pas encore m'en servir
+            }
         }
-        use("rafamadriz/friendly-snippets")
-        use("L3MON4D3/LuaSnip")
-        use("saadparwaiz1/cmp_luasnip")
 
         -- Colorscheme section
         use {
@@ -93,10 +107,20 @@ return packer.startup(function(use)
         }
 
         -- Git
-        use("f-person/git-blame.nvim")
-        use({ 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' })
-        use("airblade/vim-gitgutter")
+        use {
+            "kdheepak/lazygit.nvim",
+            "airblade/vim-gitgutter",
+            "f-person/git-blame.nvim",
+            { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
+        }
+
+        -- UI
+        use {
+            "lukas-reineke/indent-blankline.nvim",
+            "levouh/tint.nvim", -- highlight current buffer
+        }
         use({
+        -- Buffer navigation helper
             "ghillb/cybu.nvim",
             branch = "main", -- timely updates
             -- branch = "v1.x", -- won't receive breaking changes
