@@ -22,6 +22,7 @@ alias tailf='tail -f'
 alias hosts="sudo nano /etc/hosts"
 alias home="cd $HOME"
 alias vim="nvim"
+alias portused="sudo lsof -i -P -n | grep LISTEN"
 
 # Special linux 
 if [[ "$OSTYPE" == "linux"* ]]; then
