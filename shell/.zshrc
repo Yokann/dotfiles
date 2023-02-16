@@ -22,6 +22,7 @@ unset file
 
 # Extra paths
 export PATH=$HOME/bin:$HOME/.dotfiles/bin:/usr/local/bin:$HOME/.yarn/bin:$PATH
+export PATH=$HOME/go/bin:$PATH
 
 # Custom config
 source $HOME/.zshrc_custom
