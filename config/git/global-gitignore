@@ -8,14 +8,15 @@ ehthumbs.db
 Thumbs.db
 
 # Vim swap files
-.*.sw?
+.*.sw
 
 # PhpStorm
 .idea
 http-client.env.json
 
-# vs code
+# other IDE
 .vscode
+.fleet
 
 # Sublime Text
 *.sublime-project
@@ -27,3 +28,5 @@ yarn-error.log
 .phpunit-watcher-cache.php
 .phpunit.result.cache
 
+# Log 
+*.log
