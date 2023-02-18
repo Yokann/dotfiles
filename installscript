@@ -1,55 +1,58 @@
 #!/usr/bin/env bash
 
-git () {
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    PACKAGE_INSTALLER="brew install"
+elif [[ "$OSTYPE" == "linux"* ]]; then
+    PACKAGE_INSTALLER="yay -S"
+else
+    echo "System unknown"
+    exit 1
+fi
+
+setup_git () {
   git config --global include.path $HOME/.dotfiles/config/git/gitconfig
   git config --global core.excludesFile $HOME/.dotfiles/config/git/global-gitignore
 }
 
-if [[ "$OSTYPE" == "darwin"* ]]; then 
-    PACKAGE_INSTALLER="brew install"
-    brew update 
-    $PACKAGE_INSTALLER --cask homebrew/cask-fonts/font-fira-code-nerd-font 
-elif [[ "$OSTYPE" == "linux"* ]]; then  
-    PACKAGE_INSTALLER="yay -S"
-    pacman -Syu
-    $PACKAGE_INSTALLER ttf-fira-code
-else 
-    echo "System unknown" 
-    exit 1
-fi    
+setup_zsh () {
+    #Symlink .Xresources
+    rm -r $HOME/.config/.Xresources
+    ln -s $HOME/.dotfiles/config/.Xresources $HOME/.Xresources
+    # Symlink zsh prefs
+    rm -rf $HOME/.zinit
+    rm $HOME/.zshrc
+    ln -s $HOME/.dotfiles/shell/.zshrc $HOME/.zshrc
+    touch $HOME/.zshrc_custom
+}
 
-echo 'Install zsh and zinit'
-echo '-----------------'
-$PACKAGE_INSTALLER zsh fzf htop starship tmux the_silver_searcher git-delta lazygit xclip
-rm -rf $HOME/.zinit
+setup_vim () {
+    # Symlink vim prefs
+    rm $HOME/.vimrc
+    ln -s $HOME/.dotfiles/shell/.vimrc $HOME/.vimrc
+    # Config neovim
+    $PACKAGE_INSTALLER neovim lua-language-server
+    rm $HOME/.config/nvim
+    ln -s $HOME/.dotfiles/config/nvim $HOME/.config/nvim
+}
 
-# Symlink zsh prefs
-rm $HOME/.zshrc
-ln -s $HOME/.dotfiles/shell/.zshrc $HOME/.zshrc
-touch $HOME/.zshrc_custom
+install_dependencies () {
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        brew update
+        $PACKAGE_INSTALLER --cask homebrew/cask-fonts/font-fira-code-nerd-font
+    elif [[ "$OSTYPE" == "linux"* ]]; then
+        pacman -Syu
+        $PACKAGE_INSTALLER ttf-fira-code
+    fi
 
-# Symlink vim prefs
-rm $HOME/.vimrc
-ln -s $HOME/.dotfiles/shell/.vimrc $HOME/.vimrc
+    $PACKAGE_INSTALLER zsh fzf htop starship tmux the_silver_searcher git-delta lazygit xclip
+}
 
-# Config neovim
-$PACKAGE_INSTALLER neovim lua-language-server
-rm $HOME/.config/nvim
-ln -s $HOME/.dotfiles/config/.nvim $HOME/.config/nvim
-
-# Symlink .Xresources
-rm -r $HOME/.config/.Xresources
-ln -s $HOME/.dotfiles/config/.Xresources $HOME/.Xresources
-
-# Install coding dependencies
-read -p "Installer les dependances de dev (Y/n)?" dev_deps
-dev_deps=${dev_deps:-Y}
-if [ "$dev_deps" != "${dev_deps#[Yy]}" ] ;then 
-  # Docker  
-  $PACKAGE_INSTALLER docker docker-compose ctop
-  if [[ "$OSTYPE" == "linux"* ]]; then
-    sudo usermod -aG docker $USER
-  fi
+install_dev_dependencies () {
+    # Docker
+    $PACKAGE_INSTALLER docker docker-compose ctop
+    if [[ "$OSTYPE" == "linux"* ]]; then
+        sudo usermod -aG docker $USER
+    fi
 
   # GoLang
   $PACKAGE_INSTALLER go
@@ -61,23 +64,17 @@ if [ "$dev_deps" != "${dev_deps#[Yy]}" ] ;then
   #$PACKAGE_INSTALLER php81 php81-bz2 php81-cli php81-curl php81-fpm php81-gd php81-iconv php81-imagick /
   #php81-intl php81-ldap php81-mbstring php81-mcrypt php81-mysql php81-opcache php81-openssl /
   #php81-pdo php81-phar php81-tokenizer php81-xdebug php81-xml php81-zip php81-dom php81-xsl
-  
+
   #VIM PHP Debugger & LSP 
   #$PACKAGE_INSTALLER phpactor 
   #git clone https://github.com/xdebug/vscode-php-debug.git $HOME/.local/lib/vscode-php-debug
-fi
+}
 
-
-if [[ "$OSTYPE" == "linux"* ]]; then
-    # Setup for custom i3
-    read -p "Voulez vous configurer i3 (Y/n)?" configi3
-    configi3=${configi3:-Y}
-
-    if [ "$configi3" != "${configi3#[Yy]}" ] ;then
-      # Install dependencies
-      ## Todo move on termite to alacritty
-      $PACKAGE_INSTALLER otf-font-awesome-5-free otf-hermit
-      sudo pacman -S termite rofi polybar nemo playerctl
+setup_i3 () {
+    # Install dependencies
+    ## Todo move on termite to alacritty
+    $PACKAGE_INSTALLER otf-font-awesome-5-free otf-hermit
+    sudo pacman -S termite rofi polybar nemo playerctl
 
       #Config i3
       rm $HOME/.i3/config
@@ -90,6 +87,27 @@ if [[ "$OSTYPE" == "linux"* ]]; then
       #Config rofi
       rm -rf $HOME/.config/rofi
       ln -s $HOME/.dotfiles/config/rofi $HOME/.config/rofi
+}
+
+echo 'Install dependencies and setup zsh and vim'
+echo '-----------------'
+install_dependencies && setup_zsh && setup_vim
+setup_git
+
+# Install coding dependencies
+read -p "Installer les dependances de dev (Y/n)?" dev_deps
+dev_deps=${dev_deps:-Y}
+if [ "$dev_deps" != "${dev_deps#[Yy]}" ] ;then
+    install_dev_dependencies
+fi
+
+if [[ "$OSTYPE" == "linux"* ]]; then
+    # Setup for custom i3
+    read -p "Voulez vous configurer i3 (Y/n)?" configi3
+    configi3=${configi3:-Y}
+
+    if [ "$configi3" != "${configi3#[Yy]}" ] ;then
+        setup_i3
     fi
 
     read -p "Setup Perso (Y/n)?" personalConfig
