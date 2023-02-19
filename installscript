@@ -25,6 +25,11 @@ setup_zsh () {
     touch $HOME/.zshrc_custom
 }
 
+setup_tmux() {
+    rm -r $HOME/.tmux.conf
+    ln -s $HOME/.dotfiles/config/tmux/tmux.conf $HOME/.tmux.conf
+}
+
 setup_vim () {
     # Symlink vim prefs
     rm $HOME/.vimrc
@@ -91,7 +96,7 @@ setup_i3 () {
 
 echo 'Install dependencies and setup zsh and vim'
 echo '-----------------'
-install_dependencies && setup_zsh && setup_vim
+install_dependencies && setup_zsh && setup_tmux && setup_vim
 setup_git
 
 # Install coding dependencies

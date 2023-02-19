@@ -170,7 +170,7 @@ zinit wait lucid depth=1  \
 # - - - - - - - - - - - - - - - - - - - -
 eval "$(starship init zsh)"
 # Keep Emacs style shell command Ctrl+A etc
-bindkey -e
+bindkey -v
 
 
 ### End of Zinit's installer chunk
