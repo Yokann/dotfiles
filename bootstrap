@@ -1,16 +1,35 @@
 #!/usr/bin/env bash
 
-function bootstrapTerminal() {
-	sudo -v #ask password beforehand
-	source ~/.dotfiles/installscript
-}
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
+sudo -v #ask password beforehand
+source $SCRIPT_DIR/functions
 
-echo 'Bootstrap terminal'
-echo '------------------'
-echo 'This will reset your terminal. Are you sure you want to to this? (y/n) '
-read -p 'Answer: '  reply
+case $1 in
+    terminal)
+        echo 'This will reset your terminal. Are you sure you want to to this? (y/n) '
+        read -p 'Answer: '  reply
+        if [[ $reply =~ ^[Yy]$ ]]
+        then
+            install_dependencies && setup_zsh && setup_tmux && setup_vim
+        fi
+        ;;
 
-if [[ $reply =~ ^[Yy]$ ]]
-then
-   bootstrapTerminal
-fi
+    dev_deps)
+        # Install coding dependencies
+        read -p "Installer les dependances de dev (Y/n)?" dev_deps
+        dev_deps=${dev_deps:-Y}
+        if [ "$dev_deps" != "${dev_deps#[Yy]}" ] ;then
+            install_dev_dependencies
+        fi
+        ;;
+  
+    i3)
+        if [[ "$OSTYPE" == "linux"* ]]; then
+            setup_i3
+        fi
+        ;;
+
+    *)
+        echo "boostrap: [terminal|dev_deps|i3]"   
+        ;;
+esac

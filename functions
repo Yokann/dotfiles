@@ -94,38 +94,14 @@ setup_i3 () {
       ln -s $HOME/.dotfiles/config/rofi $HOME/.config/rofi
 }
 
-echo 'Install dependencies and setup zsh and vim'
-echo '-----------------'
-install_dependencies && setup_zsh && setup_tmux && setup_vim
-setup_git
-
-# Install coding dependencies
-read -p "Installer les dependances de dev (Y/n)?" dev_deps
-dev_deps=${dev_deps:-Y}
-if [ "$dev_deps" != "${dev_deps#[Yy]}" ] ;then
-    install_dev_dependencies
-fi
-
-if [[ "$OSTYPE" == "linux"* ]]; then
-    # Setup for custom i3
-    read -p "Voulez vous configurer i3 (Y/n)?" configi3
-    configi3=${configi3:-Y}
-
-    if [ "$configi3" != "${configi3#[Yy]}" ] ;then
-        setup_i3
-    fi
-
-    read -p "Setup Perso (Y/n)?" personalConfig
-    personalConfig=${personalConfig:-Y}
-
-    if [ "$personalConfig" != "${personalConfig#[Yy]}" ] ;then
-       sudo pacman -S mpv streamlink
-       # Corsair Keyboard 
-       rm -r $HOME/.config/ckb-next
-       ln -s $HOME/.dotfiles/config/ckb-next $HOME/.config/ckb-next
-    fi
-fi   
-
-echo '++++++++++++++++++++++++++++++'
-echo '++++++++++++++++++++++++++++++'
-echo 'All done!'
+# if [[ "$OSTYPE" == "linux"* ]]; then
+#     read -p "Setup Perso (Y/n)?" personalConfig
+#     personalConfig=${personalConfig:-Y}
+#
+#     if [ "$personalConfig" != "${personalConfig#[Yy]}" ] ;then
+#        sudo pacman -S mpv streamlink
+#        # Corsair Keyboard 
+#        rm -r $HOME/.config/ckb-next
+#        ln -s $HOME/.dotfiles/config/ckb-next $HOME/.config/ckb-next
+#     fi
+# fi   
