@@ -4,6 +4,9 @@ if not ok then
 end
 
 telescope.setup({
+    defaults = {
+        file_ignore_patterns = { "^%.git/" }
+    },
     extensions = {
         fzf = {
             fuzzy = true, -- false will only do exact matching
