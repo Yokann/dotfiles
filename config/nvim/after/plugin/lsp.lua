@@ -1,3 +1,9 @@
+local ok, lspconfig = pcall(require, "lspconfig")
+if not ok then
+    return
+end
+
+
 local cmp = require("cmp")
 local lspkind = require("lspkind")
 local luasnip = require("luasnip")
@@ -149,7 +155,6 @@ masonLspConfig.setup({
     }
 })
 
-local lspconfig = require("lspconfig")
 masonLspConfig.setup_handlers({
     function(server_name)
         lspconfig[server_name].setup(config())
