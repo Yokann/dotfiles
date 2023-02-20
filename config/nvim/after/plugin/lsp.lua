@@ -94,7 +94,7 @@ local function config(_config)
         on_attach = function()
             vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, { desc = "[G]o [D]efinition" })
             vim.keymap.set("n", "fmt", function() vim.lsp.buf.format({ async = true }) end, { desc = "[F]or[M]a[T]" })
-            vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end)
+            vim.keymap.set("n", "U", function() vim.lsp.buf.hover() end)
             vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end)
             vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end,
                 { desc = "[V]iew [D]iagnostic" })
