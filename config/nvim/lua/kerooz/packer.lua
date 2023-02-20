@@ -85,7 +85,8 @@ return packer.startup(function(use)
         "neovim/nvim-lspconfig",
         requires = {
             "williamboman/mason.nvim",
-            "williamboman/mason-lspconfig.nvim"
+            "williamboman/mason-lspconfig.nvim",
+            {"j-hui/fidget.nvim", config = function() require('fidget').setup() end } --loader for lsp
         }
     }
 
@@ -108,7 +109,6 @@ return packer.startup(function(use)
                 "L3MON4D3/LuaSnip",
                 requires = { "rafamadriz/friendly-snippets" },
             },
-            -- use("glepnir/lspsaga.nvim") -- c'est vachement bien mais je sais pas encore m'en servir
         }
     }
 
