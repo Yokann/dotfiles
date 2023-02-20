@@ -13,7 +13,8 @@ local source_mapping = {
     buffer = "[Buffer]",
     nvim_lsp = "[LSP]",
     path = "[Path]",
-    cmp_tabnine = "[TN]"
+    cmp_tabnine = "[TN]",
+    luasnip = "[SNP]"
 }
 
 -- Setup nvim-cpm
@@ -99,6 +100,8 @@ local function config(_config)
     return vim.tbl_deep_extend("force", {
         on_attach = function()
             vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, { desc = "[G]o [D]efinition" })
+            vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end, { desc = "[G]o [I]mplemention" })
+            vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, { desc = "[C]ode [A]ction" })
             vim.keymap.set("n", "fmt", function() vim.lsp.buf.format({ async = true }) end, { desc = "[F]or[M]a[T]" })
             vim.keymap.set("n", "U", function() vim.lsp.buf.hover() end)
             vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end)
@@ -127,7 +130,6 @@ local function config(_config)
             vim.keymap.set("i", "<A-h>", function() vim.lsp.buf.signature_help() end,
                 { desc = "View code signature" })
         end,
-        -- capabilities = require("cmp_nvim_lsp").default_capabilities,
     }, _config or {})
 end
 
@@ -206,7 +208,7 @@ require("luasnip.loaders.from_vscode").lazy_load()
 --  Floating window styles {{
 --
 vim.diagnostic.config({
-    virtual_text = false,
+    -- virtual_text = false,
     float = {
         source = 'always',
         border = 'rounded',
