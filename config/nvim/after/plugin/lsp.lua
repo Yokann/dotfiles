@@ -74,7 +74,7 @@ cmp.setup({
     },
     -- Sort is important
     sources = {
-        { name = 'cmp_tabnine' },
+        -- { name = 'cmp_tabnine' },
         { name = 'nvim_lsp' },
         { name = 'luasnip',    keyword_length = 2 },
         { name = 'path' },
