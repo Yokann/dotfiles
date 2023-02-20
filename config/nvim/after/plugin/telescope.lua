@@ -3,8 +3,18 @@ if not ok then
     return
 end
 
-
-telescope.load_extension('ag')
+telescope.setup({
+    extensions = {
+        fzf = {
+            fuzzy = true, -- false will only do exact matching
+            override_generic_sorter = true, -- override the generic sorter
+            override_file_sorter = true, -- override the file sorter
+            case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+            -- the default case_mode is "smart_case"
+        }
+    }
+})
+telescope.load_extension('fzf')
 local builtin = require('telescope.builtin')
 
 vim.keymap.set("n", '<leader>ff', builtin.find_files, { desc = "[F]ind in all [F]iles" })
@@ -13,9 +23,6 @@ vim.keymap.set("n", "<leader>ç", builtin.oldfiles, { desc = "[ç] Find recently
 vim.keymap.set("n", '<leader><space>', builtin.buffers, { desc = "Find Buffers" })
 vim.keymap.set("n", '<leader>fh', builtin.help_tags, { desc = "[F]ind [H]elp" })
 vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "[F]ind [K]eymap" })
-vim.keymap.set("n", "<leader>sg", function()
-    local search = vim.fn.input("Grep > ")
-    vim.cmd('Ag ' .. search)
-end, { desc = "[S]earch [G]rep" })
+vim.keymap.set("n", "<leader>lg", builtin.live_grep, { desc = "[L]ive [G]rep" })
 vim.keymap.set("n", "<leader>fd", builtin.diagnostics, { desc = "[F]ind [D]iagnostics" })
 vim.keymap.set("n", "gr", builtin.lsp_references, { desc = "[G]oto [R]eferences" })
