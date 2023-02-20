@@ -96,10 +96,10 @@ local function config(_config)
             vim.keymap.set("n", "fmt", function() vim.lsp.buf.format({ async = true }) end, { desc = "[F]or[M]a[T]" })
             vim.keymap.set("n", "U", function() vim.lsp.buf.hover() end)
             vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end)
-            vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end,
+            vim.keymap.set("n", "vd", function() vim.diagnostic.open_float() end,
                 { desc = "[V]iew [D]iagnostic" })
-            vim.keymap.set("n", "$d", function() vim.diagnostic.goto_next() end, { desc = "Next occurrence" })
-            vim.keymap.set("n", "ùd", function() vim.diagnostic.goto_prev() end, { desc = "Previous occurence" })
+            vim.keymap.set("n", "vdj", function() vim.diagnostic.goto_next() end, { desc = "Next occurrence" })
+            vim.keymap.set("n", "vdk", function() vim.diagnostic.goto_prev() end, { desc = "Previous occurence" })
             vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end,
                 { desc = "[V]iew [C]ode [A]ction" })
             vim.keymap.set("n", "<leader>vco", function()
@@ -201,6 +201,7 @@ require("luasnip.loaders.from_vscode").lazy_load()
 --  Floating window styles {{
 --
 vim.diagnostic.config({
+    virtual_text = false,
     float = {
         source = 'always',
         border = 'rounded',
