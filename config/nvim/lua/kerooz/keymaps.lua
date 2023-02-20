@@ -2,10 +2,9 @@
 vim.keymap.set("n", "<A-d>", "<Cmd>:bd<CR>:bn<CR>", { desc = "Close buffer", noremap = true })
 vim.keymap.set("n", "<A-s>", "<Cmd>:w<CR>", { desc = "Save buffer", noremap = true })
 
--- Azerty Bracket Hell
-vim.keymap.set("i", "<A-(>", "[]<Left>")
-vim.keymap.set("i", "<A-b>", "{}<Left>")
---vim.keymap.set("i", "(", "()<Left>")
+-- Azerty Bracket Hell, replzce by autopair plugin 
+-- vim.keymap.set("i", "<A-(>", "[]<Left>")
+-- vim.keymap.set("i", "<A-b>", "{}<Left>")
 
 -- Move block selection up and down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move block code up" })

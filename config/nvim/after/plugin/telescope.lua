@@ -1,4 +1,10 @@
-require('telescope').load_extension('ag')
+local ok, telescope = pcall(require, "telescope")
+if not ok then
+    return
+end
+
+
+telescope.load_extension('ag')
 local builtin = require('telescope.builtin')
 
 vim.keymap.set("n", '<leader>ff', builtin.find_files, { desc = "[F]ind in all [F]iles" })
