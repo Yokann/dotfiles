@@ -44,7 +44,8 @@ return packer.startup(function(use)
         "airblade/vim-rooter", -- load root dir at vim startup on a file
         "ggandor/leap.nvim", -- intersting way to move
         "numToStr/Comment.nvim", -- comment block
-        'rmagatti/auto-session', -- restore previous dir session 
+        "rmagatti/auto-session", -- restore previous dir session 
+        "tweekmonster/startuptime.vim",
     }
 
     -- Nvim Tree
