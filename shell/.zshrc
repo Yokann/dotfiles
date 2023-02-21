@@ -1,10 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of `~/.zshrc`.
-# Initialization code that may require console input ( password prompts, [y/n]
-# confirmations, etc. ) must go above this block, everything else may go below.
-#if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-#    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-#fi
-
 # - - - - - - - - - - - - - - - - - - - -
 # Custom loading configuration
 # - - - - - - - - - - - - - - - - - - - -
@@ -124,6 +117,7 @@ _my_zsh_custom_plugins=(
 #    b4b4r07/enhancd
      Aloxaf/fzf-tab
      joshskidmore/zsh-fzf-history-search
+     jeffreytse/zsh-vi-mode
 )
 
 # Need to be load before everything else 
@@ -170,7 +164,7 @@ zinit wait lucid depth=1  \
 # - - - - - - - - - - - - - - - - - - - -
 eval "$(starship init zsh)"
 # Keep Emacs style shell command Ctrl+A etc
-bindkey -v
+bindkey -e
 
 
 ### End of Zinit's installer chunk
