@@ -143,18 +143,6 @@ return packer.startup(function(use)
         branch = "main", -- timely updates
         -- branch = "v1.x", -- won't receive breaking changes
         requires = { "nvim-tree/nvim-web-devicons", "nvim-lua/plenary.nvim" }, -- optional for icon support
-        config = function()
-            local ok, cybu = pcall(require, "cybu")
-            if not ok then
-                return
-            end
-            cybu.setup()
-            vim.keymap.set("n", "<A-k>", "<Plug>(CybuPrev)", { noremap = true })
-            vim.keymap.set("n", "<A-j>", "<Plug>(CybuNext)", { noremap = true })
-            vim.keymap.set({ "n", "v" }, "<c-s-tab>", "<plug>(CybuLastusedPrev)",
-                { desc = "Previous last used buffer" })
-            vim.keymap.set({ "n", "v" }, "<c-tab>", "<plug>(CybuLastusedNext)", { desc = "Next last used buffer " })
-        end
     })
 
     -- Custom
