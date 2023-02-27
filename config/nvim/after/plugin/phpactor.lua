@@ -5,16 +5,12 @@ end
 
 local Float = require "plenary.window.float"
 
-vim.cmd([[
-    augroup LspPhpactor
-      autocmd!
-      autocmd Filetype php command! -nargs=0 LspPhpactorReindex lua vim.lsp.buf_notify(0, "phpactor/indexer/reindex",{})
-      autocmd Filetype php command! -nargs=0 LspPhpactorConfig lua LspPhpactorDumpConfig()
-      autocmd Filetype php command! -nargs=0 LspPhpactorStatus lua LspPhpactorStatus()
-      autocmd Filetype php command! -nargs=0 LspPhpactorBlackfireStart lua LspPhpactorBlackfireStart()
-      autocmd Filetype php command! -nargs=0 LspPhpactorBlackfireFinish lua LspPhpactorBlackfireFinish()
-    augroup END
-]])
+local lspPhpactorGroup = vim.api.nvim_create_augroup("LspPhpactor", { clear = true })
+vim.api.nvim_create_autocmd("Filetype", { pattern = "php", group = lspPhpactorGroup, command = 'command! -nargs=0 LspPhpactorReindex lua vim.lsp.buf_notify(0, "phpactor/indexer/reindex",{})' })
+vim.api.nvim_create_autocmd("Filetype", { pattern = "php", group = lspPhpactorGroup, command = "command! -nargs=0 LspPhpactorConfig lua LspPhpactorDumpConfig()" })
+vim.api.nvim_create_autocmd("Filetype", { pattern = "php", group = lspPhpactorGroup, command = "command! -nargs=0 LspPhpactorStatus lua LspPhpactorStatus()" })
+vim.api.nvim_create_autocmd("Filetype", { pattern = "php", group = lspPhpactorGroup, command = "command! -nargs=0 LspPhpactorBlackfireStart lua LspPhpactorBlackfireStart()" })
+vim.api.nvim_create_autocmd("Filetype", { pattern = "php", group = lspPhpactorGroup, command = "command! -nargs=0 LspPhpactorBlackfireFinish lua LspPhpactorBlackfireFinish()" })
 
 local function showWindow(title, syntax, contents)
     local out = {};

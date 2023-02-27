@@ -127,7 +127,7 @@ local function config(_config)
             vim.keymap.set("n", "<leader>vcr", function() vim.lsp.buf.references() end,
                 { desc = "[V]iew [C]ode [R]eferences" })
             vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, { desc = "[V]iew [R]e[N]ame" })
-            vim.keymap.set("i", "<A-h>", function() vim.lsp.buf.signature_help() end,
+            vim.keymap.set({"n","i"}, "<A-h>", function() vim.lsp.buf.signature_help() end,
                 { desc = "View code signature" })
         end,
     }, _config or {})
