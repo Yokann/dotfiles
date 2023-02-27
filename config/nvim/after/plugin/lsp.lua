@@ -77,7 +77,7 @@ cmp.setup({
     sources = {
         -- { name = 'cmp_tabnine' },
         { name = 'nvim_lsp' },
-        { name = 'luasnip',    keyword_length = 2 },
+        { name = 'luasnip', keyword_length = 2 },
         { name = 'path' },
         { name = 'buffer' },
     }
@@ -127,7 +127,7 @@ local function config(_config)
             vim.keymap.set("n", "<leader>vcr", function() vim.lsp.buf.references() end,
                 { desc = "[V]iew [C]ode [R]eferences" })
             vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, { desc = "[V]iew [R]e[N]ame" })
-            vim.keymap.set({"n","i"}, "<A-h>", function() vim.lsp.buf.signature_help() end,
+            vim.keymap.set({ "n", "i" }, "<A-h>", function() vim.lsp.buf.signature_help() end,
                 { desc = "View code signature" })
         end,
     }, _config or {})
@@ -200,15 +200,15 @@ masonLspConfig.setup_handlers({
         }))
     end
 })
-
+vim.api.nvim_create_autocmd({ "CursorHold" }, { command = "lua vim.diagnostic.open_float(nil, {focus=false})" })
 require("luasnip.loaders.from_vscode").lazy_load()
-
 -- }}
 
 --  Floating window styles {{
 --
 vim.diagnostic.config({
-    -- virtual_text = false,
+    virtual_text = false,
+    signs = true,
     float = {
         source = 'always',
         border = 'rounded',
