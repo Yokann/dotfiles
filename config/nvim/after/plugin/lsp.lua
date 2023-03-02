@@ -109,9 +109,9 @@ local function config(_config)
                 { desc = "[V]iew [D]iagnostic" })
             vim.keymap.set("n", "vdj", function() vim.diagnostic.goto_next() end, { desc = "Next occurrence" })
             vim.keymap.set("n", "vdk", function() vim.diagnostic.goto_prev() end, { desc = "Previous occurence" })
-            vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end,
+            vim.keymap.set("n", "<leader>cc", function() vim.lsp.buf.code_action() end,
                 { desc = "[V]iew [C]ode [A]ction" })
-            vim.keymap.set("n", "<leader>vco", function()
+            vim.keymap.set("n", "<leader>co", function()
                 vim.lsp.buf.code_action({
                     filter = function(code_action)
                         if not code_action or not code_action.data then
