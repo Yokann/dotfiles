@@ -7,8 +7,10 @@
 ehthumbs.db
 Thumbs.db
 
-# Vim swap files
+# Vim
 .*.sw
+.phpactor.yml
+.phpactor.json
 
 # PhpStorm
 .idea
