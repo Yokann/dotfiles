@@ -1,0 +1,19 @@
+#!/bin/sh
+
+PLAYGROUNDS_DIR="/tmp/rust-playgrounds"
+TIMESTAMP=$(date +"%Y%m%d%H%M%S")
+PROJECT_DIR="${PLAYGROUNDS_DIR}/playground${TIMESTAMP}"
+
+cargo new $PROJECT_DIR
+cd $PROJECT_DIR
+
+# Add dependencies to Cargo.toml
+for CRATE in $@; do
+    sed "/^\[dependencies\]/a $CRATE = \"*\"" -i Cargo.toml
+done
+
+tmux new-window -n "playground${TIMESTAMP}"\; \
+  send-keys "nvim ./src/main.rs" C-m \; \
+  split-window -h \; \
+  send-keys "cargo watch -s 'clear && cargo run -q'" C-m \; \
+  select-pane -L;
