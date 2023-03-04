@@ -1,9 +1,9 @@
-vim.cmd([[
-  augroup tmux_user_config
-    autocmd!
-    autocmd BufWritePost .tmux.conf execute ':!tmux source-file %'
-  augroup end
-]])
+-- reload tmux conf on configuration edit
+vim.api.nvim_create_autocmd("BufWritePost", {
+    group = vim.api.nvim_create_augroup("tmux_user_config", { clear = true }),
+    pattern = ".tmux.conf",
+    command = "!tmux source-file %"
+})
 
 -- close some filetypes with <q>
 vim.api.nvim_create_autocmd("FileType", {
