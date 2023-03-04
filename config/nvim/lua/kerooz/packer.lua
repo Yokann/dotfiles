@@ -144,7 +144,10 @@ return packer.startup(function(use)
     })
 
     -- Custom
-    use("ThePrimeagen/refactoring.nvim")
+    use({
+        "ThePrimeagen/refactoring.nvim",
+        "folke/todo-comments.nvim",
+    })
 
     -- Debugger
     use {
