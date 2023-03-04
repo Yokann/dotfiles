@@ -115,3 +115,4 @@ vim.opt.undofile = true
 
 vim.opt.incsearch = true
 vim.g.gitblame_enabled = 0
+vim.g.user_emmet_leader_key = "<A-e>"

@@ -148,6 +148,7 @@ return packer.startup(function(use)
     use({
         "ThePrimeagen/refactoring.nvim",
         "folke/todo-comments.nvim",
+        "mattn/emmet-vim",
     })
 
     -- Debugger
