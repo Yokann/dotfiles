@@ -2,19 +2,19 @@
 vim.keymap.set("n", "<A-d>", "<Cmd>:bd<CR>:bn<CR>", { desc = "Close buffer", noremap = true })
 vim.keymap.set("n", "<A-s>", "<Cmd>:w<CR>", { desc = "Save buffer", noremap = true })
 
--- Azerty Bracket Hell, replzce by autopair plugin 
+-- Azerty Bracket Hell, replzce by autopair plugin
 -- vim.keymap.set("i", "<A-(>", "[]<Left>")
 -- vim.keymap.set("i", "<A-b>", "{}<Left>")
 
 -- Move block selection up and down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move block code up" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move block code down" })
-vim.keymap.set("n", "K", "<esc>:m .-2<CR>==", { noremap = true })
-vim.keymap.set("n", "J", "<esc>:m .+1<CR>==", { noremap = true })
+vim.keymap.set("n", "K", "<esc>:m .-2<CR>==", { noremap = true, desc = "Move line down" })
+vim.keymap.set("n", "J", "<esc>:m .+1<CR>==", { noremap = true, desc = "Move line up" })
 
--- indent 
-vim.keymap.set("v", "<", "<gv")
-vim.keymap.set("v", ">", ">gv")
+-- indent
+vim.keymap.set("v", "<", "<gv", { desc = "Unindent line" })
+vim.keymap.set("v", ">", ">gv", { desc = "Indent line" })
 -- vim.keymap.set("n", "J", "mzJ`z") -- keep the cursor at the start of the line
 
 -- Copy paste over system clipboard
@@ -32,7 +32,8 @@ vim.keymap.set("i", "jh", "<Esc>")
 
 vim.keymap.set("n", "<esc>", "<Cmd>:noh<CR>", { noremap = false })
 
-vim.keymap.set("n", "<leader>git", "<Cmd>:LazyGit<CR>")
+vim.keymap.set("n", "<leader>git", "<Cmd>:LazyGit<CR>", { desc = "Open LazyGit" })
 
+-- Keep cursor centered when scrolling 
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
