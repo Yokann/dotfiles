@@ -4,8 +4,29 @@ if not ok then
 end
 
 nvimtreesitterconfig.setup {
-    ensure_installed = "all",
     sync_install = false,
+    ensure_installed = {
+        "bash",
+        "c",
+        "help",
+        "html",
+        "javascript",
+        "json",
+        "lua",
+        "markdown",
+        "markdown_inline",
+        "python",
+        "query",
+        "regex",
+        "tsx",
+        "typescript",
+        "vim",
+        "yaml",
+        "rust",
+        "php",
+        "go",
+        "terraform"
+    },
 
     highlight = {
         enable = true,
