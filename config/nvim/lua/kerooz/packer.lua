@@ -127,7 +127,7 @@ return packer.startup(function(use)
     use {
         "kdheepak/lazygit.nvim",
         "lewis6991/gitsigns.nvim",
-        { "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" }
+        -- { "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" }
     }
 
     -- UI
