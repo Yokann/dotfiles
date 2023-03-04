@@ -85,7 +85,7 @@ return packer.startup(function(use)
         requires = {
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
-            {"j-hui/fidget.nvim", config = function() require('fidget').setup() end } --loader for lsp
+            { "j-hui/fidget.nvim", config = function() require('fidget').setup() end } --loader for lsp
         }
     }
 
@@ -126,9 +126,8 @@ return packer.startup(function(use)
     -- Git
     use {
         "kdheepak/lazygit.nvim",
-        "airblade/vim-gitgutter",
-        { "f-person/git-blame.nvim", config = function() vim.keymap.set("n", "<leader>gb", "<Cmd>GitBlameToggle<CR>") end },
-        { "sindrets/diffview.nvim",  requires = "nvim-lua/plenary.nvim" }
+        "lewis6991/gitsigns.nvim",
+        { "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" }
     }
 
     -- UI
