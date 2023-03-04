@@ -52,10 +52,10 @@ gitsigns.setup {
         -- vim.keymap.set('n', '<leader>ghS', gs.stage_buffer, { desc="Git [h]unk [S]tage"})
         -- vim.keymap.set('n', '<leader>ghu', gs.undo_stage_hunk, { desc="Git [h]unk [U]ndo"})
         -- vim.keymap.set('n', '<leader>ghR', gs.reset_buffer, { desc="Git [h]unk [R]eset buffer"})
-        vim.keymap.set('n', '<leader>gp', gs.preview_hunk, { desc="Git [p]review"})
-        vim.keymap.set('n', '<leader>gb', function() gs.blame_line { full = true } end, { desc="Git [b]lame"})
+        vim.keymap.set('n', '<leader>gp', gs.preview_hunk, { desc = "Git [p]review" })
+        vim.keymap.set('n', '<leader>gb', function() gs.blame_line { full = true } end, { desc = "Git [b]lame" })
         -- vim.keymap.set('n', '<leader>gb', gs.toggle_current_line_blame)
-        vim.keymap.set('n', '<leader>ghd', gs.diffthis)
+        vim.keymap.set('n', '<leader>ghd', gs.diffthis, { desc = "Git [H]unk [d]iff" })
         -- vim.keymap.set('n', '<leader>ghD', function() gs.diffthis('~') end)
         -- vim.keymap.set('n', '<leader>gtd', gs.toggle_deleted, { desc="Git [t]oggle [d]eleted"})
 

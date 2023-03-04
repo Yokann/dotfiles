@@ -34,6 +34,6 @@ vim.keymap.set("n", "<esc>", "<Cmd>:noh<CR>", { noremap = false })
 
 vim.keymap.set("n", "<leader>git", "<Cmd>:LazyGit<CR>", { desc = "Open LazyGit" })
 
--- Keep cursor centered when scrolling 
+-- Keep cursor centered when scrolling
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
