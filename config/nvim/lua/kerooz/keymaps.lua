@@ -13,8 +13,8 @@ vim.keymap.set("n", "K", "<esc>:m .-2<CR>==", { noremap = true, desc = "Move lin
 vim.keymap.set("n", "J", "<esc>:m .+1<CR>==", { noremap = true, desc = "Move line up" })
 
 -- indent
-vim.keymap.set("v", "<", "<gv", { desc = "Unindent line" })
-vim.keymap.set("v", ">", ">gv", { desc = "Indent line" })
+vim.keymap.set("v", "<S-Tab>", "<gv", { desc = "Unindent line" })
+vim.keymap.set("v", "<Tab>", ">gv", { desc = "Indent line" })
 -- vim.keymap.set("n", "J", "mzJ`z") -- keep the cursor at the start of the line
 
 -- Copy paste over system clipboard
