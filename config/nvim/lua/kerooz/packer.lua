@@ -45,6 +45,7 @@ return packer.startup(function(use)
         "numToStr/Comment.nvim", -- comment block
         "rmagatti/auto-session", -- restore previous dir session
         "tweekmonster/startuptime.vim",
+        "christoomey/vim-tmux-navigator", -- use same keymap to switch pane and buffer
         {
             "windwp/nvim-autopairs",
             config = function() require("nvim-autopairs").setup {} end
