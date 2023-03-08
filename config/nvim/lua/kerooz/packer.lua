@@ -136,6 +136,13 @@ return packer.startup(function(use)
     use {
         "lukas-reineke/indent-blankline.nvim",
         "levouh/tint.nvim", -- highlight current buffer
+        {
+            "b0o/incline.nvim",
+            event = "BufReadPre",
+            config = function()
+                require("incline").setup()
+            end,
+        }
     }
     use({
         -- Buffer navigation helper
