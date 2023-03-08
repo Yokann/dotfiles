@@ -106,7 +106,8 @@ local function config(_config)
             vim.keymap.set("n", "U", function() vim.lsp.buf.hover() end)
             vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end,
                 { desc = "[V]iew [W]orkspace [S]ymbols" })
-            -- vim.keymap.set("n", "vd", function() vim.diagnostic.open_float() end, { desc = "[V]iew [D]iagnostic" })
+            vim.keymap.set("n", "vd", function() vim.diagnostic.open_float(nil, { focus = false }) end,
+                { desc = "[V]iew [D]iagnostic" })
             vim.keymap.set("n", "vdj", function() vim.diagnostic.goto_next() end, { desc = "Next occurrence" })
             vim.keymap.set("n", "vdk", function() vim.diagnostic.goto_prev() end, { desc = "Previous occurence" })
             vim.keymap.set("n", "<leader>cc", function() vim.lsp.buf.code_action() end,
@@ -213,7 +214,7 @@ masonLspConfig.setup_handlers({
         }))
     end
 })
-vim.api.nvim_create_autocmd({ "CursorHold" }, { command = "lua vim.diagnostic.open_float(nil, {focus=false})" })
+-- vim.api.nvim_create_autocmd({ "CursorHold" }, { command = "lua vim.diagnostic.open_float(nil, {focus=false})" })
 require("luasnip.loaders.from_vscode").lazy_load()
 -- }}
 
