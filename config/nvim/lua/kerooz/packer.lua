@@ -35,6 +35,7 @@ return packer.startup(function(use)
     -- Base
     use {
         "wbthomason/packer.nvim", -- Have packer manage itself
+        "lewis6991/impatient.nvim",
         "nvim-lua/popup.nvim", -- An implementation of the Popup API from vim in Neovim
         "nvim-lua/plenary.nvim", -- Useful lua functions used ny lots of plugins
         "nvim-lualine/lualine.nvim", -- Status bar
