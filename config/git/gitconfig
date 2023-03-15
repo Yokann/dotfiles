@@ -14,3 +14,10 @@
 [diff]
     colorMoved = default
 
+[pull]
+	rebase = false
+
+[rebase]
+	autosquash = true
+
+
