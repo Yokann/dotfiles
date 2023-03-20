@@ -36,7 +36,7 @@ setup_vim () {
     rm $HOME/.vimrc
     ln -s $HOME/.dotfiles/shell/.vimrc $HOME/.vimrc
     # Config neovim
-    $PACKAGE_INSTALLER neovim lua-language-server
+    $PACKAGE_INSTALLER neovim sqlite
     rm $HOME/.config/nvim
     ln -s $HOME/.dotfiles/config/nvim $HOME/.config/nvim
 }
