@@ -97,6 +97,8 @@ return packer.startup(function(use)
             { "j-hui/fidget.nvim", config = function() require('fidget').setup() end } --loader for lsp
         }
     }
+    -- Load phpactor from mason installation
+    use {fn.stdpath('data') .. '/mason/packages/phpactor'}
 
     -- Completion
     use {
