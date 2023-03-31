@@ -5,8 +5,8 @@ vim.keymap.set("n", "<C-s>", "<Cmd>:w<CR>", { desc = "Save buffer", noremap = tr
 -- Move block selection up and down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move block code up" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move block code down" })
-vim.keymap.set("n", "K", "<esc>:m .-2<CR>==", { noremap = true, desc = "Move line down" })
-vim.keymap.set("n", "J", "<esc>:m .+1<CR>==", { noremap = true, desc = "Move line up" })
+-- vim.keymap.set("n", "K", "<esc>:m .-2<CR>==", { noremap = true, desc = "Move line down" })
+-- vim.keymap.set("n", "J", "<esc>:m .+1<CR>==", { noremap = true, desc = "Move line up" })
 
 -- indent
 vim.keymap.set("v", "<S-Tab>", "<gv", { desc = "Unindent line" })
