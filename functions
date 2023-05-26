@@ -61,21 +61,27 @@ install_dev_dependencies () {
         sudo usermod -aG docker $USER
     fi
 
-  # GoLang
-  $PACKAGE_INSTALLER go
+    # GoLang
+    $PACKAGE_INSTALLER go
+    
+    #Rust
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path -y
+    cargo install cargo-watch
+    # Install alternative linker
+    if [[ "$OSTYPE" == "linux"* ]]; then
+        $PACKAGE_INSTALLER lld clang 
+    elif [[ "$OSTYPE" == "darwin"* ]]; then 
+        $PACKAGE_INSTALLER michaeleisel/zld/zld
+    fi
 
-  #Rust
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path -y
-  cargo install cargo-watch
+    #Setup PHP
+    #$PACKAGE_INSTALLER php81 php81-bz2 php81-cli php81-curl php81-fpm php81-gd php81-iconv php81-imagick /
+    #php81-intl php81-ldap php81-mbstring php81-mcrypt php81-mysql php81-opcache php81-openssl /
+    #php81-pdo php81-phar php81-tokenizer php81-xdebug php81-xml php81-zip php81-dom php81-xsl
 
-  #Setup PHP
-  #$PACKAGE_INSTALLER php81 php81-bz2 php81-cli php81-curl php81-fpm php81-gd php81-iconv php81-imagick /
-  #php81-intl php81-ldap php81-mbstring php81-mcrypt php81-mysql php81-opcache php81-openssl /
-  #php81-pdo php81-phar php81-tokenizer php81-xdebug php81-xml php81-zip php81-dom php81-xsl
-
-  #VIM PHP Debugger & LSP 
-  #$PACKAGE_INSTALLER phpactor 
-  #git clone https://github.com/xdebug/vscode-php-debug.git $HOME/.local/lib/vscode-php-debug
+    #VIM PHP Debugger & LSP 
+    #$PACKAGE_INSTALLER phpactor 
+    #git clone https://github.com/xdebug/vscode-php-debug.git $HOME/.local/lib/vscode-php-debug
 }
 
 setup_i3 () {
