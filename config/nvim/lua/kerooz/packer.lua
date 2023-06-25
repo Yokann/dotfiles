@@ -94,7 +94,7 @@ return packer.startup(function(use)
         requires = {
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
-            { "j-hui/fidget.nvim", config = function() require('fidget').setup() end } --loader for lsp
+            { "j-hui/fidget.nvim", config = function() require('fidget').setup() end, tag = 'legacy' } --loader for lsp
         }
     }
     -- Load phpactor from mason installation
