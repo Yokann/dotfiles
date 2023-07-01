@@ -54,13 +54,18 @@ install_dependencies () {
     $PACKAGE_INSTALLER zsh fzf htop starship tmux ripgrep git-delta lazygit xclip
 }
 
-install_dev_dependencies () {
-    # Docker
-    $PACKAGE_INSTALLER docker docker-compose ctop
-    if [[ "$OSTYPE" == "linux"* ]]; then
+install_docker () {
+    fi [[ "$OSTYPE" == "linux"* ]]; then 
+        $PACKAGE_INSTALLER docker docker-compose
         sudo usermod -aG docker $USER
+    elif [[ "$OSTYPE" == "darwin"* ]]; then 
+        $PACKAGE_INSTALLER orbstack
     fi
 
+    $PACKAGE_INSTALLER ctop
+} 
+
+install_dev_dependencies () {
     # GoLang
     $PACKAGE_INSTALLER go
     
