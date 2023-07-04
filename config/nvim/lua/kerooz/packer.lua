@@ -88,6 +88,7 @@ return packer.startup(function(use)
             "nvim-treesitter/playground"
         }
     }
+    use {"stevearc/aerial.nvim"}
 
     -- LSP Config
     use {
