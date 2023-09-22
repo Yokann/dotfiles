@@ -8,6 +8,7 @@ nvimtreesitterconfig.setup {
     ensure_installed = {
         "bash",
         "c",
+        "css",
         "help",
         "html",
         "javascript",
