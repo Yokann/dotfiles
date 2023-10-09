@@ -1,18 +1,18 @@
 local opts_info = vim.api.nvim_get_all_options_info()
 
 local opt = setmetatable(
-        {}, {
-        __newindex = function(_, key, value)
-            vim.o[key] = value
-            local scope = opts_info[key].scope
-            if scope == 'win' then
-                vim.wo[key] = value
-            elseif scope == 'buf' then
-                vim.bo[key] = value
-            end
+    {}, {
+    __newindex = function(_, key, value)
+        vim.o[key] = value
+        local scope = opts_info[key].scope
+        if scope == 'win' then
+            vim.wo[key] = value
+        elseif scope == 'buf' then
+            vim.bo[key] = value
         end
-    }
-    )
+    end
+}
+)
 
 local function add(value, str, sep)
     sep = sep or ','
@@ -42,15 +42,15 @@ vim.o.splitright = true
 -- do not use split or vsplit to ensure we don't open any new windows
 vim.o.switchbuf = 'useopen,uselast'
 vim.o.fillchars = add {
-        'vert:▕', -- alternatives │
-        'fold: ',
-        'eob: ', -- suppress ~ at EndOfBuffer
-        'diff:─', -- alternatives: ⣿ ░
-        'msgsep:‾',
-        'foldopen:▾',
-        'foldsep:│',
-        'foldclose:▸'
-    }
+    'vert:▕', -- alternatives │
+    'fold: ',
+    'eob: ', -- suppress ~ at EndOfBuffer
+    'diff:─', -- alternatives: ⣿ ░
+    'msgsep:‾',
+    'foldopen:▾',
+    'foldsep:│',
+    'foldclose:▸'
+}
 opt.laststatus = 3
 
 -- }}}
@@ -93,7 +93,7 @@ vim.o.emoji = false
 
 -- Timings {{{
 
-opt.updatetime = 50
+opt.updatetime = 90
 
 -- }}}
 

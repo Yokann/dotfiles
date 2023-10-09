@@ -1,0 +1,121 @@
+return {
+    {
+        "catppuccin/nvim",
+        lazy = false,
+        name = "catppuccin",
+        opts = {
+            flavour = "macchiato", -- latte, frappe, macchiato, mocha
+        },
+        config = function(_, opts)
+            require("catppuccin").setup(opts)
+            vim.api.nvim_command "colorscheme catppuccin"
+        end,
+    },
+    {
+        "lukas-reineke/indent-blankline.nvim",
+        main = "ibl",
+        lazy = false,
+        config = function()
+            require('ibl').setup()
+        end
+    },
+    {
+        "levouh/tint.nvim", -- highlight current buffer
+        lazy = false,
+        opts = {
+            tint = -30,
+            saturation = 0.5,
+            highlight_ignore_patterns = {
+                "LspInlayHint.*",
+                "WinBar.*",
+                "WinSeparator",
+                "IndentBlankline.*",
+                "SignColumn",
+                "EndOfBuffer",
+                "Neotest*", -- for some reason Neotest window get tinted when it shouldn't
+            },
+            window_ignore_function = function(winid)
+                local DONT_TINT = true
+                local TINT = false
+                -- Don't tint floating windows.
+                if vim.api.nvim_win_get_config(winid).relative ~= "" then
+                    return DONT_TINT
+                end
+
+                local bufnr = vim.api.nvim_win_get_buf(winid)
+                -- Only tint normal buffers.
+                if vim.api.nvim_buf_get_option(bufnr, "buftype") == "" then
+                    return TINT
+                end
+                return DONT_TINT
+            end,
+        }
+    },
+
+    {
+        "b0o/incline.nvim",
+        event = "BufReadPre",
+        config = function()
+            require("incline").setup()
+        end,
+    },
+
+    -- Cybu Buffer navigation helper
+    {
+        "ghillb/cybu.nvim",
+        lazy = false,
+        branch = "main", -- timely updates
+        -- branch = "v1.x", -- won't receive breaking changes
+        opts = {
+            position = {
+                anchor = "topright",
+                vertical_offset = 2,
+            },
+            style = {
+                path = "relative", -- absolute, relative, tail (filename only)
+                path_abbreviation = "none", -- none, shortened
+                border = "rounded", -- single, double, rounded, none
+                separator = " ", -- string used as separator
+                prefix = "…", -- string used as prefix for truncated paths
+                padding = 1, -- left & right padding in number of spaces
+                hide_buffer_id = true, -- hide buffer IDs in window
+                devicons = {
+                    enabled = true, -- enable or disable web dev icons
+                    colored = true, -- enable color for web dev icons
+                    truncate = true, -- truncate wide icons to one char width
+                },
+                highlights = { -- see highlights via :highlight
+                    current_buffer = "CybuFocus", -- current / selected buffer
+                    adjacent_buffers = "CybuAdjacent", -- buffers not in focus
+                    background = "CybuBackground", -- window background
+                    border = "CybuBorder", -- border of the window
+                },
+            },
+            behavior = { -- set behavior for different modes
+                mode = {
+                    default = {
+                        switch = "immediate", -- immediate, on_close
+                        view = "paging",      -- paging, rolling
+                    },
+                    last_used = {
+                        switch = "on_close", -- immediate, on_close
+                        view = "paging",     -- paging, rolling
+                    },
+                    auto = {
+                        view = "rolling", -- paging, rolling
+                    },
+                },
+                show_on_autocmd = false, -- event to trigger cybu (eg. "BufEnter")
+            },
+            display_time = 2000,
+        },
+        init = function()
+            vim.keymap.set("n", "<A-k>", "<Plug>(CybuPrev)", { noremap = true, desc = "Previous Buffer" })
+            vim.keymap.set("n", "<A-j>", "<Plug>(CybuNext)", { noremap = true, desc = "Next Buffer" })
+            vim.keymap.set({ "n", "v" }, "<c-s-tab>", "<plug>(CybuLastusedPrev)",
+                { desc = "Previous last used buffer" })
+            vim.keymap.set({ "n", "v" }, "<c-tab>", "<plug>(CybuLastusedNext)", { desc = "Next last used buffer " })
+        end,
+        dependencies = { "nvim-tree/nvim-web-devicons", "nvim-lua/plenary.nvim" }, -- optional for icon support
+    }
+}

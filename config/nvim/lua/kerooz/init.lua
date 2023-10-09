@@ -1,5 +1,5 @@
 require("kerooz.settings")
-require("kerooz.packer")
+require("kerooz.lazy")
 require("kerooz.keymaps")
 require("kerooz.autocommand")
 require("kerooz.ui")
