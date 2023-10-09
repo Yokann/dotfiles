@@ -14,11 +14,9 @@ vim.keymap.set("v", "<Tab>", ">gv", { desc = "Indent line" })
 -- vim.keymap.set("n", "J", "mzJ`z") -- keep the cursor at the start of the line
 
 -- Copy paste over system clipboard
-vim.keymap.set("n", "<leader>y", "\"+y")
-vim.keymap.set("v", "<leader>y", "\"+y")
-vim.keymap.set("n", "<leader>Y", "\"+Y")
-vim.keymap.set("n", "<leader>d", "\"_d")
-vim.keymap.set("v", "<leader>d", "\"_d")
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
+vim.keymap.set("n", "<leader>Y", [["+Y]])
+vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
 
 -- yank and keep in buffer after paste
 vim.keymap.set("x", "<leader>p", "\"_dp")
