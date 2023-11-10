@@ -131,7 +131,8 @@ return {
                 },
                 pre_save_cmds = {
                     require("nvim-tree.api").tree.close,
-                    require("aerial").close
+                    require("aerial").close,
+                    require("kerooz.dap.init").closeUI
                 }
             }
         end
