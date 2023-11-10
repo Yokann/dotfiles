@@ -38,6 +38,7 @@ return {
     },
     { "tpope/vim-surround",  lazy = false },
     { "tpope/vim-repeat",    lazy = false },
+    { "tpope/vim-unimpaired", lazy = false },
     { "airblade/vim-rooter", lazy = false }, -- load root dir at vim startup on a file
     {
         "ggandor/leap.nvim",                 -- intersting way to move
