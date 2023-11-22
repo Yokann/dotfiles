@@ -1,5 +1,6 @@
 -- Buffer
 vim.keymap.set("n", "<A-d>", "<Cmd>:bd<CR>:bn<CR>", { desc = "Close buffer", noremap = true })
+vim.keymap.set("n", "<leader>bd","<Cmd>:%bd!<CR>", { desc = "Close all buffer", noremap = true })
 vim.keymap.set("n", "<C-s>", "<Cmd>:w<CR>", { desc = "Save buffer", noremap = true })
 
 -- Move block selection up and down
