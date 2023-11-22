@@ -68,6 +68,7 @@ install_docker () {
 install_dev_dependencies () {
     # GoLang
     $PACKAGE_INSTALLER go
+    go install github.com/mitranim/gow@latest
     
     #Rust
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path -y

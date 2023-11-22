@@ -1,0 +1,43 @@
+#!/bin/sh
+
+# You need gow to use this command : https://github.com/mitranim/gow
+
+PLAYGROUNDS_DIR="/tmp/go-playgrounds"
+TIMESTAMP=$(date +"%Y%m%d%H%M%S")
+PLAYDIR="pg${TIMESTAMP}"
+
+if [ ! -z "$1" ]; then
+    PLAYDIR=$1
+fi
+
+PROJECT_DIR="${PLAYGROUNDS_DIR}/${PLAYDIR}"
+
+if [ ! -d $PROJECT_DIR ]; then
+
+    mkdir -p $PROJECT_DIR
+    if [ $? -ne 0 ] ; then
+        echo "Unable to create playground directory"
+        exit 1
+    fi
+    cd $PROJECT_DIR
+    go mod init test
+    cat > main.go <<EOL
+package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("Hello, BG")
+}
+EOL
+
+else 
+    cd $PROJECT_DIR
+fi
+
+tmux new-window -n "${PLAYDIR}"\; \
+  send-keys "nvim ./main.go" C-m \; \
+  split-window -h \; \
+  send-keys "gow run ." C-m \; \
+  select-pane -L;
+
