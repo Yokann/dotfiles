@@ -23,6 +23,9 @@ return {
                     i = {
                         ["<C-j>"] = require('telescope.actions').cycle_history_next,
                         ["<C-k>"] = require('telescope.actions').cycle_history_prev,
+                    },
+                    n = {
+                        ["q"] = require('telescope.actions').close
                     }
                 },
             },
