@@ -17,6 +17,8 @@ return {
                 "help",
                 "html",
                 "javascript",
+                "jq",
+                "jsonnet",
                 "json",
                 "lua",
                 "markdown",
@@ -31,6 +33,8 @@ return {
                 "rust",
                 "php",
                 "go",
+                "gomod",
+                "gosum",
                 "terraform"
             },
 
