@@ -72,19 +72,20 @@ return {
         telescope.load_extension('fzf')
         telescope.load_extension('ui-select')
         telescope.load_extension('smart_history')
-        require('kerooz.plugins.telescope.colorscheme').setPromptStyle('borderless')
+        require('kerooz.lib.telescope.colorscheme').setPromptStyle('borderless')
     end,
     keys = {
-        { "<leader>ff", function() require('kerooz.plugins.telescope.pickers').prettyFilesPicker({ picker = 'find_files' }) end, desc = "[F]ind in all [F]iles" },
-        { "<leader><space>", function() require('kerooz.plugins.telescope.pickers').prettyFilesPicker({ picker = 'git_files' }) end, desc = "[F]ind in [G]it files" },
-        { "<leader>fr", function() require('kerooz.plugins.telescope.pickers').prettyFilesPicker({ picker = 'oldfiles' }) end, desc = "[F]ind [r]ecently opened files" },
+        { "<leader>ff", function() require('kerooz.lib.telescope.pickers').prettyFilesPicker({ picker = 'find_files' }) end, desc = "[F]ind in all [F]iles" },
+        { "<leader><space>", function() require('kerooz.lib.telescope.pickers').prettyFilesPicker({ picker = 'git_files' }) end, desc = "[F]ind in [G]it files" },
+        { "<leader>fr", function() require('kerooz.lib.telescope.pickers').prettyFilesPicker({ picker = 'oldfiles' }) end, desc = "[F]ind [r]ecently opened files" },
         { "<leader>fb", function() require('telescope.builtin').buffers() end, desc = "[F]ind [B]uffers" },
         { "<leader>fh", function() require('telescope.builtin').help_tags() end, desc = "[F]ind [H]elp" },
         { "<leader>fk", function() require('telescope.builtin').keymaps() end, desc = "[F]ind [K]eymap" },
         { "<leader>fd", function() require('telescope.builtin').diagnostics() end, desc = "[F]ind [D]iagnostics" },
-        { "<leader>fss", function() require('telescope.builtin').treesitter() end, desc = "[F]ind [S]ymbols" },
+        { "<leader>gco", function() require('telescope.builtin').git_branches({show_remote_tracking_branches = false}) end, desc = "[G]it [Check[O]ut branche" },
+        -- { "<leader>fss", function() require('telescope.builtin').treesitter() end, desc = "[F]ind [S]ymbols" },
         -- Search
-        { "<leader>gg", function() require('kerooz.plugins.telescope.pickers').prettyGrepPicker({ picker = 'live_grep' }) end, desc = "Live [G]rep" },
+        { "<leader>gg", function() require('kerooz.lib.telescope.pickers').prettyGrepPicker({ picker = 'live_grep' }) end, desc = "Live [G]rep" },
         -- LSP
         { "gr", function() require('telescope.builtin').lsp_references() end, desc = "[G]oto [R]eferences" },
         { "<leader>fs", function() require('telescope.builtin').lsp_workspace_symbols() end, desc = "[F]ind [S]ymbols" },
