@@ -36,10 +36,10 @@ return {
             }
         }
     },
-    { "tpope/vim-surround",  lazy = false },
-    { "tpope/vim-repeat",    lazy = false },
+    { "tpope/vim-surround",   lazy = false },
+    { "tpope/vim-repeat",     lazy = false },
     { "tpope/vim-unimpaired", lazy = false },
-    { "airblade/vim-rooter", lazy = false }, -- load root dir at vim startup on a file
+    { "airblade/vim-rooter",  lazy = false }, -- load root dir at vim startup on a file
     {
         "ggandor/leap.nvim",                 -- intersting way to move
         lazy = false,
@@ -61,6 +61,7 @@ return {
     {
         "windwp/nvim-autopairs",
         event = "InsertEnter",
+        opts = {}
     },
 
     -- Aerial
@@ -114,10 +115,13 @@ return {
             }
         },
         keys = {
-            { "<leader>tt", function() require('nvim-tree.api').tree.toggle(false, false) end,
-                                                                                                  desc =
-                "[T]oggle Nvim[T]ree" },
-            { "<leader>tr", function() require('nvim-tree.api').tree.focus() end,             desc = "Focus Nvim[T][R]ee" },
+            {
+                "<leader>tt",
+                function() require('nvim-tree.api').tree.toggle(false, false) end,
+                desc =
+                "[T]oggle Nvim[T]ree"
+            },
+            { "<leader>tr", function() require('nvim-tree.api').tree.focus() end, desc = "Focus Nvim[T][R]ee" },
         }
     },
 
@@ -133,8 +137,8 @@ return {
                 log_level = "error",
                 auto_session_suppress_dirs = { "~/" },
                 cwd_change_handling = {
-                    restore_upcoming_session = true, -- already the default, no need to specify like this, only here as an example
-                    pre_cwd_changed_hook = nil,      -- already the default, no need to specify like this, only here as an example
+                    restore_upcoming_session = true,
+                    pre_cwd_changed_hook = nil,
                 },
                 pre_save_cmds = {
                     require("nvim-tree.api").tree.close,
