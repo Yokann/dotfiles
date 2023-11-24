@@ -20,9 +20,9 @@ local function setup_basic()
     -- set("n", "J", "mzJ`z") -- keep the cursor at the start of the line
 
     -- Copy paste over system clipboard
-    set({ "n", "v" }, "<leader>y", [["+y]])
-    set("n", "<leader>Y", [["+Y]])
-    set({ "n", "v" }, "<leader>d", [["_d]])
+    -- set({ "n", "v" }, "<leader>y", [["+y]])
+    -- set("n", "<leader>Y", [["+Y]])
+    -- set({ "n", "v" }, "<leader>d", [["_d]])
 
     -- yank and keep in buffer after paste
     set("x", "<leader>p", "\"_dp")
@@ -31,8 +31,6 @@ local function setup_basic()
     set("i", "jh", "<Esc>")
 
     set("n", "<esc>", "<Cmd>:noh<CR>", { noremap = false })
-
-    set("n", "<leader>git", "<Cmd>:LazyGit<CR>", { desc = "Open LazyGit" })
 
     -- Keep cursor centered when scrolling
     set("n", "<C-u>", "<C-u>zz")
