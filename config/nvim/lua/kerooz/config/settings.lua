@@ -79,6 +79,7 @@ local function setup()
     -- Indentation {{{
 
     o.wrap = false
+    -- o.wrapmargin = true
     o.tabstop = 4
     o.softtabstop = 4
     o.textwidth = 1024

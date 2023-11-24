@@ -32,6 +32,13 @@ return {
                 lualine_c = {
                     "diagnostics",
                     { "filename", path = 1 },
+                },
+                lualine_x = {
+                    'encoding', 'fileformat', 'filetype',
+                    {
+                        function() return require("copilot_status").status_string() end,
+                        cnd = function() return require("copilot_status").enabled() end
+                    },
                 }
             }
         }
@@ -149,12 +156,12 @@ return {
     },
 
     {
-        -- Manipulaite array string etc 
+        -- Manipulaite array string etc
         'Wansmer/treesj',
         keys = {
             { '<leader>mjt', function() require("treesj").toggle() end, desc = 'Toggle' },
-            { '<leader>mjs', function() require("treesj").split() end, desc = 'Split' },
-            { '<leader>mjj', function() require("treesj").join() end, desc = 'Join' },
+            { '<leader>mjs', function() require("treesj").split() end,  desc = 'Split' },
+            { '<leader>mjj', function() require("treesj").join() end,   desc = 'Join' },
         },
         dependencies = { 'nvim-treesitter/nvim-treesitter' },
         opts = {
