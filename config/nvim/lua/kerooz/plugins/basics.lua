@@ -57,7 +57,6 @@ return {
             { '<leader>as', '<cmd>ASToggle<CR>', desc = "Toggle autosave" }
         }
     },
-    { "stevearc/stickybuf.nvim", lazy = false, opts = {} }, -- avoid open file inside tool buffer (DAP, Filetree, etc)
     {
         "windwp/nvim-autopairs",
         event = "InsertEnter",
