@@ -49,8 +49,14 @@ return {
     },
     { "numToStr/Comment.nvim",          lazy = false, opts = {} }, -- comment block
     { "xiyaowong/transparent.nvim",     lazy = false },
-    { "christoomey/vim-tmux-navigator", lazy = false },  -- use same keymap to switch pane and buffer
-    { "pocco81/auto-save.nvim", lazy = false },
+    { "christoomey/vim-tmux-navigator", lazy = false },            -- use same keymap to switch pane and buffer
+    {
+        "pocco81/auto-save.nvim",
+        lazy = false,
+        keys = {
+            { '<leader>as', '<cmd>ASToggle<CR>', desc = "Toggle autosave" }
+        }
+    },
     { "stevearc/stickybuf.nvim", lazy = false, opts = {} }, -- avoid open file inside tool buffer (DAP, Filetree, etc)
     {
         "windwp/nvim-autopairs",
