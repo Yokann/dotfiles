@@ -31,7 +31,7 @@ return {
                 },
                 lualine_c = {
                     "diagnostics",
-                    "filename",
+                    {"filename", path = 1},
                 }
             }
         }
