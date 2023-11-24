@@ -71,7 +71,6 @@ return {
             },
             -- Sort is important
             sources = {
-                -- { name = 'cmp_tabnine' },
                 { name = 'nvim_lsp' },
                 { name = 'luasnip', keyword_length = 2 },
                 { name = 'path' },
@@ -84,10 +83,6 @@ return {
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-cmdline",
-        {
-            "tzachar/cmp-tabnine",
-            build = "./install.sh",
-        },
         { "onsails/lspkind-nvim", dependencies = "neovim/nvim-lspconfig" },
         -- Snippet
         "saadparwaiz1/cmp_luasnip",
