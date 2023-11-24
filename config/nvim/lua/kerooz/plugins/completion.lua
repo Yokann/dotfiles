@@ -71,10 +71,10 @@ return {
             },
             -- Sort is important
             sources = {
-                { name = 'nvim_lsp' },
-                { name = 'luasnip', keyword_length = 2 },
-                { name = 'path' },
-                { name = 'buffer' },
+                { name = 'nvim_lsp', priority = 50, max_item_count = 6 },
+                { name = 'luasnip',  priority = 6, max_item_count = 2 },
+                { name = 'buffer', priority = 6, keyword_length = 2, max_item_count = 5 },
+                { name = 'path', priority = 4 },
             }
         })
     end,
