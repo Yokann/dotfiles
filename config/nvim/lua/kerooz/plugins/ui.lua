@@ -69,22 +69,22 @@ return {
         },
         config = function(_, opts)
             require("catppuccin").setup(opts)
+            vim.api.nvim_command "colorscheme catppuccin"
             local palette = require('catppuccin.palettes').get_palette()
 
             local function lspSymbol(name, icon, color)
+                local signName = "DiagnosticSign" .. name
                 vim.fn.sign_define(
-                "DiagnosticSign" .. name,
-                { text = icon, numhl = "DiagnosticDefault" .. name, fg = color }
+                signName,
+                { text = icon, texthl = signName, numhl = signName, fg = color }
                 )
             end
-
-            vim.api.nvim_command "colorscheme catppuccin"
 
             -- Change color from diagnostic icon
             lspSymbol("Error", "", palette.red)
             lspSymbol("Hint", "", palette.teal)
             lspSymbol("Info", "", palette.sky)
-            lspSymbol("Warning", "", palette.yellow)
+            lspSymbol("Warn", "", palette.yellow)
         end,
     },
     {
