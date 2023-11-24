@@ -71,7 +71,8 @@ function M.setup()
     require("kerooz.dap.keymaps").setup() -- Keymaps
 end
 
--- autosession callback before closing nvim
+-- Autosession callback before closing nvim
+-- Avoid to save session with DAP UI opened
 function M.closeUI()
     require("dapui").close()
 end

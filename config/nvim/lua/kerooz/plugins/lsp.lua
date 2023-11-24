@@ -6,7 +6,7 @@ return {
             require('mason').setup()
         end,
         config = function()
-            local config = require('kerooz.plugins.lsp.global_config')
+            local config = require('kerooz.lib.lsp.common_config')
             local masonLspConfig = require('mason-lspconfig')
             local lspconfig = require('lspconfig')
 

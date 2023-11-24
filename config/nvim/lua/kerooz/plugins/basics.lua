@@ -31,7 +31,7 @@ return {
                 },
                 lualine_c = {
                     "diagnostics",
-                    {"filename", path = 1},
+                    { "filename", path = 1 },
                 }
             }
         }
@@ -41,7 +41,7 @@ return {
     { "tpope/vim-unimpaired", lazy = false },
     { "airblade/vim-rooter",  lazy = false }, -- load root dir at vim startup on a file
     {
-        "ggandor/leap.nvim",                 -- intersting way to move
+        "ggandor/leap.nvim",                  -- intersting way to move
         lazy = false,
         config = function()
             require("leap").add_default_mappings()
@@ -146,5 +146,19 @@ return {
                 }
             }
         end
-    }
+    },
+
+    {
+        -- Manipulaite array string etc 
+        'Wansmer/treesj',
+        keys = {
+            { '<leader>mjt', function() require("treesj").toggle() end, desc = 'Toggle' },
+            { '<leader>mjs', function() require("treesj").split() end, desc = 'Split' },
+            { '<leader>mjj', function() require("treesj").join() end, desc = 'Join' },
+        },
+        dependencies = { 'nvim-treesitter/nvim-treesitter' },
+        opts = {
+            use_default_keymaps = false,
+        }
+    },
 }

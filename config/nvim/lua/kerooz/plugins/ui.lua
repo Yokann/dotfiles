@@ -69,7 +69,22 @@ return {
         },
         config = function(_, opts)
             require("catppuccin").setup(opts)
+            local palette = require('catppuccin.palettes').get_palette()
+
+            local function lspSymbol(name, icon, color)
+                vim.fn.sign_define(
+                "DiagnosticSign" .. name,
+                { text = icon, numhl = "DiagnosticDefault" .. name, fg = color }
+                )
+            end
+
             vim.api.nvim_command "colorscheme catppuccin"
+
+            -- Change color from diagnostic icon
+            lspSymbol("Error", "", palette.red)
+            lspSymbol("Hint", "", palette.teal)
+            lspSymbol("Info", "", palette.sky)
+            lspSymbol("Warning", "", palette.yellow)
         end,
     },
     {
@@ -185,5 +200,39 @@ return {
             vim.keymap.set({ "n", "v" }, "<c-tab>", "<plug>(CybuLastusedNext)", { desc = "Next last used buffer " })
         end,
         dependencies = { "nvim-tree/nvim-web-devicons", "nvim-lua/plenary.nvim" }, -- optional for icon support
-    }
+    },
+
+    {
+        'NvChad/nvim-colorizer.lua',
+        ft = {
+            'html',
+            'css',
+            'javascript',
+            'typescript',
+            'typescriptreact',
+            'javascriptreact',
+            'lua',
+            'sass',
+            'scss',
+            'less',
+        },
+        opts = {
+            filetypes = {
+                'html',
+                'css',
+                'javascript',
+                'typescript',
+                'typescriptreact',
+                'javascriptreact',
+                'lua',
+                'sass',
+                'scss',
+                'less',
+            },
+            user_default_options = {
+                mode = 'background',
+                tailwind = true, -- Enable tailwind colors
+            },
+        }
+    },
 }
