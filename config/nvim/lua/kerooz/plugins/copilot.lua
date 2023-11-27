@@ -17,18 +17,18 @@ return {
     },
 
     {
-        "zqbirenbaum/copilot-cmp",
+        "zbirenbaum/copilot-cmp",
         lazy = false,
         dependencies = {
-                'zbirenbaum/copilot.lua',
+            "zbirenbaum/copilot.lua",
         },
         config = function(_, opts)
-                require("copilot_cmp").setup(opts)
+            require("copilot_cmp").setup(opts)
         end
     },
     {
         "jonahgoldwastaken/copilot-status.nvim",
-        dependencies = { "zbirenbaum/copilot.lua" }, -- or "zbirenbaum/copilot.lua"
+        dependencies = { "zbirenbaum/copilot.lua" },
         lazy = true,
         opts = {
             icons = {
