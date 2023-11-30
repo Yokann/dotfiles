@@ -14,7 +14,7 @@ font:
   bold_italic:
     family: FiraCode Nerd Font
     style: Bold Italic
-  size: 13.0
+  size: 11.0
 
 # Catpuccino theme 
 colors:
