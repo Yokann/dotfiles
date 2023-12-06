@@ -9,6 +9,7 @@ return {
             local config = require('kerooz.lib.lsp.common_config')
             local masonLspConfig = require('mason-lspconfig')
             local lspconfig = require('lspconfig')
+            local util = require('lspconfig.util')
 
             masonLspConfig.setup_handlers({
                 function(server_name)
@@ -114,5 +115,8 @@ return {
         tag = "legacy",
         event = "LspAttach",
         opts = {}
-    } --loader for lsp
+    }, --loader for lsp
+    {
+        "towolf/vim-helm", ft = "helm"
+    }
 }
