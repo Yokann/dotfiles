@@ -24,6 +24,7 @@ alias hosts="sudo nano /etc/hosts"
 alias home="cd $HOME"
 alias vim="nvim"
 alias portused="sudo lsof -i -P -n | grep LISTEN"
+alias dotfe="cd $HOME/.dotfiles && nvim"
 
 # Special linux 
 if [[ "$OSTYPE" == "linux"* ]]; then
