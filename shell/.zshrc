@@ -14,8 +14,9 @@ done
 unset file
 
 # Extra paths
-export PATH=$HOME/bin:$HOME/.dotfiles/bin:/usr/local/bin:$HOME/.yarn/bin:$PATH
+export PATH=$HOME/bin:$HOME/.dotfiles/bin:/usr/local/bin:$PATH
 export PATH=$HOME/go/bin:$PATH
+export PATH=$HOME/.volta/bin:$PATH
 
 # Custom config
 source $HOME/.zshrc_custom

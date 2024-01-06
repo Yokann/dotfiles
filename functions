@@ -79,6 +79,9 @@ install_dev_dependencies () {
     elif [[ "$OSTYPE" == "darwin"* ]]; then 
         $PACKAGE_INSTALLER michaeleisel/zld/zld
     fi
+    
+    # Install volta.sh for Node version management
+    curl https://get.volta.sh | bash
 
     #Setup PHP
     #$PACKAGE_INSTALLER php81 php81-bz2 php81-cli php81-curl php81-fpm php81-gd php81-iconv php81-imagick /
