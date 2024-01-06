@@ -15,8 +15,11 @@ local opts = {
   defaults = {
     lazy = true,
   },
+  git = {
+    timeout = 60,
+  },
   dev = {
-    path = "~/code",
+    path = "~/.local/share/nvim/dev",
     fallback = true, -- get plugin from git if not found in path
   },
 }
