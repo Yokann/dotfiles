@@ -1,0 +1,26 @@
+[git_status]
+conflicted = "ﲅ "
+ahead = "省×${count} "
+behind = "🐢×${count} "
+diverged = " 省×${ahead_count} 🐢×${behind_count} "
+untracked = "🤷‍×${count} "
+stashed = "  "
+modified = " ×${count} "
+staged = "艹×${count} "
+renamed = " ×${count} "
+deleted = "×${count} "
+style = "bright-white"
+format = "$all_status$ahead_behind"
+
+
+[git_branch]
+symbol = " "
+
+[kubernetes]
+disabled = false
+symbol = "󱃾 "
+contexts = [
+  { context_pattern = "(.*)prod(.*)", style = "red bold" },
+  { context_pattern = "(.*)staging(.*)", style = "green bold" },
+  { context_pattern = "(.*)gha(.*)", style = "yellow bold", symbol = "󱃾  " },
+]
