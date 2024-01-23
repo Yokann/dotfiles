@@ -57,6 +57,17 @@ return {
                 "[T]oggle Nvim[T]ree"
             },
             { "<leader>tr", function() require('nvim-tree.api').tree.focus() end, desc = "Focus Nvim[T][R]ee" },
+            { "<leader>ggd",
+                function()
+                    local node = require('nvim-tree.api').tree.get_node_under_cursor()
+                    if node.type == 'directory' then
+                        require('kerooz.lib.telescope.pickers').prettyGrepPicker({
+                            picker = 'live_grep',
+                            options = { cwd = node.absolute_path }
+                        })
+                    end
+                end
+            }
         }
     },
 
@@ -75,8 +86,8 @@ return {
             local function lspSymbol(name, icon, color)
                 local signName = "DiagnosticSign" .. name
                 vim.fn.sign_define(
-                signName,
-                { text = icon, texthl = signName, numhl = signName, fg = color }
+                    signName,
+                    { text = icon, texthl = signName, numhl = signName, fg = color }
                 )
             end
 
@@ -178,11 +189,11 @@ return {
                 mode = {
                     default = {
                         switch = "immediate", -- immediate, on_close
-                        view = "paging",      -- paging, rolling
+                        view = "paging", -- paging, rolling
                     },
                     last_used = {
                         switch = "on_close", -- immediate, on_close
-                        view = "paging",     -- paging, rolling
+                        view = "paging", -- paging, rolling
                     },
                     auto = {
                         view = "rolling", -- paging, rolling
