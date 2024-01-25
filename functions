@@ -16,7 +16,7 @@ setup_git () {
 
 setup_zsh () {
     #Symlink .Xresources
-    rm -r $HOME/.config/.Xresources
+    rm -f $HOME/.Xresources
     ln -s $HOME/.dotfiles/config/.Xresources $HOME/.Xresources
     # Symlink zsh prefs
     rm -rf $HOME/.zinit
@@ -26,9 +26,10 @@ setup_zsh () {
 }
 
 setup_tmux() {
-    rm -r $HOME/.tmux.conf
+    rm -f $HOME/.tmux.conf
     ln -s $HOME/.dotfiles/config/tmux/tmux.conf $HOME/.tmux.conf
-    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    rm -rf $HOME/.tmux/plugins/tpm
+    git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
 }
 
 setup_vim () {
@@ -37,7 +38,7 @@ setup_vim () {
     ln -s $HOME/.dotfiles/shell/.vimrc $HOME/.vimrc
     # Config neovim
     $PACKAGE_INSTALLER neovim sqlite
-    rm $HOME/.config/nvim
+    rm -rf $HOME/.config/nvim
     ln -s $HOME/.dotfiles/config/nvim $HOME/.config/nvim
     ln -s $HOME/.dotfiles/config/phpactor $HOME/.config/phpactor
 }
@@ -57,31 +58,31 @@ install_dependencies () {
 }
 
 install_docker () {
-    fi [[ "$OSTYPE" == "linux"* ]]; then 
+    if [[ "$OSTYPE" == "linux"* ]]; then
         $PACKAGE_INSTALLER docker docker-compose
         sudo usermod -aG docker $USER
-    elif [[ "$OSTYPE" == "darwin"* ]]; then 
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
         $PACKAGE_INSTALLER orbstack
     fi
 
     $PACKAGE_INSTALLER ctop
-} 
+}
 
 install_dev_dependencies () {
     # GoLang
     $PACKAGE_INSTALLER go
     go install github.com/mitranim/gow@latest
-    
+
     #Rust
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path -y
     cargo install cargo-watch
     # Install alternative linker
     if [[ "$OSTYPE" == "linux"* ]]; then
-        $PACKAGE_INSTALLER lld clang 
-    elif [[ "$OSTYPE" == "darwin"* ]]; then 
+        $PACKAGE_INSTALLER lld clang
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
         $PACKAGE_INSTALLER michaeleisel/zld/zld
     fi
-    
+
     # Install volta.sh for Node version management
     curl https://get.volta.sh | bash
 
@@ -124,4 +125,4 @@ setup_i3 () {
 #        rm -r $HOME/.config/ckb-next
 #        ln -s $HOME/.dotfiles/config/ckb-next $HOME/.config/ckb-next
 #     fi
-# fi   
+# fi
