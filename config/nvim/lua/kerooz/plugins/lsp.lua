@@ -96,7 +96,7 @@ return {
                         "dockerls",
                         "docker_compose_language_service",
                         "gopls",
-                        "phpactor",
+                        -- "phpactor",
                         "sqlls",
                         "tflint",
                         "yamlls",
