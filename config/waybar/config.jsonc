@@ -1,0 +1,29 @@
+{
+    "include": [
+        "/usr/share/sway/templates/waybar/config.jsonc"
+    ],
+    "modules-left": [
+        "sway/workspaces"
+    ],
+    "modules-center": [
+        "sway/mode"
+    ],
+    "modules-right": [
+        "custom/playerctl",
+        "custom/pacman",
+        "custom/sunset",
+        "custom/clipboard",
+        "custom/dnd",
+        "bluetooth",
+
+        "tray",
+        "pulseaudio",
+        "battery",
+        "clock"
+    ],
+
+    "tray": {
+        "spacing": 5,
+        "icon-size": 15
+    }
+}
