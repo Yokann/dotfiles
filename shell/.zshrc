@@ -139,7 +139,7 @@ zinit wait lucid for \
       zdharma/fast-syntax-highlighting \
       OMZP::colored-man-pages\
    as"completion" \
-      OMZP::docker/_docker \
+      OMZP::docker/completions/_docker \
       OMZP::kubectl \
       OMZ::plugins/composer/composer.plugin.zsh \
       OMZ::plugins/docker-compose/docker-compose.plugin.zsh 
