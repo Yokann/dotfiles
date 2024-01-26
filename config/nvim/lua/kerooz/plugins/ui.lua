@@ -215,6 +215,7 @@ return {
 
     {
         'NvChad/nvim-colorizer.lua',
+        lazy = false,
         ft = {
             'html',
             'css',
