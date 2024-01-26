@@ -55,6 +55,8 @@ install_dependencies () {
     $PACKAGE_INSTALLER zsh fzf htop starship tmux ripgrep git-delta lazygit xclip
     rm -rf $HOME/.config/starship.toml
     ln -s $HOME/.dotfiles/config/starship.toml $HOME/.config/starship.toml
+    rm -rf $HOME/.config/alacritty
+    ln -s $HOME/.dotfiles/config/alacritty $HOME/.config/alacritty
 }
 
 install_docker () {
