@@ -30,7 +30,13 @@ case $1 in
         fi
         ;;
 
+    sway)
+        if [[ "$OSTYPE" == "linux"* ]]; then
+            setup_sway
+        fi
+        ;;
+
     *)
-        echo "boostrap: [terminal|dev_deps|i3]"   
+        echo "boostrap: [terminal|dev_deps|i3|sway]"   
         ;;
 esac
