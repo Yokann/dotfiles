@@ -57,7 +57,7 @@ return {
                 "[T]oggle Nvim[T]ree"
             },
             { "<leader>tr", function() require('nvim-tree.api').tree.focus() end, desc = "Focus Nvim[T][R]ee" },
-            { "<leader>ggd",
+            { "<leader>dgg",
                 function()
                     local node = require('nvim-tree.api').tree.get_node_under_cursor()
                     if node.type == 'directory' then
