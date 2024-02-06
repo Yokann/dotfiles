@@ -6,6 +6,8 @@ export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
 export HISTORY_IGNORE="(ls|cd|cd -|pwd|exit|date|* --help)"
 # Always enable colored `grep` output
 export GREP_OPTIONS="--color=auto"
+# set terminal in English
+export LC_ALL=en_US.UTF-8
 
 # Enhancd zsh plugin
 export ENHANCD_FILTER="fzf"
