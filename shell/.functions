@@ -5,3 +5,7 @@ git-clean-br() {
   done
   git fetch --prune
 }
+
+cdproj() {
+  cd $PROJECTS_ROOT_DIR/$1
+}

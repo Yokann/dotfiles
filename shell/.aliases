@@ -25,7 +25,6 @@ alias home="cd $HOME"
 alias vim="nvim"
 alias portused="sudo lsof -i -P -n | grep LISTEN"
 alias dotfe="cd $HOME/.dotfiles && nvim"
-alias cdproj="cd $PROJECTS_ROOT_DIR"
 
 # Special linux 
 if [[ "$OSTYPE" == "linux"* ]]; then
