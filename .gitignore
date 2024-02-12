@@ -1,3 +1,4 @@
 shell/.yarnrc
 /.idea
 config/nvim/plugin/packer_compiled.lua
+config/rofi/Manjaro.rasi
