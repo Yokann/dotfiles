@@ -123,26 +123,26 @@ _my_zsh_custom_plugins=(
 
 # Need to be load before everything else 
 #zinit load marlonrichert/zsh-autocomplete
-
-# These plugins provide many aliases - atload''
-zinit wait lucid for \
-        OMZL::git.zsh \
-    atload"unalias grv" \
-        OMZP::git
    
 # OMZ plugins
 zinit wait lucid for \
+      OMZL::git.zsh \
+      OMZL::clipboard.zsh \
       OMZP::docker-compose \
       OMZP::aws \
       OMZP::archlinux \
+      OMZP::kubectl \
+      OMZP::helm \
+   atload"unalias grv" \
+      OMZP::git \
    atinit"zicompinit; zicdreplay" \
       zdharma/fast-syntax-highlighting \
-      OMZP::colored-man-pages\
+      OMZP::colored-man-pages \
+      OMZP::composer \
    as"completion" \
       OMZP::docker/completions/_docker \
       OMZP::kubectl \
-      OMZ::plugins/composer/composer.plugin.zsh \
-      OMZ::plugins/docker-compose/docker-compose.plugin.zsh 
+      OMZP::docker-compose/_docker-compose  
 
 #typeset -g ZSH_AUTOSUGGEST_USE_ASYNC=true
 #typeset -g ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
@@ -167,6 +167,5 @@ zinit wait lucid depth=1  \
 eval "$(starship init zsh)"
 # Keep Emacs style shell command Ctrl+A etc
 bindkey -e
-
 
 ### End of Zinit's installer chunk
