@@ -89,21 +89,24 @@ return {
                 "williamboman/mason-lspconfig.nvim",
                 opts = {
                     ensure_installed = {
-                        "lua_ls",
-                        "rust_analyzer",
                         "bashls",
                         "cmake",
                         "dockerls",
                         "docker_compose_language_service",
                         "gopls",
+                        "html",
+                        "helm_ls",
+                        "jdtls",
+                        "jsonls",
+                        "lemminx",
+                        "lua_ls",
+                        "marksman",
+                        "rust_analyzer",
                         -- "phpactor",
                         "sqlls",
                         "tflint",
-                        "yamlls",
                         "tsserver",
-                        "marksman",
-                        "jsonls",
-                        "html"
+                        "yamlls",
                     }
                 },
                 dependencies = { "williamboman/mason.nvim" }
