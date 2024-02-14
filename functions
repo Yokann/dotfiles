@@ -23,6 +23,7 @@ setup_zsh () {
     rm $HOME/.zshrc
     ln -s $HOME/.dotfiles/shell/.zshrc $HOME/.zshrc
     touch $HOME/.zshrc_custom
+    mkdir $HOME/.cache/zinit/completions
 }
 
 setup_tmux() {
