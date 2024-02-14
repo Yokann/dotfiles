@@ -68,7 +68,7 @@ install_docker () {
         $PACKAGE_INSTALLER orbstack
     fi
 
-    $PACKAGE_INSTALLER ctop
+    $PACKAGE_INSTALLER ctop dive
 }
 
 install_dev_dependencies () {
