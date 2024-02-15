@@ -123,13 +123,17 @@ return {
         },
         lazy = false,
         opts = function()
+            vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
             return {
                 log_level = "error",
                 auto_session_suppress_dirs = { "~/" },
-                cwd_change_handling = {
-                    restore_upcoming_session = true,
-                    pre_cwd_changed_hook = nil,
-                },
+                auto_restore_enabled = true,
+                auto_session_create_enabled = true,
+                -- cwd_change_handling = {
+                --     restore_upcoming_session = false,
+                --     pre_cwd_changed_hook = nil,
+                --     post_cwd_changed_hook = nil,
+                -- },
                 pre_save_cmds = {
                     require("nvim-tree.api").tree.close,
                     require("aerial").close,
