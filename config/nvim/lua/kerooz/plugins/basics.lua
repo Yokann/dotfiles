@@ -55,7 +55,7 @@ return {
         end
     },
     { "numToStr/Comment.nvim",          lazy = false, opts = {} }, -- comment block
-    { "xiyaowong/transparent.nvim",     lazy = false },
+    { "xiyaowong/transparent.nvim",     lazy = false }, -- run :TransparentToggle to activate bg transparency
     { "christoomey/vim-tmux-navigator", lazy = false },            -- use same keymap to switch pane and buffer
     {
         "pocco81/auto-save.nvim",
