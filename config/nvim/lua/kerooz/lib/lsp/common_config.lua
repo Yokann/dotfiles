@@ -1,7 +1,7 @@
 -- Global binding on all LSP
 return function(_config)
     return vim.tbl_deep_extend("force", {
-        on_attach = function(client, bufnr)
+        on_attach = function()
             vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, { desc = "[G]o [D]efinition" })
             vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end, { desc = "[G]o [I]mplemention" })
             vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, { desc = "[C]ode [A]ction" })

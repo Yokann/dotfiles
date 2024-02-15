@@ -14,7 +14,6 @@ local telescopeEntryDisplayModule = require('telescope.pickers.entry_display')
 -- --------------------------
 -- This width applies to all icons that represent a file type
 local fileTypeIconWidth = plenaryStrings.strdisplaywidth(devIcons.get_icon('fname', { default = true }))
-
 ---- Helper functions ----
 
 -- Gets the File Path and its Tail (the file name) as a Tuple
@@ -53,7 +52,7 @@ function telescopePickers.prettyFilesPicker(pickerAndOptions)
     end
 
     -- Ensure 'options' integrity
-    options = pickerAndOptions.options or {}
+    local options = pickerAndOptions.options or {}
 
     -- Use Telescope's existing function to obtain a default 'entry_maker' function
     -- ----------------------------------------------------------------------------
@@ -152,7 +151,7 @@ function telescopePickers.prettyGrepPicker(pickerAndOptions)
     end
 
     -- Ensure 'options' integrity
-    options = pickerAndOptions.options or {}
+    local options = pickerAndOptions.options or {}
 
     local originalEntryMaker = telescopeMakeEntryModule.gen_from_vimgrep(options)
 
