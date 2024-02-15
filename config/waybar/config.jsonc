@@ -3,7 +3,8 @@
         "/usr/share/sway/templates/waybar/config.jsonc"
     ],
     "modules-left": [
-        "sway/workspaces"
+        "sway/workspaces",
+        "custom/scratchpad"
     ],
     "modules-center": [
         "sway/mode"
@@ -15,15 +16,35 @@
         "custom/clipboard",
         "custom/dnd",
         "bluetooth",
-
         "tray",
+        "cpu",
+        "memory",
         "pulseaudio",
         "battery",
         "clock"
     ],
-
     "tray": {
         "spacing": 5,
         "icon-size": 15
+    },
+    "cpu": {
+        "interval": 10,
+        "format": "󰘚",
+        "states": {
+            "warning": 70,
+            "critical": 90
+        },
+        "on-click": "swaymsg exec \\$once \\$term_float btop",
+        "tooltip": true
+    },
+    "memory": {
+        "interval": 10,
+        "format": "󰍛",
+        "states": {
+            "warning": 70,
+            "critical": 90
+        },
+        "on-click": "swaymsg exec \\$once \\$term_float btop",
+        "tooltip": true
     }
 }
