@@ -70,5 +70,12 @@ return {
             end
         }
     },
-    { "sindrets/diffview.nvim", lazy = false }
+    {
+        "sindrets/diffview.nvim",
+        lazy = false,
+        keys = {
+            { "<leader>dfo", "<cmd>DiffviewOpen<CR>", mode = "n", desc = "Open diff tool" },
+            { "<leader>dfc", "<cmd>DiffviewClose<CR>", mode = "n", desc = "Close diff tool" }
+        }
+    }
 }
