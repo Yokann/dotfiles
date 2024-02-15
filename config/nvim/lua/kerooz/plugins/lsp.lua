@@ -9,7 +9,6 @@ return {
             local config = require('kerooz.lib.lsp.common_config')
             local masonLspConfig = require('mason-lspconfig')
             local lspconfig = require('lspconfig')
-            local util = require('lspconfig.util')
 
             masonLspConfig.setup_handlers({
                 function(server_name)
@@ -55,7 +54,8 @@ return {
                 end
             })
 
-            -- vim.api.nvim_create_autocmd({ "CursorHold" }, { command = "lua vim.diagnostic.open_float(nil, {focus=false})" })
+            -- Display diagnostic on hover the line
+            vim.api.nvim_create_autocmd({ "CursorHold" }, { command = "lua vim.diagnostic.open_float(nil, {focus=false})" })
 
             --  Floating window styles {{
             --
