@@ -9,7 +9,11 @@
     light = false      
 
 [merge]
+    tool = vim_mergetool
     conflictstyle = diff3
+
+[mergetool "vim_mergetool"]
+    cmd = nvim -c "DiffviewOpen"
 
 [diff]
     colorMoved = default
