@@ -1,0 +1,278 @@
+* {
+	border: none;
+	border-radius: 10;
+    font-family: "Sauce Code Pro Nerd Font", "FiraCode Nerd Font" ;
+	font-size: 18px;
+    font-weight: 600;
+	min-height: 10px;
+}
+
+window#waybar {
+	background: transparent;
+}
+
+window#waybar.hidden {
+	opacity: 0.2;
+}
+
+#window {
+	border-radius: 10px;
+	transition: none;
+    color: transparent;
+	background: transparent;
+}
+
+#workspaces {
+	margin-top: 6px;
+	margin-left: 12px;
+	margin-bottom: 0px;
+	border-radius: 10px;
+	background: #1e1e2e;
+	transition: none;
+}
+
+#workspaces button {
+	transition: none;
+	color: #89b4fa;
+	background: transparent;
+	font-size: 16px;
+}
+
+#workspaces button.urgent {
+	transition: none;
+	color: #1e1e2e;
+    background: #f38ba8;
+}
+
+#workspaces button.active {
+	background: #89b4fa;
+	color: #1e1e2e;
+}
+
+#workspaces button:hover {
+	transition: none;
+	box-shadow: inherit;
+	text-shadow: inherit;
+    color: #FEFEFE;
+}
+
+#workspaces button.active:hover {
+    color: #313244;
+}
+
+#network {
+	margin-top: 6px;
+	margin-left: 8px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-bottom: 0px;
+	border-radius: 10px;
+	transition: none;
+	color: #1e1e2e;
+	background: #bd93f9;
+}
+
+#pulseaudio {
+	margin-top: 6px;
+	margin-left: 8px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-bottom: 0px;
+	border-radius: 10px;
+	transition: none;
+	color: #1A1826;
+	background: #89b4fa;
+}
+
+#battery {
+	margin-top: 6px;
+	margin-left: 8px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-bottom: 0px;
+	border-radius: 10px;
+	transition: none;
+	color: #1e1e2e;
+	background: #a6e3a1;
+}
+
+#battery.charging, #battery.plugged {
+	color: #1e1e2e;
+    background-color: #cba6f7;
+}
+
+#battery.critical:not(.charging) {
+    background-color: #eba0ac;
+    color: #1e1e2e;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes blink {
+    to {
+        background-color: #cdd6f4;
+    }
+}
+
+#backlight {
+	margin-top: 6px;
+	margin-left: 8px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-bottom: 0px;
+	border-radius: 10px;
+	transition: none;
+	color: #1e1e2e;
+	background: #fab387;
+}
+
+#clock {
+	margin-top: 6px;
+	margin-left: 8px;
+	padding-left: 10px;
+	padding-right: 10px;
+    margin-right: 8px;
+	border-radius: 10px;
+	transition: none;
+	background: #1e1e2e;
+    /* font-weight: 500; */
+}
+
+#memory {
+	margin-top: 6px;
+	margin-left: 8px;
+	padding-left: 10px;
+	margin-bottom: 0px;
+	padding-right: 10px;
+	border-radius: 10px;
+	transition: none;
+	color: #1e1e2e;
+	background: #cba6f7;
+}
+#cpu {
+	margin-top: 6px;
+	margin-left: 8px;
+	padding-left: 10px;
+	margin-bottom: 0px;
+	padding-right: 10px;
+	border-radius: 10px;
+	transition: none;
+	color: #1e1e2e;
+	background: #89b4fa;
+}
+
+#disk {
+	margin-top: 6px;
+	margin-left: 8px;
+	padding-left: 10px;
+	margin-bottom: 0px;
+	padding-right: 10px;
+	border-radius: 10px;
+	transition: none;
+	color: #1e1e2e;
+	background: #94e2d5;
+}
+
+#tray {
+	margin-top: 6px;
+	margin-left: 8px;
+	padding-left: 10px;
+	margin-bottom: 0px;
+	padding-right: 10px;
+	border-radius: 10px;
+	transition: none;
+	color: #94e2d5;
+	background: #1e1e2e;
+}
+
+#custom-launcher {
+	font-size: 24px;
+	margin-top: 6px;
+	margin-left: 8px;
+	padding-left: 10px;
+	padding-right: 5px;
+	border-radius: 10px;
+	transition: none;
+    color: #74c7ec;
+    background: #1e1e2e;
+}
+
+#custom-power {
+	font-size: 20px;
+	margin-top: 6px;
+	margin-left: 8px;
+	margin-right: 8px;
+	padding-left: 10px;
+	padding-right: 5px;
+	margin-bottom: 0px;
+	border-radius: 10px;
+	transition: none;
+	color: #1e1e2e;
+	background: #f38ba8;
+}
+
+#custom-wallpaper {
+	margin-top: 6px;
+	margin-left: 8px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-bottom: 0px;
+	border-radius: 10px;
+	transition: none;
+	color: #1e1e2e;
+	background: #b4befe;
+}
+
+#custom-updates {
+	margin-top: 6px;
+	margin-left: 8px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-bottom: 0px;
+	border-radius: 10px;
+	transition: none;
+	color: #1e1e2e;
+	background: #fab387;
+}
+
+#custom-playerctl {
+	margin-top: 6px;
+	margin-left: 8px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-bottom: 0px;
+	border-radius: 10px;
+	transition: none;
+	color: #1e1e2e;
+	background: #f5e0dc;
+    font-size: 15px;
+}
+
+#custom-dnd {
+    margin-top: 6px;
+    margin-left: 8px;
+    padding-left: 10px;
+    padding-right: 5px;
+    margin-bottom: 0px;
+    border-radius: 10px;
+    transition: none;
+    color: #cdd6f4;
+    background: #1e1e2e;
+}
+
+#submap {
+    margin-top: 6px;
+    margin-left: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 0px;
+    border-radius: 10px;
+    transition: none;
+    color: #1e1e2e;
+	background: #f38ba8;
+    font-size: 12px;
+    font-style: italic;
+}

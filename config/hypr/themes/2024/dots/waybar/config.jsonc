@@ -1,0 +1,48 @@
+[
+    {
+        "layer": "top",
+        "output": [
+            "eDP-1",
+            "DP-1"
+        ],
+        "include": [
+            "~/.dotfiles/config/hypr/themes/2024/dots/waybar/default-modules.jsonc"
+        ],
+        "modules-left": [
+            "custom/launcher",
+            "cpu",
+            "memory",
+            "disk",
+            "mpd",
+            "custom/playerctl",
+            "tray"
+        ],
+        "modules-center": [
+            "hyprland/workspaces",
+            "hyprland/submap"
+        ],
+        "modules-right": [
+            "custom/updates",
+            "backlight",
+            "pulseaudio",
+            "custom/dnd",
+            "clock",
+            "battery"
+        ]
+    },
+    {
+        "layer": "top",
+        "output": "!DP-1",
+        "include": [
+            "~/.dotfiles/config/hypr/themes/2024/dots/waybar/default-modules.jsonc"
+        ],
+        "modules-left": [],
+        "modules-center": [
+            "hyprland/workspaces",
+            "hyprland/submap"
+        ],
+        "modules-right": [
+            "clock"
+        ]
+    }
+]

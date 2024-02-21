@@ -23,20 +23,20 @@ case $1 in
             install_dev_dependencies
         fi
         ;;
-  
-    i3)
-        if [[ "$OSTYPE" == "linux"* ]]; then
-            setup_i3
-        fi
-        ;;
-
+ 
     sway)
         if [[ "$OSTYPE" == "linux"* ]]; then
             setup_sway
         fi
         ;;
 
+    hyperland)
+        if [[ "$OSTYPE" == "linux"* ]]; then
+            setup_hyperland
+        fi
+        ;;
+
     *)
-        echo "boostrap: [terminal|dev_deps|i3|sway]"   
+        echo "boostrap: [terminal|dev_deps|sway]"   
         ;;
 esac

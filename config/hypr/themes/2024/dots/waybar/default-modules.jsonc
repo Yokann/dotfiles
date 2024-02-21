@@ -1,0 +1,130 @@
+{
+    "pulseaudio": {
+        "tooltip": false,
+        "scroll-step": 5,
+        "format": "{icon} {volume}%",
+        "format-muted": "{icon} {volume}%",
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-click-right": "pavucontrol",
+        "format-icons": {
+            "headphone": "󰋋",
+            "headset": "󰋎",
+            "default": [
+                "",
+                "",
+                ""
+            ]
+        }
+    },
+    "network": {
+        "tooltip": false,
+        "format-wifi": "  {essid}",
+        "format-ethernet": ""
+    },
+    "backlight": {
+        "tooltip": false,
+        "format": " {}%",
+        "interval": 1,
+        "on-scroll-up": "light -A 5",
+        "on-scroll-down": "light -U 5"
+    },
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 20
+        },
+        "format": "{icon}  {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{time} {icon}",
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
+    },
+    "tray": {
+        "icon-size": 18,
+        "spacing": 10
+    },
+    "clock": {
+        "format": "{: %I:%M %p   %d/%m/%Y}"
+    },
+    "cpu": {
+        "interval": 15,
+        "format": " {}%",
+        "max-length": 10,
+        "on-click": "foot -e btop"
+    },
+    "memory": {
+        "interval": 30,
+        "format": " {}%",
+        "max-length": 10,
+        "on-click": "foot -e btop"
+    },
+    "disk": {
+        "interval": 30,
+        "format": "󰋊 {percentage_free}%"
+    },
+    "custom/playerctl": {
+        "interval": 5,
+        "tooltip": true,
+        "return-type": "json",
+        "format": "{icon}{}",
+        "format-icons": {
+            "Playing": "󰏦 ",
+            "Paused": "󰐍 "
+        },
+        "max-length":70,
+        "exec": "playerctl metadata --format '{\"alt\": \"{{status}}\", \"text\": \"<span>{{markup_escape(title)}} - {{markup_escape(artist)}}</span>\", \"tooltip\": \"{{playerName}} - {{markup_escape(title)}}\" }'",
+        "on-click": "playerctl play-pause",
+        "on-click-right": "playerctl next",
+        "on-scroll-up": "playerctl position 10+",
+        "on-scroll-down": "playerctl position 10-"
+    },
+    "custom/launcher": {
+        "format": " ",
+        "on-click": "wofi --show drun"
+    },
+    "custom/updates": {
+        "tooltip": false,
+        "format": "{} Update(s)",
+        "return-type": "json",
+        "exec-if": "~/.config/hypr/scripts/default/checkupdates.sh check",
+        "exec": "~/.config/hypr/scripts/default/checkupdates.sh status",
+        "interval": 3600,
+        "on-click": "foot -e yay -Syu"
+    },
+    "hyprland/workspaces": {
+        "format": " {icon} {windows} ",
+        "window-rewrite-default": "󱂬",
+        "window-rewrite": {
+            "title<.*youtube.*>": "",
+            "vivaldi": "",
+            "class<firefox>": "",
+            "class<firefox> title<.*github.*>": "", // Windows whose class is "firefox" and title contains "github". Note that "class" always comes first.
+            "foot": "",
+            "code": "󰨞",
+            "discord": "󰙯",
+            "slack": "",
+            "pavucontrol": "󰋎",
+            "cider": "",
+            "1password": "󰦝"
+        }
+    },
+    "custom/dnd": {
+        "interval": "once",
+        "return-type": "json",
+        "format": "{}{icon}",
+        "format-icons": {
+            "default": "󰚢 ",
+            "dnd": "󰚣i"
+        },
+        "on-click": "~/.config/hypr/scripts/default/dnd toggle",
+        "on-click-right": " ~/.config/hypr/scripts/default/dnd restore",
+        "exec": "~/.config/hypr/scripts/default/dnd status"
+    }
+}

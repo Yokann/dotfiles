@@ -97,19 +97,6 @@ install_dev_dependencies () {
     #git clone https://github.com/xdebug/vscode-php-debug.git $HOME/.local/lib/vscode-php-debug
 }
 
-setup_i3 () {
-    $PACKAGE_INSTALLER otf-font-awesome-5-free otf-hermit 
-    sudo pacman -S termite rofi polybar nemo playerctl
-    rm $HOME/.i3/config
-    ln -s $DOTFILES_PATH/config/.i3/config $HOME/.i3/config
-    rm -rf $HOME/.config/termite
-    ln -s $DOTFILES_PATH/config/termite $HOME/.config/termite
-    rm -rf $HOME/.config/rofi
-    ln -s $DOTFILES_PATH/config/rofi $HOME/.config/rofi
-    rm -rf $HOME/.config/alacritty
-    ln -s $DOTFILES_PATH/config/alacritty $HOME/.config/alacritty
-}
-
 setup_sway () {
     $PACKAGE_INSTALLER papirus-folders-catppuccin-git
     # Todo finsih setup papirus icons 
@@ -123,6 +110,12 @@ setup_sway () {
     ln -s $DOTFILES_PATH/config/mako $HOME/.config/mako
     rm -rf $HOME/.config/foot
     ln -s $DOTFILES_PATH/config/foot $HOME/.config/foot
+}
+
+setup_hyprland () {
+    rm -rf $HOME/.config/hypr/*
+    echo '$configPath = $HOME/.dotfiles/config/hypr' > $HOME/.config/hypr/hyprland.conf
+    echo 'source = $configPath/hyprland.conf' >> $HOME/.config/hypr/hyprland.conf
 }
 
 # if [[ "$OSTYPE" == "linux"* ]]; then

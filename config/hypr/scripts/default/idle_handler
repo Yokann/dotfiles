@@ -1,0 +1,27 @@
+#! /bin/bash
+
+locking_timeout=300
+idle_timeout=300
+screen_timeout=600
+sleep_timeout_bat=900
+sleep_timeout_ac=3600
+sleep_delay=60
+
+lock_cmd="swaylock --screenshots --clock --indicator-idle-visible --indicator-radius 100 --indicator-thickness 7 --ignore-empty-password --ring-color 53E2AE --ring-ver-color 53E2AE --ring-wrong-color EE4F84 --key-hl-color EE4F84 --text-color ffffff --text-ver-color ffffff --text-wrong-color EE4F84 --line-color 00000000 --inside-color 00000088 --inside-ver-color 00000088 --inside-wrong-color 00000088 --separator-color 00000000 --fade-in 0.15 --effect-blur 10x2 -c 0B0A10ff"
+
+screen_off="sleep 5; hyprctl dispatch dpms off"
+screen_on="hyprctl dispatch dpms on"
+
+# sway-audio-idle-inhibit & 
+swayidle -w \
+    timeout $idle_timeout 'brightnessctl -s && brightnessctl set 10' \
+    resume 'brightnessctl -r' \
+    timeout $locking_timeout "$lock_cmd" \
+    timeout $screen_timeout "$HOME/.config/hypr/scripts/default/keyboard-backlight-switch off && $screen_off" \
+    resume "$HOME/.config/hypr/scripts/default/keyboard-backlight-switch on && $screen_on" \
+    timeout $sleep_timeout_bat '[ "$(acpi -b | grep Discharging)" != "" ] && systemctl suspend' \
+    timeout $sleep_timeout_ac '[ "$(acpi -b | grep Discharging)" = "" ] && systemctl suspend' \
+    before-sleep 'playerctl pause' \
+    before-sleep "$lock_cmd & sleep $sleep_delay" \
+    after-resume "$HOME/.config/hypr/scripts/default/keyboard-backlight-switch on && $screen_on"
+
