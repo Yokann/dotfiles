@@ -5,7 +5,7 @@ return {
         local cmp = require("cmp")
         local lspkind = require("lspkind")
         local luasnip = require("luasnip")
-        local select_opts = { behavior = cmp.SelectBehavior.Select }
+        local select_opts = { behavior = cmp.SelectBehavior.Replace }
 
         local has_words_before = function()
             if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then return false end
@@ -29,7 +29,17 @@ return {
                 end,
             },
             mapping = cmp.mapping.preset.insert({
-                ['<CR>'] = cmp.mapping.confirm({ select = true }),
+                ["<CR>"] = cmp.mapping({
+                    i = function(fallback)
+                        if cmp.visible() and cmp.get_active_entry() then
+                            cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+                        else
+                            fallback()
+                        end
+                    end,
+                    s = cmp.mapping.confirm({ select = true }),
+                    c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+                }),
                 --["<C-u>"] = cmp.mapping.scroll_docs(-4),
                 --["<C-d>"] = cmp.mapping.scroll_docs(4),
                 ['<A-e>'] = cmp.mapping({
@@ -39,19 +49,19 @@ return {
                 ["<A-Space>"] = cmp.mapping.complete(),
 
                 ['<Tab>'] = cmp.mapping(function(fallback)
-                    local col = vim.fn.col('.') - 1
-
-                    if cmp.visible() then
-                        cmp.select_next_item(select_opts)
+                    if cmp.visible() and has_words_before() then
+                        local entries = cmp.get_entries()
+                        if #entries == 1 and entries[1].source.name ~= 'copilot' then
+                            cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
+                        else
+                            cmp.select_next_item(select_opts)
+                        end
                     elseif luasnip.expand_or_jumpable() then
                         luasnip.expand_or_jump()
-                    elseif col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
-                        fallback()
                     else
-                        cmp.complete()
+                        fallback()
                     end
                 end, { 'i', 's' }),
-
                 ['<S-Tab>'] = cmp.mapping(function(fallback)
                     if cmp.visible() and has_words_before() then
                         cmp.select_prev_item(select_opts)
