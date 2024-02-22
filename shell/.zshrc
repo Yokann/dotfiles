@@ -8,7 +8,7 @@ for file in ~/.dotfiles/shell/.{exports,aliases,functions}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file"
 done
 
-for file in ~/.dotfiles-custom/shell/.{exports,aliases,functions,zshrc}; do
+for file in ~/.dotfiles-custom/shell/.{exports,aliases,functions,pre_zshrc}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file"
 done
 unset file
@@ -18,8 +18,6 @@ export PATH=$HOME/bin:$HOME/.dotfiles/bin:/usr/local/bin:$PATH
 export PATH=$HOME/go/bin:$PATH
 export PATH=$HOME/.volta/bin:$PATH
 
-# Custom config
-source $HOME/.zshrc_custom
 
 # - - - - - - - - - - - - - - - - - - - -
 # ZSH Settings
@@ -160,6 +158,12 @@ __zinit_plugin_loaded_callback() {
 zinit wait lucid depth=1  \
     atload='__zinit_plugin_loaded_callback' \
     for ${_my_zsh_custom_plugins[@]}
+
+# Load custom completions, execute once or after updates
+# [[ -d $HOME/.dotfiles-custom/completions ]] && zinit creinstall $HOME/.dotfiles-custom/completions
+
+# Custom config
+[[ -f $HOME/.dotfiles-custom/shell/.post_zshrc ]] && source $HOME/.dotfiles-custom/shell/.post_zshrc
 
 # - - - - - - - - - - - - - - - - - - - -
 # Theme / Prompt Customization

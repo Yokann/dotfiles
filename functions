@@ -15,15 +15,12 @@ setup_git () {
 }
 
 setup_zsh () {
+    mkdir -p $HOME/.cache/zinit/completions
     #Symlink .Xresources
     rm -f $HOME/.Xresources
     ln -s $HOME/.dotfiles/config/.Xresources $HOME/.Xresources
-    # Symlink zsh prefs
-    rm -rf $HOME/.zinit
-    rm $HOME/.zshrc
-    ln -s $HOME/.dotfiles/shell/.zshrc $HOME/.zshrc
-    touch $HOME/.zshrc_custom
-    mkdir $HOME/.cache/zinit/completions
+    echo "source $HOME/.dotfiles/shell/.zshrc" >> $HOME/.zshrc
+    echo "You should cleanup your .zshrc file"
 }
 
 setup_tmux() {
