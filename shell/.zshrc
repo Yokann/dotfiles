@@ -13,12 +13,6 @@ for file in ~/.dotfiles-custom/shell/.{exports,aliases,functions,pre_zshrc}; do
 done
 unset file
 
-# Extra paths
-export PATH=$HOME/bin:$HOME/.dotfiles/bin:/usr/local/bin:$PATH
-export PATH=$HOME/go/bin:$PATH
-export PATH=$HOME/.volta/bin:$PATH
-
-
 # - - - - - - - - - - - - - - - - - - - -
 # ZSH Settings
 # - - - - - - - - - - - - - - - - - - - -
