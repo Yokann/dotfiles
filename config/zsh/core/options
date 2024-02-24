@@ -1,0 +1,37 @@
+# - - - - - - - - - - - - - - - - - - - -
+# ZSH Settings
+# - - - - - - - - - - - - - - - - - - - -
+
+# Completion Options.
+setopt complete_in_word         # Complete From Both Ends Of A Word.
+setopt always_to_end            # Move Cursor To The End Of A Completed Word.
+setopt path_dirs                # Perform Path Search Even On Command Names With Slashes.
+setopt auto_menu                # Show Completion Menu On A Successive Tab Press.
+setopt auto_list                # Automatically List Choices On Ambiguous Completion.
+setopt auto_param_slash         # If Completed Parameter Is A Directory, Add A Trailing Slash.
+setopt no_complete_aliases
+
+#setopt correct                  # Turn On Corrections
+unsetopt menu_complete           # Do Not Autoselect The First Completion Entry.
+
+# History.
+HISTFILE=$HOME/.zsh_history
+HISTSIZE=100000
+SAVEHIST=5000
+setopt appendhistory notify
+unsetopt beep nomatch
+
+setopt bang_hist                # Treat The '!' Character Specially During Expansion.
+setopt inc_append_history       # Write To The History File Immediately, Not When The Shell Exits.
+setopt share_history            # Share History Between All Sessions.
+setopt hist_expire_dups_first   # Expire A Duplicate Event First When Trimming History.
+setopt hist_ignore_dups         # Do Not Record An Event That Was Just Recorded Again.
+setopt hist_ignore_all_dups     # Delete An Old Recorded Event If A New Event Is A Duplicate.
+setopt hist_find_no_dups        # Do Not Display A Previously Found Event.
+setopt hist_ignore_space        # Do Not Record An Event Starting With A Space.
+setopt hist_save_no_dups        # Do Not Write A Duplicate Event To The History File.
+setopt hist_verify              # Do Not Execute Immediately Upon History Expansion.
+setopt extended_history         # Show Timestamp In History.
+
+setopt promptsubst # Used by many themes
+

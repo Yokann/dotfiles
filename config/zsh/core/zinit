@@ -1,0 +1,81 @@
+# - - - - - - - - - - - - - - - - - - - -
+# Zinit
+# - - - - - - - - - - - - - - - - - - - -
+
+typeset -g ZINIT_PATH=${ZDOTDIR:-$HOME/.local/share}/zinit
+
+if [ ! -f $ZINIT_PATH/zinit.zsh ] && ((${+commands[git]})); then
+    __zinit_just_installed=1
+    mkdir -p $ZINIT_PATH && chmod g-rwX "$ZINIT_PATH" && \
+    git clone --depth=1 https://github.com/zdharma-continuum/zinit.git $ZINIT_PATH
+fi
+
+if [ -f $ZINIT_PATH/zinit.zsh ]; then
+    declare -A ZINIT
+
+    ZINIT[HOME_DIR]="$ZINIT_PATH"
+
+    source $ZINIT_PATH/zinit.zsh
+
+    if [ -z "$skip_global_compinit" ]; then
+      autoload -Uz _zinit
+      (( ${+_comps} )) && _comps[zinit]=_zinit
+    fi
+
+    [ -n "$__zinit_just_installed" ] && \
+        zinit self-update
+
+    unset ZINIT_PATH # Use ZINIT[HOME_DIR] from now on
+
+    [ ${${(s:.:)ZSH_VERSION}[1]} -ge 5 ] && [ ${${(s:.:)ZSH_VERSION}[2]} -gt 2 ] && \
+      MY_ZINIT_USE_TURBO=true
+fi
+
+# - - - - - - - - - - - - - - - - - - - -
+# Plugins
+# - - - - - - - - - - - - - - - - - - - -
+
+_my_zsh_custom_plugins=(    
+#    b4b4r07/enhancd
+     joshskidmore/zsh-fzf-history-search
+     jeffreytse/zsh-vi-mode
+)
+
+zinit light Aloxaf/fzf-tab
+zinit wait lucid light-mode for \
+    atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+      zdharma/fast-syntax-highlighting
+   
+# OMZ plugins
+zinit wait lucid for \
+      OMZL::git.zsh \
+      OMZL::clipboard.zsh \
+      OMZP::aws \
+      OMZP::archlinux \
+      OMZP::colored-man-pages \
+      OMZP::composer \
+   blockf \
+      OMZP::docker-compose \
+      OMZP::kubectl \
+      OMZP::helm \
+   atload"unalias grv" \
+      OMZP::git \
+   as"completion" \
+      OMZP::docker/completions/_docker \
+      OMZP::docker-compose/_docker-compose  
+
+__zinit_plugin_loaded_callback() {
+    if [[ "$ZINIT[CUR_PLUGIN]" == "zsh-autosuggestions" ]]; then
+        ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=("${ZSH_AUTOSUGGEST_ACCEPT_WIDGETS[@]/forward-char}")
+        ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS+=forward-char
+    elif [[ "$ZINIT[CUR_PLUGIN]" == "zsh-history-substring-search" ]]; then
+        bindkey "\ek" history-substring-search-up
+        bindkey "\ej" history-substring-search-down
+    fi
+}
+
+zinit wait lucid depth=1  \
+    atload='__zinit_plugin_loaded_callback' \
+    for ${_my_zsh_custom_plugins[@]}
+
+

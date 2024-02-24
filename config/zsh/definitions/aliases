@@ -60,3 +60,6 @@ alias gotofx='go tool fix'
 alias gov='go vet'
 alias gove='go version'
 alias gowk='go work'
+
+# Docker compose 
+alias dc="docker-compose"

@@ -9,37 +9,36 @@ else
     exit 1
 fi
 
+DOTFILES_PATH=$HOME/.dotfiles
+
 setup_git () {
-  git config --global include.path $HOME/.dotfiles/config/git/gitconfig
-  git config --global core.excludesFile $HOME/.dotfiles/config/git/global-gitignore
+  git config --global include.path $DOTFILES_PATH/config/git/gitconfig
+  git config --global core.excludesFile $DOTFILES_PATH/config/git/global-gitignore
 }
 
 setup_zsh () {
     mkdir -p $HOME/.cache/zinit/completions
     #Symlink .Xresources
     rm -f $HOME/.Xresources
-    ln -s $HOME/.dotfiles/config/.Xresources $HOME/.Xresources
-    echo "source $HOME/.dotfiles/shell/.zshrc" >> $HOME/.zshrc
-    echo "You should cleanup your .zshrc file"
+    ln -s $DOTFILES_PATH/config/.Xresources $HOME/.Xresources
+    cp $HOME/.zshrc "$HOME/.zshrc.bak$(date "+d-%m-%Y-%H-%M-%S")"
+    echo "source $DOTFILES_PATH/config/zsh/.zshrc" > $HOME/.zshrc
 }
 
 setup_tmux() {
     rm -f $HOME/.tmux.conf
-    ln -s $HOME/.dotfiles/config/tmux/tmux.conf $HOME/.tmux.conf
+    ln -s $DOTFILES_PATH/config/tmux/tmux.conf $HOME/.tmux.conf
     rm -rf $HOME/.tmux/plugins/tpm
     git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
     # Don't forget to run Prefix + I to install plugins
 }
 
 setup_vim () {
-    # Symlink vim prefs
-    rm $HOME/.vimrc
-    ln -s $HOME/.dotfiles/shell/.vimrc $HOME/.vimrc
-    # Config neovim
+    # Config neovim require sqlite for telescope grep history
     $PACKAGE_INSTALLER neovim sqlite
     rm -rf $HOME/.config/nvim
-    ln -s $HOME/.dotfiles/config/nvim $HOME/.config/nvim
-    # ln -s $HOME/.dotfiles/config/phpactor $HOME/.config/phpactor
+    ln -s $DOTFILES_PATH/config/nvim $HOME/.config/nvim
+    # ln -s $DOTFILES_PATH/config/phpactor $HOME/.config/phpactor
 }
 
 install_dependencies () {
@@ -53,12 +52,9 @@ install_dependencies () {
 
     $PACKAGE_INSTALLER zsh fzf btop starship tmux ripgrep git-delta lazygit xclip
     rm -rf $HOME/.config/starship.toml
-    ln -s $HOME/.dotfiles/config/starship.toml $HOME/.config/starship.toml
-    rm -rf $HOME/.config/alacritty
-    ln -s $HOME/.dotfiles/config/alacritty $HOME/.config/alacritty
+    ln -s $DOTFILES_PATH/config/starship.toml $HOME/.config/starship.toml
     rm -rf $HOME/.config/btop
-    ln -s $HOME/.dotfiles/config/btop $HOME/.config/btop
-
+    ln -s $DOTFILES_PATH/config/btop $HOME/.config/btop
 }
 
 install_docker () {
@@ -104,26 +100,28 @@ setup_i3 () {
     $PACKAGE_INSTALLER otf-font-awesome-5-free otf-hermit 
     sudo pacman -S termite rofi polybar nemo playerctl
     rm $HOME/.i3/config
-    ln -s $HOME/.dotfiles/config/.i3/config $HOME/.i3/config
+    ln -s $DOTFILES_PATH/config/.i3/config $HOME/.i3/config
     rm -rf $HOME/.config/termite
-    ln -s $HOME/.dotfiles/config/termite $HOME/.config/termite
+    ln -s $DOTFILES_PATH/config/termite $HOME/.config/termite
     rm -rf $HOME/.config/rofi
-    ln -s $HOME/.dotfiles/config/rofi $HOME/.config/rofi
+    ln -s $DOTFILES_PATH/config/rofi $HOME/.config/rofi
+    rm -rf $HOME/.config/alacritty
+    ln -s $DOTFILES_PATH/config/alacritty $HOME/.config/alacritty
 }
 
 setup_sway () {
     $PACKAGE_INSTALLER papirus-folders-catppuccin-git
     # Todo finsih setup papirus icons 
     rm -rf $HOME/.config/sway
-    ln -s $HOME/.dotfiles/config/sway $HOME/.config/sway
+    ln -s $DOTFILES_PATH/config/sway $HOME/.config/sway
     rm -rf $HOME/.config/rofi
-    ln -s $HOME/.dotfiles/config/rofi $HOME/.config/rofi
+    ln -s $DOTFILES_PATH/config/rofi $HOME/.config/rofi
     rm -rf $HOME/.config/waybar
-    ln -s $HOME/.dotfiles/config/waybar $HOME/.config/waybar
+    ln -s $DOTFILES_PATH/config/waybar $HOME/.config/waybar
     rm -rf $HOME/.config/mako
-    ln -s $HOME/.dotfiles/config/mako $HOME/.config/mako
+    ln -s $DOTFILES_PATH/config/mako $HOME/.config/mako
     rm -rf $HOME/.config/foot
-    ln -s $HOME/.dotfiles/config/foot $HOME/.config/foot
+    ln -s $DOTFILES_PATH/config/foot $HOME/.config/foot
 }
 
 # if [[ "$OSTYPE" == "linux"* ]]; then
@@ -134,6 +132,6 @@ setup_sway () {
 #        sudo pacman -S mpv streamlink
 #        # Corsair Keyboard 
 #        rm -r $HOME/.config/ckb-next
-#        ln -s $HOME/.dotfiles/config/ckb-next $HOME/.config/ckb-next
+#        ln -s $DOTFILES_PATH/config/ckb-next $HOME/.config/ckb-next
 #     fi
 # fi
