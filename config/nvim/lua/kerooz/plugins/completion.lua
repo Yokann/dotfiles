@@ -49,7 +49,7 @@ return {
                 ["<A-Space>"] = cmp.mapping.complete(),
 
                 ['<Tab>'] = cmp.mapping(function(fallback)
-                    if cmp.visible() and has_words_before() then
+                    if cmp.visible() then
                         local entries = cmp.get_entries()
                         if #entries == 1 and entries[1].source.name ~= 'copilot' then
                             cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
