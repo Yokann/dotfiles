@@ -55,7 +55,8 @@ return {
             })
 
             -- Display diagnostic on hover the line
-            vim.api.nvim_create_autocmd({ "CursorHold" }, { command = "lua vim.diagnostic.open_float(nil, {focus=false})" })
+            vim.api.nvim_create_autocmd({ "CursorHold" },
+                { command = "lua vim.diagnostic.open_float(nil, {focus=false})" })
 
             --  Floating window styles {{
             --
