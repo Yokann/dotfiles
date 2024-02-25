@@ -28,7 +28,7 @@ return {
                     require("luasnip").lsp_expand(args.body)
                 end,
             },
-            mapping = cmp.mapping.preset.insert({
+            mapping = {
                 ["<CR>"] = cmp.mapping({
                     i = function(fallback)
                         if cmp.visible() and cmp.get_active_entry() then
@@ -42,7 +42,7 @@ return {
                 }),
                 --["<C-u>"] = cmp.mapping.scroll_docs(-4),
                 --["<C-d>"] = cmp.mapping.scroll_docs(4),
-                ['<A-e>'] = cmp.mapping({
+                ['<A-a>'] = cmp.mapping({
                     i = cmp.mapping.abort(),
                     c = cmp.mapping.close(),
                 }),
@@ -63,7 +63,7 @@ return {
                     end
                 end, { 'i', 's' }),
                 ['<S-Tab>'] = cmp.mapping(function(fallback)
-                    if cmp.visible() and has_words_before() then
+                    if cmp.visible() then
                         cmp.select_prev_item(select_opts)
                     elseif luasnip.jumpable(-1) then
                         luasnip.jump(-1)
@@ -71,7 +71,7 @@ return {
                         fallback()
                     end
                 end, { 'i', 's' }),
-            }),
+            },
             window = {
                 documentation = cmp.config.window.bordered()
             },
