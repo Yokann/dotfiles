@@ -22,6 +22,9 @@ local opts = {
     path = "~/.local/share/nvim/dev",
     fallback = true, -- get plugin from git if not found in path
   },
+  change_detection = {
+      notify = false -- GTFO 
+  }
 }
 
 local present, lazy = pcall(require, "lazy")
