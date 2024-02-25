@@ -70,7 +70,7 @@ local function setup()
     -- vim.g.vimsyn_embed = 'lPr' -- allow embedded syntax highlighting for lua,python and ruby
     o.termguicolors = true
     o.errorbells = false
-    o.guicursor = ""
+    o.guicursor = "a:block-Cursor"
     o.scrolloff = 8
     o.colorcolumn = "128"
 

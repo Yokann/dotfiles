@@ -75,12 +75,21 @@ return {
         "catppuccin/nvim", -- color scheme
         lazy = false,
         name = "catppuccin",
+        priority = 1000,           -- should load before everything
         opts = {
             flavour = "macchiato", -- latte, frappe, macchiato, mocha
+            transparent_background = false,
+            integrations = {
+                leap = true,
+                mason = true,
+            },
+            compile = {
+                enabled = false,
+                path = vim.fn.stdpath("cache") .. "/catppuccin",
+            },
         },
         config = function(_, opts)
             require("catppuccin").setup(opts)
-            vim.api.nvim_command "colorscheme catppuccin"
             local palette = require('catppuccin.palettes').get_palette()
 
             local function lspSymbol(name, icon, color)
@@ -96,6 +105,8 @@ return {
             lspSymbol("Hint", "", palette.teal)
             lspSymbol("Info", "", palette.sky)
             lspSymbol("Warn", "", palette.yellow)
+
+            vim.cmd.colorscheme "catppuccin"
         end,
     },
     {
@@ -189,11 +200,11 @@ return {
                 mode = {
                     default = {
                         switch = "immediate", -- immediate, on_close
-                        view = "paging", -- paging, rolling
+                        view = "paging",      -- paging, rolling
                     },
                     last_used = {
                         switch = "on_close", -- immediate, on_close
-                        view = "paging", -- paging, rolling
+                        view = "paging",     -- paging, rolling
                     },
                     auto = {
                         view = "rolling", -- paging, rolling

@@ -4,6 +4,7 @@ return {
         "nvim-lualine/lualine.nvim", -- Status bar
         lazy = false,
         opts = {
+            theme = "catppuccin",
             --     options = {
             --         disabled_filetypes = {
             --             'NvimTree', 'DapBreakpoint', 'DapScope', 'DapStack'
@@ -48,7 +49,7 @@ return {
     { "tpope/vim-unimpaired", lazy = false },
     { "airblade/vim-rooter",  lazy = false }, -- load root dir at vim startup on a file
     {
-        "ggandor/leap.nvim",                  -- intersting way to move
+        "ggandor/leap.nvim", -- intersting way to move
         lazy = false,
         config = function()
             require("leap").add_default_mappings()
@@ -56,7 +57,7 @@ return {
     },
     { "numToStr/Comment.nvim",          lazy = false, opts = {} }, -- comment block
     { "xiyaowong/transparent.nvim",     lazy = false }, -- run :TransparentToggle to activate bg transparency
-    { "christoomey/vim-tmux-navigator", lazy = false },            -- use same keymap to switch pane and buffer
+    { "christoomey/vim-tmux-navigator", lazy = false }, -- use same keymap to switch pane and buffer
     {
         "pocco81/auto-save.nvim",
         lazy = false,
@@ -129,12 +130,8 @@ return {
                 auto_session_suppress_dirs = { "~/" },
                 auto_restore_enabled = true,
                 auto_session_create_enabled = true,
-                -- cwd_change_handling = {
-                --     restore_upcoming_session = false,
-                --     pre_cwd_changed_hook = nil,
-                --     post_cwd_changed_hook = nil,
-                -- },
                 pre_save_cmds = {
+                    -- close everything useless before save session
                     require("nvim-tree.api").tree.close,
                     require("aerial").close,
                     require("kerooz.dap.init").closeUI
