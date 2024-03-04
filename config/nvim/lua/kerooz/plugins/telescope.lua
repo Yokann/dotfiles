@@ -85,7 +85,7 @@ return {
         { "<leader>gco", function() require('telescope.builtin').git_branches({show_remote_tracking_branches = false}) end, desc = "[G]it [Check[O]ut branche" },
         -- { "<leader>fss", function() require('telescope.builtin').treesitter() end, desc = "[F]ind [S]ymbols" },
         -- Search
-        { "<leader>gg", function() require('kerooz.lib.telescope.pickers').prettyGrepPicker({ picker = 'live_grep' }) end, desc = "Live [G]rep" },
+        { "<leader>gg", function() require('kerooz.lib.telescope.pickers').prettyGrepPicker({ picker = 'live_grep', options = { debounce = 100 } }) end, desc = "Live [G]rep" },
         -- LSP
         { "gr", function() require('telescope.builtin').lsp_references() end, desc = "[G]oto [R]eferences" },
         { "<leader>fs", function() require('telescope.builtin').lsp_workspace_symbols() end, desc = "[F]ind [S]ymbols" },

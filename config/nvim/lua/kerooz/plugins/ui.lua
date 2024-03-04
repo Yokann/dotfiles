@@ -63,7 +63,7 @@ return {
                     if node.type == 'directory' then
                         require('kerooz.lib.telescope.pickers').prettyGrepPicker({
                             picker = 'live_grep',
-                            options = { cwd = node.absolute_path }
+                            options = { cwd = node.absolute_path, debounce = 100 }
                         })
                     end
                 end
