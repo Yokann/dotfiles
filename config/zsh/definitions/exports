@@ -1,4 +1,6 @@
-export EDITOR='vim'
+export EDITOR='nvim'
+# Set default editor for sudoedit
+export VISUAL='nvim'
 
 # Make some commands not show up in history
 export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
