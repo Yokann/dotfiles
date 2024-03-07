@@ -34,18 +34,17 @@ fi
 # - - - - - - - - - - - - - - - - - - - -
 # Plugins
 # - - - - - - - - - - - - - - - - - - - -
-
-_my_zsh_custom_plugins=(    
-#    b4b4r07/enhancd
-     joshskidmore/zsh-fzf-history-search
-     jeffreytse/zsh-vi-mode
-)
-
 zinit light Aloxaf/fzf-tab
 zinit wait lucid light-mode for \
     atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
       zdharma/fast-syntax-highlighting
-   
+
+zinit ice depth=1
+zinit light jeffreytse/zsh-vi-mode
+
+zinit ice lucid wait'0' i
+zinit light joshskidmore/zsh-fzf-history-search
+  
 # OMZ plugins
 zinit wait lucid for \
       OMZL::git.zsh \
@@ -63,19 +62,4 @@ zinit wait lucid for \
    as"completion" \
       OMZP::docker/completions/_docker \
       OMZP::docker-compose/_docker-compose  
-
-__zinit_plugin_loaded_callback() {
-    if [[ "$ZINIT[CUR_PLUGIN]" == "zsh-autosuggestions" ]]; then
-        ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=("${ZSH_AUTOSUGGEST_ACCEPT_WIDGETS[@]/forward-char}")
-        ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS+=forward-char
-    elif [[ "$ZINIT[CUR_PLUGIN]" == "zsh-history-substring-search" ]]; then
-        bindkey "\ek" history-substring-search-up
-        bindkey "\ej" history-substring-search-down
-    fi
-}
-
-zinit wait lucid depth=1  \
-    atload='__zinit_plugin_loaded_callback' \
-    for ${_my_zsh_custom_plugins[@]}
-
 
