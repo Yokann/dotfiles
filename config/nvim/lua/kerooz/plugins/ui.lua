@@ -38,8 +38,9 @@ return {
                 timeout = 400 -- (in ms)
             },
             filters = {
+                git_ignored = false,
                 dotfiles = false,
-                custom = { "^.git$" }
+                custom = { "^.git$" , ".idea" }
             },
             trash = {
                 cmd = "trash",
