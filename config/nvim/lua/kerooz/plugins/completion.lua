@@ -49,7 +49,7 @@ return {
                 ['<A-Space>'] = cmp.mapping(
                     function()
                         if cmp.visible() then
-                            cmp.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true })
+                            cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
                         else
                             cmp.complete()
                         end
