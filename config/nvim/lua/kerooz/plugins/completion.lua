@@ -46,9 +46,16 @@ return {
                     i = cmp.mapping.abort(),
                     c = cmp.mapping.close(),
                 }),
-                ["<A-Space>"] = cmp.mapping.complete(),
-
-                ['<Tab>'] = cmp.mapping(function(fallback)
+                ['<A-Space>'] = cmp.mapping(
+                    function()
+                        if cmp.visible() then
+                            cmp.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true })
+                        else
+                            cmp.complete()
+                        end
+                    end, { 'i', 's' }
+                ),
+                ['<A-j>'] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         local entries = cmp.get_entries()
                         if #entries == 1 and entries[1].source.name ~= 'copilot' then
@@ -62,7 +69,7 @@ return {
                         fallback()
                     end
                 end, { 'i', 's' }),
-                ['<S-Tab>'] = cmp.mapping(function(fallback)
+                ['<A-k>'] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         cmp.select_prev_item(select_opts)
                     elseif luasnip.jumpable(-1) then
