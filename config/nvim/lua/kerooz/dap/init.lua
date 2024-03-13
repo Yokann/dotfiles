@@ -56,6 +56,7 @@ local function configure_debuggers()
     require("kerooz.dap.lua").setup()
     require("kerooz.dap.go").setup()
     require("kerooz.dap.php").setup()
+    require("kerooz.dap.javascript").setup()
 end
 
 function M.setup()
