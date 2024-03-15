@@ -1,7 +1,5 @@
 local M = {}
 
-
-
 function M.setup()
     local dap = require('dap')
     for _, language in ipairs({ 'typescript', 'javascript' }) do
