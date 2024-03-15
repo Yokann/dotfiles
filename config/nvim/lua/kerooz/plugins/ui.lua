@@ -174,8 +174,8 @@ return {
         -- branch = "v1.x", -- won't receive breaking changes
         opts = {
             position = {
-                anchor = "topright",
-                vertical_offset = 2,
+                anchor = "center",
+                -- vertical_offset = 2,
             },
             style = {
                 path = "relative", -- absolute, relative, tail (filename only)
@@ -204,7 +204,7 @@ return {
                         view = "paging",      -- paging, rolling
                     },
                     last_used = {
-                        switch = "on_close", -- immediate, on_close
+                        switch = "immediat", -- immediate, on_close
                         view = "paging",     -- paging, rolling
                     },
                     auto = {
@@ -213,14 +213,14 @@ return {
                 },
                 show_on_autocmd = false, -- event to trigger cybu (eg. "BufEnter")
             },
-            display_time = 2000,
+            display_time = 0500,
         },
         init = function()
             vim.keymap.set("n", "<A-k>", "<Plug>(CybuPrev)", { noremap = true, desc = "Previous Buffer" })
             vim.keymap.set("n", "<A-j>", "<Plug>(CybuNext)", { noremap = true, desc = "Next Buffer" })
-            vim.keymap.set({ "n", "v" }, "<c-s-tab>", "<plug>(CybuLastusedPrev)",
-                { desc = "Previous last used buffer" })
-            vim.keymap.set({ "n", "v" }, "<c-tab>", "<plug>(CybuLastusedNext)", { desc = "Next last used buffer " })
+            vim.keymap.set({ "n", "v" }, "<A-S-k>", "<plug>(CybuLastusedPrev)",
+                { noremap =true, desc = "Previous last used buffer" })
+            vim.keymap.set({ "n", "v" }, "<A-S-j>", "<plug>(CybuLastusedNext)", { noremap = true, desc = "Next last used buffer " })
         end,
         dependencies = { "nvim-tree/nvim-web-devicons", "nvim-lua/plenary.nvim" }, -- optional for icon support
     },
