@@ -42,11 +42,11 @@ return {
                 }),
                 --["<C-u>"] = cmp.mapping.scroll_docs(-4),
                 --["<C-d>"] = cmp.mapping.scroll_docs(4),
-                ['<A-a>'] = cmp.mapping({
+                ['<A-c>'] = cmp.mapping({
                     i = cmp.mapping.abort(),
                     c = cmp.mapping.close(),
                 }),
-                ['<A-Space>'] = cmp.mapping(
+                ['<A-f>'] = cmp.mapping(
                     function()
                         if cmp.visible() then
                             cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
