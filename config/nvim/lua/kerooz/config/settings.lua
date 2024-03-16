@@ -23,12 +23,13 @@ local function add(value, str, sep)
 end
 
 local function setup()
-    vim.g.mapleader = " "
+    vim.g.mapleader = ' '
+    vim.g.maplocalleader = ' '
 
     -- Numbers {{{
 
     o.number = true
-    o.relativenumber = true
+    o.relativenumber = false
 
     -- }}}
 
