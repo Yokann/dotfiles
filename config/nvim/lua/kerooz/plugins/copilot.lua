@@ -44,6 +44,7 @@ return {
     {
         "jackMort/ChatGPT.nvim",
         event = "VeryLazy",
+        enabled = false,
         config = function()
             require("chatgpt").setup({
                 -- api_key_cmd = "op read op://Personal/OpenAI/api_credential --no-newline",
@@ -59,6 +60,35 @@ return {
             "MunifTanjim/nui.nvim",
             "nvim-lua/plenary.nvim",
             "nvim-telescope/telescope.nvim"
+        }
+    },
+    {
+        "CopilotC-Nvim/CopilotChat.nvim",
+        branch = "canary",
+        event = "VeryLazy",
+        dependencies = {
+            { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
+            { "nvim-lua/plenary.nvim" },  -- for curl, log wrapper
+        },
+        opts = {
+            debug = true, -- Enable debugging
+        },
+        keys = {
+            -- Show prompts actions with telescope
+            {
+                "<leader>ccp",
+                function()
+                    local actions = require("CopilotChat.actions")
+                    require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
+                end,
+                desc = "CopilotChat - Prompt actions",
+            },
+            {
+                "<leader>ccp",
+                ":lua require('CopilotChat.integrations.telescope').pick(require('CopilotChat.actions').prompt_actions())<CR>",
+                mode = "x",
+                desc = "CopilotChat - Prompt actions",
+            },
         }
     }
 }
