@@ -46,12 +46,16 @@ return {
                     i = cmp.mapping.abort(),
                     c = cmp.mapping.close(),
                 }),
-                ['<A-f>'] = cmp.mapping(
-                    function()
+                ['<A-m>'] = cmp.mapping({
+                    i = cmp.mapping.complete()
+                }),
+                ['<Tab>'] = cmp.mapping(
+                    function(fallback)
                         if cmp.visible() then
                             cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
                         else
-                            cmp.complete()
+                            -- cmp.complete()
+                            fallback()
                         end
                     end, { 'i', 's' }
                 ),
