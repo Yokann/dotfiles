@@ -49,18 +49,22 @@ return {
     { "tpope/vim-unimpaired", lazy = false },
     { "airblade/vim-rooter",  lazy = false }, -- load root dir at vim startup on a file
     {
-        "ggandor/leap.nvim", -- intersting way to move
+        "ggandor/leap.nvim",                  -- intersting way to move
         lazy = false,
         config = function()
             require("leap").add_default_mappings()
         end
     },
     { "numToStr/Comment.nvim",          lazy = false, opts = {} }, -- comment block
-    { "xiyaowong/transparent.nvim",     lazy = false }, -- run :TransparentToggle to activate bg transparency
     { "christoomey/vim-tmux-navigator", lazy = false }, -- use same keymap to switch pane and buffer
     {
-        "pocco81/auto-save.nvim",
+        "okuuva/auto-save.nvim",
         lazy = false,
+        opts = {
+            execution_message = {
+                enabled = false,
+            }
+        },
         keys = {
             { '<leader>as', '<cmd>ASToggle<CR>', desc = "Toggle autosave" }
         }
@@ -71,60 +75,11 @@ return {
         opts = {}
     },
 
-    -- Nvim Tree
-    {
-        "nvim-tree/nvim-tree.lua",
-        dependencies = {
-            "nvim-tree/nvim-web-devicons", -- optional, for file icons
-        },
-        init = function()
-            vim.g.loaded_netrw = 1
-            vim.g.loaded_netrwPlugin = 1
-        end,
-        opts = {
-            update_focused_file = {
-                enable = true
-            },
-            disable_netrw = true,
-            diagnostics = {
-                enable = true
-            },
-            git = {
-                enable = true,
-                timeout = 400 -- (in ms)
-            },
-            filters = {
-                dotfiles = false,
-                custom = { "^.git$" }
-            },
-            trash = {
-                cmd = "trash",
-                require_confirm = true,
-            },
-            renderer = {
-                highlight_git = true
-            }
-        },
-        keys = {
-            {
-                "<leader>tt",
-                function() require('nvim-tree.api').tree.toggle(false, false) end,
-                desc =
-                "[T]oggle Nvim[T]ree"
-            },
-            { "<leader>tr", function() require('nvim-tree.api').tree.focus() end, desc = "Focus Nvim[T][R]ee" },
-        }
-    },
-
     {
         "rmagatti/auto-session", -- restore previous dir session
-        dependencies = {
-            "nvim-tree/nvim-tree.lua",
-            "stevearc/aerial.nvim"
-        },
         lazy = false,
         opts = function()
-            vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+            vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
             return {
                 log_level = "error",
                 auto_session_suppress_dirs = { "~/" },
@@ -139,7 +94,6 @@ return {
             }
         end
     },
-
     {
         -- Manipulaite array string etc
         'Wansmer/treesj',
