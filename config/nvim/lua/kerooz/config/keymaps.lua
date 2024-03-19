@@ -28,7 +28,7 @@ local function setup_basic()
     set("x", "<leader>p", "\"_dp")
 
     set("n", "Q", "<nop>") -- don't binding anything on this key
-    set("i", "jh", "<Esc>")
+    set("i", "kj", "<Esc>")
 
     set("n", "<esc>", "<Cmd>:noh<CR>", { noremap = false })
 

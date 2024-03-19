@@ -71,7 +71,7 @@ return {
             { "nvim-lua/plenary.nvim" },  -- for curl, log wrapper
         },
         opts = {
-            debug = true, -- Enable debugging
+            debug = false, -- Enable debugging
         },
         keys = {
             -- Show prompts actions with telescope

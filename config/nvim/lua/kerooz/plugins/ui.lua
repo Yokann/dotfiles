@@ -27,7 +27,7 @@ return {
         end,
         opts = {
             update_focused_file = {
-                enable = true
+                enable = false,
             },
             disable_netrw = true,
             diagnostics = {
@@ -40,7 +40,7 @@ return {
             filters = {
                 git_ignored = false,
                 dotfiles = false,
-                custom = { "^.git$" , ".idea" }
+                custom = { "^.git$", ".idea" }
             },
             trash = {
                 cmd = "trash",
@@ -83,9 +83,10 @@ return {
             integrations = {
                 leap = true,
                 mason = true,
+                noice = true,
             },
             compile = {
-                enabled = false,
+                enabled = true,
                 path = vim.fn.stdpath("cache") .. "/catppuccin",
             },
         },
@@ -219,12 +220,12 @@ return {
             vim.keymap.set("n", "<A-k>", "<Plug>(CybuPrev)", { noremap = true, desc = "Previous Buffer" })
             vim.keymap.set("n", "<A-j>", "<Plug>(CybuNext)", { noremap = true, desc = "Next Buffer" })
             vim.keymap.set({ "n", "v" }, "<A-S-k>", "<plug>(CybuLastusedPrev)",
-                { noremap =true, desc = "Previous last used buffer" })
-            vim.keymap.set({ "n", "v" }, "<A-S-j>", "<plug>(CybuLastusedNext)", { noremap = true, desc = "Next last used buffer " })
+                { noremap = true, desc = "Previous last used buffer" })
+            vim.keymap.set({ "n", "v" }, "<A-S-j>", "<plug>(CybuLastusedNext)",
+                { noremap = true, desc = "Next last used buffer " })
         end,
         dependencies = { "nvim-tree/nvim-web-devicons", "nvim-lua/plenary.nvim" }, -- optional for icon support
     },
-
     {
         'NvChad/nvim-colorizer.lua',
         lazy = false,
@@ -258,5 +259,24 @@ return {
                 tailwind = true, -- Enable tailwind colors
             },
         }
+    },
+    { -- run :TransparentToggle to activate bg transparency
+        "xiyaowong/transparent.nvim",
+        lazy = false,
+        opts = {
+            groups = { -- table: default groups
+                'Normal', 'NormalNC', 'Comment', 'Constant', 'Special', 'Identifier',
+                'Statement', 'PreProc', 'Type', 'Underlined', 'Todo', 'String', 'Function',
+                'Conditional', 'Repeat', 'Operator', 'Structure', 'LineNr', 'NonText',
+                'SignColumn', 'CursorLine', 'CursorLineNr', 'StatusLine', 'StatusLineNC',
+                'EndOfBuffer',
+            },
+            extra_groups = {}, -- table: additional groups that should be cleared
+            exclude_groups = {}, -- table: groups you don't want to clear
+        },
+        config = function()
+            -- force reload colorscheme on reload
+            vim.cmd.colorscheme = 'catppuccin'
+        end
     },
 }
