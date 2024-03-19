@@ -84,6 +84,7 @@ return {
                 leap = true,
                 mason = true,
                 noice = true,
+                notify = true,
             },
             compile = {
                 enabled = true,
