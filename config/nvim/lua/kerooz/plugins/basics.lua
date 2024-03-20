@@ -60,11 +60,6 @@ return {
     {
         "okuuva/auto-save.nvim",
         lazy = false,
-        opts = {
-            execution_message = {
-                enabled = false,
-            }
-        },
         keys = {
             { '<leader>as', '<cmd>ASToggle<CR>', desc = "Toggle autosave" }
         }
@@ -74,7 +69,6 @@ return {
         event = "InsertEnter",
         opts = {}
     },
-
     {
         "rmagatti/auto-session", -- restore previous dir session
         lazy = false,

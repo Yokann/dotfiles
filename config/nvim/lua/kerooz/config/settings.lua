@@ -104,7 +104,7 @@ local function setup()
     -- these only read ".vim" files {{{
 
     o.secure = true -- Disable autocmd etc for project local vimrc files.
-    o.exrc = true -- Allow project local vimrc files example .nvimrc see :h exrc
+    o.exrc = true   -- Allow project local vimrc files example .nvimrc see :h exrc
 
     -- }}}
 

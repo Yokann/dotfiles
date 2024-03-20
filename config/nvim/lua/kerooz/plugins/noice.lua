@@ -6,15 +6,16 @@ return {
             view = "cmdline",
         },
         routes = {
-            -- filter messages
+            -- filter messages https://github.com/folke/noice.nvim/blob/main/lua/noice/config/routes.lua
             {
                 filter = {
-                    event = "msg_show",
-                    kind = "",
-                    find = "written",
+                    any = {
+                        { event = "msg_show", kind = "", find = "written" },
+                        { event = "msg_show", find = "AutoSave"},
+                    },
                 },
-                opts = { skip = true },
-            },
+                view = "mini"
+            }
         },
         lsp = {
             progress = {
