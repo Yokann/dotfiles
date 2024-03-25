@@ -1,8 +1,8 @@
 return {
     { -- javascript debugger
         "microsoft/vscode-js-debug",
-        build = "rm -f package-lock.json && npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out",
-        tag = "v1.86.0",
+        version = "1.x",
+        build = "npm install && npx gulp vsDebugServerBundle && mv dist out",
     },
     {
         "rcarriga/nvim-dap-ui",

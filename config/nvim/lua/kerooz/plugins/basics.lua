@@ -58,7 +58,7 @@ return {
     { "numToStr/Comment.nvim",          lazy = false, opts = {} }, -- comment block
     { "christoomey/vim-tmux-navigator", lazy = false }, -- use same keymap to switch pane and buffer
     {
-        "okuuva/auto-save.nvim",
+        "pocco81/auto-save.nvim",
         lazy = false,
         keys = {
             { '<leader>as', '<cmd>ASToggle<CR>', desc = "Toggle autosave" }
