@@ -27,7 +27,7 @@ return {
         end,
         opts = {
             update_focused_file = {
-                enable = false,
+                enable = true,
             },
             disable_netrw = true,
             diagnostics = {
