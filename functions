@@ -10,6 +10,7 @@ else
 fi
 
 DOTFILES_PATH=$HOME/.dotfiles
+CURRENT_DATE=$(date "+%Y-%m-%d-%H-%M-%S")
 
 setup_git () {
   git config --global include.path $DOTFILES_PATH/config/git/gitconfig
@@ -21,14 +22,14 @@ setup_zsh () {
     #Symlink .Xresources
     rm -f $HOME/.Xresources
     ln -s $DOTFILES_PATH/config/.Xresources $HOME/.Xresources
-    cp $HOME/.zshrc "$HOME/.zshrc.bak$(date "+d-%m-%Y-%H-%M-%S")"
+    cp $HOME/.zshrc "$HOME/.zshrc.bak$CURRENT_DATE"
     echo "source $DOTFILES_PATH/config/zsh/.zshrc" > $HOME/.zshrc
 }
 
 setup_tmux() {
-    rm -f $HOME/.tmux.conf
-    ln -s $DOTFILES_PATH/config/tmux/tmux.conf $HOME/.tmux.conf
     rm -rf $HOME/.tmux/plugins/tpm
+    cp $HOME/.tmux.conf "$HOME/.tmux.conf.bak$CURRENT_DATE"
+    echo "source $DOTFILES_PATH/config/tmux/tmux.conf" > $HOME/.tmux.conf
     git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
     # Don't forget to run Prefix + I to install plugins
 }
