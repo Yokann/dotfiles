@@ -1,0 +1,18 @@
+#compdef cdproj
+compdef _cdproj cdproj
+
+_cdproj ()
+{
+integer ret=1
+    local -a args
+    args+=(
+        '-i[case insensitive]'
+        '-w[match whole words]'
+        '1:thing:_files -W ${PROJECTS_ROOT_DIR} -g "*(.)"'
+    )
+
+    _arguments $args[@] && ret=0
+    return ret
+}
+
+_cdproj

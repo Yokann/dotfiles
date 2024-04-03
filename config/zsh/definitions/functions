@@ -10,5 +10,3 @@ git-clean-br() {
 cdproj() {
   cd $PROJECTS_ROOT_DIR/$1
 }
-# Completion for cdproj
-compctl -/ -W "($PROJECTS_ROOT_DIR)" cdproj
