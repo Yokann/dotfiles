@@ -10,8 +10,8 @@ return function(_config)
             vim.keymap.set("n", "U", function() vim.lsp.buf.hover() end)
             -- vim.keymap.set("n", "vd", function() vim.diagnostic.open_float(nil, { focus = false }) end,
             --     { desc = "[V]iew [D]iagnostic" })
-            vim.keymap.set("n", "vdj", function() vim.diagnostic.goto_next() end, { desc = "Next occurrence" })
-            vim.keymap.set("n", "vdk", function() vim.diagnostic.goto_prev() end, { desc = "Previous occurence" })
+            vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, { desc = "Next occurrence" })
+            vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, { desc = "Previous occurence" })
             vim.keymap.set("n", "<leader>cc", function() vim.lsp.buf.code_action() end,
                 { desc = "[V]iew [C]ode [A]ction" })
             vim.keymap.set("n", "<leader>co", function()
