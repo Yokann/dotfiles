@@ -5,16 +5,31 @@ return {
         cmdline = {
             view = "cmdline",
         },
+        messages = {
+            -- NOTE: If you enable messages, then the cmdline is enabled automatically.
+            -- This is a current Neovim limitation.
+            enabled = true,              -- enables the Noice messages UI
+            view = "notify",             -- default view for messages
+            view_error = "notify",       -- view for errors
+            view_warn = "notify",        -- view for warnings
+            view_history = "messages",   -- view for :messages
+            view_search = "virtualtext", -- view for search count messages. Set to `false` to disable
+        },
         routes = {
             -- filter messages https://github.com/folke/noice.nvim/blob/main/lua/noice/config/routes.lua
             {
                 filter = {
                     any = {
-                        { event = "msg_show", kind = "", find = "written" },
-                        { event = "msg_show", find = "AutoSave"},
+                        { event = "msg_show", kind = "",        find = "written" },
+                        { event = "msg_show", kind = "", find = "ago" },
+                        { event = "msg_show", find = "AutoSave" },
                     },
                 },
                 view = "mini"
+            },
+            {
+                filter = { event = "msg_show", kind = { "", "echo", "echomsg" }, min_height = 3 },
+                view = "messages"
             }
         },
         lsp = {

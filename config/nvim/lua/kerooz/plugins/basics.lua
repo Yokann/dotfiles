@@ -1,49 +1,5 @@
 return {
     "nvim-lua/plenary.nvim",         -- Useful lua functions used ny lots of plugins
-    {
-        "nvim-lualine/lualine.nvim", -- Status bar
-        lazy = false,
-        opts = {
-            theme = "catppuccin",
-            --     options = {
-            --         disabled_filetypes = {
-            --             'NvimTree', 'DapBreakpoint', 'DapScope', 'DapStack'
-            --         }
-            --     }
-            -- }
-            sections = {
-                lualine_b = {
-                    { "branch", icon = "" },
-                    {
-                        "diff",
-                        colored = true,
-                        -- diff_color = {
-                        --     added    = { fg = "#28A745" },
-                        --     modified = { fg = "#DBAB09" },
-                        --     removed  = { fg = "#D73A49" }
-                        -- },
-                        symbols = {
-                            added    = " ",
-                            modified = " ",
-                            removed  = " "
-                        }
-                    },
-                    -- { "diagnostics' }
-                },
-                lualine_c = {
-                    "diagnostics",
-                    { "filename", path = 1 },
-                },
-                lualine_x = {
-                    'encoding', 'fileformat', 'filetype',
-                    {
-                        function() return require("copilot_status").status_string() end,
-                        cnd = function() return require("copilot_status").enabled() end
-                    },
-                }
-            }
-        }
-    },
     { "tpope/vim-surround",   lazy = false },
     { "tpope/vim-repeat",     lazy = false },
     { "tpope/vim-unimpaired", event = "VeryLazy" },

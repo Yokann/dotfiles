@@ -3,3 +3,4 @@ require("kerooz.config.settings")
 require("kerooz.config.keymaps")
 require("kerooz.config.autocommand")
 require("kerooz.config.lazy")
+

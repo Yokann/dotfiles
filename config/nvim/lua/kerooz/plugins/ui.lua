@@ -1,4 +1,81 @@
 return {
+    {
+        "goolord/alpha-nvim",
+        event = "VimEnter",
+        enabled = true,
+        init = false,
+        opts = function()
+            local dashboard = require("alpha.themes.dashboard")
+            local logo = [[
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣿⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⣿⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢿⣿⣿⣿⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣷⣤⣙⢻⣿⣿⣿⣿⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⢠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡄⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⢠⣿⣿⣿⣿⣿⡿⠛⠛⠿⣿⣿⣿⣿⣿⡄⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⢠⣿⣿⣿⣿⣿⠏⠀⠀⠀⠀⠙⣿⣿⣿⣿⣿⡄⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⣰⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⢿⣿⣿⣿⣿⠿⣆⠀⠀⠀⠀
+        ⠀⠀⠀⣴⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣷⣦⡀⠀⠀⠀
+        ⠀⢀⣾⣿⣿⠿⠟⠛⠋⠉⠉⠀⠀⠀⠀⠀⠀⠉⠉⠙⠛⠻⠿⣿⣿⣷⡀⠀
+        ⣠⠟⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠻⣄
+    ]]
+
+            dashboard.section.header.val = vim.split(logo, "\n")
+            -- stylua: ignore
+            dashboard.section.buttons.val = {
+                dashboard.button("f", " " .. " Find file", "<cmd> Telescope find_files <cr>"),
+                dashboard.button("n", " " .. " New file", "<cmd> ene <BAR> startinsert <cr>"),
+                dashboard.button("r", " " .. " Recent files", "<cmd> Telescope oldfiles <cr>"),
+                dashboard.button("g", " " .. " Find text", "<cmd> Telescope live_grep <cr>"),
+                dashboard.button("s", " " .. " Restore Session", [[<cmd>SessionRestore<cr>]]),
+                dashboard.button("l", "󰒲 " .. " Lazy", "<cmd> Lazy <cr>"),
+                dashboard.button("q", " " .. " Quit", "<cmd> qa <cr>"),
+            }
+            for _, button in ipairs(dashboard.section.buttons.val) do
+                button.opts.hl = "AlphaButtons"
+                button.opts.hl_shortcut = "AlphaShortcut"
+            end
+            dashboard.section.header.opts.hl = "AlphaHeader"
+            dashboard.section.buttons.opts.hl = "AlphaButtons"
+            dashboard.section.footer.opts.hl = "AlphaFooter"
+            dashboard.opts.layout[1].val = 8
+            return dashboard
+        end,
+        config = function(_, dashboard)
+            -- close Lazy and re-open when the dashboard is ready
+            if vim.o.filetype == "lazy" then
+                vim.cmd.close()
+                vim.api.nvim_create_autocmd("User", {
+                    once = true,
+                    pattern = "AlphaReady",
+                    callback = function()
+                        require("lazy").show()
+                    end,
+                })
+            end
+
+            require("alpha").setup(dashboard.opts)
+
+            vim.api.nvim_create_autocmd("User", {
+                once = true,
+                pattern = "LazyVimStarted",
+                callback = function()
+                    local stats = require("lazy").stats()
+                    local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+                    dashboard.section.footer.val = "⚡ Neovim loaded "
+                        .. stats.loaded
+                        .. "/"
+                        .. stats.count
+                        .. " plugins in "
+                        .. ms
+                        .. "ms"
+                    pcall(vim.cmd.AlphaRedraw)
+                end,
+            })
+        end,
+    },
     -- Aerial
     {
         "stevearc/aerial.nvim", -- move inside code by symbols
@@ -75,24 +152,28 @@ return {
     {
         "catppuccin/nvim", -- color scheme
         lazy = false,
+        enabled = true,
         name = "catppuccin",
-        priority = 1000,           -- should load before everything
-        opts = {
-            flavour = "macchiato", -- latte, frappe, macchiato, mocha
-            transparent_background = false,
-            integrations = {
-                leap = true,
-                mason = true,
-                noice = true,
-                notify = true,
-            },
-            compile = {
-                enabled = true,
-                path = vim.fn.stdpath("cache") .. "/catppuccin",
-            },
-        },
-        config = function(_, opts)
-            require("catppuccin").setup(opts)
+        priority = 1000, -- should load before everything
+        config = function()
+            require("catppuccin").setup({
+                flavour = "macchiato", -- latte, frappe, macchiato, mocha
+                transparent_background = false,
+                integrations = {
+                    leap = true,
+                    mason = true,
+                    noice = true,
+                    notify = true,
+                    mini = true,
+                    telescope = {
+                        enabled = true,
+                    }
+                },
+                compile = {
+                    enabled = true,
+                    path = vim.fn.stdpath("cache") .. "/catppuccin",
+                },
+            })
             local palette = require('catppuccin.palettes').get_palette()
 
             local function lspSymbol(name, icon, color)
@@ -123,9 +204,10 @@ return {
     {
         "levouh/tint.nvim", -- highlight current buffer
         event = "VeryLazy",
+        enabled = true,
         opts = {
-            tint = -30,
-            saturation = 0.5,
+            tint = -10,
+            saturation = 0.2,
             highlight_ignore_patterns = {
                 "LspInlayHint.*",
                 "WinBar.*",
@@ -265,11 +347,66 @@ return {
         "xiyaowong/transparent.nvim",
         lazy = false,
         opts = {
+            groups = { -- table: default groups
+                'Normal', 'NormalNC', 'Comment', 'Constant', 'Special', 'Identifier',
+                'Statement', 'PreProc', 'Type', 'Underlined', 'Todo', 'String', 'Function',
+                'Conditional', 'Repeat', 'Operator', 'Structure', 'LineNr', 'NonText',
+                'SignColumn', 'CursorLine', 'CursorLineNr', 'StatusLine', 'StatusLineNC',
+                'EndOfBuffer',
+            },
             extra_groups = {},   -- table: additional groups that should be cleared
             exclude_groups = {}, -- table: groups you don't want to clear
         },
     },
-    { 'karb94/neoscroll.nvim', lazy = false, opts = {
-        easing_function = "sine", -- Default easing function
-    }},
+    {
+        'karb94/neoscroll.nvim',
+        lazy = false,
+        opts = {
+            easing_function = "sine", -- Default easing function
+        }
+    },
+    {
+        "nvim-lualine/lualine.nvim", -- Status bar
+        event = "VeryLazy",
+        opts = {
+            options = {
+                icons_enabled = true,
+                theme = "catppuccin",
+                --         disabled_filetypes = {
+                --             'NvimTree', 'DapBreakpoint', 'DapScope', 'DapStack'
+                --         }
+            },
+            sections = {
+                lualine_b = {
+                    { "branch", icon = "" },
+                    {
+                        "diff",
+                        colored = true,
+                        -- diff_color = {
+                        --     added    = { fg = "#28A745" },
+                        --     modified = { fg = "#DBAB09" },
+                        --     removed  = { fg = "#D73A49" }
+                        -- },
+                        symbols = {
+                            added    = " ",
+                            modified = " ",
+                            removed  = " "
+                        }
+                    },
+                    -- { "diagnostics' }
+                },
+                lualine_c = {
+                    "diagnostics",
+                    { "filename", path = 1 },
+                },
+                lualine_x = {
+                    'encoding', 'fileformat', 'filetype',
+                    {
+                        function() return require("copilot_status").status_string() end,
+                        cnd = function() return require("copilot_status").enabled() end
+                    },
+                }
+            }
+        }
+    },
 }
