@@ -88,5 +88,6 @@ return {
         -- { "<leader>fss", function() require('telescope.builtin').treesitter() end, desc = "[F]ind [S]ymbols" },
         -- Search
         { "<leader>gg",      function() require('kerooz.lib.telescope.pickers').prettyGrepPicker({ picker = 'live_grep', options = { debounce = 100 } }) end, desc = "Live [G]rep" },
+        { '<leader>fn', function() require('telescope.builtin').find_files({ cwd = vim.fn.stdpath 'config' }) end, desc = '[F]ind [N]eovim files'},
    }
 }
