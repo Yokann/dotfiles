@@ -122,7 +122,7 @@ return {
     },
     {
         "levouh/tint.nvim", -- highlight current buffer
-        lazy = false,
+        event = "VeryLazy",
         opts = {
             tint = -30,
             saturation = 0.5,
@@ -269,4 +269,7 @@ return {
             exclude_groups = {}, -- table: groups you don't want to clear
         },
     },
+    { 'karb94/neoscroll.nvim', lazy = false, opts = {
+        easing_function = "sine", -- Default easing function
+    }},
 }

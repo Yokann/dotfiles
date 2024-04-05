@@ -46,8 +46,9 @@ return {
     },
     { "tpope/vim-surround",   lazy = false },
     { "tpope/vim-repeat",     lazy = false },
-    { "tpope/vim-unimpaired", lazy = false },
+    { "tpope/vim-unimpaired", event = "VeryLazy" },
     { "airblade/vim-rooter",  lazy = false }, -- load root dir at vim startup on a file
+    { "sickill/vim-pasta", lazy = false }, -- Ajust indentation when pasting code
     {
         "ggandor/leap.nvim",                  -- intersting way to move
         lazy = false,
@@ -77,7 +78,7 @@ return {
             return {
                 log_level = "error",
                 auto_session_suppress_dirs = { "~/" },
-                auto_restore_enabled = true,
+                auto_restore_enabled = false,
                 auto_session_create_enabled = true,
                 pre_save_cmds = {
                     -- close everything useless before save session
