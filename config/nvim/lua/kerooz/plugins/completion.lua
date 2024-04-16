@@ -17,7 +17,6 @@ return {
             buffer = " ",
             nvim_lsp = " ",
             path = " ",
-            cmp_tabnine = "[TN]",
             copilot = " ",
             luasnip = "",
         }
