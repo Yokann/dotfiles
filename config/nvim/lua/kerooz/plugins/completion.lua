@@ -41,11 +41,11 @@ return {
                 }),
                 --["<C-u>"] = cmp.mapping.scroll_docs(-4),
                 --["<C-d>"] = cmp.mapping.scroll_docs(4),
-                ['<A-c>'] = cmp.mapping({
+                ['<C-c>'] = cmp.mapping({
                     i = cmp.mapping.abort(),
                     c = cmp.mapping.close(),
                 }),
-                ['<A-m>'] = cmp.mapping({
+                ['<C-m>'] = cmp.mapping({
                     i = cmp.mapping.complete()
                 }),
                 ['<Tab>'] = cmp.mapping(
@@ -58,7 +58,7 @@ return {
                         end
                     end, { 'i', 's' }
                 ),
-                ['<A-j>'] = cmp.mapping(function(fallback)
+                ['<C-j>'] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         local entries = cmp.get_entries()
                         if #entries == 1 and entries[1].source.name ~= 'copilot' then
@@ -72,7 +72,7 @@ return {
                         fallback()
                     end
                 end, { 'i', 's' }),
-                ['<A-k>'] = cmp.mapping(function(fallback)
+                ['<C-k>'] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         cmp.select_prev_item(select_opts)
                     elseif luasnip.jumpable(-1) then
