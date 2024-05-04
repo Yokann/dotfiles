@@ -99,13 +99,13 @@
         "on-click": "foot -e yay -Syu"
     },
     "hyprland/workspaces": {
-        "format": " {icon} {windows} ",
+        "format": "{icon} {windows}",
         "window-rewrite-default": "󱂬",
         "window-rewrite": {
-            "title<.*youtube.*>": "",
-            "vivaldi": "",
-            "class<firefox>": "",
-            "class<firefox> title<.*github.*>": "", // Windows whose class is "firefox" and title contains "github". Note that "class" always comes first.
+            "title<.*youtube.*>": " ",
+            "vivaldi": " ",
+            "class<firefox>": " ",
+            "class<firefox> title<.*github.*>": " ", // Windows whose class is "firefox" and title contains "github". Note that "class" always comes first.
             "foot": "",
             "code": "󰨞",
             "discord": "󰙯",
