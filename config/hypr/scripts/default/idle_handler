@@ -17,11 +17,11 @@ swayidle -w \
     timeout $idle_timeout 'brightnessctl -s && brightnessctl set 10' \
     resume 'brightnessctl -r' \
     timeout $locking_timeout "$lock_cmd" \
-    timeout $screen_timeout "$HOME/.config/hypr/scripts/default/keyboard-backlight-switch off && $screen_off" \
-    resume "$HOME/.config/hypr/scripts/default/keyboard-backlight-switch on && $screen_on" \
+    timeout $screen_timeout "$HYPR_CONFIG_PATH/scripts/default/keyboard-backlight-switch off && $screen_off" \
+    resume "$HYPR_CONFIG_PATH/scripts/default/keyboard-backlight-switch on && $screen_on" \
     timeout $sleep_timeout_bat '[ "$(acpi -b | grep Discharging)" != "" ] && systemctl suspend' \
     timeout $sleep_timeout_ac '[ "$(acpi -b | grep Discharging)" = "" ] && systemctl suspend' \
     before-sleep 'playerctl pause' \
     before-sleep "$lock_cmd & sleep $sleep_delay" \
-    after-resume "$HOME/.config/hypr/scripts/default/keyboard-backlight-switch on && $screen_on"
+    after-resume "$HYPR_CONFIG_PATH/scripts/default/keyboard-backlight-switch on && $screen_on"
 

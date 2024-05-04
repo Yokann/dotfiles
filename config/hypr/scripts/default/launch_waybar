@@ -1,7 +1,5 @@
 #!/usr/bin/env sh 
 
-CONFIG_PATH=$1
-
 pkill -x waybar
 
 if [ -f "$WAYBAR_CONFIG_PATH" ]; then
@@ -12,8 +10,9 @@ if [ -f "$WAYBAR_STYLE_PATH" ]; then
     USER_STYLE=$WAYBAR_STYLE_PATH
 fi
 
-if [ -z "$CONFIG_PATH" ]; then
+if [ -z "$HYPR_CONFIG_PATH" ]; then
     waybar
 else
-    waybar -c "${USER_CONFIG:-"$CONFIG_PATH/config.jsonc"}" -s "${USER_STYLE:-"$CONFIG_PATH/style.css"}"
+    waybar -c "${USER_CONFIG:-"$HYPR_CONFIG_PATH/themes/2024/dots/waybar/config.jsonc"}" \
+        -s "${USER_STYLE:-"$HYPR_CONFIG_PATH/themes/2024/dots/waybar/style.css"}"
 fi
