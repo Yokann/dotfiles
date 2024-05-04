@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/sh
 
 swayidle -w \
     timeout 60 "hyprctl dispatch dpms off" \

@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/bin/sh
 
 # This script is used to kill the Hyprland process if it is running 
 # as disptach exit doesn't work properly in some cases. 

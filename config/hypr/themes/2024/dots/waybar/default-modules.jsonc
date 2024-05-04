@@ -93,8 +93,8 @@
         "tooltip": false,
         "format": "{} Update(s)",
         "return-type": "json",
-        "exec-if": "~/.config/hypr/scripts/default/checkupdates.sh check",
-        "exec": "~/.config/hypr/scripts/default/checkupdates.sh status",
+        "exec-if": "~/.config/hypr/scripts/default/checkupdates check",
+        "exec": "~/.config/hypr/scripts/default/checkupdates status",
         "interval": 3600,
         "on-click": "foot -e yay -Syu"
     },

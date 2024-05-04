@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 sleep 4
 killall xdg-desktop-portal-wlr
 killall xdg-desktop-portal
