@@ -14,6 +14,7 @@ yay -S wl-clipboard cliphist \ # clipboard
     swaylock-effects-git \ # lockscreen
     swww \ # wallpaper 
     swayidle-git \ # idle
+    swaync-git \ # notification
     brightnessctl # brightness
 
 # Themes

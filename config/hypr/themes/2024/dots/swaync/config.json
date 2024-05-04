@@ -1,0 +1,13 @@
+{
+    "widgets": ["mpris", "title", "dnd", "notifications"],
+    "notification-visibility": {
+        "screen-share": {
+            "state": "muted",
+            "body": "Les détails sont masqués lors du partage d'écran"
+        },
+        "poweralertd": {
+            "state": "muted",
+            "app-name": "poweralertd"
+        }
+    }
+}

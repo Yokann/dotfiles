@@ -251,7 +251,7 @@ window#waybar.hidden {
     font-size: 15px;
 }
 
-#custom-dnd {
+#custom-dnd, #custom-notification{
     margin-top: 6px;
     margin-left: 8px;
     padding-left: 10px;
@@ -261,6 +261,13 @@ window#waybar.hidden {
     transition: none;
     color: #cdd6f4;
     background: #1e1e2e;
+}
+
+#custom-notification.notification,
+#custom-notification.dnd-notification,
+#custom-notification.inihibited-notification,
+#custom-notification.dnd-inihibited-notification {
+    padding-right: 10px;
 }
 
 #submap {
