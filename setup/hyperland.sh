@@ -19,7 +19,9 @@ yay -S hyprland \
     network-manager-applet \
     gvfs gvfs-smb \
     gnome-keyring \
-    liboauth
+    liboauth \
+    greetd-tuigreet \
+    font-manager
 
 # Install additional dependencies
 yay -S wl-clipboard cliphist \ # clipboard
@@ -31,7 +33,9 @@ yay -S wl-clipboard cliphist \ # clipboard
     swayidle-git \ # idle
     swaync-git \ # notification
     yazi \ # tui file manager
-    brightnessctl # brightness
+    brightnessctl \ # brightness
+    mpv mpv-mpris \ # video player
+    streamlink  # openstream in mpv
 
 # Themes
 yay -S socat geticons nwg-look
