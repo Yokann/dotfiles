@@ -30,6 +30,7 @@ yay -S wl-clipboard cliphist \ # clipboard
     swww \ # wallpaper 
     swayidle-git \ # idle
     swaync-git \ # notification
+    yazi \ # tui file manager
     brightnessctl # brightness
 
 # Themes
