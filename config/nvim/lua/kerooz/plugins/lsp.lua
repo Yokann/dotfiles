@@ -3,7 +3,9 @@ return {
         "neovim/nvim-lspconfig",
         event = 'VeryLazy',
         init = function()
-            require('mason').setup()
+            require('mason').setup({
+                PATH = "prepend",
+            })
         end,
         config = function()
             local config = require('kerooz.lib.lsp.common_config')
