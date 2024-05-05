@@ -3,8 +3,23 @@
 # https://github.com/natpen/awesome-wayland
 
 # Install hyprland and core dependencies
-yay -S hyprland wdisplays foot foot-terminfo waybar sworkstyle mako-git wev xdg-desktop-portal-wlr
-# xdg-desktop-portal-hyprland-git
+yay -S hyprland \
+    wdisplays \
+    foot \
+    foot-terminfo \
+    waybar \
+    sworkstyle \
+    mako-git \
+    wev \
+    xdg-desktop-portal-wlr \
+    polkit-gnome \
+    pcmanfm-gtk3 \
+    playerctl \
+    network-manager \
+    network-manager-applet \
+    gvfs gvfs-smb \
+    gnome-keyring \
+    liboauth
 
 # Install additional dependencies
 yay -S wl-clipboard cliphist \ # clipboard
@@ -18,4 +33,4 @@ yay -S wl-clipboard cliphist \ # clipboard
     brightnessctl # brightness
 
 # Themes
-yay -S socat geticons
+yay -S socat geticons lxappearance 

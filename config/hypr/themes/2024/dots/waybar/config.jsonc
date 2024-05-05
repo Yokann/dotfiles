@@ -14,8 +14,7 @@
             "memory",
             "disk",
             "mpd",
-            "custom/playerctl",
-            "tray"
+            "custom/playerctl"
         ],
         "modules-center": [
             "hyprland/workspaces",
@@ -24,7 +23,9 @@
         "modules-right": [
             "custom/updates",
             "backlight",
+            "tray",
             "pulseaudio",
+            "idle_inhibitor",
             "custom/notification",
             "clock",
             "battery"
