@@ -34,4 +34,4 @@ yay -S wl-clipboard cliphist \ # clipboard
     brightnessctl # brightness
 
 # Themes
-yay -S socat geticons lxappearance 
+yay -S socat geticons nwg-look
