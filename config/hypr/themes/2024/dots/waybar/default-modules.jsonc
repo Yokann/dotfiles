@@ -66,7 +66,7 @@
         "on-click": "foot -e btop"
     },
     "disk": {
-        "interval": 30,
+        "interval": 600,
         "format": "󰋊 {percentage_free}%"
     },
     "idle_inhibitor": {
@@ -100,8 +100,8 @@
         "tooltip": false,
         "format": "{} Update(s)",
         "return-type": "json",
-        "exec-if": "~/.config/hypr/scripts/default/checkupdates check",
-        "exec": "~/.config/hypr/scripts/default/checkupdates status",
+        "exec-if": "~/.dotfiles/config/hypr/scripts/default/checkupdates check",
+        "exec": "~/.dotfiles/config/hypr/scripts/default/checkupdates status",
         "interval": 3600,
         "on-click": "foot -e yay -Syu"
     },
@@ -130,9 +130,9 @@
             "default": "󰚢 ",
             "dnd": "󰚣i"
         },
-        "on-click": "~/.config/hypr/scripts/default/dnd toggle",
-        "on-click-right": " ~/.config/hypr/scripts/default/dnd restore",
-        "exec": "~/.config/hypr/scripts/default/dnd status"
+        "on-click": "~/.dotfiles/config/hypr/scripts/default/dnd toggle",
+        "on-click-right": " ~/.dotfiles/config/hypr/scripts/default/dnd restore",
+        "exec": "~/.dotfiles/config/hypr/scripts/default/dnd status"
     },
     "custom/notification": {
         "tooltip": false,
@@ -153,5 +153,10 @@
         "on-click": "swaync-client -t -sw",
         "on-click-right": "swaync-client -d -sw",
         "escape": true
+    },
+    "custom/twitch": {
+        "format": "",
+        "tooltip": false,
+        "on-click": "~/.dotfiles/config/hypr/scripts/default/stream -w"
     }
 }

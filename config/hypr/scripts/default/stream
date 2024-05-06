@@ -1,0 +1,41 @@
+#!/bin/bash
+if [ ! -f $HOME/.config/twitch-cli/.twitch-cli.env ]; then
+    twitch-cli token -u -s 'chat:read user:read:email chat:edit user:read:follows whispers:edit whispers:read'
+fi
+
+chat="false"
+wofi="false"
+while getopts ":cw" option; do
+    case $option in
+        c) # chat
+            chat="true";;
+        w) # wofi
+            wofi="true";;
+        \?) # Invalid option
+            echo "Error: Invalid option"
+            exit;;
+    esac
+done
+
+user_id=$(twitch-cli api get /users | jq -r '.data[0].id') # will refresh the token
+source $HOME/.config/twitch-cli/.twitch-cli.env 2> /dev/null  # source to load ACCESSTOKEN as a variable
+
+live_channels=$(twitch-cli api get /streams/followed -q user_id=$user_id -q limit=100)
+
+if [ $wofi == "true" ]; then
+    selected_channel=$(echo $live_channels | jq -r '.data[] | .user_name' | wofi -d -i)
+else
+    selected_channel=$(echo $live_channels | jq -r '.data[] | [.user_name, .title] | @csv' | gum table -c "Channel,Title" -w "20,200" | cut -d',' -f1)
+fi
+
+# Prompt to choose a channel
+if [ -z "$selected_channel" ]; then
+    echo "No live channels selected"
+    exit 1
+fi
+
+echo "Lauching stream of $selected_channel"
+streamlink -Q "--twitch-api-header=Authorization=Bearer $ACCESSTOKEN" https://www.twitch.tv/$selected_channel &
+if [ $chat == "true" ]; then
+    TWT_TOKEN="oauth:$ACCESSTOKEN" twt -c $selected_channel
+fi

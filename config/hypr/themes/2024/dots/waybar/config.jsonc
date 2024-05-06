@@ -10,6 +10,7 @@
         ],
         "modules-left": [
             "custom/launcher",
+            "custom/twitch",
             "cpu",
             "memory",
             "disk",
@@ -37,7 +38,9 @@
         "include": [
             "~/.dotfiles/config/hypr/themes/2024/dots/waybar/default-modules.jsonc"
         ],
-        "modules-left": [],
+        "modules-left": [
+            "custom/launcher"
+        ],
         "modules-center": [
             "hyprland/workspaces",
             "hyprland/submap"

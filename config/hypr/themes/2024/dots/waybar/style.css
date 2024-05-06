@@ -38,6 +38,7 @@ window#waybar.hidden {
 #custom-updates,
 #custom-playerctl,
 #idle_inhibitor, 
+#custom-twitch,
 #submap {
     margin-top: 6px;
     margin-left: 8px;
@@ -197,4 +198,10 @@ window#waybar.hidden {
     background: #f38ba8;
     font-size: 12px;
     font-style: italic;
+}
+
+#custom-twitch {
+    padding-right: 15px;
+    color: white;
+    background: #6441a5;
 }
