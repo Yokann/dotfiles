@@ -3,7 +3,7 @@
 # https://github.com/natpen/awesome-wayland
 
 # Install hyprland and core dependencies
-yay -S hyprland \
+yay -S hyprland hyprcursor \
     wdisplays \
     foot \
     foot-terminfo \
