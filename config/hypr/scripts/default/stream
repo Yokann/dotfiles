@@ -14,10 +14,13 @@ fi
 
 chat="false"
 wofi="false"
-while getopts ":cw" option; do
+video="true"
+while getopts ":cwn" option; do
     case $option in
         c) # chat
             chat="true";;
+        n)
+            video="false";;
         w) # wofi
             wofi="true";;
         \?) # Invalid option
@@ -43,8 +46,12 @@ if [ -z "$selected_channel" ]; then
     exit 1
 fi
 
-echo "Lauching stream of $selected_channel"
-streamlink -Q "--twitch-api-header=Authorization=Bearer $ACCESSTOKEN" https://www.twitch.tv/$selected_channel &
+if [ $video == "true" ]; then
+    echo "Lauching stream of $selected_channel"
+    streamlink -Q "--twitch-api-header=Authorization=Bearer $ACCESSTOKEN" https://www.twitch.tv/$selected_channel &
+fi
+
 if [ $chat == "true" ]; then
+    echo "oauth:$ACCESSTOKEN"
     TWT_TOKEN="oauth:$ACCESSTOKEN" twt -c $selected_channel
 fi
