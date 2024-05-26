@@ -1,7 +1,6 @@
 local M = {}
 
-function M.setup()
-    local dap = require('dap')
+function M.setup(dap)
     for _, language in ipairs({ 'typescript', 'javascript' }) do
         dap.configurations[language] = {
             {
@@ -15,7 +14,7 @@ function M.setup()
                 type = 'pwa-node',
                 request = 'attach',
                 name = 'Attach debugger to existing `node --inspect` process',
-                processId = require('dap.utils').pick_process,
+                processId = require('kerooz.dap.common').filtered_pick_process,
                 cwd = '${workspaceFolder}',
                 resolveSourceMapLocations = {
                     '${workspaceFolder}/**',

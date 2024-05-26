@@ -40,37 +40,38 @@ local function configure()
     vim.fn.sign_define("DapBreakpointCondition", dap_breakpoint.conditionnal)
 end
 
-local function configure_exts()
-    require("nvim-dap-virtual-text").setup {
+local function configure_exts(dap, dapui)
+    require('nvim-dap-virtual-text').setup {
         commented = true,
     }
 
-    local dap, dapui = require "dap", require "dapui"
-    dapui.setup {} -- use default
+    dapui.setup({}) -- use default
     dap.listeners.after.event_initialized["dapui_config"] = function()
         dapui.open()
     end
 end
 
-local function configure_debuggers()
-    require("kerooz.dap.lua").setup()
-    require("kerooz.dap.go").setup()
-    require("kerooz.dap.php").setup()
-    require("kerooz.dap.rust").setup()
-    require("kerooz.dap.javascript").setup()
+local function configure_debuggers(dap)
+    require('kerooz.dap.lua').setup(dap)
+    require('kerooz.dap.go').setup(dap)
+    require('kerooz.dap.php').setup(dap)
+    require('kerooz.dap.rust').setup(dap)
+    require('kerooz.dap.javascript').setup(dap)
 end
 
 function M.setup()
+    local dap, dapui = require('dap'), require('dapui')
     configure() -- Configuration
-    configure_exts() -- Extensions
-    configure_debuggers() -- Debugger
-    require("kerooz.dap.keymaps").setup() -- Keymaps
+    configure_exts(dap, dapui) -- Extensions
+    configure_debuggers(dap) -- Debugger
+    require('kerooz.lib.dap.config').load_custom_configuration(dap)
+    require('kerooz.dap.keymaps').setup(dap,dapui) -- Keymaps
 end
 
 -- Autosession callback before closing nvim
 -- Avoid to save session with DAP UI opened
 function M.closeUI()
-    require("dapui").close()
+    dapui.close()
 end
 
 -- require("dap").set_log_level("TRACE")

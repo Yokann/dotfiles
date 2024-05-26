@@ -1,9 +1,6 @@
 local M = {}
 
-function M.setup()
-    local dap = require("dap")
-    local dapui = require("dapui")
-
+function M.setup(dap, dapui)
     vim.keymap.set("n", "<F1>", function() dapui.toggle() end, { desc = "Debugger - Toggle UI", noremap=false })
     vim.keymap.set("n", "<F9>", function() dap.continue() end, { desc = "Debugger - Start" })
     vim.keymap.set("n", "<F3>", function() dap.toggle_breakpoint() end, { desc = "Debugger - Toggle breakpoint" })
