@@ -1,7 +1,7 @@
 return {
     {
         "neovim/nvim-lspconfig",
-        event = 'VeryLazy',
+        lazy = false,
         init = function()
             require('mason').setup({
                 PATH = "prepend",
@@ -39,18 +39,56 @@ return {
                                     [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
                                 },
                             },
+                            format = {
+                                enable = true,
+                                defaultConfig = {
+                                    indent_style = "space",
+                                    indent_size = "4"
+                                }
+                            }
                         },
                     }
                 },
                 gopls = {
                     settings = {
                         gopls = {
-                            analyses = {
-                                unusedparams = true,
+                            gofumpt = true,
+                            codelenses = {
+                                gc_details = false,
+                                generate = true,
+                                regenerate_cgo = true,
+                                run_govulncheck = true,
+                                test = true,
+                                tidy = true,
+                                upgrade_dependency = true,
+                                vendor = true,
                             },
+                            hints = {
+                                assignVariableTypes = true,
+                                compositeLiteralFields = true,
+                                compositeLiteralTypes = true,
+                                constantValues = true,
+                                functionTypeParameters = true,
+                                parameterNames = true,
+                                rangeVariableTypes = true,
+                            },
+                            analyses = {
+                                fieldalignment = true,
+                                nilness = true,
+                                unusedparams = true,
+                                unusedwrite = true,
+                                useany = true,
+                            },
+                            usePlaceholders = true,
+                            completeUnimported = true,
                             staticcheck = true,
+                            directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules" },
+                            semanticTokens = true,
                         }
                     },
+                    init_options = {
+                        usePlaceholders = true,
+                    }
                 }
             }
 
@@ -70,7 +108,7 @@ return {
                 virtual_text = false,
                 signs = true,
                 float = {
-                    source = 'always',
+                    source = true,
                     border = 'rounded',
                 },
             })
@@ -85,39 +123,14 @@ return {
                 vim.lsp.handlers.signature_help,
                 { border = 'rounded' }
             )
-
             -- }}
         end,
         dependencies = {
             {
-                "williamboman/mason.nvim",
-            },
-            {
                 "williamboman/mason-lspconfig.nvim",
-                opts = {
-                    ensure_installed = {
-                        "bashls",
-                        "cmake",
-                        "dockerls",
-                        "docker_compose_language_service",
-                        "gopls",
-                        "html",
-                        "helm_ls",
-                        "jdtls",
-                        "jsonls",
-                        "lemminx",
-                        "lua_ls",
-                        "marksman",
-                        "rust_analyzer",
-                        -- "phpactor",
-                        "sqlls",
-                        "tflint",
-                        "tsserver",
-                        "yamlls",
-                    }
-                },
                 dependencies = { "williamboman/mason.nvim" }
             },
+            "nvimtools/none-ls.nvim",
         }
     },
     {
@@ -128,5 +141,65 @@ return {
     }, --loader for lsp
     {
         "towolf/vim-helm", ft = "helm"
+    },
+    { -- auto install lsp, formatter, dap
+        "WhoIsSethDaniel/mason-tool-installer.nvim",
+        lazy = false,
+        opts = {
+            ensure_installed = {
+                "bashls",
+                "cmake",
+                "clangd",
+                "codelldb",
+                "cpptools",
+                "delve",
+                "dockerls",
+                "docker_compose_language_service",
+                "gopls",
+                "gomodifytags",
+                "golangci-lint",
+                "goimports",
+                "gofumpt",
+                "html",
+                "helm_ls",
+                "jdtls",
+                "jsonls",
+                "lemminx",
+                "lua_ls",
+                "marksman",
+                "php-debug-adapter",
+                "phpactor",
+                "rust_analyzer",
+                "sqlls",
+                "terraformls",
+                "tflint",
+                "tsserver",
+                "yamlls",
+
+            },
+            auto_update = false,
+            run_on_start = false,
+            start_delay = 3000,
+            debounce_hours = 5, -- at least 5 hours between attempts to install/update
+            integrations = {
+                ['mason-lspconfig'] = true,
+                ['mason-null-ls'] = true,
+                ['mason-nvim-dap'] = true,
+            }
+        },
+        dependencies = {
+            "neovim/nvim-lspconfig"
+        }
+    },
+    {
+        "nvimtools/none-ls.nvim",
+        opts = function(_, opts)
+            local nls = require("null-ls")
+            opts.sources = vim.list_extend(opts.sources or {}, {
+                nls.builtins.code_actions.gomodifytags,
+                nls.builtins.formatting.goimports,
+                nls.builtins.formatting.gofumpt,
+            })
+        end,
     }
 }

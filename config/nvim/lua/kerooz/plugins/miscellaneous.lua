@@ -3,6 +3,7 @@ return {
     { "mattn/emmet-vim",               ft = { 'js', 'ts', 'html', 'tsx', 'jsx' } },
     {
         "folke/todo-comments.nvim",
+        lazy = false,
         opts = {
             signs = true,      -- show icons in the signs column
             sign_priority = 8, -- sign priority

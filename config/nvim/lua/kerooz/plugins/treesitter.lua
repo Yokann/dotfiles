@@ -18,7 +18,11 @@ return {
                     "bash",
                     "c",
                     "css",
-                    "vimdoc",
+                    "gitignore",
+                    "go",
+                    "gomod",
+                    "gosum",
+                    "gowork",
                     "html",
                     "javascript",
                     "jq",
@@ -27,19 +31,17 @@ return {
                     "lua",
                     "markdown",
                     "markdown_inline",
+                    "php",
                     "python",
                     "query",
                     "regex",
+                    "rust",
                     "tsx",
+                    "terraform",
                     "typescript",
                     "vim",
+                    "vimdoc",
                     "yaml",
-                    "rust",
-                    "php",
-                    "go",
-                    "gomod",
-                    "gosum",
-                    "terraform"
                 },
                 highlight = {
                     enable = true,
@@ -60,10 +62,4 @@ return {
             })
         end
     },
-    {
-        "nvim-treesitter/playground",
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter"
-        }
-    }
 }

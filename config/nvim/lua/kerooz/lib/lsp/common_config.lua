@@ -2,29 +2,30 @@
 return function(_config)
     local builtin = require('telescope.builtin')
     local cmp_nvim_lsp = require('cmp_nvim_lsp')
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
-
+    local capabilities = cmp_nvim_lsp.default_capabilities()
     local lsp_flags = {
         allow_incremental_sync = true,
         debounce_text_changes = 150,
     }
 
     return vim.tbl_deep_extend("force", {
-        on_attach = function()
+        on_attach = function(client, bufnr)
             vim.keymap.set("n", "gd", function() builtin.lsp_definitions() end, { desc = "[G]o [D]efinition" })
-            vim.keymap.set("n", "gtd", function() builtin.lsp_type_definitions() end, { desc = "[G]o [T]ype [D]efinition" })
+            vim.keymap.set("n", "gtd", function() builtin.lsp_type_definitions() end,
+                { desc = "[G]o [T]ype [D]efinition" })
             vim.keymap.set("n", "gr", function() builtin.lsp_references() end, { desc = "[G]oto [R]eferences" })
-            vim.keymap.set("n", "<leader>fs", function() builtin.lsp_document_symbols() end, { desc = "[F]ind [S]ymbols" })
-            vim.keymap.set("n", "<leader>fws", function() builtin.lsp_workspace_symbols() end, { desc = "[F]ind [W]orkspace [S]ymbols" })
+            vim.keymap.set("n", "<leader>fs", function() builtin.lsp_document_symbols() end,
+                { desc = "[F]ind [S]ymbols" })
+            vim.keymap.set("n", "<leader>fws", function() builtin.lsp_workspace_symbols() end,
+                { desc = "[F]ind [W]orkspace [S]ymbols" })
             vim.keymap.set("n", "gi", function() builtin.lsp_implementations() end, { desc = "[G]o [I]mplemention" })
             vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, { desc = "[C]ode [A]ction" })
             vim.keymap.set("n", "fmt", function() vim.lsp.buf.format({ async = true }) end, { desc = "[F]or[M]a[T]" })
             vim.keymap.set("n", "U", function() vim.lsp.buf.hover() end)
-            -- vim.keymap.set("n", "vd", function() vim.diagnostic.open_float(nil, { focus = false }) end,
-            --     { desc = "[V]iew [D]iagnostic" })
-            vim.keymap.set("n", "]d", function() vim.diagnostic.goto_next() end, { desc = "Go to next [D]iagnostic message" })
-            vim.keymap.set("n", "[d", function() vim.diagnostic.goto_prev() end, { desc = "Go to previous [D]iagnostic message" })
+            vim.keymap.set("n", "]d", function() vim.diagnostic.goto_next() end,
+                { desc = "Go to next [D]iagnostic message" })
+            vim.keymap.set("n", "[d", function() vim.diagnostic.goto_prev() end,
+                { desc = "Go to previous [D]iagnostic message" })
             vim.keymap.set("n", "<leader>cc", function() vim.lsp.buf.code_action() end,
                 { desc = "[V]iew [C]ode [A]ction" })
             vim.keymap.set("n", "<leader>co", function()
@@ -44,18 +45,18 @@ return function(_config)
             vim.keymap.set({ "n", "i" }, "<A-h>", function() vim.lsp.buf.signature_help() end,
                 { desc = "View code signature" })
 
-            --  Autoformat on save
-            --     if client.supports_method("textDocument/formatting") then
-            --         local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-            --         vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-            --         vim.api.nvim_create_autocmd("BufWritePre", {
-            --             group = augroup,
-            --             buffer = bufnr,
-            --             callback = function()
-            --                 vim.lsp.buf.format()
-            --             end,
-            --         })
-            --     end
+            -- -- Autoformat on save
+            if client.supports_method("textDocument/formatting") then
+                local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+                vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+                vim.api.nvim_create_autocmd("BufWritePre", {
+                    group = augroup,
+                    buffer = bufnr,
+                    callback = function()
+                        vim.lsp.buf.format({ async = false })
+                    end,
+                })
+            end
         end,
         capabilities = capabilities,
         flags = lsp_flags,
