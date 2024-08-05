@@ -32,3 +32,5 @@ set("n", "<esc>", "<Cmd>:noh<CR>", { noremap = false })
 -- Keep cursor centered when scrolling
 -- set("n", "<C-u>", "<C-u>zz")
 -- set("n", "<C-d>", "<C-d>zz")
+
+set("n", "<leader>sr", ":%s/<C-R><C-W>/")
