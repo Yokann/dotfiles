@@ -47,12 +47,17 @@ window#waybar.hidden {
     padding-right: 10px;
     border-radius: 10px;
     color: #cdd6f4;
-    background: #1e1e2e;
+    background: rgba(30, 30, 46, 0.5);
+}
+
+#cpu:hover, #memory:hover, #disk:hover, #custom-playerctl:hover, #idle_inhibitor:hover  {
+    background: rgba(30, 30, 46, 0.7);
 }
 
 #workspaces {
     margin-top: 8px;
     margin-bottom: 2px;
+    border-radius: 20px;
 }
 
 #workspaces button {
@@ -60,7 +65,8 @@ window#waybar.hidden {
     color: #89b4fa;
     background: transparent;
     font-size: 16px;
-    margin: -2px 0px;
+    border-radius: 20px;
+    padding-right: 15px;
 }
 
 #workspaces button.urgent {
@@ -69,33 +75,28 @@ window#waybar.hidden {
 }
 
 #workspaces button.active {
-    background: #89b4fa;
-    color: #1e1e2e;
+    background: #1e1e2e;
 }
 
 #workspaces button:hover {
-	box-shadow: inherit;
-	text-shadow: inherit;
+    box-shadow: inherit;
+    text-shadow: inherit;
     color: #FEFEFE;
 }
 
-#workspaces button.active:hover {
-    color: #313244;
-}
-
 #network {
-	color: #1e1e2e;
-	background: #bd93f9;
+    color: #1e1e2e;
+    background: #bd93f9;
 }
 
-#pulseaudio {
-	color: #1A1826;
-	background: #89b4fa;
+#pulseaudio.muted {
+    background: #eba0ac;
+    color: #1e1e2e
 }
 
 #battery {
-	color: #1e1e2e;
-	background: #a6e3a1;
+    color: #1e1e2e;
+    background: #a6e3a1;
 }
 
 #battery.charging, #battery.plugged {
@@ -126,39 +127,42 @@ window#waybar.hidden {
 
 #clock {
     margin-right: 8px;
-    background: #1e1e2e;
 }
 
 #memory {
-    color: #1e1e2e;
-    background: #cba6f7;
+    border: 2px solid #cba6f7;
 }
 
 #cpu {
-    color: #1e1e2e;
-    background: #89b4fa;
+    border: 2px solid #89b4fa;
 }
 
 #disk {
-    color: #1e1e2e;
-    background: #94e2d5;
+    border: 2px solid #94e2d5;
 }
 
 #tray {
     color: #94e2d5;
-    background: #1e1e2e;
+    background: transparent;
 }
 
 #custom-launcher {
+    transition: ease-in-out 0.1s;
     font-size: 24px;
     padding-right: 5px;
     color: #74c7ec;
     background: #1e1e2e;
 }
 
+#custom-launcher:hover {
+    border-radius: 20px;
+}
+
 #idle_inhibitor.activated {
     color: #1e1e2e;
-    background: #f38ba8;
+    background: #b7bdf8;
+    padding-right: 16px;
+    padding-left: 12px;
 }
 
 #custom-power {
@@ -175,15 +179,11 @@ window#waybar.hidden {
 }
 
 #custom-playerctl {
-    color: #1e1e2e;
-    background: #f5e0dc;
     font-size: 15px;
 }
 
 #custom-dnd, #custom-notification{
-    padding-right: 5px;
     color: #cdd6f4;
-    background: #1e1e2e;
 }
 
 #custom-notification.notification,
@@ -191,6 +191,10 @@ window#waybar.hidden {
 #custom-notification.inihibited-notification,
 #custom-notification.dnd-inihibited-notification {
     padding-right: 10px;
+}
+
+#custom-notification.notification {
+    background: #1e1e2e;
 }
 
 #submap {
@@ -204,4 +208,8 @@ window#waybar.hidden {
     padding-right: 15px;
     color: white;
     background: #6441a5;
+}
+
+#custom-twitch:hover {
+    background: rgba(100, 65, 165, 0.5);
 }

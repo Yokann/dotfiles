@@ -3,7 +3,6 @@
         "tooltip": false,
         "scroll-step": 5,
         "format": "{icon} {volume}%",
-        "format-muted": "{icon} {volume}%",
         "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
         "on-click-right": "pavucontrol",
         "format-icons": {
@@ -14,7 +13,8 @@
                 "",
                 ""
             ]
-        }
+        },
+        "format-muted": " {volume}%"
     },
     "network": {
         "tooltip": false,
@@ -72,7 +72,7 @@
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
-            "activated": " ",
+            "activated": "",
             "deactivated": "󰷛 "
         }
     },
@@ -109,10 +109,10 @@
         "format": "{icon} {windows}",
         "window-rewrite-default": "󱂬",
         "window-rewrite": {
-            "title<.*youtube.*>": " ",
-            "vivaldi": " ",
-            "class<firefox>": " ",
-            "class<firefox> title<.*github.*>": " ", // Windows whose class is "firefox" and title contains "github". Note that "class" always comes first.
+            "title<.*youtube.*>": "",
+            "vivaldi": "",
+            "class<firefox>": "",
+            "class<firefox> title<.*github.*>": "", // Windows whose class is "firefox" and title contains "github". Note that "class" always comes first.
             "foot": "",
             "code": "󰨞",
             "discord": "󰙯",
@@ -120,6 +120,11 @@
             "pavucontrol": "󰋎",
             "cider": "",
             "1password": "󰦝"
+        },
+        "persistent-workspaces": {
+            "DP-1": [
+                1
+            ]
         }
     },
     "custom/dnd": {
