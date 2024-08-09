@@ -17,8 +17,8 @@ swayidle -w \
     timeout $idle_timeout 'brightnessctl -s && brightnessctl set 10' \
     resume 'brightnessctl -r' \
     timeout $locking_timeout "$lock_cmd" \
-    timeout $screen_timeout "$HYPR_CONFIG_PATH/scripts/default/keyboard_backlight_switch off && $screen_off" \
-    resume "$screen_on && $HYPR_CONFIG_PATH/scripts/default/keyboard_backlight_switch on" \
+    timeout $screen_timeout "$screen_off" \
+    resume "$screen_on" \
     timeout $sleep_timeout_bat '[ "$(acpi -b | grep Discharging)" != "" ] && systemctl suspend' \
     timeout $sleep_timeout_ac '[ "$(acpi -b | grep Discharging)" = "" ] && systemctl suspend' \
     before-sleep 'playerctl pause' \
