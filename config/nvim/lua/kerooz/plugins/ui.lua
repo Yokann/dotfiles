@@ -228,7 +228,7 @@ return {
 
                 local bufnr = vim.api.nvim_win_get_buf(winid)
                 -- Only tint normal buffers.
-                if vim.api.nvim_buf_get_option(bufnr, "buftype") == "" then
+                if vim.api.nvim_get_option_value("buftype", { buf = bufnr }) == "" then
                     return TINT
                 end
                 return DONT_TINT
@@ -378,6 +378,7 @@ return {
             },
             extra_groups = {},   -- table: additional groups that should be cleared
             exclude_groups = {}, -- table: groups you don't want to clear
+            on_clear = function() end,
         },
     },
     {

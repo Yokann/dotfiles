@@ -21,7 +21,7 @@ return {
                 filter = {
                     any = {
                         { event = "msg_show", kind = "",        find = "written" },
-                        { event = "msg_show", kind = "", find = "ago" },
+                        { event = "msg_show", kind = "",        find = "ago" },
                         { event = "msg_show", find = "AutoSave" },
                     },
                 },

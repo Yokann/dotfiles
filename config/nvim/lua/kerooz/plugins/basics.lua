@@ -1,10 +1,10 @@
 return {
-    "nvim-lua/plenary.nvim",         -- Useful lua functions used ny lots of plugins
+    "nvim-lua/plenary.nvim", -- Useful lua functions used ny lots of plugins
     { "tpope/vim-surround",   lazy = false },
     { "tpope/vim-repeat",     lazy = false },
     { "tpope/vim-unimpaired", event = "VeryLazy" },
     { "airblade/vim-rooter",  lazy = false }, -- load root dir at vim startup on a file
-    { "sickill/vim-pasta", lazy = false }, -- Ajust indentation when pasting code
+    { "ku1ik/vim-pasta",      lazy = false }, -- Ajust indentation when pasting code
     {
         "ggandor/leap.nvim",                  -- intersting way to move
         lazy = false,
@@ -13,7 +13,7 @@ return {
         end
     },
     { "numToStr/Comment.nvim",          lazy = false, opts = {} }, -- comment block
-    { "christoomey/vim-tmux-navigator", lazy = false }, -- use same keymap to switch pane and buffer
+    { "christoomey/vim-tmux-navigator", lazy = false },            -- use same keymap to switch pane and buffer
     {
         "pocco81/auto-save.nvim",
         lazy = false,
