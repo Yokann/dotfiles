@@ -202,6 +202,8 @@ window#waybar.hidden {
     background: #f38ba8;
     font-size: 12px;
     font-style: italic;
+    margin-top: 15px;
+    margin-bottom: 5px;
 }
 
 #custom-twitch {
