@@ -21,8 +21,8 @@ set("v", "<Tab>", ">gv", { desc = "Indent line" })
 -- set("n", "<leader>Y", [["+Y]])
 -- set({ "n", "v" }, "<leader>d", [["_d]])
 
--- yank and keep in buffer after paste
-set("x", "<leader>p", "\"_dp")
+-- paste 0 buffer register
+set("x", "<leader>p", "\"0p")
 
 set("n", "Q", "<nop>") -- don't binding anything on this key
 set("i", "kj", "<Esc>")
