@@ -21,7 +21,7 @@ return function(_config)
             vim.keymap.set("n", "gi", function() builtin.lsp_implementations() end, { desc = "[G]o [I]mplemention" })
             vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, { desc = "[C]ode [A]ction" })
             vim.keymap.set("n", "fmt", function() vim.lsp.buf.format({ async = true }) end, { desc = "[F]or[M]a[T]" })
-            vim.keymap.set("n", "U", function() vim.lsp.buf.hover() end)
+            vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end)
             vim.keymap.set("n", "]d", function() vim.diagnostic.goto_next() end,
                 { desc = "Go to next [D]iagnostic message" })
             vim.keymap.set("n", "[d", function() vim.diagnostic.goto_prev() end,
@@ -45,6 +45,7 @@ return function(_config)
             vim.keymap.set({ "n", "i" }, "<A-h>", function() vim.lsp.buf.signature_help() end,
                 { desc = "View code signature" })
 
+            vim.api.nvim_set_option_value('omnifunc', 'v:lua.vim.lsp.omnifunc', { buf = bufnr })
             -- -- Autoformat on save
             if client.supports_method("textDocument/formatting") then
                 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})

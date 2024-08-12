@@ -76,7 +76,7 @@ return {
         keys = {
             -- Show prompts actions with telescope
             {
-                "<leader>ccp",
+                "<leader>cp",
                 function()
                     local actions = require("CopilotChat.actions")
                     require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
@@ -84,7 +84,7 @@ return {
                 desc = "CopilotChat - Prompt actions",
             },
             {
-                "<leader>cct", "<cmd>CopilotChatToggle<CR>", mode = "n", desc = "CopilotChat - Toggle"
+                "<leader>ct", "<cmd>CopilotChatToggle<CR>", mode = "n", desc = "CopilotChat - Toggle"
             }
         }
     }
