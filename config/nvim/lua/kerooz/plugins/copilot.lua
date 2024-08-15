@@ -8,17 +8,54 @@ return {
                 enabled = false,
             },
             suggestion = {
-                enabled = false,
+                auto_trigger = true,
+                keymap = {
+                    accept = '<M-i>',
+                    accept_word = '<M-w>',
+                    accept_line = '<M-l>',
+                    next = '<M-j>',
+                    prev = '<M-k>',
+                    dismiss = '/',
+                },
             }
         },
         config = function(_, opts)
-            require("copilot").setup(opts)
+            local cmp = require 'cmp'
+            local copilot = require 'copilot.suggestion'
+            local luasnip = require 'luasnip'
+
+            require('copilot').setup(opts)
+
+            local function set_trigger(trigger)
+                vim.b.copilot_suggestion_auto_trigger = trigger
+                vim.b.copilot_suggestion_hidden = not trigger
+            end
+
+            -- Hide the completion when menu is open.
+            cmp.event:on('menu_opened', function()
+                if copilot.is_visible() then
+                    copilot.dismiss()
+                end
+                set_trigger(false)
+            end)
+
+            -- Disable when snippet.
+            cmp.event:on('menu_closed', function()
+                set_trigger(not luasnip.expand_or_locally_jumpable())
+            end)
+            vim.api.nvim_create_autocmd('User', {
+                pattern = { 'LuasnipInsertNodeEnter', 'LuasnipInsertNodeLeave' },
+                callback = function()
+                    set_trigger(not luasnip.expand_or_locally_jumpable())
+                end,
+            })
         end,
     },
 
     {
         "zbirenbaum/copilot-cmp",
         lazy = false,
+        enabled = false,
         dependencies = {
             "zbirenbaum/copilot.lua",
         },
