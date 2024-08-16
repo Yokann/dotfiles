@@ -1,6 +1,8 @@
 local M = {}
 
--- Setup colors and icons of the breakpoint UI elements 
+local dap, dapui = require('dap'), require('dapui')
+
+-- Setup colors and icons of the breakpoint UI elements
 local function configure()
     vim.api.nvim_set_hl(0, "DapBreakpoint", { ctermbg = 0, fg = "#9a79db", bg = "#20222e" })
     vim.api.nvim_set_hl(0, "DapReject", { ctermbg = 0, fg = "#993939", bg = "#20222e" })
@@ -60,12 +62,11 @@ local function configure_debuggers(dap)
 end
 
 function M.setup()
-    local dap, dapui = require('dap'), require('dapui')
-    configure() -- Configuration
-    configure_exts(dap, dapui) -- Extensions
-    configure_debuggers(dap) -- Debugger
+    configure()                                     -- Configuration
+    configure_exts(dap, dapui)                      -- Extensions
+    configure_debuggers(dap)                        -- Debugger
     require('kerooz.lib.dap.config').load_custom_configuration(dap)
-    require('kerooz.dap.keymaps').setup(dap,dapui) -- Keymaps
+    require('kerooz.dap.keymaps').setup(dap, dapui) -- Keymaps
 end
 
 -- Autosession callback before closing nvim

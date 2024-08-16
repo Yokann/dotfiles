@@ -25,7 +25,7 @@ function M.load_custom_configuration(dap, opts)
         local dap_configs = load_json_file(config.path)
         if dap_configs ~= nil then
             for _, c in ipairs(dap_configs) do
-              table.insert(dap.configurations[c.dap], c)
+                table.insert(dap.configurations[c.dap], c)
             end
         end
     end
