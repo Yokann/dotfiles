@@ -8,93 +8,13 @@ return {
             })
         end,
         config = function()
-            local config = require('kerooz.lib.lsp.common_config')
+            local configurer = require('kerooz.lsp.config')
             local masonLspConfig = require('mason-lspconfig')
             local lspconfig = require('lspconfig')
 
-            --  Add any additional override configuration in the following tables. Available keys are:
-            --  - cmd (table): Override the default command used to start the server
-            --  - filetypes (table): Override the default list of associated filetypes for the server
-            --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
-            --  - settings (table): Override the default settings passed when initializing the server.
-            --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
-            local servers = {
-                lua_ls = {
-                    settings = {
-                        Lua = {
-                            runtime = {
-                                -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-                                version = "LuaJIT",
-                                -- Setup your lua path
-                                path = vim.split(package.path, ";"),
-                            },
-                            diagnostics = {
-                                -- Get the language server to recognize the `vim` global
-                                globals = { "vim" },
-                            },
-                            workspace = {
-                                -- Make the server aware of Neovim runtime files
-                                library = {
-                                    [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                                    [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
-                                },
-                            },
-                            format = {
-                                enable = true,
-                                defaultConfig = {
-                                    indent_style = "space",
-                                    indent_size = "4"
-                                }
-                            }
-                        },
-                    }
-                },
-                gopls = {
-                    settings = {
-                        gopls = {
-                            gofumpt = true,
-                            codelenses = {
-                                gc_details = false,
-                                generate = true,
-                                regenerate_cgo = true,
-                                run_govulncheck = true,
-                                test = true,
-                                tidy = true,
-                                upgrade_dependency = true,
-                                vendor = true,
-                            },
-                            hints = {
-                                assignVariableTypes = true,
-                                compositeLiteralFields = true,
-                                compositeLiteralTypes = true,
-                                constantValues = true,
-                                functionTypeParameters = true,
-                                parameterNames = true,
-                                rangeVariableTypes = true,
-                            },
-                            analyses = {
-                                fieldalignment = true,
-                                nilness = true,
-                                unusedparams = true,
-                                unusedwrite = true,
-                                useany = true,
-                            },
-                            usePlaceholders = true,
-                            completeUnimported = true,
-                            staticcheck = true,
-                            directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules" },
-                            semanticTokens = true,
-                        }
-                    },
-                    init_options = {
-                        usePlaceholders = true,
-                    }
-                }
-            }
-
             masonLspConfig.setup_handlers({
                 function(server_name)
-                    lspconfig[server_name].setup(config(servers[server_name] or {}))
+                    lspconfig[server_name].setup(configurer.configure(server_name))
                 end,
             })
 
