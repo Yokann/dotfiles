@@ -32,7 +32,7 @@ yay -S wl-clipboard cliphist \ # clipboard
     swww \ # wallpaper 
     swayidle-git \ # idle
     swaync-git \ # notification
-    yazi \ # tui file manager
+    yazi zoxide poppler fd \ # tui file manager
     brightnessctl \ # brightness
     mpv mpv-mpris \ # video player
     streamlink  # openstream in mpv

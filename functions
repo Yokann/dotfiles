@@ -48,10 +48,10 @@ install_dependencies () {
         $PACKAGE_INSTALLER --cask homebrew/cask-fonts/font-fira-code-nerd-font
     elif [[ "$OSTYPE" == "linux"* ]]; then
         pacman -Syu
-        $PACKAGE_INSTALLER ttf-fira-code
+        $PACKAGE_INSTALLER ttf-fira-code libtree-bin
     fi
 
-    $PACKAGE_INSTALLER zsh fzf btop starship tmux ripgrep git-delta lazygit xclip
+    $PACKAGE_INSTALLER zsh fzf btop starship tmux ripgrep git-delta lazygit xclip zoxide fd
     rm -rf $HOME/.config/starship.toml
     ln -s $DOTFILES_PATH/config/starship.toml $HOME/.config/starship.toml
     rm -rf $HOME/.config/btop
