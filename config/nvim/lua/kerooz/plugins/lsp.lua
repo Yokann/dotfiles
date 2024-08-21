@@ -78,8 +78,8 @@ return {
                 "gopls",
                 "gomodifytags",
                 "golangci-lint",
-                "goimports",
                 "gofumpt",
+                "golines",
                 "html",
                 "helm_ls",
                 "jdtls",
@@ -117,8 +117,13 @@ return {
             local nls = require("null-ls")
             opts.sources = vim.list_extend(opts.sources or {}, {
                 nls.builtins.code_actions.gomodifytags,
-                nls.builtins.formatting.goimports,
-                nls.builtins.formatting.gofumpt,
+                nls.builtins.formatting.golines.with({
+                    extra_args = {
+                        "--max-len=100",
+                        "--base-formatter=gofumpt",
+                    }
+                }),
+                nls.builtins.diagnostic.golangci_lint,
             })
         end,
     }
