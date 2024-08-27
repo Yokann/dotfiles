@@ -119,11 +119,11 @@ return {
                 nls.builtins.code_actions.gomodifytags,
                 nls.builtins.formatting.golines.with({
                     extra_args = {
-                        "--max-len=100",
+                        "--max-len=120",
                         "--base-formatter=gofumpt",
                     }
                 }),
-                nls.builtins.diagnostic.golangci_lint,
+                nls.builtins.diagnostics.golangci_lint,
             })
         end,
     }
