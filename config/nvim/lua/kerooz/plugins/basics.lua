@@ -16,6 +16,7 @@ return {
     { "christoomey/vim-tmux-navigator", lazy = false },            -- use same keymap to switch pane and buffer
     {
         "pocco81/auto-save.nvim",
+        enabled = false,
         lazy = false,
         keys = {
             { '<leader>as', '<cmd>ASToggle<CR>', desc = "Toggle autosave" }
