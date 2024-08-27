@@ -28,6 +28,7 @@ return {
                     "jq",
                     "jsonnet",
                     "json",
+                    "jsonc",
                     "lua",
                     "markdown",
                     "markdown_inline",
