@@ -45,21 +45,15 @@ return {
                 ['<Tab>'] = cmp.mapping(
                     function(fallback)
                         if cmp.visible() then
-                            cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
+                            cmp.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true })
                         else
-                            -- cmp.complete()
                             fallback()
                         end
                     end, { 'i', 's' }
                 ),
                 ['<M-j>'] = cmp.mapping(function(fallback)
                     if cmp.visible() then
-                        local entries = cmp.get_entries()
-                        if #entries == 1 and entries[1].source.name ~= 'copilot' then
-                            cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
-                        else
-                            cmp.select_next_item(select_opts)
-                        end
+                        cmp.select_next_item(select_opts)
                     elseif luasnip.expand_or_jumpable() then
                         luasnip.expand_or_jump()
                     else
@@ -97,7 +91,6 @@ return {
             -- Sort is important
             sources = {
                 { name = 'nvim_lsp', priority = 50, max_item_count = 6 },
-                { name = "copilot",  priority = 30, max_item_count = 4 },
                 { name = 'luasnip',  priority = 6,  max_item_count = 2 },
                 { name = 'buffer',   priority = 6,  keyword_length = 2, max_item_count = 5 },
                 { name = 'path',     priority = 4 },
