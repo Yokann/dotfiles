@@ -42,7 +42,7 @@ fi
 
 # Prompt to choose a channel
 if [ -z "$selected_channel" ]; then
-    echo "No live channels selected"
+    echo "No live channel selected"
     exit 1
 fi
 
@@ -52,6 +52,6 @@ if [ $video == "true" ]; then
 fi
 
 if [ $chat == "true" ]; then
-    echo "oauth:$ACCESSTOKEN"
+    # echo "oauth:$ACCESSTOKEN"
     TWT_TOKEN="oauth:$ACCESSTOKEN" twt -c $selected_channel
 fi
