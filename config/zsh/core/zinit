@@ -63,3 +63,4 @@ zinit wait lucid for \
       OMZP::docker/completions/_docker \
       OMZP::docker-compose/_docker-compose  
 
+# vim: ft=zsh

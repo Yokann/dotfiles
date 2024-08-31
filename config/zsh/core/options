@@ -35,3 +35,5 @@ setopt hist_save_no_dups        # Do Not Write A Duplicate Event To The History 
 setopt hist_verify              # Do Not Execute Immediately Upon History Expansion.
 setopt extended_history         # Show Timestamp In History.
 setopt promptsubst              # Used by many themes
+
+# vim: ft=zsh

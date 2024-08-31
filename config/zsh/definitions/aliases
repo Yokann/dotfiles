@@ -65,3 +65,5 @@ alias gowk='go work'
 
 # Docker compose 
 alias dc="docker-compose"
+
+# vim: ft=zsh

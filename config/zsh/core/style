@@ -19,3 +19,4 @@ zstyle ':fzf-tab:*' continuous-trigger '/'
 #zstyle ':completion:*:messages' format ' %F{purple} -- %d --%f'
 #zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
 
+# vim: ft=zsh
