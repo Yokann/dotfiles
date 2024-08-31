@@ -6,8 +6,8 @@ set("n", "<leader>bd", "<Cmd>:%bd!<CR>", { desc = "Close all buffer", noremap = 
 set("n", "<C-s>", "<Cmd>:w<CR>", { desc = "Save buffer", noremap = true })
 
 -- Move block selection up and down
-set("v", "C-J", ":m '>+1<CR>gv=gv", { desc = "Move block code up" })
-set("v", "C-K", ":m '<-2<CR>gv=gv", { desc = "Move block code down" })
+set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move block code up", noremap = true })
+set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move block code down", noremap = true })
 
 -- indent
 set("v", "<S-Tab>", "<gv", { desc = "Unindent line" })
