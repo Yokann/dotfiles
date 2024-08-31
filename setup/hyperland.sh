@@ -35,6 +35,7 @@ yay -S wl-clipboard cliphist \ # clipboard
     yazi zoxide poppler fd \ # tui file manager
     brightnessctl \ # brightness
     mpv mpv-mpris \ # video player
+    hyprpicker \ # color picker
     streamlink  # openstream in mpv
 
 # Themes
