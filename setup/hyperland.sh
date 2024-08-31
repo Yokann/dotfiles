@@ -9,7 +9,6 @@ yay -S hyprland hyprcursor \
     foot-terminfo \
     waybar \
     sworkstyle \
-    mako-git \
     wev \
     xdg-desktop-portal-wlr \
     polkit-gnome \
@@ -21,16 +20,17 @@ yay -S hyprland hyprcursor \
     gnome-keyring \
     liboauth \
     greetd-tuigreet \
-    font-manager
+    font-manager \
+    hypridle
 
 # Install additional dependencies
 yay -S wl-clipboard cliphist \ # clipboard
+    wofi \ # rofi alternative
     pipewire wireplumber \ # audio
     grimshot swappy \ # screenshot
     wf-recorder \ # screen recording
     swaylock-effects-git \ # lockscreen
     swww \ # wallpaper 
-    swayidle-git \ # idle
     swaync-git \ # notification
     yazi zoxide poppler fd \ # tui file manager
     brightnessctl \ # brightness
