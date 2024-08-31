@@ -13,7 +13,6 @@ return {
         }
     },
     opts = function()
-
         return {
             defaults = {
                 file_ignore_patterns = { "^%.git/" },
@@ -88,6 +87,8 @@ return {
         -- { "<leader>fss", function() require('telescope.builtin').treesitter() end, desc = "[F]ind [S]ymbols" },
         -- Search
         { "<leader>gg",      function() require('kerooz.lib.telescope.pickers').prettyGrepPicker({ picker = 'live_grep', options = { debounce = 100 } }) end, desc = "Live [G]rep" },
-        { '<leader>fn', function() require('telescope.builtin').find_files({ cwd = vim.fn.stdpath 'config' }) end, desc = '[F]ind [N]eovim files'},
-   }
+        { "<leader>gs",      function() require('kerooz.lib.telescope.pickers').prettyGrepPicker({ picker = 'grep_string' }) end, desc = "[G]rep [S]tring" },
+        { '<leader>fn',      function() require('telescope.builtin').find_files({ cwd = vim.fn.stdpath 'config' }) end,                                       desc = '[F]ind [N]eovim files' },
+        { '<leader>fu',      function() require('telescope.builtin').resume() end }
+    }
 }
