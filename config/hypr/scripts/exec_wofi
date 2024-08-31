@@ -15,6 +15,16 @@ function audio_switcher(){
     fi
 }
 
+function audio_profile(){
+    current_device=$(pactl --format json list sinks | jq '.[] | select(.state == "RUNNING") | {id: .index, device: .properties["device.name"]}')
+    name=$(echo $current_device | jq -r '.device')
+    profiles=$(pactl --format json list cards | jq -r '.[] | select(.properties["device.name"] == "'$name'") | .profiles | keys')
+    profile=$(echo $profiles | jq -r 'join("\n")' | wofi --show dmenu)
+    if [ -n "$profile" ]; then 
+        pactl set-card-profile $name $profile
+    fi
+}
+
 function wifi_menu(){
     nm-connection-editor &
 }
@@ -35,5 +45,6 @@ case $1 in
   application_launcher) app_launcher   ;;
   wifi)                 wifi_menu   ;;
   audio_switcher)       audio_switcher ;;
+  audio_profile)        audio_profile ;;
   *) doc                            ;;
 esac

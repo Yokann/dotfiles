@@ -21,7 +21,8 @@ yay -S hyprland hyprcursor \
     liboauth \
     greetd-tuigreet \
     font-manager \
-    hypridle
+    hypridle \
+    hyprpaper
 
 # Install additional dependencies
 yay -S wl-clipboard cliphist \ # clipboard
@@ -30,7 +31,6 @@ yay -S wl-clipboard cliphist \ # clipboard
     grimshot swappy \ # screenshot
     wf-recorder \ # screen recording
     swaylock-effects-git \ # lockscreen
-    swww \ # wallpaper 
     swaync-git \ # notification
     yazi zoxide poppler fd \ # tui file manager
     brightnessctl \ # brightness

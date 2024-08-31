@@ -13,7 +13,7 @@ cdproj() {
 
 
 stream() {
-   $HOME/.dotfiles/config/hypr/scripts/default/stream "$@"
+   $HOME/.dotfiles/config/hypr/scripts/stream "$@"
 }
 
 # vim: ft=zsh

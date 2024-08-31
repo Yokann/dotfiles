@@ -115,6 +115,7 @@ setup_sway () {
 setup_hyprland () {
     rm -rf $HOME/.config/hypr/*
     echo '$configPath = $HOME/.dotfiles/config/hypr' > $HOME/.config/hypr/hyprland.conf
+    echo '$wallpapersPath = $HOME/Images/wallpapers' >> $HOME/.config/hypr/hyprland.conf
     echo 'source = $configPath/hyprland.conf' >> $HOME/.config/hypr/hyprland.conf
 }
 

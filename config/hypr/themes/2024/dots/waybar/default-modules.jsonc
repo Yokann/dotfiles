@@ -100,8 +100,8 @@
         "tooltip": false,
         "format": "{} Update(s)",
         "return-type": "json",
-        "exec-if": "~/.dotfiles/config/hypr/scripts/default/checkupdates check",
-        "exec": "~/.dotfiles/config/hypr/scripts/default/checkupdates status",
+        "exec-if": "~/.dotfiles/config/hypr/scripts/checkupdates check",
+        "exec": "~/.dotfiles/config/hypr/scripts/checkupdates status",
         "interval": 3600,
         "on-click": "foot -e yay -Syu"
     },
@@ -130,9 +130,9 @@
             "default": "󰚢 ",
             "dnd": "󰚣i"
         },
-        "on-click": "~/.dotfiles/config/hypr/scripts/default/dnd toggle",
-        "on-click-right": " ~/.dotfiles/config/hypr/scripts/default/dnd restore",
-        "exec": "~/.dotfiles/config/hypr/scripts/default/dnd status"
+        "on-click": "~/.dotfiles/config/hypr/scripts/dnd toggle",
+        "on-click-right": " ~/.dotfiles/config/hypr/scripts/dnd restore",
+        "exec": "~/.dotfiles/config/hypr/scripts/dnd status"
     },
     "custom/notification": {
         "tooltip": false,
@@ -157,6 +157,6 @@
     "custom/twitch": {
         "format": "",
         "tooltip": false,
-        "on-click": "~/.dotfiles/config/hypr/scripts/default/stream -w"
+        "on-click": "~/.dotfiles/config/hypr/scripts/stream -w"
     }
 }

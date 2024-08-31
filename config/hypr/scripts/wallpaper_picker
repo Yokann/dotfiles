@@ -1,0 +1,24 @@
+#!/bin/sh
+
+# This script is used to set the wallpaper for the current session
+
+wallpaper="$1"
+
+if [ ! -f "$1" ]; then
+    if [ -z "$WALLPAPERS_PATH" ]; then
+        echo "WALLPAPERS_PATH is not set"
+        exit 1
+    fi
+    wallpaper_selected="$(ls $WALLPAPERS_PATH | wofi --show dmenu)"
+    if [ -z "$wallpaper_selected" ]; then
+        echo "No wallpaper selected"
+        exit 1
+    fi
+    wallpaper=$WALLPAPERS_PATH/$wallpaper_selected
+fi
+
+echo "Loading" $wallpaper
+
+hyprctl hyprpaper unload all
+hyprctl hyprpaper preload $wallpaper
+hyprctl hyprpaper wallpaper ",$wallpaper"
