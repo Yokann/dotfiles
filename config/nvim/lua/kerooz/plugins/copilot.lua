@@ -9,13 +9,14 @@ return {
             },
             suggestion = {
                 auto_trigger = true,
+                hide_during_completion = true,
                 keymap = {
                     accept = false,
                     accept_word = '<M-w>',
                     accept_line = '<M-l>',
                     next = '<M-j>',
                     prev = '<M-k>',
-                    dismiss = '/',
+                    dismiss = '<M-a>',
                 },
             }
         },
@@ -52,6 +53,7 @@ return {
             cmp.event:on('menu_closed', function()
                 set_trigger(not luasnip.expand_or_locally_jumpable())
             end)
+
             vim.api.nvim_create_autocmd('User', {
                 pattern = { 'LuasnipInsertNodeEnter', 'LuasnipInsertNodeLeave' },
                 callback = function()

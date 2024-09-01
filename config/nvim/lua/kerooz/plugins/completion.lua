@@ -24,8 +24,14 @@ return {
             mapping = {
                 ["<CR>"] = cmp.mapping({
                     i = function(fallback)
-                        if cmp.visible() and cmp.get_active_entry() then
-                            cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+                        if cmp.visible() then
+                            if luasnip.expandable() then
+                                luasnip.expand()
+                            else
+                                if cmp.get_active_entry() then
+                                    cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+                                end
+                            end
                         else
                             fallback()
                         end
@@ -35,7 +41,7 @@ return {
                 }),
                 --["<C-u>"] = cmp.mapping.scroll_docs(-4),
                 --["<C-d>"] = cmp.mapping.scroll_docs(4),
-                ['<M-c>'] = cmp.mapping({
+                ['<M-a>'] = cmp.mapping({
                     i = cmp.mapping.abort(),
                     c = cmp.mapping.close(),
                 }),
@@ -45,26 +51,35 @@ return {
                 ['<Tab>'] = cmp.mapping(
                     function(fallback)
                         if cmp.visible() then
-                            cmp.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true })
+                            cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
+                        elseif luasnip.locally_jumpable(1) then
+                            luasnip.jump(1)
                         else
                             fallback()
                         end
                     end, { 'i', 's' }
                 ),
-                ['<M-j>'] = cmp.mapping(function(fallback)
-                    if cmp.visible() then
-                        cmp.select_next_item(select_opts)
-                    elseif luasnip.expand_or_jumpable() then
-                        luasnip.expand_or_jump()
-                    else
-                        fallback()
-                    end
-                end, { 'i', 's' }),
+                ['<S-Tab>'] = cmp.mapping(
+                    function(fallback)
+                        if luasnip.locally_jumpable(-1) then
+                            luasnip.jump(-1)
+                        else
+                            fallback()
+                        end
+                    end, { 'i', 's' }
+                ),
+                ['<M-j>'] = cmp.mapping(
+                    function(fallback)
+                        if cmp.visible() then
+                            cmp.select_next_item(select_opts)
+                        else
+                            fallback()
+                        end
+                    end, { 'i', 's' }
+                ),
                 ['<M-k>'] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         cmp.select_prev_item(select_opts)
-                    elseif luasnip.jumpable(-1) then
-                        luasnip.jump(-1)
                     else
                         fallback()
                     end
@@ -90,10 +105,31 @@ return {
             },
             -- Sort is important
             sources = {
-                { name = 'nvim_lsp', priority = 50, max_item_count = 6 },
-                { name = 'luasnip',  priority = 6,  max_item_count = 2 },
+                { name = 'nvim_lsp', priority = 10, max_item_count = 6 },
+                { name = 'luasnip',  priority = 6,  max_item_count = 3 },
                 { name = 'buffer',   priority = 6,  keyword_length = 2, max_item_count = 5 },
                 { name = 'path',     priority = 4 },
+            }
+        })
+
+        cmp.setup.cmdline(':', {
+            mapping = cmp.mapping.preset.cmdline(),
+            sources = cmp.config.sources({
+                { name = 'path' }
+            }, {
+                {
+                    name = 'cmdline',
+                    option = {
+                        ignore_cmds = { 'Man', '!' }
+                    }
+                }
+            })
+        })
+
+        cmp.setup.cmdline('/', {
+            mapping = cmp.mapping.preset.cmdline(),
+            sources = {
+                { name = 'buffer' }
             }
         })
     end,
