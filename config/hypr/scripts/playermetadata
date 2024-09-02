@@ -110,8 +110,6 @@ case "$1" in
 	else
 		status=$(playerctl status 2>/dev/null)
 		if [[ -n $status ]]; then
-			echo "Not album"
-		else
 			echo ""
 		fi
 	fi
