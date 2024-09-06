@@ -1,6 +1,8 @@
 local set = vim.keymap.set
 
 -- Buffer
+set("n", "<A-j>", "<Cmd>:bn<CR>", { desc = "Next buffer", noremap = true })
+set("n", "<A-k>", "<Cmd>:bp<CR>", { desc = "Previous buffer", noremap = true })
 set("n", "<A-d>", "<Cmd>:bd<CR>", { desc = "Close buffer", noremap = true })
 set("n", "<leader>bd", "<Cmd>:%bd!<CR>", { desc = "Close all buffer", noremap = true })
 set("n", "<C-s>", "<Cmd>:w<CR>", { desc = "Save buffer", noremap = true })

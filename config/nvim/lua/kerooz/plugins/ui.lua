@@ -271,66 +271,6 @@ return {
             })
         end,
     },
-
-    -- Cybu Buffer navigation helper
-    {
-        "ghillb/cybu.nvim",
-        lazy = false,
-        branch = "main", -- timely updates
-        -- branch = "v1.x", -- won't receive breaking changes
-        opts = {
-            position = {
-                anchor = "center",
-                -- vertical_offset = 2,
-            },
-            style = {
-                path = "relative", -- absolute, relative, tail (filename only)
-                path_abbreviation = "none", -- none, shortened
-                border = "rounded", -- single, double, rounded, none
-                separator = " ", -- string used as separator
-                prefix = "…", -- string used as prefix for truncated paths
-                padding = 1, -- left & right padding in number of spaces
-                hide_buffer_id = true, -- hide buffer IDs in window
-                devicons = {
-                    enabled = true, -- enable or disable web dev icons
-                    colored = true, -- enable color for web dev icons
-                    truncate = true, -- truncate wide icons to one char width
-                },
-                highlights = { -- see highlights via :highlight
-                    current_buffer = "CybuFocus", -- current / selected buffer
-                    adjacent_buffers = "CybuAdjacent", -- buffers not in focus
-                    background = "CybuBackground", -- window background
-                    border = "CybuBorder", -- border of the window
-                },
-            },
-            behavior = { -- set behavior for different modes
-                mode = {
-                    default = {
-                        switch = "immediate", -- immediate, on_close
-                        view = "paging",      -- paging, rolling
-                    },
-                    last_used = {
-                        switch = "immediat", -- immediate, on_close
-                        view = "paging",     -- paging, rolling
-                    },
-                    auto = {
-                        view = "rolling", -- paging, rolling
-                    },
-                },
-                show_on_autocmd = false, -- event to trigger cybu (eg. "BufEnter")
-            },
-            display_time = 0500,
-        },
-        init = function()
-            vim.keymap.set("n", "<A-k>", "<Plug>(CybuPrev)", { noremap = true, desc = "Previous Buffer" })
-            vim.keymap.set("n", "<A-j>", "<Plug>(CybuNext)", { noremap = true, desc = "Next Buffer" })
-            vim.keymap.set({ "n", "v" }, "<A-S-k>", "<plug>(CybuLastusedPrev)",
-                { noremap = true, desc = "Previous last used buffer" })
-            vim.keymap.set({ "n", "v" }, "<A-S-j>", "<plug>(CybuLastusedNext)",
-                { noremap = true, desc = "Next last used buffer " })
-        end,
-        dependencies = { "nvim-tree/nvim-web-devicons", "nvim-lua/plenary.nvim" }, -- optional for icon support
-    },
     {
         'NvChad/nvim-colorizer.lua',
         lazy = false,
@@ -405,11 +345,6 @@ return {
                     {
                         "diff",
                         colored = true,
-                        -- diff_color = {
-                        --     added    = { fg = "#28A745" },
-                        --     modified = { fg = "#DBAB09" },
-                        --     removed  = { fg = "#D73A49" }
-                        -- },
                         symbols = {
                             added    = " ",
                             modified = " ",
@@ -429,7 +364,15 @@ return {
                         cnd = function() return require("copilot_status").enabled() end
                     },
                 }
-            }
+            },
+            tabline = {
+                lualine_a = { 'buffers' },
+                lualine_b = {},
+                lualine_c = {},
+                lualine_x = {},
+                lualine_y = {},
+                lualine_z = { 'tabs' },
+            },
         }
     },
 }
