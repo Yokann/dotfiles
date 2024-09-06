@@ -119,7 +119,6 @@ return {
             window = {
                 documentation = cmp.config.window.bordered(),
                 completion = {
-                    winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
                     col_offset = -3,
                     side_padding = 0,
                 },
@@ -169,7 +168,7 @@ return {
         })
 
         -- Customization for Pmenu
-        vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#282C34", fg = "NONE" })
+        vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#24273a", fg = "NONE" })
         vim.api.nvim_set_hl(0, "Pmenu", { fg = "#cad3f5", bg = "#181926" })
         vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { fg = "#eed49f", bg = "NONE", strikethrough = true })
         vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { fg = "#8aadf4", bg = "NONE", bold = true })
