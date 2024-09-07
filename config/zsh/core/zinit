@@ -37,7 +37,7 @@ fi
 zinit light Aloxaf/fzf-tab
 zinit wait lucid light-mode for \
     atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
-      zdharma/fast-syntax-highlighting
+      z-shell/F-Sy-H
 
 zinit ice depth=1
 zinit light jeffreytse/zsh-vi-mode
@@ -60,7 +60,6 @@ zinit wait lucid for \
    atload"unalias grv" \
       OMZP::git \
    as"completion" \
-      OMZP::docker/completions/_docker \
-      OMZP::docker-compose/_docker-compose  
+      OMZP::docker-compose/_docker-compose \
+      https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker
 
-# vim: ft=zsh
