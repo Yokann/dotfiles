@@ -1,0 +1,11 @@
+#!/bin/sh
+
+outputs=$(pactl --format json list sinks | jq '.[] |  {id: .index, desc: .description}' | jq -s '.')
+
+selection=$(echo $outputs | jq -r '.[] | .desc' | walker -d)
+ouput_id=$(echo $outputs | jq -r ".[] | select(.desc == \"$selection\") | .id")
+
+if [ -n "$ouput_id" ]; then
+    pactl set-default-sink $ouput_id
+fi
+

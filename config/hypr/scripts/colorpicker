@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-selected=$(echo -e "hex \n rgb \n cmyk \n hsl \n hsv" | wofi --show dmenu)
+selected=$(echo -e "hex \n rgb \n cmyk \n hsl \n hsv" | walker -d)
 
 if [ -n "$selected" ]; then
     hyprpicker --autocopy --format $selected

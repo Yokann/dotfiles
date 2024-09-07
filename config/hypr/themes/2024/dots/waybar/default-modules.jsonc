@@ -94,7 +94,7 @@
     },
     "custom/launcher": {
         "format": " ",
-        "on-click": "wofi --show drun"
+        "on-click": "walker -m applications"
     },
     "custom/updates": {
         "tooltip": false,
@@ -157,6 +157,6 @@
     "custom/twitch": {
         "format": "",
         "tooltip": false,
-        "on-click": "~/.dotfiles/config/hypr/scripts/stream -w"
+        "on-click": "~/.dotfiles/config/hypr/scripts/stream -m"
     }
 }

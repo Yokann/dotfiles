@@ -13,16 +13,16 @@ if [ ! -f "$twitch_cli_config_path/.twitch-cli.env" ]; then
 fi
 
 chat="false"
-wofi="false"
+menu="false"
 video="true"
-while getopts ":cwn" option; do
+while getopts ":cmn" option; do
     case $option in
         c) # chat
             chat="true";;
         n)
             video="false";;
-        w) # wofi
-            wofi="true";;
+        m) # dmenu
+            menu="true";;
         \?) # Invalid option
             echo "Error: Invalid option"
             exit;;
@@ -34,8 +34,8 @@ source "$twitch_cli_config_path/.twitch-cli.env" 2> /dev/null  # source to load 
 
 live_channels=$(twitch-cli api get /streams/followed -q user_id=$user_id -q limit=100)
 
-if [ $wofi == "true" ]; then
-    selected_channel=$(echo $live_channels | jq -r '.data[] | .user_name' | wofi -d -i)
+if [ $menu == "true" ]; then
+    selected_channel=$(echo $live_channels | jq -r '.data[] | .user_name' | walker -d)
 else
     selected_channel=$(echo $live_channels | jq -r '.data[] | [.user_name, .title] | @csv' | gum table -c "Channel,Title" -w "20,200" | cut -d',' -f1)
 fi
