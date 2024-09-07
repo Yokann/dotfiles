@@ -27,7 +27,7 @@ yay -S hyprland hyprcursor \
 
 # Install additional dependencies
 yay -S wl-clipboard cliphist \ # clipboard
-    wofi \ # rofi alternative
+    wofi walker-bin \ # rofi alternative
     pipewire wireplumber \ # audio
     grimshot swappy \ # screenshot
     wf-recorder \ # screen recording
