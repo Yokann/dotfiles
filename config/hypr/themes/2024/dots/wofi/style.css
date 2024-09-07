@@ -43,7 +43,7 @@ window {
 }
 
 #text {
-  margin: 5px;
+  padding: 5px;
 }
 
 #text:selected {
@@ -56,6 +56,10 @@ window {
   margin: 0px 0px;
   border: none;
   border-radius: 15px;
+}
+
+#entry image {
+    margin-left:10px ;
 }
 
 #entry:selected {

@@ -1,0 +1,12 @@
+width=350
+height=850
+location=center
+show=dmenu
+prompt=Select an image...
+filter_rate=100
+no_actions=true
+halign=center
+orientation=vertical
+content_halign=center
+allow_images=true
+image_size=250
