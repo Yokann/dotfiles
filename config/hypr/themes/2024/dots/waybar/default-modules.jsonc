@@ -57,7 +57,7 @@
         "interval": 15,
         "format": "  {}%",
         "max-length": 10,
-        "on-click": "~/.dotfiles/config/hypr/scripts/foot_wrapper btop"
+        "on-click": "~/.dotfiles/config/hypr/scripts/foot_wrapper -e btop"
     },
     "memory": {
         "interval": 30,
@@ -103,7 +103,7 @@
         "exec-if": "~/.dotfiles/config/hypr/scripts/checkupdates check",
         "exec": "~/.dotfiles/config/hypr/scripts/checkupdates status",
         "interval": 3600,
-        "on-click": "~/.dotfiles/config/hypr/scripts/foot_wrapper yay -Syu"
+        "on-click": "~/.dotfiles/config/hypr/scripts/foot_wrapper -e yay -Syu"
     },
     "hyprland/workspaces": {
         "format": "{icon}  {windows}",
