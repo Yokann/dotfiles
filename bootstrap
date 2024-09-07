@@ -32,11 +32,11 @@ case $1 in
 
     hyperland)
         if [[ "$OSTYPE" == "linux"* ]]; then
-            setup_hyperland
+            setup_hyprland
         fi
         ;;
 
     *)
-        echo "boostrap: [terminal|dev_deps|sway]"   
+        echo "boostrap: [terminal|dev_deps|sway|hyperland]"
         ;;
 esac

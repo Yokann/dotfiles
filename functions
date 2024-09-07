@@ -117,16 +117,5 @@ setup_hyprland () {
     echo '$configPath = $HOME/.dotfiles/config/hypr' > $HOME/.config/hypr/hyprland.conf
     echo '$wallpapersPath = $HOME/Images/wallpapers' >> $HOME/.config/hypr/hyprland.conf
     echo 'source = $configPath/hyprland.conf' >> $HOME/.config/hypr/hyprland.conf
+    ln -s $DOTFILES_PATH/config/hypr/themes/2024/dots/wofi $HOME/.config/wofi
 }
-
-# if [[ "$OSTYPE" == "linux"* ]]; then
-#     read -p "Setup Perso (Y/n)?" personalConfig
-#     personalConfig=${personalConfig:-Y}
-#
-#     if [ "$personalConfig" != "${personalConfig#[Yy]}" ] ;then
-#        sudo pacman -S mpv streamlink
-#        # Corsair Keyboard 
-#        rm -r $HOME/.config/ckb-next
-#        ln -s $DOTFILES_PATH/config/ckb-next $HOME/.config/ckb-next
-#     fi
-# fi
