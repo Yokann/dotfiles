@@ -8,36 +8,32 @@ else
     exit 1
 fi
 
-if [ ! -f "$twitch_cli_config_path/.twitch-cli.env" ]; then
-    twitch-cli token -u -s 'chat:read user:read:email chat:edit user:read:follows whispers:edit whispers:read'
-fi
+function opterr() { 
+    echo >&2 "stream: Unknown option '$1'" 
+}
 
 chat="false"
-menu="false"
 video="true"
-while getopts ":cmn" option; do
-    case $option in
-        c) # chat
-            chat="true";;
-        n)
-            video="false";;
-        m) # dmenu
-            menu="true";;
-        \?) # Invalid option
-            echo "Error: Invalid option"
-            exit;;
+menu="false"
+while (( $# )); do
+    case $1 in
+        -c|--chat)          chat="true"                  ;;
+        -n|--no-video)      video="false"                ;;
+        -m|--dmenu)         menu="true"                  ;;
+        -*)                 opterr $1 && return 2        ;;
+        *)                  selected_channel=$1; break   ;;
     esac
+    shift
 done
 
-user_id=$(twitch-cli api get /users | jq -r '.data[0].id') # will refresh the token
-source "$twitch_cli_config_path/.twitch-cli.env" 2> /dev/null  # source to load ACCESSTOKEN as a variable
+if [ -z "$selected_channel" ]; then
+    live_channels=$($HYPR_CONFIG_PATH/scripts/twitch_live_channels)
 
-live_channels=$(twitch-cli api get /streams/followed -q user_id=$user_id -q limit=100)
-
-if [ $menu == "true" ]; then
-    selected_channel=$(echo $live_channels | jq -r '.data[] | .user_name' | walker -d)
-else
-    selected_channel=$(echo $live_channels | jq -r '.data[] | [.user_name, .title] | @csv' | gum table -c "Channel,Title" -w "20,200" | cut -d',' -f1)
+    if [ $menu == "true" ]; then
+        selected_channel=$(echo $live_channels | jq -r '.[] | .user_name' | walker -d)
+    else
+        selected_channel=$(echo $live_channels | jq -r '.[] | [.user_name, .title] | @csv' | gum table -c "Channel,Title" -w "20,200" | cut -d',' -f1)
+    fi
 fi
 
 # Prompt to choose a channel
@@ -46,6 +42,7 @@ if [ -z "$selected_channel" ]; then
     exit 1
 fi
 
+source "$twitch_cli_config_path/.twitch-cli.env" 2> /dev/null  # source to load ACCESSTOKEN as a variable
 if [ $video == "true" ]; then
     echo "Lauching stream of $selected_channel"
     streamlink -Q "--twitch-api-header=Authorization=Bearer $ACCESSTOKEN" https://www.twitch.tv/$selected_channel &

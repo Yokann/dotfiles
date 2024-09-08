@@ -157,6 +157,6 @@
     "custom/twitch": {
         "format": "",
         "tooltip": false,
-        "on-click": "~/.dotfiles/config/hypr/scripts/stream -m"
+        "on-click": "walker -m twitch"
     }
 }

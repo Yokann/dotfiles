@@ -114,6 +114,15 @@
     "disabled": [
         "calc"
     ],
+    "plugins": [
+        {
+            "name": "twitch",
+            "src": "node ~/.dotfiles/config/hypr/themes/2024/dots/walker/scripts/twitch.cjs",
+            "placeholder": "Select a live stream",
+            "show_sub_when_single": true,
+            "show_icon_when_single": true
+        }
+    ],
     "disable_click_to_close": false,
     "force_keyboard_focus": true,
     "list": {
