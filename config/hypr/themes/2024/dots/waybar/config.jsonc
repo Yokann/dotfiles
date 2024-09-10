@@ -1,10 +1,7 @@
 [
     {
         "layer": "top",
-        "output": [
-            "eDP-1",
-            "DP-1"
-        ],
+        "output": "${HYPR_MAIN_MONITOR}",
         "include": [
             "~/.dotfiles/config/hypr/themes/2024/dots/waybar/default-modules.jsonc"
         ],
@@ -34,7 +31,7 @@
     },
     {
         "layer": "top",
-        "output": "!eDP-1",
+        "output": "!${HYPR_MAIN_MONITOR}",
         "include": [
             "~/.dotfiles/config/hypr/themes/2024/dots/waybar/default-modules.jsonc"
         ],

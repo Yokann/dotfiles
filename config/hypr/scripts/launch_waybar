@@ -13,6 +13,8 @@ fi
 if [ -z "$HYPR_CONFIG_PATH" ]; then
     waybar
 else
-    waybar -c "${USER_CONFIG:-"$HYPR_CONFIG_PATH/themes/2024/dots/waybar/config.jsonc"}" \
+    config=${USER_CONFIG:-"$HYPR_CONFIG_PATH/themes/2024/dots/waybar/config.jsonc"}
+    envsubst < $(echo $config) > /tmp/waybar-config.jsonc
+    waybar -c /tmp/waybar-config.jsonc \
         -s "${USER_STYLE:-"$HYPR_CONFIG_PATH/themes/2024/dots/waybar/style.css"}"
 fi
