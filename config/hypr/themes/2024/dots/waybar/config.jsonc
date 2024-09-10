@@ -23,18 +23,18 @@
         ],
         "modules-right": [
             "custom/updates",
-            "backlight",
+            // "backlight",
             "tray",
             "pulseaudio",
             "idle_inhibitor",
+            "battery",
             "custom/notification",
-            "clock",
-            "battery"
+            "clock"
         ]
     },
     {
         "layer": "top",
-        "output": "!DP-1",
+        "output": "!eDP-1",
         "include": [
             "~/.dotfiles/config/hypr/themes/2024/dots/waybar/default-modules.jsonc"
         ],

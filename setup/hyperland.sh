@@ -26,17 +26,17 @@ yay -S hyprland hyprcursor \
     hyprpaper
 
 # Install additional dependencies
-yay -S wl-clipboard cliphist \ # clipboard
-    wofi walker-bin \ # rofi alternative
-    pipewire wireplumber \ # audio
-    grimshot swappy \ # screenshot
-    wf-recorder \ # screen recording
-    swaync-git \ # notification
-    yazi zoxide poppler fd \ # tui file manager
-    brightnessctl \ # brightness
-    mpv mpv-mpris \ # video player
-    hyprpicker \ # color picker
-    streamlink  # openstream in mpv
+yay -S wl-clipboard cliphist \
+    wofi walker-bin \
+    pipewire wireplumber \
+    grimshot swappy \
+    wf-recorder \
+    swaync-git \
+    yazi zoxide poppler fd \
+    brightnessctl \
+    mpv mpv-mpris \
+    hyprpicker \
+    streamlink twitch-cli-bin
 
 # Themes
 yay -S socat geticons nwg-look

@@ -9,7 +9,7 @@ else
 fi
 
 if [ ! -f "$twitch_cli_config_path/.twitch-cli.env" ]; then
-    twitch-cli token -u -s 'chat:read user:read:email chat:edit user:read:follows whispers:edit whispers:read'
+    twitch token -u -s 'chat:read user:read:email chat:edit user:read:follows whispers:edit whispers:read'
 fi
 
 if [ ! -d /tmp/twitch ]; then
@@ -26,12 +26,12 @@ if [ -f $cacheFile ]; then
     fi
 fi
 
-user_id=$(twitch-cli api get /users | jq -r '.data[0].id') # will refresh the token
-live_channels=$(twitch-cli api get /streams/followed -q user_id=$user_id -q limit=100)
+user_id=$(twitch api get /users | jq -r '.data[0].id') # will refresh the token
+live_channels=$(twitch api get /streams/followed -q user_id=$user_id -q limit=100)
 for id in $(jq -r '.data[] | .user_id' <<< $live_channels); do
     query_params="$query_params -q id=$id"
 done
-users=$(twitch-cli api get /users $query_params)
+users=$(twitch api get /users $query_params)
 
 for user in $(echo $users | jq -r -c '.data[] | {"id":.id, "profile_image_url":.profile_image_url}'); do
     # echo $user
