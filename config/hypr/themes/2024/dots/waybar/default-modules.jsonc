@@ -51,7 +51,8 @@
         "spacing": 10
     },
     "clock": {
-        "format": "  {:%H:%M    %d/%m/%Y}"
+        "format": "  {:%H:%M    %d/%m/%Y}",
+        "on-click": "firefox -P Perso https://calendar.infomaniak.com/?view=day"
     },
     "cpu": {
         "interval": 15,
