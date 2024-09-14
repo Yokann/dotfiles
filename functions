@@ -123,4 +123,6 @@ setup_hyprland () {
     echo 'source = $configPath/hyprland.conf' >> $HOME/.config/hypr/hyprland.conf
     ln -s $DOTFILES_PATH/config/hypr/themes/2024/dots/walker $HOME/.config/walker
     ln -s $DOTFILES_PATH/config/hypr/themes/2024/dots/wofi $HOME/.config/wofi
+    xdg-mime default nvim.desktop text/plain
+    localectl set-x11-keymap us pc105
 }
