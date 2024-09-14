@@ -10,7 +10,7 @@ yay -S hyprland hyprcursor \
     waybar \
     sworkstyle \
     wev \
-    xdg-desktop-portal-wlr \
+    xdg-desktop-portal-hyprland \
     polkit-gnome \
     pcmanfm-gtk3 \
     playerctl \
