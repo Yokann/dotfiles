@@ -39,4 +39,4 @@ yay -S wl-clipboard cliphist \
     streamlink twitch-cli-bin
 
 # Themes
-yay -S socat geticons nwg-look
+yay -S socat geticons nwg-look fastfetch
