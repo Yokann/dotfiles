@@ -27,6 +27,8 @@ alias portused="sudo lsof -i -P -n | grep LISTEN"
 alias dotfe="cd $HOME/.dotfiles && nvim"
 alias ranger="yazi"
 alias cdp="cdproj"
+alias sued="sudoedit"
+alias lgit="lazygit"
 
 # Special linux 
 if [[ "$OSTYPE" == "linux"* ]]; then
