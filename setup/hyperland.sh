@@ -23,7 +23,8 @@ yay -S hyprland hyprcursor \
     font-manager \
     hypridle \
     hyprlock \
-    hyprpaper
+    hyprpaper \
+    ttf-jetbrains-mono-nerd ttf-roboto inotify-tools papirus-icon-theme xcursor-breeze
 
 # Install additional dependencies
 yay -S wl-clipboard cliphist \
@@ -36,6 +37,7 @@ yay -S wl-clipboard cliphist \
     brightnessctl \
     mpv mpv-mpris \
     hyprpicker \
+    bluetuith bluez-obex \
     streamlink twitch-cli-bin
 
 # Themes
