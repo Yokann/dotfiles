@@ -56,13 +56,13 @@
         "tooltip": false
     },
     "cpu": {
-        "interval": 15,
-        "format": "  {}%",
+        "interval": 5,
+        "format": "  {usage}%",
         "max-length": 10,
         "on-click": "~/.dotfiles/config/hypr/scripts/foot_wrapper -e btop"
     },
     "memory": {
-        "interval": 30,
+        "interval": 10,
         "format": "  {}%",
         "max-length": 10,
         "on-click": "~/.dotfiles/config/hypr/scripts/foot_wrapper -e btop"
@@ -74,7 +74,7 @@
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
-            "activated": "",
+            "activated": "",
             "deactivated": "󰷛 "
         }
     },
@@ -96,11 +96,12 @@
     },
     "custom/launcher": {
         "format": " ",
-        "on-click": "walker -m applications"
+        "on-click": "walker -m applications",
+        "tooltip": false
     },
     "custom/updates": {
         "tooltip": false,
-        "format": "{} Update(s)",
+        "format": "{} 󱍷",
         "return-type": "json",
         "exec-if": "~/.dotfiles/config/hypr/scripts/checkupdates check",
         "exec": "~/.dotfiles/config/hypr/scripts/checkupdates status",
