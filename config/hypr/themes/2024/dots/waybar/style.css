@@ -28,6 +28,7 @@ window#waybar.hidden {
 #battery,
 #backlight,
 #clock,
+#hardware,
 #memory,
 #cpu,
 #disk,
@@ -85,11 +86,6 @@ window#waybar.hidden {
     color: #FEFEFE;
 }
 
-#network {
-    color: #1e1e2e;
-    background: #bd93f9;
-}
-
 #pulseaudio.muted {
     background: #eba0ac;
     color: #1e1e2e
@@ -125,16 +121,27 @@ window#waybar.hidden {
     margin-right: 8px;
 }
 
-#memory {
-    border: 2px solid #cba6f7;
+#hardware {
+   padding: 0 5px; 
 }
 
-#cpu {
-    border: 2px solid #89b4fa;
+#hardware #cpu, 
+#hardware #memory, 
+#hardware #disk, 
+#hardware #network {
+    margin: 5px 2px;
 }
 
-#disk {
-    border: 2px solid #94e2d5;
+#hardware #cpu {
+    color: #89b4fa;
+}
+
+#hardware #memory {
+    color: #cba6f7;
+}
+
+#hardware #disk {
+    color: #94e2d5;
 }
 
 #tray {

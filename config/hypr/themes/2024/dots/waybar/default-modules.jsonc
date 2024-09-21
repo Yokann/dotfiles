@@ -17,9 +17,13 @@
         "format-muted": " {volume}%"
     },
     "network": {
-        "tooltip": false,
         "format-wifi": "  {essid}",
-        "format-ethernet": ""
+        "format-ethernet": "󰩠  {ipaddr}/{cidr}",
+        "format-disconnected": "󰲛 disconnected",
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+        "tooltip-format-ethernet": "{ifname} via {gwaddr} ",
+        "tooltip-format-disconnected": false
     },
     "backlight": {
         "tooltip": false,
@@ -54,6 +58,19 @@
         "format": "  {:%H:%M    %d/%m/%Y}",
         "on-click": "firefox -P Perso https://calendar.infomaniak.com/?view=day",
         "tooltip": false
+    },
+    "group/hardware": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 200,
+            "children-class": "child"
+        },
+        "modules": [
+            "cpu",
+            "memory",
+            "disk",
+            "network"
+        ]
     },
     "cpu": {
         "interval": 5,

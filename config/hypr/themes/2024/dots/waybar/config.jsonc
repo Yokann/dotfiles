@@ -8,9 +8,7 @@
         "modules-left": [
             "custom/launcher",
             "custom/twitch",
-            "cpu",
-            "memory",
-            "disk",
+            "group/hardware",
             "mpd",
             "custom/playerctl",
             "hyprland/window"
