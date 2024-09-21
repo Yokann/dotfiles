@@ -2,6 +2,7 @@ local M = {}
 
 local default_config = {
     delve = {
+        terminal = "foot",
         path = "dlv",
         initialize_timeout_sec = 20,
         port = "${port}",
@@ -21,6 +22,20 @@ local function setup_delve_adapter(dap, config)
         executable = {
             command = config.delve.path,
             args = args,
+            detached = config.delve.detached,
+            cwd = config.delve.cwd,
+        },
+        options = {
+            initialize_timeout_sec = config.delve.initialize_timeout_sec,
+        },
+    }
+    -- Adapter to open the program in an external terminal, very useful for TUI programs
+    dap.adapters.go_tui = {
+        type = "server",
+        port = config.delve.port,
+        executable = {
+            command = config.delve.terminal,
+            args = vim.list_extend({"--title=dap-debugger", config.delve.path }, args),
             detached = config.delve.detached,
             cwd = config.delve.cwd,
         },

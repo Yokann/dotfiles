@@ -78,6 +78,7 @@ return {
                 "docker_compose_language_service",
                 "gopls",
                 "gomodifytags",
+                "goimports",
                 "golangci-lint",
                 "gofumpt",
                 "golines",
@@ -120,6 +121,7 @@ return {
             local nls = require("null-ls")
             opts.sources = vim.list_extend(opts.sources or {}, {
                 nls.builtins.code_actions.gomodifytags,
+                nls.builtins.formatting.goimports,
                 nls.builtins.formatting.golines.with({
                     extra_args = {
                         "--max-len=120",
