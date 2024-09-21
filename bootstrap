@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
 sudo -v #ask password beforehand
 source $SCRIPT_DIR/functions
@@ -10,7 +12,10 @@ case $1 in
         read -p 'Answer: '  reply
         if [[ $reply =~ ^[Yy]$ ]]
         then
-            install_dependencies && setup_zsh && setup_tmux && setup_vim
+            install_dependencies 
+            setup_zsh
+            setup_tmux 
+            setup_vim
         fi
         ;;
 
@@ -37,6 +42,6 @@ case $1 in
         ;;
 
     *)
-        echo "boostrap: [terminal|dev_deps|sway|hyperland]"
+        echo "boostrap: [terminal|dev_deps|sway|hyprland]"
         ;;
 esac
