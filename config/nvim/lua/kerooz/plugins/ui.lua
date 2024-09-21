@@ -104,6 +104,11 @@ return {
             vim.g.loaded_netrwPlugin = 1
         end,
         opts = {
+            actions = {
+                open_file = {
+                    quit_on_open = true
+                }
+            },
             update_focused_file = {
                 enable = true,
             },
@@ -119,6 +124,16 @@ return {
                 git_ignored = false,
                 dotfiles = false,
                 custom = { "^.git$", ".idea" }
+            },
+            view = {
+                side = "right",
+                float = {
+                    enable = true,
+                    open_win_config = {
+                        border = "single",
+                        height = 40,
+                    }
+                },
             },
             trash = {
                 cmd = "trash",
