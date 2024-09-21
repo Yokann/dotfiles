@@ -123,6 +123,11 @@
             "1password": "󰦝"
         }
     },
+    "hyprland/window": {
+        "format": "{title}",
+        "icon": true,
+        "separate-outputs": true
+    },
     "custom/dnd": {
         "interval": "once",
         "return-type": "json",

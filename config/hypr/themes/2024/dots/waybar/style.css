@@ -32,6 +32,7 @@ window#waybar.hidden {
 #cpu,
 #disk,
 #tray,
+#window,
 #custom-launcher,
 #custom-power,
 #custom-notification,
@@ -209,4 +210,8 @@ window#waybar.hidden {
 
 #custom-twitch:hover {
     background: rgba(100, 65, 165, 0.5);
+}
+
+#window {
+    background: transparent
 }

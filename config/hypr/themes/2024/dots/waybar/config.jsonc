@@ -12,7 +12,8 @@
             "memory",
             "disk",
             "mpd",
-            "custom/playerctl"
+            "custom/playerctl",
+            "hyprland/window"
         ],
         "modules-center": [
             "hyprland/workspaces",
@@ -36,7 +37,8 @@
             "~/.dotfiles/config/hypr/themes/2024/dots/waybar/default-modules.jsonc"
         ],
         "modules-left": [
-            "custom/launcher"
+            "custom/launcher",
+            "hyprland/window"
         ],
         "modules-center": [
             "hyprland/workspaces",
