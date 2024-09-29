@@ -7,7 +7,7 @@ local default_config = {
         initialize_timeout_sec = 20,
         port = "${port}",
         args = {},
-        build_flags = "l",
+        build_flags = "",
         detached = true,
     },
 }
@@ -35,7 +35,7 @@ local function setup_delve_adapter(dap, config)
         port = config.delve.port,
         executable = {
             command = config.delve.terminal,
-            args = vim.list_extend({"--title=dap-debugger", config.delve.path }, args),
+            args = vim.list_extend({ "--title=dap-debugger", config.delve.path }, args),
             detached = config.delve.detached,
             cwd = config.delve.cwd,
         },
