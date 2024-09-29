@@ -1,12 +1,6 @@
 #!/bin/bash
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    twitch_cli_config_path="$HOME/Library/Application Support/twitch-cli"
-elif [[ "$OSTYPE" == "linux"* ]]; then
-    twitch_cli_config_path="$HOME/.config/twitch-cli"
-else
-    exit 1
-fi
+set -e -o pipefail
 
 function opterr() { 
     echo >&2 "stream: Unknown option '$1'" 
@@ -27,12 +21,10 @@ while (( $# )); do
 done
 
 if [ -z "$selected_channel" ]; then
-    live_channels=$($HYPR_CONFIG_PATH/scripts/twitch_live_channels)
-
     if [ $menu == "true" ]; then
         selected_channel=$(echo $live_channels | jq -r '.[] | .user_name' | walker -d)
     else
-        selected_channel=$(echo $live_channels | jq -r '.[] | [.user_name, .title] | @csv' | gum table -c "Channel,Title" -w "20,200" | cut -d',' -f1)
+        selected_channel=$(livestream-ctl select)
     fi
 fi
 
@@ -42,12 +34,12 @@ if [ -z "$selected_channel" ]; then
     exit 1
 fi
 
-source "$twitch_cli_config_path/.twitch-cli.env" 2> /dev/null  # source to load ACCESSTOKEN as a variable
 if [ $video == "true" ]; then
     echo "Lauching stream of $selected_channel"
-    streamlink -Q "--twitch-api-header=Authorization=Bearer $ACCESSTOKEN" https://www.twitch.tv/$selected_channel &
+    livestream-ctl launch $selected_channel
 fi
 
+ACCESSTOKEN=$(cat "$HOME/.cache/livestream/twitch_credentials.json" | jq -r '.access_token') 2> /dev/null
 if [ $chat == "true" ]; then
     # echo "oauth:$ACCESSTOKEN"
     TWT_TOKEN="oauth:$ACCESSTOKEN" twt -c $selected_channel
