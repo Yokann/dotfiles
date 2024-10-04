@@ -74,13 +74,13 @@
     },
     "cpu": {
         "interval": 5,
-        "format": "  {usage}%",
+        "format": "󰻠  {usage}%",
         "max-length": 10,
         "on-click": "~/.dotfiles/config/hypr/scripts/foot_wrapper -e btop"
     },
     "memory": {
         "interval": 10,
-        "format": "  {}%",
+        "format": "󰍛  {}%",
         "max-length": 10,
         "on-click": "~/.dotfiles/config/hypr/scripts/foot_wrapper -e btop"
     },
