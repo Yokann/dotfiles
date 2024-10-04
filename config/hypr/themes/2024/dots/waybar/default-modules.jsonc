@@ -99,7 +99,7 @@
         "interval": 5,
         "tooltip": true,
         "return-type": "json",
-        "format": "{icon}  {}",
+        "format": "{icon} {text}",
         "format-icons": {
             "Playing": "󰏦 ",
             "Paused": "󰐍 "
@@ -150,7 +150,7 @@
     "custom/dnd": {
         "interval": "once",
         "return-type": "json",
-        "format": "{}{icon}",
+        "format": "{icon} {text}",
         "format-icons": {
             "default": "󰚢 ",
             "dnd": "󰚣i"
@@ -161,7 +161,7 @@
     },
     "custom/notification": {
         "tooltip": false,
-        "format": "{icon} {}",
+        "format": "{icon} {text}",
         "format-icons": {
             "notification": "<span foreground='red'><sup></sup></span>",
             "none": " ",
