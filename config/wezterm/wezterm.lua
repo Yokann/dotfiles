@@ -13,13 +13,13 @@ end
 local c = {
     color_scheme = scheme_for_appearance(wezterm.gui.get_appearance()),
     enable_scroll_bar = true,
-    font_size = 13.0,
+    font_size = 14.0,
     font = wezterm.font('FiraCode Nerd Font', { weight = 'Medium' }),
     front_end = "WebGpu",
     use_fancy_tab_bar = false,
     tab_bar_at_bottom = true,
     window_background_opacity = 0.8,
-    window_padding = { left = 0, right = 0, top = 0, bottom = 0 }
+    window_padding = { left = 0, right = 0, top = 0, bottom = 0 },
 }
 
 if utils.is_darwin() then
