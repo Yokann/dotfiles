@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ ! -d "/sys/class/power_supply/BAT0" ]; then
+if [ $(cat "/sys/class/power_supply/AC/online") -eq 1 ]; then
     echo " "
     exit 0
 fi
