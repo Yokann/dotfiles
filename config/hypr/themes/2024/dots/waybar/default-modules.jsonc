@@ -99,7 +99,7 @@
         "interval": 5,
         "tooltip": true,
         "return-type": "json",
-        "format": "{icon} {text}",
+        "format": "{icon} {0}",
         "format-icons": {
             "Playing": "󰏦 ",
             "Paused": "󰐍 "
@@ -161,7 +161,7 @@
     },
     "custom/notification": {
         "tooltip": false,
-        "format": "{icon} {text}",
+        "format": "{icon} {0}",
         "format-icons": {
             "notification": "<span foreground='red'><sup></sup></span>",
             "none": " ",
