@@ -129,17 +129,17 @@
         "format": "{icon}  {windows}",
         "window-rewrite-default": "󱂬",
         "window-rewrite": {
-            "title<.*youtube.*>": "",
-            "vivaldi": "",
+            "vivaldi": "",
             "class<firefox>": "",
-            "class<firefox> title<.*github.*>": "", // Windows whose class is "firefox" and title contains "github". Note that "class" always comes first.
             "foot": "",
             "code": "󰨞",
             "discord": "󰙯",
             "slack": "",
             "pavucontrol": "󰋎",
             "cider": "",
-            "1password": "󰦝"
+            "1password": "󰦝",
+            "mpv": "",
+            "pcmanfm": "",
         }
     },
     "hyprland/window": {
