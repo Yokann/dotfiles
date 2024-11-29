@@ -5,13 +5,17 @@
     "as_window": false,
     "builtins": {
         "applications": {
-            "actions": true,
+            "actions": {
+                "enabled": true,
+                "hide_category": false,
+                "hide_without_query": false
+            },
             "context_aware": true,
             "name": "applications",
             "placeholder": "Applications",
             "prioritize_new": true,
             "refresh": true,
-            "show_generic": false,
+            "show_generic": true,
             "show_icon_when_single": true,
             "show_sub_when_single": true,
             "weight": 6
@@ -95,14 +99,21 @@
             "weight": 5
         },
         "websearch": {
-            "engines": [
-                "google"
-            ],
-            "prefix": "?",
+            "weight": 5,
             "icon": "applications-internet",
             "name": "websearch",
             "placeholder": "Websearch",
-            "weight": 5
+            "entries": [
+                {
+                    "name": "Google",
+                    "url": "https://www.google.com/search?q=%TERM%"
+                },
+                {
+                    "name": "HowLongToBeat",
+                    "url": "https://howlongtobeat.com/?q=%TERM%",
+                    "switcher_only": true
+                }
+            ]
         },
         "windows": {
             "icon": "view-restore",
@@ -112,7 +123,9 @@
         }
     },
     "disabled": [
-        "calc"
+        "calc",
+        "bookmarks",
+        "ai"
     ],
     "plugins": [
         {
