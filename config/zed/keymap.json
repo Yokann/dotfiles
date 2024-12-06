@@ -6,64 +6,88 @@
 // To see the default key bindings run `zed: open default keymap`
 // from the command palette.
 [
-  {
-    "context": "Pane",
-    "bindings": {
-      "alt-d": "pane::CloseActiveItem"
+    {
+        "context": "Pane",
+        "bindings": {
+            "alt-d": "pane::CloseActiveItem"
+        }
+    },
+    {
+        "context": "Dock",
+        "bindings": {
+            "ctrl-w h": [
+                "workspace::ActivatePaneInDirection",
+                "Left"
+            ],
+            "ctrl-w l": [
+                "workspace::ActivatePaneInDirection",
+                "Right"
+            ],
+            "ctrl-w k": [
+                "workspace::ActivatePaneInDirection",
+                "Up"
+            ],
+            "ctrl-w j": [
+                "workspace::ActivatePaneInDirection",
+                "Down"
+            ]
+        }
+    },
+    {
+        "context": "ProjectPanel",
+        "bindings": {
+            "space t r": "project_panel::ToggleFocus",
+            "space t t": "workspace::ToggleLeftDock",
+            "space f f": "file_finder::Toggle",
+            "a": "project_panel::NewFile"
+        }
+    },
+    {
+        "context": "Editor && vim_mode == normal",
+        "bindings": {
+            "space f f": "file_finder::Toggle",
+            "space t e": "outline::Toggle",
+            "alt-j": "pane::GoBack",
+            "alt-k": "pane::GoForward",
+            "alt-h": "pane::ActivatePrevItem",
+            "alt-l": "pane::ActivateNextItem",
+            "alt-d": "pane::CloseActiveItem",
+            "space t r": "project_panel::ToggleFocus",
+            "space t t": "workspace::ToggleLeftDock",
+            "space c c": "editor::ToggleCodeActions",
+            // "g y": "editor::GoToTypeDefinition",
+            "g i": "editor::GoToImplementation",
+            "g r": "editor::FindAllReferences",
+            "K": "editor::Hover"
+        }
+    },
+    {
+        "context": "Editor && (showing_code_actions || showing_completions)",
+        "bindings": {
+            "alt-k": "editor::ContextMenuPrev",
+            "alt-j": "editor::ContextMenuNext"
+        }
+    },
+    {
+        "context": "Editor && vim_mode == insert",
+        "bindings": {
+            "k j": [
+                "workspace::SendKeystrokes",
+                "escape"
+            ]
+        }
+    },
+    {
+        "context": "Editor && vim_mode == visual",
+        "bindings": {
+            "k j": [
+                "workspace::SendKeystrokes",
+                "escape"
+            ],
+            "ctrl-shift-j": "editor::MoveLineDown",
+            "ctrl-shift-k": "editor::MoveLineUp",
+            "ctrl-w": "editor::SelectLargerSyntaxNode",
+            "ctrl-shift-w": "editor::SelectSmallerSyntaxNode"
+        }
     }
-  },
-  {
-    "context": "Dock",
-    "bindings": {
-      "ctrl-w h": ["workspace::ActivatePaneInDirection", "Left"],
-      "ctrl-w l": ["workspace::ActivatePaneInDirection", "Right"],
-      "ctrl-w k": ["workspace::ActivatePaneInDirection", "Up"],
-      "ctrl-w j": ["workspace::ActivatePaneInDirection", "Down"]
-    }
-  },
-  {
-    "context": "ProjectPanel",
-    "bindings": {
-      "space t r": "project_panel::ToggleFocus",
-      "space t t": "workspace::ToggleLeftDock"
-    }
-  },
-  {
-    "context": "Editor && vim_mode == normal",
-    "bindings": {
-      "space space": "file_finder::Toggle",
-      "space t e": "outline::Toggle",
-      "alt-j": "pane::GoBack",
-      "alt-k": "pane::GoForward",
-      "alt-h": "pane::ActivatePrevItem",
-      "alt-l": "pane::ActivateNextItem",
-      "alt-d": "pane::CloseActiveItem",
-      "space t r": "project_panel::ToggleFocus",
-      "space t t": "workspace::ToggleLeftDock",
-      "space c c": "editor::ToggleCodeActions",
-      "g r": "editor::FindAllReferences",
-      "K": "editor::Hover"
-    }
-  },
-  {
-    "context": "Editor && (showing_code_actions || showing_completions)",
-    "bindings": {
-      "alt-k": "editor::ContextMenuPrev",
-      "alt-j": "editor::ContextMenuNext"
-    }
-  },
-  {
-    "context": "Editor && vim_mode == insert",
-    "bindings": {
-      "k j": ["workspace::SendKeystrokes", "escape"]
-    }
-  },
-  {
-    "context": "Editor && vim_mode == visual",
-    "bindings": {
-      "k j": ["workspace::SendKeystrokes", "escape"],
-      "ctrl-shift-j": "editor::MoveLineDown",
-      "ctrl-shift-k": "editor::MoveLineUp"
-    }
-  }
 ]
