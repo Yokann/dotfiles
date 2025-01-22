@@ -15,6 +15,7 @@
             "placeholder": "Applications",
             "prioritize_new": true,
             "refresh": true,
+            "cache": false,
             "show_generic": true,
             "show_icon_when_single": true,
             "show_sub_when_single": true,
@@ -150,5 +151,6 @@
         "history": true,
         "placeholder": "Search..."
     },
+    "hotreload_theme": true,
     "theme": "catppuccin"
 }

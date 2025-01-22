@@ -1,10 +1,17 @@
+@define-color color1 #7f849c;
+@define-color foreground #e2e0ec;
+@define-color background #0b0a10;
+
 #window,
 #box,
+#aiScroll,
+#aiList,
 #search,
 #password,
 #input,
+#prompt,
+#clear,
 #typeahead,
-#spinner,
 #list,
 child,
 scrollbar,
@@ -12,6 +19,7 @@ slider,
 #item,
 #text,
 #label,
+#bar,
 #sub,
 #activationlabel {
   all: unset;
@@ -22,7 +30,7 @@ slider,
 }
 
 #box {
-  background: #0b0a10;
+  background: @background;
   padding: 16px;
   border-radius: 8px;
   box-shadow:
@@ -51,9 +59,9 @@ slider {
   padding: 4px 10px;
   margin: 4px;
   border: none;
-  color: #e2e0ec;
+  color: @foreground;
   font-weight: bold;
-  background-color: #161420;
+  background: #161420;
   outline: none;
   border-radius: 15px;
 }
@@ -78,6 +86,7 @@ slider {
 
 #typeahead {
   color: #89b4fa;
+  opacity: 1;
 }
 
 #input placeholder {

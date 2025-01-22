@@ -36,7 +36,8 @@
                         },
                         "max_height": 400,
                         "max_width": 800,
-                        "min_width": 500
+                        "min_width": 500,
+                        "marker_color": "#ee99a0"
                     },
                     "overlay_scrolling": false
                 },
