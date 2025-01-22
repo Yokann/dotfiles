@@ -24,7 +24,7 @@ yay -S hyprland hyprcursor \
     hypridle \
     hyprlock \
     hyprpaper \
-    ttf-jetbrains-mono-nerd ttf-roboto inotify-tools papirus-icon-theme xcursor-breeze
+    ttf-jetbrains-mono-nerd ttf-roboto inotify-tools papirus-icon-theme xcursor-breeze noto-fonts-emoji
 
 # Install additional dependencies
 yay -S wl-clipboard cliphist \
