@@ -10,7 +10,6 @@
             "custom/twitch",
             "group/hardware",
             "mpd",
-            "custom/playerctl",
             "hyprland/window"
         ],
         "modules-center": [
@@ -18,6 +17,7 @@
             "hyprland/submap"
         ],
         "modules-right": [
+            "custom/playerctl",
             "custom/updates",
             // "backlight",
             "tray",
