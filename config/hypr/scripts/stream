@@ -22,7 +22,7 @@ done
 
 if [ -z "$selected_channel" ]; then
     if [ $menu == "true" ]; then
-        selected_channel=$(echo $live_channels | jq -r '.[] | .user_name' | walker -d)
+        selected_channel=$(livestream-ctl list | jq -r '.[] | .channel' | walker -d)
     else
         selected_channel=$(livestream-ctl select)
     fi
