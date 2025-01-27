@@ -30,7 +30,8 @@ yay -S hyprland hyprcursor \
 yay -S wl-clipboard cliphist \
     wofi walker-bin \
     pipewire wireplumber \
-    grimshot swappy \
+    swappy \
+    hyprshot \
     wf-recorder \
     swaync-git \
     yazi zoxide poppler fd \
