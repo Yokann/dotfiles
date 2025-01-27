@@ -13,9 +13,9 @@
             "context_aware": true,
             "name": "applications",
             "placeholder": "Applications",
-            "prioritize_new": true,
+            "prioritize_new": false,
             "refresh": true,
-            "cache": false,
+            "cache": true,
             "show_generic": true,
             "show_icon_when_single": true,
             "show_sub_when_single": true,
@@ -103,7 +103,8 @@
             "weight": 5,
             "icon": "applications-internet",
             "name": "websearch",
-            "placeholder": "Websearch",
+            "placeholder": "Search...",
+            "prefix": "?",
             "entries": [
                 {
                     "name": "Google",
@@ -112,7 +113,7 @@
                 {
                     "name": "HowLongToBeat",
                     "url": "https://howlongtobeat.com/?q=%TERM%",
-                    "switcher_only": true
+                    "switcher_only": false
                 }
             ]
         },
