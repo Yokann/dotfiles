@@ -1,3 +1,5 @@
+command_timeout = 1000
+
 [git_status]
 conflicted = "ﲅ "
 ahead = "省×${count} "
