@@ -1,6 +1,6 @@
 {
     "activation_mode": {
-        "labels": "jkl;asdf"
+        "labels": "jkl:asdf"
     },
     "as_window": false,
     "builtins": {
@@ -34,6 +34,8 @@
             "name": "clipboard",
             "placeholder": "Clipboard",
             "switcher_only": true,
+            "always_put_new_on_top": true,
+            "avoid_line_breaks": true,
             "weight": 5
         },
         "commands": {
@@ -108,12 +110,28 @@
             "entries": [
                 {
                     "name": "Google",
-                    "url": "https://www.google.com/search?q=%TERM%"
+                    "url": "https://www.google.com/search?q=%TERM%",
+                    "prefix": "g"
+                },
+                {
+                    "name": "Github",
+                    "url": "https://github.com/search?q=%TERM%",
+                    "prefix": "git"
+                },
+                {
+                    "name": "Amazon",
+                    "url": "https://www.amazon.fr/s?k=%TERM%",
+                    "prefix": "a"
+                },
+                {
+                    "name": "Repology",
+                    "url": "https://repology.org/projects/?search=%TERM%",
+                    "prefix": "repo"
                 },
                 {
                     "name": "HowLongToBeat",
                     "url": "https://howlongtobeat.com/?q=%TERM%",
-                    "switcher_only": false
+                    "prefix": "hltb"
                 }
             ]
         },
