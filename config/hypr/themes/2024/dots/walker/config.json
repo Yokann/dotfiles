@@ -30,7 +30,7 @@
         },
         "clipboard": {
             "image_height": 300,
-            "max_entries": 10,
+            "max_entries": 40,
             "name": "clipboard",
             "placeholder": "Clipboard",
             "switcher_only": true,
@@ -139,6 +139,7 @@
             "icon": "view-restore",
             "name": "windows",
             "placeholder": "Windows",
+            "prefix": "[]",
             "weight": 5
         }
     },
