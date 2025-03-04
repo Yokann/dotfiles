@@ -11,7 +11,7 @@ return {
                 auto_trigger = true,
                 hide_during_completion = true,
                 keymap = {
-                    accept = false,
+                    accept = '<Right>',
                     accept_word = '<M-w>',
                     accept_line = '<M-l>',
                     next = '<M-j>',
@@ -41,13 +41,13 @@ return {
             end)
 
             -- Tab is tab when there is no suggestion
-            vim.keymap.set('i', '<Tab>', function()
-                if copilot.is_visible() then
-                    copilot.accept()
-                else
-                    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", false)
-                end
-            end, { desc = "Super Tab" })
+            -- vim.keymap.set('i', '<Tab>', function()
+            --     if copilot.is_visible() then
+            --         copilot.accept()
+            --     else
+            --         vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", false)
+            --     end
+            -- end, { desc = "Super Tab" })
 
             -- Disable when snippet.
             cmp.event:on('menu_closed', function()
