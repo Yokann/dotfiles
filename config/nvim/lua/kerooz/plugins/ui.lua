@@ -98,6 +98,7 @@ return {
         "nvim-tree/nvim-tree.lua",
         dependencies = {
             "nvim-tree/nvim-web-devicons", -- optional, for file icons
+            "b0o/nvim-tree-preview.lua",
         },
         init = function()
             vim.g.loaded_netrw = 1
@@ -131,7 +132,8 @@ return {
                     enable = true,
                     open_win_config = {
                         border = "single",
-                        height = 40,
+                        height = 60,
+                        width = 50,
                     }
                 },
             },
@@ -141,7 +143,37 @@ return {
             },
             renderer = {
                 highlight_git = true
-            }
+            },
+            on_attach = function(bufnr)
+                local api = require('nvim-tree.api')
+
+                -- Important: When you supply an `on_attach` function, nvim-tree won't
+                -- automatically set up the default keymaps. To set up the default keymaps,
+                -- call the `default_on_attach` function. See `:help nvim-tree-quickstart-custom-mappings`.
+                api.config.mappings.default_on_attach(bufnr)
+
+                local function opts(desc)
+                    return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+                end
+
+                local preview = require('nvim-tree-preview')
+
+                -- vim.keymap.set('n', 'P', preview.watch, opts 'Preview (Watch)')
+                vim.keymap.set('n', '<Esc>', preview.unwatch, opts 'Close Preview/Unwatch')
+                vim.keymap.set('n', '<C-f>', function() return preview.scroll(4) end, opts 'Scroll Down')
+                vim.keymap.set('n', '<C-b>', function() return preview.scroll(-4) end, opts 'Scroll Up')
+                vim.keymap.set('n', '<Tab>', function()
+                    local ok, node = pcall(api.tree.get_node_under_cursor)
+                    if ok and node then
+                        if node.type == 'directory' then
+                            api.node.open.edit()
+                        else
+                            preview.watch()
+                            -- preview.node(node, { toggle_focus = true })
+                        end
+                    end
+                end, opts 'Preview')
+            end
         },
         keys = {
             {
