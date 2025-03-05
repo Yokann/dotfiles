@@ -11,12 +11,12 @@ return {
                 auto_trigger = true,
                 hide_during_completion = true,
                 keymap = {
-                    accept = '<Right>',
-                    accept_word = '<M-w>',
-                    accept_line = '<M-l>',
+                    accept = '<M-l>',
+                    accept_word = '<M-i>',
+                    accept_line = '<M-o>',
                     next = '<M-j>',
                     prev = '<M-k>',
-                    dismiss = '<M-a>',
+                    dismiss = '<M-h>',
                 },
             }
         },
