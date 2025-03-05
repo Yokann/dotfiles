@@ -1,0 +1,11 @@
+_osc7()
+{
+	setopt localoptions extendedglob
+	input=( ${(s::)PWD} )
+	uri=${(j::)input/(#b)([^A-Za-z0-9_.\!~*\'\(\)-\/])/%${(l:2::0:)$(([##16]#match))}}
+	print -n "\x1b]7;file://${HOSTNAME}${uri}\x1b\\"
+}
+
+add-zsh-hook -Uz chpwd _osc7
+
+# vim: ft=zsh
