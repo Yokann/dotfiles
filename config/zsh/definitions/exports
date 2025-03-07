@@ -15,9 +15,6 @@ export LC_ALL=en_US.UTF-8
 export ENHANCD_FILTER="fzf"
 export ENHANCD_DOT_ARG="..."
 
-export VOLTA_HOME="$HOME/.volta"
-export PATH=$HOME/.volta/bin:$PATH
-
 # Use to cdproj alias
 export PROJECTS_ROOT_DIR="$HOME/projets"
 
@@ -25,7 +22,7 @@ export PROJECTS_ROOT_DIR="$HOME/projets"
 [[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
 
 # Extra paths
-export PATH=$HOME/bin:$HOME/.dotfiles/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:$HOME/.dotfiles/bin:/usr/local/bin:$HOME/.local/share/mise/shims:$PATH
 export PATH=$HOME/go/bin:$PATH
 
 

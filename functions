@@ -84,8 +84,7 @@ install_dev_dependencies () {
         $PACKAGE_INSTALLER michaeleisel/zld/zld
     fi
 
-    # Install volta.sh for Node version management
-    curl https://get.volta.sh | bash
+    curl https://mise.run | sh
 }
 
 setup_sway () {

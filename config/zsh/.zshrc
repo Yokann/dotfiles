@@ -34,6 +34,7 @@ unset file
 # - - - - - - - - - - - - - - - - - - - -
 # Theme / Prompt Customization
 # - - - - - - - - - - - - - - - - - - - -
+eval "$(mise activate zsh --shims)"
 eval "$(starship init zsh)"
 # Keep Emacs style shell command Ctrl+A etc
 bindkey -e
