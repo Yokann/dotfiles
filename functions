@@ -84,7 +84,9 @@ install_dev_dependencies () {
         $PACKAGE_INSTALLER michaeleisel/zld/zld
     fi
 
+    # Node
     curl https://mise.run | sh
+    curl -fsSL https://get.pnpm.io/install.sh | sh -
 }
 
 setup_sway () {
