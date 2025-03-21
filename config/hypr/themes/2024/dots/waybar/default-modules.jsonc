@@ -140,12 +140,16 @@
             "1password": "󰦝",
             "mpv": "",
             "pcmanfm": "",
+            "signal": "󰚢",
         }
     },
     "hyprland/window": {
         "format": "{title}",
         "icon": true,
-        "separate-outputs": true
+        "separate-outputs": true,
+        "rewrite": {
+            "(.*) — Mozilla Firefox": "$1",
+        },
     },
     "custom/dnd": {
         "interval": "once",
