@@ -6,7 +6,7 @@
     "builtins": {
         "applications": {
             "actions": {
-                "enabled": true,
+                "enabled": false,
                 "hide_category": false,
                 "hide_without_query": false
             },
@@ -15,7 +15,7 @@
             "placeholder": "Applications",
             "prioritize_new": false,
             "refresh": true,
-            "cache": true,
+            "cache": false,
             "show_generic": true,
             "show_icon_when_single": true,
             "show_sub_when_single": true,
