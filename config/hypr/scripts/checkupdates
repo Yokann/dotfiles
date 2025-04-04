@@ -2,13 +2,14 @@
 
 case $1'' in
 'status') 
-    printf '{\"text\":\"%s\",\"tooltip\":\"%s\"}' "$(pamac checkupdates -q | wc -l)" "$(pamac checkupdates -q | awk 1 ORS='\\n' | sed 's/\\n$//')"
+    pkg_updates=$(yay -Sup | wc -l)
+    printf '{\"text\":\"%s\",\"tooltip\":\"%s updates available"}' "${pkg_updates}" "${pkg_updates}"
     ;;
 'check')
-    [ $(pamac checkupdates -q | wc -l) -gt 0 ]
+    [ $(yay -Sup | wc -l) -gt 0 ]
     exit $?
     ;;
 'upgrade')
-    foot_wrapper -e pacman -Syu
+    foot_wrapper -e yay -Syu
     ;;
 esac

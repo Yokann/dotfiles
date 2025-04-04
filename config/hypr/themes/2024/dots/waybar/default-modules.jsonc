@@ -117,7 +117,7 @@
         "tooltip": false
     },
     "custom/updates": {
-        "tooltip": false,
+        "tooltip": true,
         "format": "{} 󱍷",
         "return-type": "json",
         "exec-if": "~/.dotfiles/config/hypr/scripts/checkupdates check",
