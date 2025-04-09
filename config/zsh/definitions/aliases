@@ -14,6 +14,7 @@ alias rgh='rg --hidden'
 alias gc-="git checkout -"
 alias git-yolo='git commit --amend --no-edit && git push origin HEAD --force-with-lease'
 alias git-pull-all='find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} pull \;'
+alias ghco="gh pr checkout"
 
 alias sshconfig="vi ~/.ssh/config"
 alias displaykey='cat ~/.ssh/id_rsa.public'
