@@ -1,5 +1,7 @@
 #!/usr/bin/env zsh
 
+set -ex -o pipefail
+
 # https://github.com/natpen/awesome-wayland
 
 # Install hyprland and core dependencies
@@ -39,7 +41,14 @@ yay -S wl-clipboard cliphist \
     mpv mpv-mpris \
     hyprpicker \
     bluetuith bluez-obex \
-    streamlink twitch-cli-bin
+    streamlink twitch-cli-bin \
+    rclone \
+    nomacs
 
 # Themes
 yay -S socat geticons nwg-look fastfetch
+
+# if option argument is passed, install the optionnal dependencies
+if [[ $1 == "--optional" ]]; then
+    yay -S discord ticktick cryptomator-bin signal-desktop 1password 1password-cli
+fi
