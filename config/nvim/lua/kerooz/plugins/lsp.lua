@@ -111,7 +111,8 @@ return {
             }
         },
         dependencies = {
-            "neovim/nvim-lspconfig"
+            "neovim/nvim-lspconfig",
+            "b0o/schemastore.nvim",
         }
     },
     {

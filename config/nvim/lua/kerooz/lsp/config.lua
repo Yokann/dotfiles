@@ -87,7 +87,28 @@ local configs = {
         init_options = {
             usePlaceholders = true,
         }
-    }
+    },
+    yamlls = {
+        settings = {
+            yaml = {
+                -- validate = true,
+                -- disable the schema store
+                schemaStore = {
+                    enable = false,
+                    url = "",
+                },
+                schemas = require('schemastore').yaml.schemas()
+            }
+        }
+    },
+    jsonls = {
+        settings = {
+            json = {
+                validate = { enable = true },
+                schemas = require('schemastore').json.schemas(),
+            },
+        }
+    },
 }
 
 -- Customization for the LSP client
@@ -115,9 +136,9 @@ M.configure = function(server_name)
             vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, { desc = "[C]ode [A]ction" })
             vim.keymap.set("n", "fmt", function() vim.lsp.buf.format({ async = true }) end, { desc = "[F]or[M]a[T]" })
             vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end)
-            vim.keymap.set("n", "]d", function() vim.diagnostic.goto_next() end,
+            vim.keymap.set("n", "]d", function() vim.diagnostic.jump({count= 1}) end,
                 { desc = "Go to next [D]iagnostic message" })
-            vim.keymap.set("n", "[d", function() vim.diagnostic.goto_prev() end,
+            vim.keymap.set("n", "[d", function() vim.diagnostic.jump({count= -1}) end,
                 { desc = "Go to previous [D]iagnostic message" })
             vim.keymap.set("n", "<leader>cc", function() vim.lsp.buf.code_action() end,
                 { desc = "[V]iew [C]ode [A]ction" })
