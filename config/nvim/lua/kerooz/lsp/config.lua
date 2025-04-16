@@ -135,10 +135,10 @@ M.configure = function(server_name)
             vim.keymap.set("n", "gi", function() builtin.lsp_implementations() end, { desc = "[G]o [I]mplemention" })
             vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, { desc = "[C]ode [A]ction" })
             vim.keymap.set("n", "fmt", function() vim.lsp.buf.format({ async = true }) end, { desc = "[F]or[M]a[T]" })
-            vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end)
-            vim.keymap.set("n", "]d", function() vim.diagnostic.jump({count= 1}) end,
+            vim.keymap.set("n", "K", function() vim.lsp.buf.hover({ border = 'rounded' }) end)
+            vim.keymap.set("n", "]d", function() vim.diagnostic.jump({ count = 1 }) end,
                 { desc = "Go to next [D]iagnostic message" })
-            vim.keymap.set("n", "[d", function() vim.diagnostic.jump({count= -1}) end,
+            vim.keymap.set("n", "[d", function() vim.diagnostic.jump({ count = -1 }) end,
                 { desc = "Go to previous [D]iagnostic message" })
             vim.keymap.set("n", "<leader>cc", function() vim.lsp.buf.code_action() end,
                 { desc = "[V]iew [C]ode [A]ction" })
@@ -156,7 +156,7 @@ M.configure = function(server_name)
                 })
             end, { desc = "[V]iew [C]ode actions [O]thers" })
             vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, { desc = "[R]e[N]ame" })
-            vim.keymap.set({ "n", "i" }, "<A-h>", function() vim.lsp.buf.signature_help() end,
+            vim.keymap.set({ "n", "i" }, "<A-h>", function() vim.lsp.buf.signature_help({ border = 'rounded' }) end,
                 { desc = "View code signature" })
 
             vim.api.nvim_set_option_value('omnifunc', 'v:lua.vim.lsp.omnifunc', { buf = bufnr })

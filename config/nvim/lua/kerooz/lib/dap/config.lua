@@ -3,7 +3,7 @@ local M = {}
 local default_config = {
     enabled = true,
     path = (function()
-        local root_dir = require('lspconfig.util').find_git_ancestor(vim.loop.fs_realpath('.')) or '.'
+        local root_dir = require('lspconfig.util').find_git_ancestor(vim.uv.fs_realpath('.')) or '.'
         return root_dir .. '/dap.json'
     end)(),
 }
