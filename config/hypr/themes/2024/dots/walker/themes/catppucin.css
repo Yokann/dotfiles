@@ -1,6 +1,9 @@
-@define-color color1 #7f849c;
-@define-color foreground #e2e0ec;
-@define-color background #0b0a10;
+@define-color color1 #a5adcb;
+@define-color foreground #cad3f5;
+@define-color background #181926;
+@define-color base #24273a;
+@define-color mauve #c6a0f6;
+@define-color blue #8aadf4;
 
 #window,
 #box,
@@ -45,7 +48,7 @@ scrollbar {
 
 slider {
   min-width: 2px;
-  background: #7f849c;
+  background: @mauve;
   opacity: 0.5;
 }
 
@@ -61,7 +64,7 @@ slider {
   border: none;
   color: @foreground;
   font-weight: bold;
-  background: #161420;
+  background: @base;
   outline: none;
   border-radius: 15px;
 }
@@ -70,22 +73,11 @@ slider {
   background: none;
 }
 
-#input > *:first-child,
-#typeahead > *:first-child {
-  color: #7f849c;
-  margin-right: 7px;
-}
-
-#input > *:last-child,
-#typeahead > *:last-child {
-  color: #7f849c;
-}
-
 #spinner {
 }
 
 #typeahead {
-  color: #89b4fa;
+  color: #f5a97f;
   opacity: 1;
 }
 
@@ -133,7 +125,7 @@ child:hover {
 
 .activation #activationlabel {
   font-weight: bold;
-  color: #89b4fa;
+  color: @blue;
   opacity: 1;
 }
 

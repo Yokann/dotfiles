@@ -9,6 +9,7 @@ h_align = "fill"
 v_align = "fill"
 
 [ui.window.box]
+width = 800
 h_align = "center"
 v_align = "center"
 spacing = 10
@@ -23,12 +24,12 @@ overlay_scrolling = false
 
 [ui.window.box.scroll.list]
 always_show = true
+marker_color = "#7287fd"
 
 [ui.window.box.scroll.list.item]
 max_height = 400
 max_width = 800
 min_width = 500
-marker_color = "#ee99a0"
 spacing = 5
 
 [ui.window.box.scroll.list.item.activation_label]
