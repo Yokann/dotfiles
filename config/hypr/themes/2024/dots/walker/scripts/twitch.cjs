@@ -12,7 +12,7 @@ const live_channels = exec(homeDir + "/go/bin/livestream-ctl list", (error, stdo
     for (const stream of streams) {
         entry = {
             label: stream.title.substring(0, 80),
-            sub: stream.channel + " - " + stream.tags.join(", ") + " - " + stream.viewer_count + " viewers",
+            sub: stream.channel + " - " + stream.game_name + " - " + stream.viewer_count + " viewers",
             categories: ["twitch"],
             image: stream.thumbnail,
             exec: homeDir + "/go/bin/livestream-ctl launch " + stream.channel,
