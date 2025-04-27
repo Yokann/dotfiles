@@ -278,3 +278,13 @@ placeholder = "Select a live stream"
 show_sub_when_single = true
 show_icon_when_single = true
 switcher_only = true
+
+[[plugins]]
+name = "wallpaper"
+src = "node ~/.dotfiles/config/hypr/themes/2024/dots/walker/scripts/wallpaper.cjs"
+placeholder = "Select a wallpaper"
+show_sub_when_single = false
+show_icon_when_single = true
+switcher_only = true
+theme = "catppucin-image-only"
+theme_base = "catppucin"

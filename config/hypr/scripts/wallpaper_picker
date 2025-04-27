@@ -9,13 +9,14 @@ if [ ! -f "$1" ]; then
         echo "WALLPAPERS_PATH is not set"
         exit 1
     fi
-    format_string="echo 'img:${WALLPAPERS_PATH}/%s:text:'"
-    wallpaper_selected="$(ls $WALLPAPERS_PATH | wofi --pre-display-cmd "$format_string" -c "$HOME/.config/wofi/config_img")"
-    if [ -z "$wallpaper_selected" ]; then
-        echo "No wallpaper selected"
-        exit 1
-    fi
-    wallpaper=$WALLPAPERS_PATH/$wallpaper_selected
+    exit 1
+    # format_string="echo 'img:${WALLPAPERS_PATH}/%s:text:'"
+    # wallpaper_selected="$(ls $WALLPAPERS_PATH | wofi --pre-display-cmd "$format_string" -c "$HOME/.config/wofi/config_img")"
+    # if [ -z "$wallpaper_selected" ]; then
+    #     echo "No wallpaper selected"
+    #     exit 1
+    # fi
+    # wallpaper=$WALLPAPERS_PATH/$wallpaper_selected
 fi
 
 echo "Loading" $wallpaper
