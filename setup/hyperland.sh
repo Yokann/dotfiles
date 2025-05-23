@@ -46,7 +46,9 @@ yay -S wl-clipboard cliphist \
     nomacs
 
 # Themes
-yay -S socat geticons nwg-look fastfetch
+yay -S socat geticons nwg-look fastfetch 
+# Install GTK themes https://github.com/Fausto-Korpsvart/Catppuccin-GTK-Theme
+yay -S sassc gtk-engine-murrine
 
 # if option argument is passed, install the optionnal dependencies
 if [[ $1 == "--optional" ]]; then
