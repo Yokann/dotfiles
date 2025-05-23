@@ -187,5 +187,14 @@
         "format": "",
         "tooltip": false,
         "on-click": "walker -m twitch"
+    },
+    "custom/pomo": {
+        "format": " {0}",
+        "exec": "pomodoro-cli status --format json",
+        "return-type": "json",
+        "on-click": "pomodoro-cli start --duration 5m --notify",
+        "on-click-middle": "pomodoro-cli pause",
+        "on-click-right": "pomodoro-cli stop",
+        "interval": 1
     }
 }

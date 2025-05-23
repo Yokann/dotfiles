@@ -9,12 +9,12 @@
             "custom/launcher",
             "custom/twitch",
             "group/hardware",
-            "mpd",
+            "custom/pomo",
             "hyprland/window"
         ],
         "modules-center": [
             "hyprland/workspaces",
-            "hyprland/submap"
+            "hyprland/submap",
         ],
         "modules-right": [
             "custom/playerctl",
