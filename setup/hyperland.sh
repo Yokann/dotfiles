@@ -54,3 +54,9 @@ yay -S sassc gtk-engine-murrine
 if [[ $1 == "--optional" ]]; then
     yay -S discord ticktick cryptomator-bin signal-desktop 1password 1password-cli
 fi
+
+if [[ command -v cargo ]]; then
+    cargo install pomodoro-cli
+else
+    echo "Cargo is not installed, skipping pomodoro-cli installation"
+fi

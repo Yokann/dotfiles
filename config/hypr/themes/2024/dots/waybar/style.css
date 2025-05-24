@@ -221,18 +221,22 @@ window#waybar.hidden {
     background: rgba(100, 65, 165, 0.5);
 }
 
+#custom-pomo {
+    font-family: "Sauce Code Pro Nerd Font", "FiraCode Nerd Font" ;
+    font-weight: 500
+}
+
 /* #custom-pomo.finished { */
 /*   background: #ed8796; */
 /*     color: #181926; */
 /* } */
 
 #custom-pomo.running {
-  background: #a6da95;
-  color: #181926;
+  background: #1e1e2e;
 }
 
 #custom-pomo.paused {
-  background: #f5a97f;
+  background: #ed8796;
   color: white;
 }
 

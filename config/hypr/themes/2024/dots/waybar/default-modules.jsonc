@@ -99,7 +99,7 @@
         "interval": 5,
         "tooltip": true,
         "return-type": "json",
-        "format": "{icon} {0}",
+        "format": "{icon}  {0}",
         "format-icons": {
             "Playing": "󰏦 ",
             "Paused": "󰐍 "
@@ -188,11 +188,12 @@
         "tooltip": false,
         "on-click": "walker -m twitch"
     },
+    // Custom Pomodoro module install `cargo install pomodoro-cli`
     "custom/pomo": {
-        "format": " {0}",
+        "format": " {}",
         "exec": "pomodoro-cli status --format json",
         "return-type": "json",
-        "on-click": "pomodoro-cli start --duration 5m --notify",
+        "on-click": "pomodoro-cli start --add 5m --notify",
         "on-click-middle": "pomodoro-cli pause",
         "on-click-right": "pomodoro-cli stop",
         "interval": 1
