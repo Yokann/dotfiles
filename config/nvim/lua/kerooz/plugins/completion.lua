@@ -106,7 +106,7 @@ return {
                         else
                             fallback()
                         end
-                    end, { 'i', 's' }
+                    end, { 'i', 's', 'c' }
                 ),
                 ['<M-k>'] = cmp.mapping(function(fallback)
                     if cmp.visible() then
@@ -114,7 +114,7 @@ return {
                     else
                         fallback()
                     end
-                end, { 'i', 's' }),
+                end, { 'i', 's', 'c' }),
             },
             window = {
                 documentation = cmp.config.window.bordered(),
@@ -147,7 +147,6 @@ return {
         })
 
         cmp.setup.cmdline(':', {
-            mapping = cmp.mapping.preset.cmdline(),
             sources = cmp.config.sources({
                 { name = 'path' }
             }, {
@@ -161,7 +160,6 @@ return {
         })
 
         cmp.setup.cmdline('/', {
-            mapping = cmp.mapping.preset.cmdline(),
             sources = {
                 { name = 'buffer' }
             }
