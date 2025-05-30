@@ -62,33 +62,21 @@ return {
             })
         end,
     },
-
     {
-        "zbirenbaum/copilot-cmp",
-        lazy = false,
-        enabled = false,
-        dependencies = {
-            "zbirenbaum/copilot.lua",
-        },
-        config = function(_, opts)
-            require("copilot_cmp").setup(opts)
-        end
+        "jonahgoldwastaken/copilot-status.nvim",
+        dependencies = { "zbirenbaum/copilot.lua" },
+        lazy = true,
+        opts = {
+            icons = {
+                idle = " ",
+                error = "✗ ",
+                offline = " ",
+                warning = "𥉉",
+                loading = " ",
+            },
+            debug = false,
+        }
     },
-    -- {
-    --     "jonahgoldwastaken/copilot-status.nvim",
-    --     dependencies = { "zbirenbaum/copilot.lua" },
-    --     lazy = true,
-    --     opts = {
-    --         icons = {
-    --             idle = " ",
-    --             error = "✗ ",
-    --             offline = " ",
-    --             warning = "𥉉",
-    --             loading = " ",
-    --         },
-    --         debug = false,
-    --     }
-    -- },
     {
         "jackMort/ChatGPT.nvim",
         event = "VeryLazy",
