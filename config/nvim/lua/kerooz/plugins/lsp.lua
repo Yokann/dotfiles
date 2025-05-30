@@ -1,5 +1,13 @@
 return {
     {
+        "mason-org/mason-lspconfig.nvim",
+        opts = {},
+        dependencies = {
+            "mason-org/mason.nvim",
+            "neovim/nvim-lspconfig",
+        },
+    },
+    {
         "neovim/nvim-lspconfig",
         lazy = false,
         init = function()
@@ -8,15 +16,7 @@ return {
             })
         end,
         config = function()
-            local configurer = require('kerooz.lsp.config')
-            local masonLspConfig = require('mason-lspconfig')
-            local lspconfig = require('lspconfig')
-
-            masonLspConfig.setup_handlers({
-                function(server_name)
-                    lspconfig[server_name].setup(configurer.configure(server_name))
-                end,
-            })
+            require('kerooz.lib.lsp.config').configure()
 
             -- Display diagnostic on hover the line
             vim.api.nvim_create_autocmd({ "CursorHold" },
@@ -36,10 +36,6 @@ return {
             -- }}
         end,
         dependencies = {
-            {
-                "williamboman/mason-lspconfig.nvim",
-                dependencies = { "williamboman/mason.nvim" }
-            },
             "nvimtools/none-ls.nvim",
         }
     },
