@@ -12,6 +12,7 @@ Thumbs.db
 .phpactor.yml
 .phpactor.json
 dap.json
+__debug*
 
 # PhpStorm
 .idea
