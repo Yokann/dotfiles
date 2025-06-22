@@ -56,7 +56,7 @@
     },
     "clock": {
         "format": "  {:%H:%M    %d/%m/%Y}",
-        "on-click": "firefox -P Perso https://calendar.infomaniak.com/?view=day",
+        "on-click": "firefox -P Perso https://calendar.infomaniak.com/?view=week",
         "tooltip": false
     },
     "group/hardware": {
@@ -141,6 +141,9 @@
             "mpv": "",
             "pcmanfm": "",
             "signal": "󰚢",
+            "class<kitty>:": "",
+            "class<ticktick>": "",
+            "steam": "",
         }
     },
     "hyprland/window": {
