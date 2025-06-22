@@ -40,7 +40,7 @@ yay -S wl-clipboard cliphist \
     brightnessctl \
     mpv mpv-mpris \
     hyprpicker \
-    bluetuith bluez-obex \
+    bluetuith bluez-obex overskride-bin \
     streamlink twitch-cli-bin \
     rclone \
     nomacs

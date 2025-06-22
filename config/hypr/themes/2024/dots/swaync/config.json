@@ -1,5 +1,11 @@
 {
-    "widgets": ["mpris", "title", "dnd", "notifications"],
+    "widgets": [
+        "mpris",
+        "title",
+        "dnd",
+        "notifications",
+        "buttons-grid"
+    ],
     "notification-visibility": {
         "screen-share": {
             "state": "muted",
@@ -8,6 +14,24 @@
         "poweralertd": {
             "state": "muted",
             "app-name": "poweralertd"
+        }
+    },
+    "widget-config": {
+        "buttons-grid": {
+            "actions": [
+                {
+                    "label": "",
+                    "command": "hyprlock"
+                },
+                {
+                    "label": "󰂯",
+                    "command": "overskride"
+                },
+                {
+                    "label": "",
+                    "command": "systemctl poweroff"
+                }
+            ]
         }
     }
 }

@@ -319,6 +319,17 @@ slider {
   font-size: 2.5rem;
 }
 
+.widget-buttons-grid > flowbox > flowboxchild > button {
+    border: 1px solid transparent;
+    margin: 0.2rem;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button:hover {
+    background: #363a4f;
+    border: 1px solid #6e738d;
+    border-radius: 8px;
+}
+
 .widget-volume {
   padding-top: 1rem;
 }
