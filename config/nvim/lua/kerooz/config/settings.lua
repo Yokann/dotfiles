@@ -4,7 +4,7 @@ vim.g.maplocalleader = ' '
 -- Numbers {{{
 
 vim.opt.number = true
-vim.opt.relativenumber = false
+vim.opt.relativenumber = true
 
 -- }}}
 
