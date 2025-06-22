@@ -154,18 +154,6 @@
             "(.*) — Mozilla Firefox": "$1",
         },
     },
-    "custom/dnd": {
-        "interval": "once",
-        "return-type": "json",
-        "format": "{icon} {text}",
-        "format-icons": {
-            "default": "󰚢 ",
-            "dnd": "󰚣i"
-        },
-        "on-click": "~/.dotfiles/config/hypr/scripts/dnd toggle",
-        "on-click-right": " ~/.dotfiles/config/hypr/scripts/dnd restore",
-        "exec": "~/.dotfiles/config/hypr/scripts/dnd status"
-    },
     "custom/notification": {
         "tooltip": false,
         "format": "{icon} {0}",
