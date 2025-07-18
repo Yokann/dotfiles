@@ -254,6 +254,22 @@ name = "Youtube"
 url = "https://www.youtube.com/results?search_query=%TERM%"
 prefix = "yt"
 
+[[builtins.websearch.entries]]
+name = "ChatGPT"
+url = "https://chatgpt.com/?prompt=%TERM%"
+prefix = "gpt"
+
+
+[[builtins.websearch.entries]]
+name = "Github Copilot"
+url = "https://github.com/copilot?prompt=%TERM%"
+prefix = "ghc"
+
+[[builtins.websearch.entries]]
+name = "Mistral"
+url = "https://chat.mistral.ai/chat?q=%TERM%"
+prefix = "chat"
+
 [builtins.dmenu]
 hidden = true
 weight = 5
@@ -288,3 +304,11 @@ show_icon_when_single = true
 switcher_only = true
 theme = "catppucin-image-only"
 theme_base = "catppucin"
+
+[[plugins]]
+name = "aiprompts"
+src = "node ~/.dotfiles/config/hypr/themes/2024/dots/walker/scripts/aiprompts.cjs"
+placeholder = "Select a prompt"
+show_sub_when_single = true
+show_icon_when_single = true
+switcher_only = true
