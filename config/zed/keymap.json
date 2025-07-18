@@ -15,22 +15,10 @@
     {
         "context": "Dock",
         "bindings": {
-            "ctrl-w h": [
-                "workspace::ActivatePaneInDirection",
-                "Left"
-            ],
-            "ctrl-w l": [
-                "workspace::ActivatePaneInDirection",
-                "Right"
-            ],
-            "ctrl-w k": [
-                "workspace::ActivatePaneInDirection",
-                "Up"
-            ],
-            "ctrl-w j": [
-                "workspace::ActivatePaneInDirection",
-                "Down"
-            ]
+            "ctrl-w h": "workspace::ActivatePaneLeft",
+            "ctrl-w l": "workspace::ActivatePaneRight",
+            "ctrl-w k": "workspace::ActivatePaneUp",
+            "ctrl-w j": "workspace::ActivatePaneDown"
         }
     },
     {
@@ -49,7 +37,7 @@
             "space t e": "outline::Toggle",
             "alt-j": "pane::GoBack",
             "alt-k": "pane::GoForward",
-            "alt-h": "pane::ActivatePrevItem",
+            "alt-h": "pane::ActivatePreviousItem",
             "alt-l": "pane::ActivateNextItem",
             "alt-d": "pane::CloseActiveItem",
             "space t r": "project_panel::ToggleFocus",
@@ -64,7 +52,7 @@
     {
         "context": "Editor && (showing_code_actions || showing_completions)",
         "bindings": {
-            "alt-k": "editor::ContextMenuPrev",
+            "alt-k": "editor::ContextMenuPrevious",
             "alt-j": "editor::ContextMenuNext"
         }
     },
