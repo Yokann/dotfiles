@@ -294,6 +294,7 @@ placeholder = "Select a live stream"
 show_sub_when_single = true
 show_icon_when_single = true
 switcher_only = true
+parser = "json"
 
 [[plugins]]
 name = "wallpaper"
@@ -304,6 +305,7 @@ show_icon_when_single = true
 switcher_only = true
 theme = "catppucin-image-only"
 theme_base = "catppucin"
+parser = "json"
 
 [[plugins]]
 name = "aiprompts"
@@ -312,3 +314,4 @@ placeholder = "Select a prompt"
 show_sub_when_single = true
 show_icon_when_single = true
 switcher_only = true
+parser = "json"
