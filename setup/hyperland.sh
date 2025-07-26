@@ -56,7 +56,7 @@ if [[ $1 == "--optional" ]]; then
 fi
 
 if [[ command -v cargo ]]; then
-    cargo install pomodoro-cli
+    cargo install pomodoro-cli twitch-tui
 else
     echo "Cargo is not installed, skipping pomodoro-cli installation"
 fi
