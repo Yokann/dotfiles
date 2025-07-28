@@ -1,19 +1,23 @@
 command_timeout = 1000
 
-[git_status]
-conflicted = "ﲅ "
-ahead = "省×${count} "
-behind = "🐢×${count} "
-diverged = " 省×${ahead_count} 🐢×${behind_count} "
-untracked = "🤷‍×${count} "
-stashed = "  "
-modified = " ×${count} "
-staged = "艹×${count} "
-renamed = " ×${count} "
-deleted = "×${count} "
-style = "bright-white"
-format = "$all_status$ahead_behind"
+right_format = """
+$kubernetes
+$aws"""
 
+
+[git_status]
+style = "bold italic bright-blue"
+format = "([⎪$ahead_behind$staged$modified$untracked$renamed$deleted$conflicted$stashed⎥]($style)) "
+conflicted = "[◪◦](italic bright-magenta)"
+ahead = "[▴│[${count}](bold white)│](italic green)"
+behind = "[▿│[${count}](bold white)│](italic red)"
+diverged = "[◇ ▴┤[${ahead_count}](regular white)│▿┤[${behind_count}](regular white)│](italic bright-magenta)"
+untracked = "[◌◦](italic bright-yellow)"
+stashed = "[◃◈](italic white)"
+modified = "[●◦](italic yellow)"
+staged = "[▪┤[$count](bold white)│](italic bright-cyan)"
+renamed = "[◎◦](italic bright-blue)"
+deleted = "[✕](italic red)"
 
 [git_branch]
 symbol = " "
@@ -21,6 +25,7 @@ symbol = " "
 [kubernetes]
 disabled = false
 symbol = "󱃾 "
+format = "[$symbol$context($namespace)]($style) "
 contexts = [
   { context_pattern = "(.*)prod(.*)", style = "red bold" },
   { context_pattern = "(.*)staging(.*)", style = "green bold" },
