@@ -6,11 +6,26 @@ return {
     { "airblade/vim-rooter",  lazy = false }, -- load root dir at vim startup on a file
     { "ku1ik/vim-pasta",      lazy = false }, -- Ajust indentation when pasting code
     {
-        "ggandor/leap.nvim",                  -- intersting way to move
-        lazy = false,
-        config = function()
-            require("leap").add_default_mappings()
-        end
+        "folke/flash.nvim",
+        event = "VeryLazy",
+        ---@type Flash.Config
+        opts = {
+            modes = {
+                search = {
+                    enabled = false,
+                },
+                char = {
+                    jump_labels = true
+                }
+            }
+        },
+        keys = {
+            { "s",     function() require("flash").jump() end,              mode = { "n", "x", "o" }, desc = "Flash" },
+            { "S",     function() require("flash").treesitter() end,        mode = { "n", "x", "o" }, desc = "Flash Treesitter" },
+            { "r",     function() require("flash").remote() end,            mode = { "o" },           desc = "Remote Flash" },
+            { "R",     function() require("flash").treesitter_search() end, mode = { "o", "x" },      desc = "Treesitter Search" },
+            { "<c-s>", function() require("flash").toggle() end,            mode = { "c" },           desc = "Toggle Flash" }
+        }
     },
     { "numToStr/Comment.nvim",          lazy = false, opts = {} }, -- comment block
     { "christoomey/vim-tmux-navigator", lazy = false },            -- use same keymap to switch pane and buffer
