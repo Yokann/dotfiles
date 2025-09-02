@@ -14,7 +14,7 @@ yay -S hyprland hyprcursor \
     wev \
     xdg-desktop-portal-hyprland \
     polkit-gnome \
-    pcmanfm-gtk3 \
+    nemo \
     playerctl \
     network-manager \
     network-manager-applet \
