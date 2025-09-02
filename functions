@@ -109,6 +109,7 @@ setup_hyprland () {
     mkdir $HOME/.config/hypr
     mkdir $HOME/.config/hypr/conf.d
     touch $HOME/.config/hypr/conf.d/overrides.conf
+    touch $HOME/.config/hypr/hypridle.conf
     echo '$configPath = $HOME/.dotfiles/config/hypr' > $HOME/.config/hypr/hyprland.conf
     echo '$wallpapersPath = $HOME/Images/wallpapers' >> $HOME/.config/hypr/hyprland.conf
     echo '$machineType = laptop' >> $HOME/.config/hypr/hyprland.conf
