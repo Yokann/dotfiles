@@ -78,49 +78,20 @@ return {
         }
     },
     {
-        "jackMort/ChatGPT.nvim",
-        event = "VeryLazy",
-        enabled = false,
-        config = function()
-            require("chatgpt").setup({
-                -- api_key_cmd = "op read op://Personal/OpenAI/api_credential --no-newline",
-                actions_paths = { "~/.config/nvim/lua/kerooz/config/chatgpt-actions.json" },
-            })
-        end,
-        keys = {
-            { "<leader>gpt",  "<cmd>ChatGPT<CR>",                    mode = "n",          desc = "ChatGPT - Launch" },
-            { "<leader>gpte", "<cmd>ChatGPTEditWithInstruction<CR>", mode = { "n", "v" }, desc = "ChatGPT - Edit with instruction" },
-            { "<leader>gptx", "<cmd>ChatGPTRun explain_code<CR>",    mode = { "n", "v" }, desc = "ChatGPT - Explain code" },
-        },
+        "olimorris/codecompanion.nvim",
         dependencies = {
-            "MunifTanjim/nui.nvim",
             "nvim-lua/plenary.nvim",
-            "nvim-telescope/telescope.nvim"
-        }
-    },
-    {
-        "CopilotC-Nvim/CopilotChat.nvim",
-        event = "VeryLazy",
-        dependencies = {
-            { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
-            { "nvim-lua/plenary.nvim" },  -- for curl, log wrapper
+            "nvim-treesitter/nvim-treesitter",
         },
         opts = {
-            debug = false, -- Enable debugging
+            opts = {
+                log_level = "DEBUG",
+            },
         },
         keys = {
             -- Show prompts actions with telescope
-            {
-                "<leader>cp",
-                function()
-                    local actions = require("CopilotChat.actions")
-                    require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
-                end,
-                desc = "CopilotChat - Prompt actions",
-            },
-            {
-                "<leader>ct", "<cmd>CopilotChatToggle<CR>", mode = "n", desc = "CopilotChat - Toggle"
-            }
+            { "<leader>ct", "<cmd>CodeCompanionChat<CR>",    mode = "n", desc = "CodeCompanionChat - Toggle" },
+            { "<leader>cp", "<cmd>CodeCompanionActions<CR>", mode = "n", desc = "CodeCompanionChat - Prompt actions" }
         }
     }
 }
