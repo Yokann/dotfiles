@@ -222,7 +222,7 @@ prefix = "?"
 [[builtins.websearch.entries]]
 name = "Google"
 url = "https://www.google.com/search?q=%TERM%"
-prefix = "g"
+prefix = "g "
 
 [[builtins.websearch.entries]]
 name = "Github"
@@ -232,7 +232,7 @@ prefix = "git"
 [[builtins.websearch.entries]]
 name = "Amazon"
 url = "https://www.amazon.fr/s?k=%TERM%"
-prefix = "a"
+prefix = "az"
 
 [[builtins.websearch.entries]]
 name = "Repology"
