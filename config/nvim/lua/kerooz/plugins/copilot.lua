@@ -79,6 +79,7 @@ return {
     },
     {
         "olimorris/codecompanion.nvim",
+        lazy = false,
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-treesitter/nvim-treesitter",
@@ -90,8 +91,8 @@ return {
         },
         keys = {
             -- Show prompts actions with telescope
-            { "<leader>ct", "<cmd>CodeCompanionChat<CR>",    mode = "n", desc = "CodeCompanionChat - Toggle" },
-            { "<leader>cp", "<cmd>CodeCompanionActions<CR>", mode = "n", desc = "CodeCompanionChat - Prompt actions" }
+            { "<leader>ct", "<cmd>CodeCompanionChat<CR>",    mode = "n",          desc = "CodeCompanionChat - Toggle" },
+            { "<leader>cp", "<cmd>CodeCompanionActions<CR>", mode = { "n", "v" }, desc = "CodeCompanionChat - Prompt actions" },
         }
     }
 }
