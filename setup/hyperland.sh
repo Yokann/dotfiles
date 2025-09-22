@@ -31,6 +31,8 @@ yay -S hyprland hyprcursor \
 # Install additional dependencies
 yay -S wl-clipboard cliphist \
     wofi walker-bin \
+    elephant elephant-clipboard elephant-menus elephant-runner elephant-desktopapplications \
+    elephant-symbols elephant-unicode elephant-websearch elephant-archlinuxpkgs elephant-providerlist \
     pipewire wireplumber \
     swappy \
     hyprshot \
