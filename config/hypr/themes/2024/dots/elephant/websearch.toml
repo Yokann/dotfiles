@@ -1,0 +1,52 @@
+icon = "applications-internet"
+
+[[entries]]
+default = true
+name = "Google"
+url = "https://www.google.com/search?q=%TERM%"
+prefix = "g"
+
+[[entries]]
+name = "Github"
+url = "https://github.com/search?q=%TERM%"
+prefix = "git"
+
+[[entries]]
+name = "Amazon"
+url = "https://www.amazon.fr/s?k=%TERM%"
+prefix = "az"
+
+[[entries]]
+name = "Repology"
+url = "https://repology.org/projects/?search=%TERM%"
+prefix = "repo"
+
+[[entries]]
+name = "HowLongToBeat"
+url = "https://howlongtobeat.com/?q=%TERM%"
+prefix = "hltb"
+
+[[entries]]
+name = "Arch User Repository"
+url = "https://aur.archlinux.org/packages?O=0&K=%TERM%"
+prefix = "aur"
+
+[[entries]]
+name = "Youtube"
+url = "https://www.youtube.com/results?search_query=%TERM%"
+prefix = "yt"
+
+[[entries]]
+name = "ChatGPT"
+url = "https://chatgpt.com/?prompt=%TERM%"
+prefix = "gpt"
+
+[[entries]]
+name = "Github Copilot"
+url = "https://github.com/copilot?prompt=%TERM%"
+prefix = "ghc"
+
+[[entries]]
+name = "Mistral"
+url = "https://chat.mistral.ai/chat?q=%TERM%"
+prefix = "chat"

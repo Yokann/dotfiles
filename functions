@@ -117,6 +117,7 @@ setup_hyprland () {
     echo '# env = HYPR_MAIN_MONITOR, DP-1'
     echo 'source = $configPath/hyprland.conf' >> $HOME/.config/hypr/hyprland.conf
     ln -s $DOTFILES_PATH/config/hypr/themes/2024/dots/walker $HOME/.config/walker
+    ln -s $DOTFILES_PATH/config/hypr/themes/2024/dots/elephant $HOME/.config/elephant
     ln -s $DOTFILES_PATH/config/hypr/themes/2024/dots/wofi $HOME/.config/wofi
     xdg-mime default nvim.desktop text/plain
     # replace nemo with yazi.desktop if you want to use yazi as file manager
