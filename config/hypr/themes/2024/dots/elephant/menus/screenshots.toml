@@ -1,0 +1,24 @@
+name = "screenshots"
+name_pretty = "Screenshots"
+icon = "camera-photo"
+global_search = true
+
+# [[entries]]
+# text = "View"
+# action = "vimiv ~/Pictures/"
+#
+# [[entries]]
+# text = "Annotate"
+# action = "wl-paste | satty -f -"
+
+[[entries]]
+text = "Toggle Record"
+action = "recorder"
+
+[[entries]]
+text = "Screenshot Region"
+action = "hyprshot -m region"
+
+[[entries]]
+text = "Screenshot Window"
+action = "hyprshot -m window"
