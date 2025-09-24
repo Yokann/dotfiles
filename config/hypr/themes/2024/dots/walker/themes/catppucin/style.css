@@ -105,14 +105,13 @@ child {
 
 .item-box {
   border-radius: 10px;
-  padding: 10px;
 }
 
 .item-quick-activation {
   margin-left: 10px;
   background: alpha(@accent_bg_color, 0.25);
   border-radius: 5px;
-  padding: 10px;
+  padding: 5px;
 }
 
 child:hover .item-box,
