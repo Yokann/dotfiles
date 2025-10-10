@@ -4,12 +4,14 @@
 @define-color base #24273a;
 @define-color mauve #c6a0f6;
 @define-color blue #8aadf4;
+@define-color red #ed8796;
 
 @define-color theme_fg_color @foreground;
 @define-color window_bg_color @base;
 @define-color accent_bg_color @mauve;
 
-
+@define-color error_bg_color @red;
+@define-color error_fg_color @foreground;
 
 child {
     border-radius: 8px;
@@ -136,10 +138,16 @@ child:selected .item-box {
   margin-right: 10px;
 }
 
-.keybind-hints {
+.keybinds-wrapper {
+  border-top: 1px solid lighter(@window_bg_color);
   font-size: 12px;
   opacity: 0.5;
   color: @theme_fg_color;
+}
+
+.keybind-bind {
+  /* color: lighter(@window_bg_color); */
+  font-weight: bold;
 }
 
 .preview {
@@ -174,4 +182,10 @@ child:selected .item-box {
 
 .preview .large-icons {
   -gtk-icon-size: 64px;
+}
+
+.error {
+  padding: 10px;
+  background: @error_bg_color;
+  color: @error_fg_color;
 }
