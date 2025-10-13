@@ -25,4 +25,8 @@ export PROJECTS_ROOT_DIR="$HOME/projets"
 export PATH=$HOME/bin:$HOME/.dotfiles/bin:/usr/local/bin:$HOME/.local/share/mise/shims:$PATH
 export PATH=$HOME/go/bin:$PATH
 
-
+# AWS
+export AWS_CLI_AUTO_PROMPT=off
+export AWS_PROFILE_STATE_ENABLED=false
+export SHOW_AWS_PROMPT=false # Disable reprompt inside aws zsh plugin
+# vim: set ft=zsh

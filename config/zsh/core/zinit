@@ -44,11 +44,16 @@ zinit light jeffreytse/zsh-vi-mode
 
 zinit ice lucid wait'0' i
 zinit light joshskidmore/zsh-fzf-history-search
-  
+
 # OMZ plugins
 zinit wait lucid for \
       OMZL::git.zsh \
       OMZL::clipboard.zsh \
+    atload"
+      if (( \$+commands[aws_completer] )); then
+        complete -C aws_completer aws
+      fi
+      " \
       OMZP::aws \
       OMZP::archlinux \
       OMZP::colored-man-pages \
@@ -63,3 +68,4 @@ zinit wait lucid for \
       OMZP::docker-compose/_docker-compose \
       https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker
 
+# vim: ft=zsh
