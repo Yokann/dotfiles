@@ -11,16 +11,18 @@ return {
         "neovim/nvim-lspconfig",
         lazy = false,
         init = function()
-            require('mason').setup({
+            require("mason").setup({
                 PATH = "prepend",
             })
         end,
         config = function()
-            require('kerooz.lib.lsp.config').configure()
+            require("kerooz.lib.lsp.config").configure()
 
             -- Display diagnostic on hover the line
-            vim.api.nvim_create_autocmd({ "CursorHold" },
-                { command = "lua vim.diagnostic.open_float(nil, {focus=false})" })
+            vim.api.nvim_create_autocmd(
+                { "CursorHold" },
+                { command = "lua vim.diagnostic.open_float(nil, {focus=false})" }
+            )
 
             --  Floating window styles {{
             --
@@ -29,24 +31,25 @@ return {
                 signs = true,
                 float = {
                     source = true,
-                    border = 'rounded',
+                    border = "rounded",
                 },
             })
-            require('lspconfig.ui.windows').default_options.border = 'single'
+            require("lspconfig.ui.windows").default_options.border = "single"
             -- }}
         end,
         dependencies = {
             "nvimtools/none-ls.nvim",
-        }
+        },
     },
     {
         "j-hui/fidget.nvim",
         tag = "legacy",
         event = "LspAttach",
-        opts = {}
+        opts = {},
     }, --loader for lsp
     {
-        "towolf/vim-helm", ft = "helm"
+        "towolf/vim-helm",
+        ft = "helm",
     },
     { -- auto install lsp, formatter, dap
         "WhoIsSethDaniel/mason-tool-installer.nvim",
@@ -84,22 +87,22 @@ return {
                 "terraformls",
                 "tflint",
                 "yamlls",
-
             },
             auto_update = false,
             run_on_start = false,
             start_delay = 3000,
             debounce_hours = 5, -- at least 5 hours between attempts to install/update
             integrations = {
-                ['mason-lspconfig'] = true,
-                ['mason-null-ls'] = true,
-                ['mason-nvim-dap'] = true,
-            }
+                ["mason-lspconfig"] = true,
+                ["mason-null-ls"] = true,
+                ["mason-nvim-dap"] = true,
+            },
         },
         dependencies = {
             "neovim/nvim-lspconfig",
+            "jay-babu/mason-nvim-dap.nvim",
             "b0o/schemastore.nvim",
-        }
+        },
     },
     {
         "nvimtools/none-ls.nvim",
@@ -112,10 +115,10 @@ return {
                     extra_args = {
                         "--max-len=120",
                         "--base-formatter=gofumpt",
-                    }
+                    },
                 }),
                 nls.builtins.diagnostics.golangci_lint,
             })
         end,
-    }
+    },
 }
