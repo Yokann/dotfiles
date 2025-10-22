@@ -39,6 +39,7 @@ setup_vim () {
     $PACKAGE_INSTALLER neovim sqlite
     rm -rf $HOME/.config/nvim
     ln -s $DOTFILES_PATH/config/nvim $HOME/.config/nvim
+    ln -s $DOTFILES_PATH/config/.editorconfig $HOME/.editorconfig
     # ln -s $DOTFILES_PATH/config/phpactor $HOME/.config/phpactor
 }
 
