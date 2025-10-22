@@ -65,7 +65,7 @@ return {
     {
         "jonahgoldwastaken/copilot-status.nvim",
         dependencies = { "zbirenbaum/copilot.lua" },
-        lazy = true,
+        event = "VeryLazy",
         opts = {
             icons = {
                 idle = " ",
@@ -79,7 +79,7 @@ return {
     },
     {
         "olimorris/codecompanion.nvim",
-        lazy = false,
+        event = "VeryLazy",
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-treesitter/nvim-treesitter",

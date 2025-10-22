@@ -1,6 +1,7 @@
 return {
     {
         "rcarriga/nvim-dap-ui",
+        event = "VeryLazy",
         dependencies = {
             "mfussenegger/nvim-dap",
             "nvim-neotest/nvim-nio",
@@ -11,8 +12,6 @@ return {
         config = function()
             require("kerooz.dap").setup()
         end,
-        lazy = true,
-        event = "BufReadPre",
     },
     {
         "jay-babu/mason-nvim-dap.nvim",
