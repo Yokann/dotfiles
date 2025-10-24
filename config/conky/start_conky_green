@@ -1,5 +1,5 @@
 #!/bin/bash
 
-conky -c ~/.dotfiles/config/conky/conky_conf &&
+conky -c $DOTFILES_PATH/config/conky/conky_conf &&
 
 exit 0

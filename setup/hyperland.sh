@@ -2,6 +2,12 @@
 
 set -ex -o pipefail
 
+if [ -z "$DOTFILES_PATH" ]; then
+    echo "DOTFILES_PATH is not set. Please set it to the path of your dotfiles dir"
+    # sudo echo 'export DOTFILES_PATH=$HOME/.local/share/dotfiles' > /etc/profile.d/dotfiles.sh
+    exit 1
+fi
+
 # https://github.com/natpen/awesome-wayland
 
 # Install hyprland and core dependencies
@@ -48,7 +54,7 @@ yay -S wl-clipboard cliphist \
     nomacs
 
 # Themes
-yay -S socat geticons nwg-look fastfetch 
+yay -S socat geticons nwg-look fastfetch
 # Install GTK themes https://github.com/Fausto-Korpsvart/Catppuccin-GTK-Theme
 yay -S sassc gtk-engine-murrine
 

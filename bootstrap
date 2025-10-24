@@ -2,9 +2,13 @@
 
 set -e
 
-SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
+if [ -z "$DOTFILES_PATH" ]; then
+    echo "DOTFILES_PATH is not set. Please set it to the path of your dotfiles dir"
+    exit 1
+fi
+
 sudo -v #ask password beforehand
-source $SCRIPT_DIR/functions
+source $DOTFILES_PATH/functions
 
 case $1 in
     terminal)
@@ -12,9 +16,9 @@ case $1 in
         read -p 'Answer: '  reply
         if [[ $reply =~ ^[Yy]$ ]]
         then
-            install_dependencies 
+            install_dependencies
             setup_zsh
-            setup_tmux 
+            setup_tmux
             setup_vim
         fi
         ;;
@@ -28,7 +32,7 @@ case $1 in
             install_dev_dependencies
         fi
         ;;
- 
+
     sway)
         if [[ "$OSTYPE" == "linux"* ]]; then
             setup_sway

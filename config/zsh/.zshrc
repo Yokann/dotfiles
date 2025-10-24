@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - -
 # Custom loading configuration
 # - - - - - - - - - - - - - - - - - - - -
-BASE_CONF_PATH=$HOME/.dotfiles/config/zsh
+BASE_CONF_PATH=$DOTFILES_PATH/config/zsh
 CUSTOM_CONF_PATH=$HOME/.dotfiles-custom/zsh
 
 # Load the shell dotfiles, and then some:

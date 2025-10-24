@@ -5,7 +5,7 @@ cdproj() {
 
 
 stream() {
-   $HOME/.dotfiles/config/hypr/scripts/stream "$@"
+   $DOTFILES_PATH/config/hypr/scripts/stream "$@"
 }
 
 # yazi wrapper

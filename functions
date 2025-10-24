@@ -7,7 +7,6 @@ else
     exit 1
 fi
 
-DOTFILES_PATH=$HOME/.dotfiles
 CURRENT_DATE=$(date "+%Y-%m-%d-%H-%M-%S")
 
 setup_git () {
@@ -92,7 +91,7 @@ install_dev_dependencies () {
 
 setup_sway () {
     $PACKAGE_INSTALLER papirus-folders-catppuccin-git
-    # Todo finsih setup papirus icons 
+    # Todo finsih setup papirus icons
     rm -rf $HOME/.config/sway
     ln -s $DOTFILES_PATH/config/sway $HOME/.config/sway
     rm -rf $HOME/.config/rofi
@@ -111,7 +110,7 @@ setup_hyprland () {
     mkdir $HOME/.config/hypr/conf.d
     touch $HOME/.config/hypr/conf.d/overrides.conf
     touch $HOME/.config/hypr/hypridle.conf
-    echo '$configPath = $HOME/.dotfiles/config/hypr' > $HOME/.config/hypr/hyprland.conf
+    echo '$configPath = $DOTFILES_PATH/config/hypr' > $HOME/.config/hypr/hyprland.conf
     echo '$wallpapersPath = $HOME/Images/wallpapers' >> $HOME/.config/hypr/hyprland.conf
     echo '$machineType = laptop' >> $HOME/.config/hypr/hyprland.conf
     echo '# env = HYPR_MAIN_MONITOR, DP-1'

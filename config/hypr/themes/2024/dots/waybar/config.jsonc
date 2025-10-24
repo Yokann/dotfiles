@@ -3,7 +3,7 @@
         "layer": "top",
         "output": "${HYPR_MAIN_MONITOR}",
         "include": [
-            "${HOME}/.dotfiles/config/hypr/themes/2024/dots/waybar/default-modules.jsonc"
+            "${DOTFILES_PATH}/config/hypr/themes/2024/dots/waybar/default-modules.jsonc"
         ],
         "modules-left": [
             "custom/launcher",
@@ -32,7 +32,7 @@
         "layer": "top",
         "output": "!${HYPR_MAIN_MONITOR}",
         "include": [
-            "${HOME}/.dotfiles/config/hypr/themes/2024/dots/waybar/default-modules.jsonc"
+            "${DOTFILES_PATH}/config/hypr/themes/2024/dots/waybar/default-modules.jsonc"
         ],
         "modules-left": [
             "custom/launcher",

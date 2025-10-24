@@ -76,13 +76,13 @@
         "interval": 5,
         "format": "󰻠  {usage}%",
         "max-length": 10,
-        "on-click": "~/.dotfiles/config/hypr/scripts/foot_wrapper -e btop"
+        "on-click": "$HYPR_CONFIG_PATH/scripts/foot_wrapper -e btop"
     },
     "memory": {
         "interval": 10,
         "format": "󰍛  {}%",
         "max-length": 10,
-        "on-click": "~/.dotfiles/config/hypr/scripts/foot_wrapper -e btop"
+        "on-click": "$HYPR_CONFIG_PATH/scripts/foot_wrapper -e btop"
     },
     "disk": {
         "interval": 600,
@@ -120,10 +120,10 @@
         "tooltip": true,
         "format": "{} 󱍷",
         "return-type": "json",
-        "exec-if": "~/.dotfiles/config/hypr/scripts/checkupdates check",
-        "exec": "~/.dotfiles/config/hypr/scripts/checkupdates status",
+        "exec-if": "$HYPR_CONFIG_PATH/scripts/checkupdates check",
+        "exec": "$HYPR_CONFIG_PATH/scripts/checkupdates status",
         "interval": 3600,
-        "on-click": "~/.dotfiles/config/hypr/scripts/foot_wrapper -e yay -Syu"
+        "on-click": "$HYPR_CONFIG_PATH/scripts/foot_wrapper -e btop"
     },
     "hyprland/workspaces": {
         "format": "{icon}  {windows}",
