@@ -50,6 +50,7 @@ yay -S wl-clipboard cliphist \
     hyprpicker \
     bluetuith bluez-obex overskride-bin \
     streamlink twitch-cli-bin \
+    firefox \
     rclone \
     nomacs
 
