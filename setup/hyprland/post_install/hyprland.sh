@@ -1,5 +1,8 @@
 CURRENT_DATE=$(date "+%Y-%m-%d-%H-%M-%S")
-mv $HOME/.config/hypr $HOME/.config/hypr.bak.$CURRENT_DATE
+if [ -d $HOME/.config/hypr ]; then
+    echo "Backing up existing Hyprland config to $HOME/.config/hypr.bak.$CURRENT_DATE"
+    mv $HOME/.config/hypr $HOME/.config/hypr.bak.$CURRENT_DATE
+fi
 mkdir -p $HOME/.config/hypr/conf.d
 touch $HOME/.config/hypr/conf.d/overrides.conf
 touch $HOME/.config/hypr/hypridle.conf
