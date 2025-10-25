@@ -8,10 +8,20 @@ if [ -z "$DOTFILES_PATH" ]; then
     exit 1
 fi
 
+# Install yay if missing
+if ! command -v yay &> /dev/null; then
+    git clone https://aur.archlinux.org/yay.git /tmp/yay
+    cd /tmp/yay
+    makepkg -si --noconfirm
+    cd -
+    rm -rf /tmp/yay
+fi
+
 # https://github.com/natpen/awesome-wayland
 
 # Install hyprland and core dependencies
 yay -S hyprland hyprcursor \
+    uwsm \
     wdisplays \
     foot \
     foot-terminfo \
@@ -32,6 +42,8 @@ yay -S hyprland hyprcursor \
     hypridle \
     hyprlock \
     hyprpaper \
+    qt5-wayland \
+    qt6-wayland \
     ttf-jetbrains-mono-nerd ttf-roboto inotify-tools papirus-icon-theme xcursor-breeze noto-fonts-emoji
 
 # Install additional dependencies
