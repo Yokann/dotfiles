@@ -17,10 +17,16 @@ if ! command -v yay &> /dev/null; then
     rm -rf /tmp/yay
 fi
 
+# Install rustup if missing
+if ! command -v rustup &> /dev/null; then
+    yay -S --noconfirm rustup
+    rustup default stable
+fi
+
 # https://github.com/natpen/awesome-wayland
 
 # Install hyprland and core dependencies
-yay -S hyprland hyprcursor \
+yay -S --noconfirm hyprland hyprcursor \
     uwsm \
     wdisplays \
     foot \
@@ -47,7 +53,7 @@ yay -S hyprland hyprcursor \
     ttf-jetbrains-mono-nerd ttf-roboto inotify-tools papirus-icon-theme xcursor-breeze noto-fonts-emoji
 
 # Install additional dependencies
-yay -S wl-clipboard cliphist \
+yay -S --noconfirm wl-clipboard cliphist \
     wofi walker-bin \
     elephant elephant-clipboard elephant-menus elephant-runner elephant-desktopapplications \
     elephant-symbols elephant-unicode elephant-websearch elephant-archlinuxpkgs elephant-providerlist \
