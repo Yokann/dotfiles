@@ -24,14 +24,14 @@ alias hosts="sudoedit /etc/hosts"
 alias home="cd $HOME"
 alias vim="nvim"
 alias portused="sudo lsof -i -P -n | grep LISTEN"
-alias dotf="cd $HOME/.dotfiles && nvim"
+alias dotf="cd $DOTFILES_PATH && nvim"
 alias dotfc="cd $HOME/.dotfiles-custom && nvim"
 alias ranger="yazi"
 alias cdp="cdproj"
 alias sued="sudoedit"
 alias lgit="lazygit"
 
-# Special linux 
+# Special linux
 if [[ "$OSTYPE" == "linux"* ]]; then
   alias chown='chown --preserve-root'
   alias chmod='chmod --preserve-root'
@@ -65,7 +65,7 @@ alias gov='go vet'
 alias gove='go version'
 alias gowk='go work'
 
-# Docker compose 
+# Docker compose
 alias dc="docker-compose"
 
 # vim: ft=zsh
