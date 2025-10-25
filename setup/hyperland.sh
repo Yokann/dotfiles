@@ -26,7 +26,8 @@ fi
 # https://github.com/natpen/awesome-wayland
 
 # Install hyprland and core dependencies
-yay -S --noconfirm hyprland hyprcursor \
+yay -S --noconfirm --norebuild \
+    hyprland hyprcursor \
     uwsm \
     wdisplays \
     foot \
@@ -53,7 +54,8 @@ yay -S --noconfirm hyprland hyprcursor \
     ttf-jetbrains-mono-nerd ttf-roboto inotify-tools papirus-icon-theme xcursor-breeze noto-fonts-emoji
 
 # Install additional dependencies
-yay -S --noconfirm wl-clipboard cliphist \
+yay -S --noconfirm --norebuild \
+    wl-clipboard cliphist \
     wofi walker-bin \
     elephant elephant-clipboard elephant-menus elephant-runner elephant-desktopapplications \
     elephant-symbols elephant-unicode elephant-websearch elephant-archlinuxpkgs elephant-providerlist \
@@ -73,13 +75,13 @@ yay -S --noconfirm wl-clipboard cliphist \
     nomacs
 
 # Themes
-yay -S socat geticons nwg-look fastfetch
+yay -S --noconfirm --norebuild socat geticons nwg-look fastfetch
 # Install GTK themes https://github.com/Fausto-Korpsvart/Catppuccin-GTK-Theme
-yay -S sassc gtk-engine-murrine
+yay -S --noconfirm --norebuild sassc gtk-engine-murrine
 
 # if option argument is passed, install the optionnal dependencies
 if [[ $1 == "--optional" ]]; then
-    yay -S discord ticktick cryptomator-bin signal-desktop 1password 1password-cli
+    yay -S --noconfirm --norebuild discord ticktick cryptomator-bin signal-desktop 1password 1password-cli
 fi
 
 if [[ command -v cargo ]]; then
