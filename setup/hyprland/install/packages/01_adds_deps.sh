@@ -17,9 +17,10 @@ yay -S --noconfirm --norebuild --needed \
     nomacs \
     ttf-jetbrains-mono-nerd \
     ttf-roboto \
-    ttf-fira-code \
+    ttf-firacode-nerd \
     papirus-icon-theme \
     xcursor-breeze \
+    phinger-cursors \
     noto-fonts-emoji \
     cantarell-fonts
 

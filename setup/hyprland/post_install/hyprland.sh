@@ -9,5 +9,5 @@ touch $HOME/.config/hypr/hypridle.conf
 echo '$configPath = $DOTFILES_PATH/config/hypr' > $HOME/.config/hypr/hyprland.conf
 echo '$wallpapersPath = $HOME/Images/wallpapers' >> $HOME/.config/hypr/hyprland.conf
 echo '$machineType = laptop' >> $HOME/.config/hypr/hyprland.conf
-echo '# env = HYPR_MAIN_MONITOR, DP-1'
+echo '# env = HYPR_MAIN_MONITOR, DP-1' >> $HOME/.config/hypr/hyprland.conf
 echo 'source = $configPath/hyprland.conf' >> $HOME/.config/hypr/hyprland.conf

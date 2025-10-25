@@ -47,6 +47,7 @@ yay -S --noconfirm --norebuild --needed \
     scdoc geticons \
     git \
     git-delta \
+    gnome-calculator \
     gum \
     lazygit \
     liboauth \

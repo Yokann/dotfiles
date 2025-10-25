@@ -26,9 +26,13 @@ source $SETUP_PATH/generic/post_install/btop.sh
 source $SETUP_PATH/generic/post_install/neovim.sh
 source $SETUP_PATH/generic/post_install/zsh.sh
 source $SETUP_PATH/generic/post_install/tmux.sh
+source $SETUP_PATH/hyprland/post_install/keyboard.sh
 source $SETUP_PATH/hyprland/post_install/walker.sh
 source $SETUP_PATH/hyprland/post_install/hyprland.sh
 
 # Set default applications
 xdg-mime default nemo.desktop inode/directory
 xdg-mime default nvim.desktop text/plain
+
+# Enable services
+sudo systemctl enable greetd.service NetworkManager.service cups.service cups-browsed.service
