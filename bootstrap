@@ -8,7 +8,7 @@ if [ -z "$DOTFILES_PATH" ]; then
 fi
 
 sudo -v #ask password beforehand
-source $DOTFILES_PATH/functions
+source $DOTFILES_PATH/setup/generic/functions
 
 case $1 in
     terminal)
@@ -17,9 +17,10 @@ case $1 in
         if [[ $reply =~ ^[Yy]$ ]]
         then
             install_dependencies
-            setup_zsh
-            setup_tmux
-            setup_vim
+            install_vim
+            source $DOTFILES_PATH/setup/generic/post_install/git.sh
+            source $DOTFILES_PATH/setup/post_install/zsh.sh
+            source $DOTFILES_PATH/setup/generic/post_install/tmux.sh
         fi
         ;;
 
@@ -38,14 +39,7 @@ case $1 in
             setup_sway
         fi
         ;;
-
-    hyperland)
-        if [[ "$OSTYPE" == "linux"* ]]; then
-            setup_hyprland
-        fi
-        ;;
-
     *)
-        echo "boostrap: [terminal|dev_deps|sway|hyprland]"
+        echo "boostrap: [terminal|dev_deps|sway]"
         ;;
 esac

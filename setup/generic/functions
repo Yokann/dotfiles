@@ -1,0 +1,81 @@
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    PACKAGE_INSTALLER="brew install"
+elif [[ "$OSTYPE" == "linux"* ]]; then
+    if ! command -v yay &> /dev/null; then
+        echo "Yay is not installed. Please install yay first."
+        exit 1
+    fi
+    PACKAGE_INSTALLER="yay -S --noconfirm --norebuild --needed"
+else
+    echo "System unknown"
+    exit 1
+fi
+
+CURRENT_DATE=$(date "+%Y-%m-%d-%H-%M-%S")
+
+install_vim () {
+    # Config neovim require sqlite for telescope grep history
+    $PACKAGE_INSTALLER neovim sqlite
+    source $DOTFILES_PATH/setup/generic/post_install/neovim.sh
+}
+
+install_dependencies () {
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        brew update
+        $PACKAGE_INSTALLER --cask homebrew/cask-fonts/font-fira-code-nerd-font
+    elif [[ "$OSTYPE" == "linux"* ]]; then
+        $PACKAGE_INSTALLER ttf-fira-code libtree-bin
+    fi
+
+    $PACKAGE_INSTALLER fzf btop starship tmux ripgrep git-delta lazygit xclip zoxide fd gum eza httpie
+    source $DOTFILES_PATH/setup/generic/post_install/starship.sh
+    source $DOTFILES_PATH/setup/generic/post_install/btop.sh
+}
+
+install_docker () {
+    if [[ "$OSTYPE" == "linux"* ]]; then
+        $PACKAGE_INSTALLER docker docker-compose
+        sudo usermod -aG docker $USER
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
+        $PACKAGE_INSTALLER orbstack
+    fi
+
+    $PACKAGE_INSTALLER ctop dive
+}
+
+install_dev_dependencies () {
+    # GoLang
+    $PACKAGE_INSTALLER go
+    go install github.com/mitranim/gow@latest
+
+    #Rust
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path -y
+    cargo install cargo-watch
+    # Install alternative linker
+    if [[ "$OSTYPE" == "linux"* ]]; then
+        $PACKAGE_INSTALLER lld clang
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
+        $PACKAGE_INSTALLER michaeleisel/zld/zld
+    fi
+
+    # Node
+    curl https://mise.run | sh
+    curl -fsSL https://get.pnpm.io/install.sh | sh -
+}
+
+setup_sway () {
+    $PACKAGE_INSTALLER papirus-folders-catppuccin-git
+    # Todo finsih setup papirus icons
+    rm -rf $HOME/.config/sway
+    ln -s $DOTFILES_PATH/config/sway $HOME/.config/sway
+    rm -rf $HOME/.config/rofi
+    ln -s $DOTFILES_PATH/config/rofi $HOME/.config/rofi
+    rm -rf $HOME/.config/waybar
+    ln -s $DOTFILES_PATH/config/waybar $HOME/.config/waybar
+    rm -rf $HOME/.config/mako
+    ln -s $DOTFILES_PATH/config/mako $HOME/.config/mako
+    rm -rf $HOME/.config/foot
+    ln -s $DOTFILES_PATH/config/foot $HOME/.config/foot
+}
+
+# vim: ft=sh
