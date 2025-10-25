@@ -84,7 +84,7 @@ if [[ $1 == "--optional" ]]; then
     yay -S --noconfirm --norebuild discord ticktick cryptomator-bin signal-desktop 1password 1password-cli
 fi
 
-if [[ command -v cargo ]]; then
+if command -v cargo &> /dev/null; then
     cargo install pomodoro-cli twitch-tui
 else
     echo "Cargo is not installed, skipping pomodoro-cli installation"

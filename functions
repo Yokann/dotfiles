@@ -1,7 +1,7 @@
 if [[ "$OSTYPE" == "darwin"* ]]; then
     PACKAGE_INSTALLER="brew install"
 elif [[ "$OSTYPE" == "linux"* ]]; then
-    PACKAGE_INSTALLER="yay -S"
+    PACKAGE_INSTALLER="yay -S --noconfirm"
 else
     echo "System unknown"
     exit 1
@@ -19,13 +19,17 @@ setup_zsh () {
     #Symlink .Xresources
     rm -f $HOME/.Xresources
     ln -s $DOTFILES_PATH/config/.Xresources $HOME/.Xresources
-    cp $HOME/.zshrc "$HOME/.zshrc.bak$CURRENT_DATE"
+    if [ -f $HOME/.zshrc ]; then
+        cp $HOME/.zshrc "$HOME/.zshrc.bak$CURRENT_DATE"
+    fi
     echo "source $DOTFILES_PATH/config/zsh/.zshrc" > $HOME/.zshrc
 }
 
 setup_tmux() {
     rm -rf $HOME/.tmux/plugins/tpm
-    cp $HOME/.tmux.conf "$HOME/.tmux.conf.bak$CURRENT_DATE"
+    if [ -f $HOME/.tmux.conf ]; then
+        cp $HOME/.tmux.conf "$HOME/.tmux.conf.bak$CURRENT_DATE"
+    fi
     echo "source $DOTFILES_PATH/config/tmux/tmux.conf" > $HOME/.tmux.conf
     git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
     echo "#################################################"
@@ -47,7 +51,6 @@ install_dependencies () {
         brew update
         $PACKAGE_INSTALLER --cask homebrew/cask-fonts/font-fira-code-nerd-font
     elif [[ "$OSTYPE" == "linux"* ]]; then
-        pacman -Syu
         $PACKAGE_INSTALLER ttf-fira-code libtree-bin
     fi
 
