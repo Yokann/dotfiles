@@ -36,6 +36,7 @@ source $SETUP_PATH/generic/config/tmux.sh
 
 # Core config
 source $SETUP_PATH/hyprland/config/gtk-theme.sh
+source $SETUP_PATH/hyprland/config/electron.sh
 source $SETUP_PATH/hyprland/config/walker.sh
 source $SETUP_PATH/hyprland/config/docker.sh
 source $SETUP_PATH/hyprland/config/keyboard.sh
