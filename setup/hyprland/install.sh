@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-set -eE+o pipefail
+set -eEo pipefail
 
 if [ -z "$DOTFILES_PATH" ]; then
     echo "DOTFILES_PATH is not set. Please set it to the path of your dotfiles dir"
@@ -37,6 +37,7 @@ source $SETUP_PATH/generic/config/tmux.sh
 # Core config
 source $SETUP_PATH/hyprland/config/gtk-theme.sh
 source $SETUP_PATH/hyprland/config/walker.sh
+source $SETUP_PATH/hyprland/config/docker.sh
 source $SETUP_PATH/hyprland/config/keyboard.sh
 source $SETUP_PATH/hyprland/config/mimetypes.sh
 source $SETUP_PATH/hyprland/config/node.sh

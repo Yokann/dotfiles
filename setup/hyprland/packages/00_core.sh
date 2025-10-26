@@ -21,6 +21,9 @@ yay -S --noconfirm --norebuild --needed \
     bluetuith bluez-obex overskride-bin \
     brightnessctl \
     btop \
+    docker \
+    docker-buildx \
+    docker-compose \
     discord \
     dkms \
     cliphist wl-clipboard \
