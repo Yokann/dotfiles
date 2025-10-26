@@ -21,6 +21,7 @@ yay -S --noconfirm --norebuild --needed \
     bluetuith bluez-obex overskride-bin \
     brightnessctl \
     btop \
+    cromite-bin \
     docker \
     docker-buildx \
     docker-compose \
