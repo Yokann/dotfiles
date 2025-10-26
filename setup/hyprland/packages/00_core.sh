@@ -67,6 +67,7 @@ yay -S --noconfirm --norebuild --needed \
     neovim \
     network-manager-applet \
     nomacs \
+    notion-app-electron \
     nwg-look \
     pipewire wireplumber \
     playerctl \
