@@ -16,7 +16,7 @@ CURRENT_DATE=$(date "+%Y-%m-%d-%H-%M-%S")
 install_vim () {
     # Config neovim require sqlite for telescope grep history
     $PACKAGE_INSTALLER neovim sqlite
-    source $DOTFILES_PATH/setup/generic/post_install/neovim.sh
+    source $DOTFILES_PATH/setup/generic/config/neovim.sh
 }
 
 install_dependencies () {
@@ -28,8 +28,8 @@ install_dependencies () {
     fi
 
     $PACKAGE_INSTALLER fzf btop starship tmux ripgrep git-delta lazygit xclip zoxide fd gum eza httpie
-    source $DOTFILES_PATH/setup/generic/post_install/starship.sh
-    source $DOTFILES_PATH/setup/generic/post_install/btop.sh
+    source $DOTFILES_PATH/setup/generic/config/starship.sh
+    source $DOTFILES_PATH/setup/generic/config/btop.sh
 }
 
 install_docker () {
@@ -61,21 +61,6 @@ install_dev_dependencies () {
     # Node
     curl https://mise.run | sh
     curl -fsSL https://get.pnpm.io/install.sh | sh -
-}
-
-setup_sway () {
-    $PACKAGE_INSTALLER papirus-folders-catppuccin-git
-    # Todo finsih setup papirus icons
-    rm -rf $HOME/.config/sway
-    ln -s $DOTFILES_PATH/config/sway $HOME/.config/sway
-    rm -rf $HOME/.config/rofi
-    ln -s $DOTFILES_PATH/config/rofi $HOME/.config/rofi
-    rm -rf $HOME/.config/waybar
-    ln -s $DOTFILES_PATH/config/waybar $HOME/.config/waybar
-    rm -rf $HOME/.config/mako
-    ln -s $DOTFILES_PATH/config/mako $HOME/.config/mako
-    rm -rf $HOME/.config/foot
-    ln -s $DOTFILES_PATH/config/foot $HOME/.config/foot
 }
 
 # vim: ft=sh

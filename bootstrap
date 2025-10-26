@@ -18,9 +18,9 @@ case $1 in
         then
             install_dependencies
             install_vim
-            source $DOTFILES_PATH/setup/generic/post_install/git.sh
-            source $DOTFILES_PATH/setup/post_install/zsh.sh
-            source $DOTFILES_PATH/setup/generic/post_install/tmux.sh
+            source $DOTFILES_PATH/setup/generic/config/git.sh
+            source $DOTFILES_PATH/setup/generic/config/zsh.sh
+            source $DOTFILES_PATH/setup/generic/config/tmux.sh
         fi
         ;;
 
@@ -33,13 +33,7 @@ case $1 in
             install_dev_dependencies
         fi
         ;;
-
-    sway)
-        if [[ "$OSTYPE" == "linux"* ]]; then
-            setup_sway
-        fi
-        ;;
     *)
-        echo "boostrap: [terminal|dev_deps|sway]"
+        echo "boostrap: [terminal|dev_deps]"
         ;;
 esac

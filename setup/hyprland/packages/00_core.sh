@@ -17,9 +17,13 @@ fi
 yay -S --noconfirm --norebuild --needed \
     1password \
     1password-cli \
+    avahi \
+    bluetuith bluez-obex overskride-bin \
+    brightnessctl \
     btop \
     discord \
     dkms \
+    cliphist wl-clipboard \
     cups \
     cups-browsed \
     cups-filters \
@@ -42,7 +46,9 @@ yay -S --noconfirm --norebuild --needed \
     hypridle \
     hyprlock \
     hyprpaper \
+    hyprshot \
     inotify-tools \
+    inxi \
     jq \
     scdoc geticons \
     git \
@@ -50,20 +56,24 @@ yay -S --noconfirm --norebuild --needed \
     gnome-calculator \
     gum \
     lazygit \
+    less \
+    localsend \
     liboauth \
     mise \
     nemo \
     neovim \
-    network-manager \
     network-manager-applet \
+    nomacs \
     nwg-look \
     pipewire wireplumber \
     playerctl \
     polkit-gnome \
     poppler \
+    power-profiles-daemon \
     qt5-wayland  qt6-wayland \
     rclone \
     ripgrep \
+    seahorse \
     signal-desktop \
     socat \
     starship \
