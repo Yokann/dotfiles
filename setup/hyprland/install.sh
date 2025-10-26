@@ -39,6 +39,7 @@ source $SETUP_PATH/hyprland/config/gtk-theme.sh
 source $SETUP_PATH/hyprland/config/walker.sh
 source $SETUP_PATH/hyprland/config/keyboard.sh
 source $SETUP_PATH/hyprland/config/mimetypes.sh
+source $SETUP_PATH/hyprland/config/node.sh
 source $SETUP_PATH/hyprland/config/systemd.sh
 source $SETUP_PATH/hyprland/config/hyprland.sh
 
