@@ -1,0 +1,11 @@
+#!/usr/bin/env zsh
+
+# Get random wallpaper from the specified directory and get only jpg/png files
+wallpaper=$(find "$WALLPAPERS_PATH" -type f \( -iname "*.jpg" -o -iname "*.png" \) | shuf -n 1)
+
+# Launch hyprpaper with the selected wallpaper
+
+pidof hyprpaper || hyprpaper &
+hyprctl hyprpaper unload all
+hyprctl hyprpaper preload $wallpaper
+hyprctl hyprpaper wallpaper ",$wallpaper"

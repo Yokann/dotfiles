@@ -10,6 +10,7 @@ if [ $STATE_FLAG = "first-install" ]; then
     mkdir -p $XDG_HYPR_CONFIG_PATH/conf.d
     echo "# Add you overrides values here" > $XDG_HYPR_CONFIG_PATH/conf.d/overrides.conf
     touch $XDG_HYPR_CONFIG_PATH/hypridle.conf
+    touch $XDG_HYPR_CONFIG_PATH/hyprpaper.conf
 
     echo '$configPath = $DOTFILES_PATH/config/hypr' > $XDG_HYPR_CONFIG_PATH/hyprland.conf
     echo '$wallpapersPath = $HOME/Images/wallpapers' >> $XDG_HYPR_CONFIG_PATH/hyprland.conf
