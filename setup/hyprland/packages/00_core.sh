@@ -76,6 +76,7 @@ yay -S --noconfirm --norebuild --needed \
     poppler \
     power-profiles-daemon \
     qt5-wayland  qt6-wayland \
+    qt5ct hyprqt6engine \
     rclone \
     ripgrep \
     seahorse \
