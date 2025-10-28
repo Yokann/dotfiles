@@ -1,8 +1,18 @@
 # Install additional dependencies for theme
 yay -S --noconfirm --norebuild --needed \
-    wofi walker-bin \
-    elephant elephant-clipboard elephant-menus elephant-runner elephant-desktopapplications \
-    elephant-symbols elephant-unicode elephant-websearch elephant-archlinuxpkgs elephant-providerlist \
+    wofi \
+    elephant-bin \
+    elephant-clipboard-bin \
+    elephant-menus-bin \
+    elephant-runner-bin \
+    elephant-desktopapplications-bin \
+    elephant-symbols-bin \
+    elephant-unicode-bin \
+    elephant-websearch-bin \
+    elephant-archlinuxpkgs-bin \
+    elephant-providerlist-bin \
+    elephant-bluetooth-bin \
+    walker \
     swappy \
     wf-recorder \
     swaync-git \
@@ -21,5 +31,5 @@ yay -S --noconfirm --norebuild --needed \
 # Themes
 # Install GTK themes https://github.com/Fausto-Korpsvart/Catppuccin-GTK-Theme
 yay -S --noconfirm --norebuild --needed \
-    gnome-theme-extra sassc murrine-engine gtk-engine-murrine
+    gnome-theme-extra sassc murrine-engine
 

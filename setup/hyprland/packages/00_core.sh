@@ -18,7 +18,7 @@ yay -S --noconfirm --norebuild --needed \
     1password \
     1password-cli \
     avahi \
-    bluetuith bluez-obex overskride-bin \
+    bluetuith bluez-obex \
     brightnessctl \
     btop \
     cromite-bin \
