@@ -1,0 +1,26 @@
+name = "power"
+name_pretty = "Power Management"
+icon = "power"
+cache = true
+fixed_order = true
+global_search = true
+
+[[entries]]
+keywords = ["lo","lock"]
+text = "Lock Session"
+actions = { execute = "loginctl lock-session" }
+
+[[entries]]
+keywords = ["reboot"]
+text = "Reboot System"
+actions = { execute = "rm -f $HOME/.cache/cliphist/db | systemctl reboot" }
+
+[[entries]]
+keywords = ["shutdown"]
+text = "Shutdown System"
+actions = { execute = "rm -f $HOME/.cache/cliphist/db | systemctl poweroff" }
+
+[[entries]]
+keywords = ["exit"]
+text = "Exit Hyprland"
+actions = { execute = "rm -f $HOME/.cache/cliphist/db | $HYPR_CONFIG_PATH/scripts/exithypr" }

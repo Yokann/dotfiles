@@ -29,4 +29,8 @@ export PATH=$HOME/go/bin:$PATH
 export AWS_CLI_AUTO_PROMPT=off
 export AWS_PROFILE_STATE_ENABLED=false
 export SHOW_AWS_PROMPT=false # Disable reprompt inside aws zsh plugin
+
+# LuaRocks sets LUA_PATH to packages installed
+eval "$(luarocks path --bin)"
+
 # vim: set ft=zsh

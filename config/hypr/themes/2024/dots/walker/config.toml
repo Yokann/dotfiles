@@ -21,7 +21,7 @@ quick_activate = ["F1", "F2", "F3", "F4"]
 
 [providers]
 default = [
-  "desktopapplications"
+  "desktopapplications", "menus:screenshots", "menus:power"
 ] # providers to be queried by default
 empty = ["desktopapplications"] # providers to be queried when query is empty
 
@@ -59,21 +59,22 @@ archlinuxpkgs = [
   { action = "remove", bind = "ctrl d" },
 ]
 
-twitch = [
-    { action = "launch", bind = "Return", default = true },
+"menus:twitch" = [
+    { action = "stream", bind = "Return", default = true, label = "Launch Stream" },
+    { action = "chat", bind = "ctrl c", label = "Open Chat" },
+    { action = "both", bind = "ctrl f", label = "Stream + Chat" },
 ]
 
-wallpaperpicker= [
-    { action = "set", bind = "Return", default = true },
+"menus:wallpaperpicker" = [
+    { action = "set", bind = "Return", default = true, label = "Set Wallpaper" },
 ]
 
-# [builtins.windows]
-# weight = 5
-# icon = "view-restore"
-# name = "windows"
-# placeholder = "Windows"
-# show_icon_when_single = true
-# prefix = "[]"
+"menus:screenshots" = [
+    { action = "view", bind = "Return", default = true, label = "View Screenshot" },
+    { action = "annotate", bind = "Return" , label = "Annotate last screenshot"},
+    { action = "toggle_screenrecord", bind = "Return", label = "Toggle Screen Recording" },
+    { action = "screenshot", bind = "Return", label = "Take Screenshot" },
+]
 
 # [builtins.translation]
 # delay = 1000
@@ -84,26 +85,6 @@ wallpaperpicker= [
 # switcher_only = true
 # provider = "googlefree"
 
-# [[plugins]]
-# name = "twitch"
-# src = "node ~/.dotfiles/config/hypr/themes/2024/dots/walker/scripts/twitch.cjs"
-# placeholder = "Select a live stream"
-# show_sub_when_single = true
-# show_icon_when_single = true
-# switcher_only = true
-# parser = "json"
-#
-# [[plugins]]
-# name = "wallpaper"
-# src = "node ~/.dotfiles/config/hypr/themes/2024/dots/walker/scripts/wallpaper.cjs"
-# placeholder = "Select a wallpaper"
-# show_sub_when_single = false
-# show_icon_when_single = true
-# switcher_only = true
-# theme = "catppucin-image-only"
-# theme_base = "catppucin"
-# parser = "json"
-#
 # [[plugins]]
 # name = "aiprompts"
 # src = "node ~/.dotfiles/config/hypr/themes/2024/dots/walker/scripts/aiprompts.cjs"

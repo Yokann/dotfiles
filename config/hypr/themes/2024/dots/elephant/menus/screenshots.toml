@@ -3,22 +3,27 @@ name_pretty = "Screenshots"
 icon = "camera-photo"
 global_search = true
 
-# [[entries]]
-# text = "View"
-# action = "vimiv ~/Pictures/"
-#
-# [[entries]]
-# text = "Annotate"
-# action = "wl-paste | satty -f -"
+[[entries]]
+keywords = ["screen"]
+text = "View"
+actions = { view = "nomacs ~/Images" }
 
 [[entries]]
+keywords = ["screen","annotate"]
+text = "Annotate"
+actions = { annotate = "wl-paste | swappy -f -" }
+
+[[entries]]
+keywords = ["screen","record"]
 text = "Toggle Record"
-action = "recorder"
+actions = { toggle_screenrecord = "recorder" }
 
 [[entries]]
+keywords = ["screen", "shot"]
 text = "Screenshot Region"
-action = "hyprshot -m region"
+actions = { screenshot = "hyprshot -m region" }
 
 [[entries]]
+keywords = ["screen", "shot"]
 text = "Screenshot Window"
-action = "hyprshot -m window"
+actions = { screenshot = "hyprshot -m window" }

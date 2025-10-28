@@ -2,17 +2,16 @@
 yay -S --noconfirm --norebuild --needed \
     wofi \
     elephant-bin \
-    elephant-clipboard-bin \
-    elephant-menus-bin \
-    elephant-runner-bin \
-    elephant-desktopapplications-bin \
-    elephant-symbols-bin \
-    elephant-unicode-bin \
-    elephant-websearch-bin \
     elephant-archlinuxpkgs-bin \
+    elephant-clipboard-bin \
+    elephant-desktopapplications-bin \
+    elephant-menus-bin \
     elephant-providerlist-bin \
-    elephant-bluetooth-bin \
-    walker \
+    elephant-runner-bin \
+    elephant-symbols-bin \
+    elephant-websearch-bin \
+    elephant-windows-bin \
+    walker-bin \
     swappy \
     wf-recorder \
     swaync-git \
@@ -31,5 +30,5 @@ yay -S --noconfirm --norebuild --needed \
 # Themes
 # Install GTK themes https://github.com/Fausto-Korpsvart/Catppuccin-GTK-Theme
 yay -S --noconfirm --norebuild --needed \
-    gnome-theme-extra sassc murrine-engine
+    gnome-theme-extra sassc murrine-engine gtk-engine-murrine
 

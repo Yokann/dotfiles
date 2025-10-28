@@ -61,8 +61,9 @@ yay -S --noconfirm --norebuild --needed \
     gum \
     lazygit \
     less \
-    localsend \
+    localsend-bin \
     liboauth \
+    lua luarocks \
     mise \
     nemo \
     neovim \
@@ -74,7 +75,6 @@ yay -S --noconfirm --norebuild --needed \
     playerctl \
     polkit-gnome \
     poppler \
-    power-profiles-daemon \
     qt5-wayland  qt6-wayland \
     qt5ct hyprqt6engine \
     rclone \

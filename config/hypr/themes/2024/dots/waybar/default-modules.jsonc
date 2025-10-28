@@ -176,7 +176,7 @@
     "custom/twitch": {
         "format": "",
         "tooltip": false,
-        "on-click": "walker -m twitch"
+        "on-click": "walker -m menus:twitch"
     },
     // Custom Pomodoro module install `cargo install pomodoro-cli`
     "custom/pomo": {
