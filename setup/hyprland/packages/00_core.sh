@@ -69,9 +69,11 @@ yay -S --noconfirm --norebuild --needed \
     nemo \
     neovim \
     network-manager-applet \
+    netcat \
     nomacs \
     notion-app-electron \
     nwg-look \
+    pandoc \
     pipewire wireplumber \
     playerctl \
     polkit-gnome \
@@ -82,11 +84,13 @@ yay -S --noconfirm --norebuild --needed \
     ripgrep \
     seahorse \
     signal-desktop \
+    slides \
     socat \
     starship \
     sqlite \
     sworkstyle \
     ticktick \
+    tcpdump \
     ufw \
     ufw-docker \
     uwsm \
