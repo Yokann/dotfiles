@@ -2,12 +2,12 @@
 xdg-mime default nemo.desktop inode/directory
 
 # Image viewer
-xdg-mime default imv.desktop image/png
-xdg-mime default imv.desktop image/jpeg
-xdg-mime default imv.desktop image/gif
-xdg-mime default imv.desktop image/webp
-xdg-mime default imv.desktop image/bmp
-xdg-mime default imv.desktop image/tiff
+xdg-mime default nomacs.desktop image/png
+xdg-mime default nomacs.desktop image/jpeg
+xdg-mime default nomacs.desktop image/gif
+xdg-mime default nomacs.desktop image/webp
+xdg-mime default nomacs.desktop image/bmp
+xdg-mime default nomacs.desktop image/tiff
 
 # Default text editor
 xdg-mime default nvim.desktop text/plain

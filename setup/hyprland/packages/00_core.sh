@@ -69,7 +69,7 @@ yay -S --noconfirm --norebuild --needed \
     nemo \
     neovim \
     network-manager-applet \
-    netcat \
+    gnu-netcat \
     nomacs \
     notion-app-electron \
     nwg-look \
