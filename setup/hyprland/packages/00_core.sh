@@ -18,6 +18,7 @@ yay -S --noconfirm --norebuild --needed \
     1password \
     1password-cli \
     avahi \
+    bat \
     bluetuith bluez-obex \
     brightnessctl \
     btop \

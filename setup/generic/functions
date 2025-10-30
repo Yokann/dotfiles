@@ -27,7 +27,7 @@ install_dependencies () {
         $PACKAGE_INSTALLER ttf-fira-code libtree-bin
     fi
 
-    $PACKAGE_INSTALLER fzf btop starship tmux ripgrep git-delta lazygit xclip zoxide fd gum eza httpie
+    $PACKAGE_INSTALLER fzf btop starship tmux ripgrep git-delta lazygit xclip zoxide fd gum eza httpie bat
     source $DOTFILES_PATH/setup/generic/config/starship.sh
     source $DOTFILES_PATH/setup/generic/config/btop.sh
 }
