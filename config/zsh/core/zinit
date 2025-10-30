@@ -49,14 +49,15 @@ zinit light joshskidmore/zsh-fzf-history-search
 zinit wait lucid for \
       OMZL::git.zsh \
       OMZL::clipboard.zsh \
+      OMZP::archlinux \
+      OMZP::colored-man-pages \
+      OMZP::extract \
     atload"
       if (( \$+commands[aws_completer] )); then
         complete -C aws_completer aws
       fi
       " \
       OMZP::aws \
-      OMZP::archlinux \
-      OMZP::colored-man-pages \
    blockf \
       OMZP::docker-compose \
       OMZP::kubectl \
