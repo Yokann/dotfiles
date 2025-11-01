@@ -71,7 +71,6 @@ yay -S --noconfirm --norebuild --needed \
     network-manager-applet \
     gnu-netcat \
     nomacs \
-    notion-app-electron \
     nwg-look \
     pipewire wireplumber \
     playerctl \
@@ -95,6 +94,7 @@ yay -S --noconfirm --norebuild --needed \
     waybar \
     wdisplays \
     wev \
+    wget \
     xdg-desktop-portal-hyprland \
     yazi \
     zoxide
