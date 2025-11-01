@@ -73,7 +73,6 @@ yay -S --noconfirm --norebuild --needed \
     nomacs \
     notion-app-electron \
     nwg-look \
-    pandoc \
     pipewire wireplumber \
     playerctl \
     polkit-gnome \
@@ -84,7 +83,6 @@ yay -S --noconfirm --norebuild --needed \
     ripgrep \
     seahorse \
     signal-desktop \
-    slides \
     socat \
     starship \
     sqlite \
