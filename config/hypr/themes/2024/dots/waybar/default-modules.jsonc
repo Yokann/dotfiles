@@ -113,7 +113,7 @@
     },
     "custom/launcher": {
         "format": " ",
-        "on-click": "walker -m applications",
+        "on-click": "walker -m desktopapplications",
         "tooltip": false
     },
     "custom/updates": {
