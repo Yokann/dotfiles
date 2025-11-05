@@ -4,7 +4,7 @@ local set = vim.keymap.set
 set("n", "<M-j>", "<Cmd>:bn<CR>", { desc = "Next buffer", noremap = true })
 set("n", "<M-k>", "<Cmd>:bp<CR>", { desc = "Previous buffer", noremap = true })
 set("n", "<M-d>", "<Cmd>:bd<CR>", { desc = "Close buffer", noremap = true })
-set("n", "<leader>bd", "<Cmd>:%bd!<CR>", { desc = "Close all buffer", noremap = true })
+set("n", "<M-D>", "<Cmd>:%bd!<CR>", { desc = "Close all buffer", noremap = true })
 set("n", "<C-s>", "<Cmd>:w<CR>", { desc = "Save buffer", noremap = true })
 
 -- Move block selection up and down
@@ -22,7 +22,7 @@ set("v", "<Tab>", ">gv", { desc = "Indent line" })
 -- set({ "n", "v" }, "<leader>d", [["_d]])
 
 -- paste 0 buffer register
-set("x", "<leader>p", "\"0p")
+set("x", "<leader>p", '"0p')
 
 set("n", "Q", "<nop>") -- don't binding anything on this key
 set("i", "kj", "<Esc>")

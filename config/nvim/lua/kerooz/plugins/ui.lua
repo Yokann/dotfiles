@@ -84,13 +84,13 @@ return {
             -- optionally use on_attach to set keymaps when aerial has attached to a buffer
             on_attach = function(bufnr)
                 -- Jump forwards/backwards with '{' and '}'
-                vim.keymap.set('n', '{', '<cmd>AerialPrev<CR>', { buffer = bufnr })
-                vim.keymap.set('n', '}', '<cmd>AerialNext<CR>', { buffer = bufnr })
-            end
+                vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
+                vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
+            end,
         },
         keys = {
-            { '<leader>te', '<cmd>AerialToggle!<CR>', desc = "Toggle Aerial" }
-        }
+            { "<leader>o", "<cmd>AerialToggle!<CR>", desc = "Toggle Aerial" },
+        },
     },
 
     -- Nvim Tree
@@ -107,24 +107,24 @@ return {
         opts = {
             actions = {
                 open_file = {
-                    quit_on_open = true
-                }
+                    quit_on_open = true,
+                },
             },
             update_focused_file = {
                 enable = true,
             },
             disable_netrw = true,
             diagnostics = {
-                enable = true
+                enable = true,
             },
             git = {
                 enable = true,
-                timeout = 400 -- (in ms)
+                timeout = 400, -- (in ms)
             },
             filters = {
                 git_ignored = false,
                 dotfiles = false,
-                custom = { "^.git$", ".idea" }
+                custom = { "^.git$", ".idea" },
             },
             view = {
                 side = "right",
@@ -134,7 +134,7 @@ return {
                         border = "single",
                         height = 60,
                         width = 50,
-                    }
+                    },
                 },
             },
             trash = {
@@ -142,10 +142,10 @@ return {
                 require_confirm = true,
             },
             renderer = {
-                highlight_git = true
+                highlight_git = true,
             },
             on_attach = function(bufnr)
-                local api = require('nvim-tree.api')
+                local api = require("nvim-tree.api")
 
                 -- Important: When you supply an `on_attach` function, nvim-tree won't
                 -- automatically set up the default keymaps. To set up the default keymaps,
@@ -153,48 +153,54 @@ return {
                 api.config.mappings.default_on_attach(bufnr)
 
                 local function opts(desc)
-                    return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+                    return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
                 end
 
-                local preview = require('nvim-tree-preview')
+                local preview = require("nvim-tree-preview")
 
                 -- vim.keymap.set('n', 'P', preview.watch, opts 'Preview (Watch)')
-                vim.keymap.set('n', '<Esc>', preview.unwatch, opts 'Close Preview/Unwatch')
-                vim.keymap.set('n', '<C-f>', function() return preview.scroll(4) end, opts 'Scroll Down')
-                vim.keymap.set('n', '<C-b>', function() return preview.scroll(-4) end, opts 'Scroll Up')
-                vim.keymap.set('n', '<Tab>', function()
+                vim.keymap.set("n", "<Esc>", preview.unwatch, opts("Close Preview/Unwatch"))
+                vim.keymap.set("n", "<C-f>", function()
+                    return preview.scroll(4)
+                end, opts("Scroll Down"))
+                vim.keymap.set("n", "<C-b>", function()
+                    return preview.scroll(-4)
+                end, opts("Scroll Up"))
+                vim.keymap.set("n", "<Tab>", function()
                     local ok, node = pcall(api.tree.get_node_under_cursor)
                     if ok and node then
-                        if node.type == 'directory' then
+                        if node.type == "directory" then
                             api.node.open.edit()
                         else
                             preview.watch()
                             -- preview.node(node, { toggle_focus = true })
                         end
                     end
-                end, opts 'Preview')
-            end
+                end, opts("Preview"))
+            end,
         },
         keys = {
             {
-                "<leader>tt",
-                function() require('nvim-tree.api').tree.toggle(false, false) end,
-                desc =
-                "[T]oggle Nvim[T]ree"
-            },
-            { "<leader>tr", function() require('nvim-tree.api').tree.focus() end, desc = "Focus Nvim[T][R]ee" },
-            { "<leader>dgg",
+                "<leader>t",
                 function()
-                    local node = require('nvim-tree.api').tree.get_node_under_cursor()
-                    if node.type == 'directory' then
-                        require('kerooz.lib.telescope.pickers').prettyGrepPicker({
-                            picker = 'live_grep',
-                            options = { cwd = node.absolute_path, debounce = 100 }
+                    require("nvim-tree.api").tree.toggle(false, false)
+                end,
+                desc = "Toggle NvimTree",
+            },
+            -- { "<leader>tr", function() require('nvim-tree.api').tree.focus() end, desc = "Focus Nvim[T][R]ee" },
+            {
+                "<leader>dgg",
+                function()
+                    local node = require("nvim-tree.api").tree.get_node_under_cursor()
+                    if node.type == "directory" then
+                        require("kerooz.lib.telescope.pickers").prettyGrepPicker({
+                            picker = "live_grep",
+                            options = { cwd = node.absolute_path, debounce = 100 },
                         })
                     end
-                end
-            }
-        }
+                end,
+            },
+        },
     },
 
     {
@@ -215,21 +221,18 @@ return {
                     mini = true,
                     telescope = {
                         enabled = true,
-                    }
+                    },
                 },
                 compile = {
                     enabled = true,
                     path = vim.fn.stdpath("cache") .. "/catppuccin",
                 },
             })
-            local palette = require('catppuccin.palettes').get_palette()
+            local palette = require("catppuccin.palettes").get_palette()
 
             local function lspSymbol(name, icon, color)
                 local signName = "DiagnosticSign" .. name
-                vim.fn.sign_define(
-                    signName,
-                    { text = icon, texthl = signName, numhl = signName, fg = color }
-                )
+                vim.fn.sign_define(signName, { text = icon, texthl = signName, numhl = signName, fg = color })
             end
 
             -- Change color from diagnostic icon
@@ -246,8 +249,8 @@ return {
         main = "ibl",
         lazy = false,
         config = function()
-            require('ibl').setup()
-        end
+            require("ibl").setup()
+        end,
     },
     {
         "levouh/tint.nvim", -- highlight current buffer
@@ -280,7 +283,7 @@ return {
                 end
                 return DONT_TINT
             end,
-        }
+        },
     },
 
     { -- Buffer title bar
@@ -293,25 +296,25 @@ return {
                 window = {
                     margin = {
                         horizontal = 0,
-                        vertical = 0
-                    }
+                        vertical = 0,
+                    },
                 },
                 hide = {
                     cursorline = true,
                 },
                 render = function(props)
-                    local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ':t')
-                    if filename == '' then
-                        filename = '[No Name]'
+                    local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
+                    if filename == "" then
+                        filename = "[No Name]"
                     end
                     local ft_icon, ft_color = devicons.get_icon_color(filename)
                     local modified = vim.bo[props.buf].modified
                     return {
-                        ft_icon and { ' ', ft_icon, ' ', guibg = ft_color, guifg = helpers.contrast_color(ft_color) } or
-                        '',
-                        ' ',
-                        { filename, gui = modified and 'bold,italic' or 'bold' },
-                        ' ',
+                        ft_icon and { " ", ft_icon, " ", guibg = ft_color, guifg = helpers.contrast_color(ft_color) }
+                            or "",
+                        " ",
+                        { filename, gui = modified and "bold,italic" or "bold" },
+                        " ",
                         -- guibg = '#44406e',
                     }
                 end,
@@ -319,61 +322,81 @@ return {
         end,
     },
     {
-        'NvChad/nvim-colorizer.lua',
+        "NvChad/nvim-colorizer.lua",
         lazy = false,
         ft = {
-            'html',
-            'css',
-            'javascript',
-            'typescript',
-            'typescriptreact',
-            'javascriptreact',
-            'lua',
-            'sass',
-            'scss',
-            'less',
+            "html",
+            "css",
+            "javascript",
+            "typescript",
+            "typescriptreact",
+            "javascriptreact",
+            "lua",
+            "sass",
+            "scss",
+            "less",
         },
         opts = {
             filetypes = {
-                'html',
-                'css',
-                'javascript',
-                'typescript',
-                'typescriptreact',
-                'javascriptreact',
-                'lua',
-                'sass',
-                'scss',
-                'less',
+                "html",
+                "css",
+                "javascript",
+                "typescript",
+                "typescriptreact",
+                "javascriptreact",
+                "lua",
+                "sass",
+                "scss",
+                "less",
             },
             user_default_options = {
-                mode = 'background',
+                mode = "background",
                 tailwind = true, -- Enable tailwind colors
             },
-        }
+        },
     },
     { -- run :TransparentToggle to activate bg transparency
         "xiyaowong/transparent.nvim",
         lazy = false,
         opts = {
             groups = { -- table: default groups
-                'Normal', 'NormalNC', 'Comment', 'Constant', 'Special', 'Identifier',
-                'Statement', 'PreProc', 'Type', 'Underlined', 'Todo', 'String', 'Function',
-                'Conditional', 'Repeat', 'Operator', 'Structure', 'LineNr', 'NonText',
-                'SignColumn', 'CursorLine', 'CursorLineNr', 'StatusLine', 'StatusLineNC',
-                'EndOfBuffer',
+                "Normal",
+                "NormalNC",
+                "Comment",
+                "Constant",
+                "Special",
+                "Identifier",
+                "Statement",
+                "PreProc",
+                "Type",
+                "Underlined",
+                "Todo",
+                "String",
+                "Function",
+                "Conditional",
+                "Repeat",
+                "Operator",
+                "Structure",
+                "LineNr",
+                "NonText",
+                "SignColumn",
+                "CursorLine",
+                "CursorLineNr",
+                "StatusLine",
+                "StatusLineNC",
+                "EndOfBuffer",
             },
-            extra_groups = {},   -- table: additional groups that should be cleared
+            extra_groups = {}, -- table: additional groups that should be cleared
             exclude_groups = {}, -- table: groups you don't want to clear
             on_clear = function() end,
         },
     },
     {
-        'karb94/neoscroll.nvim',
+        "karb94/neoscroll.nvim",
         lazy = false,
         opts = {
             easing_function = "sine", -- Default easing function
-        }
+        },
     },
     {
         "nvim-lualine/lualine.nvim", -- Status bar
@@ -393,10 +416,10 @@ return {
                         "diff",
                         colored = true,
                         symbols = {
-                            added    = " ",
+                            added = " ",
                             modified = " ",
-                            removed  = " "
-                        }
+                            removed = " ",
+                        },
                     },
                     -- { "diagnostics' }
                 },
@@ -405,21 +428,27 @@ return {
                     { "filename", path = 1 },
                 },
                 lualine_x = {
-                    'encoding', 'fileformat', 'filetype',
+                    "encoding",
+                    "fileformat",
+                    "filetype",
                     {
-                        function() return require("copilot_status").status_string() end,
-                        cnd = function() return require("copilot_status").enabled() end
+                        function()
+                            return require("copilot_status").status_string()
+                        end,
+                        cnd = function()
+                            return require("copilot_status").enabled()
+                        end,
                     },
-                }
+                },
             },
             tabline = {
-                lualine_a = { 'buffers' },
+                lualine_a = { "buffers" },
                 lualine_b = {},
                 lualine_c = {},
                 lualine_x = {},
                 lualine_y = {},
-                lualine_z = { 'tabs' },
+                lualine_z = { "tabs" },
             },
-        }
+        },
     },
 }
