@@ -1,0 +1,47 @@
+#!/bin/bash
+
+check_pacman_updates() {
+  pacman_updates=$(checkupdates --nocolor)
+  pacman_updates_count=$( echo "$pacman_updates" | grep -vc ^$ )
+}
+
+check_aur_updates() {
+  ignored_packages=$(pacman-conf IgnorePkg)
+  if [ -n "$ignored_packages" ]; then
+      old_aur_packages=$(pacman -Qm | grep -vF "$ignored_packages")
+  else
+      old_aur_packages=$(pacman -Qm)
+  fi
+
+  new_aur_packages=$(curl -s "https://aur.archlinux.org/rpc?v=5&type=info$(printf '&arg[]=%s' $(echo "$old_aur_packages" | cut -f1 -d' '))" |
+   jq -r '.results[] | .Name + " " + .Version' )
+
+  aur_updates=$(LC_ALL=C join <(echo "$old_aur_packages") <(echo "$new_aur_packages") |
+    while LC_ALL=C read -r pkg a b; do
+      case "$(vercmp "$a" "$b")" in
+      -1) printf "%s %s -> %s\n" "$pkg" "$a" "$b" ;;
+      esac
+    done)
+
+  aur_updates_count=$(echo "$aur_updates" | grep -vc ^$)
+}
+
+
+case $1'' in
+'status')
+    check_pacman_updates
+    check_aur_updates
+    total_updates=$((pacman_updates_count + aur_updates_count))
+    pkg_updates=$(yay -Sup | wc -l)
+    printf '{\"text\":\"%s\",\"tooltip\":\"%s updates available"}' "${total_updates}" "${total_updates}"
+    ;;
+'check')
+    check_pacman_updates
+    check_aur_updates
+    [ $((pacman_updates_count + aur_updates_count)) -gt 0 ]
+    exit $?
+    ;;
+'upgrade')
+    foot_wrapper -e yay -Syu
+    ;;
+esac

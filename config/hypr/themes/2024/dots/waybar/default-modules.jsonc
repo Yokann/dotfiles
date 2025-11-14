@@ -120,8 +120,8 @@
         "tooltip": true,
         "format": "{} 󱍷",
         "return-type": "json",
-        "exec-if": "$HYPR_CONFIG_PATH/scripts/checkupdates check",
-        "exec": "$HYPR_CONFIG_PATH/scripts/checkupdates status",
+        "exec-if": "$HYPR_CONFIG_PATH/scripts/updatechecker check",
+        "exec": "$HYPR_CONFIG_PATH/scripts/updatechecker status",
         "interval": 3600,
         "on-click": "$HYPR_CONFIG_PATH/scripts/foot_wrapper -e yay -Syu"
     },
