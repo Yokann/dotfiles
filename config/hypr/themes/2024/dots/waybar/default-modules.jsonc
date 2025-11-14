@@ -123,7 +123,7 @@
         "exec-if": "$HYPR_CONFIG_PATH/scripts/checkupdates check",
         "exec": "$HYPR_CONFIG_PATH/scripts/checkupdates status",
         "interval": 3600,
-        "on-click": "$HYPR_CONFIG_PATH/scripts/foot_wrapper -e btop"
+        "on-click": "$HYPR_CONFIG_PATH/scripts/foot_wrapper -e yay -Syu"
     },
     "hyprland/workspaces": {
         "format": "{icon}  {windows}",
