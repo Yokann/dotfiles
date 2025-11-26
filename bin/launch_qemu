@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+sudo systemctl start virtnetworkd.service virtqemud.service
