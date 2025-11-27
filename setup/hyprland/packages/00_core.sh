@@ -61,6 +61,7 @@ yay -S --noconfirm --norebuild --needed \
     gnome-calculator \
     gum \
     lazygit \
+    lazyjournal-bin \
     less \
     localsend-bin \
     liboauth \

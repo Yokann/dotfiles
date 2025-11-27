@@ -31,6 +31,7 @@ alias ranger="yazi"
 alias cdp="cdproj"
 alias sued="sudoedit"
 alias lgit="lazygit"
+alias lj="lazyjournal"
 
 # Special linux
 if [[ "$OSTYPE" == "linux"* ]]; then
