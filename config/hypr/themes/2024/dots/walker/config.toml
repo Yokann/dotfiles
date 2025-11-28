@@ -76,6 +76,11 @@ archlinuxpkgs = [
     { action = "screenshot", bind = "Return", label = "Take Screenshot" },
 ]
 
+"menus:aiprompts" = [
+    { action = "chatgpt", bind = "Return", default = true, label = "ChatGPT" },
+    { action = "copilot", bind = "shift Return", label = "Copilot" },
+]
+
 # [builtins.translation]
 # delay = 1000
 # weight = 5
