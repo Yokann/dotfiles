@@ -93,6 +93,22 @@ return {
         },
     },
 
+    {
+        "rachartier/tiny-inline-diagnostic.nvim",
+        event = "VeryLazy",
+        priority = 1000,
+        opts = {
+            options = {
+                multilines = {
+                    enabled = true,
+                },
+            },
+        },
+        init = function()
+            vim.diagnostic.config({ virtual_text = false }) -- Disable Neovim's default virtual text diagnostics
+        end,
+    },
+
     -- Nvim Tree
     {
         "nvim-tree/nvim-tree.lua",
@@ -214,7 +230,7 @@ return {
                 flavour = "macchiato", -- latte, frappe, macchiato, mocha
                 transparent_background = false,
                 integrations = {
-                    leap = true,
+                    flash = true,
                     mason = true,
                     noice = true,
                     notify = true,

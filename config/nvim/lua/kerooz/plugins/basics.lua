@@ -1,10 +1,10 @@
 return {
     "nvim-lua/plenary.nvim", -- Useful lua functions used ny lots of plugins
-    { "tpope/vim-surround",   lazy = false },
-    { "tpope/vim-repeat",     lazy = false },
+    { "tpope/vim-surround", lazy = false },
+    { "tpope/vim-repeat", lazy = false },
     { "tpope/vim-unimpaired", event = "VeryLazy" },
-    { "airblade/vim-rooter",  lazy = false }, -- load root dir at vim startup on a file
-    { "ku1ik/vim-pasta",      lazy = false }, -- Ajust indentation when pasting code
+    { "airblade/vim-rooter", lazy = false }, -- load root dir at vim startup on a file
+    { "ku1ik/vim-pasta", lazy = false }, -- Ajust indentation when pasting code
     {
         "folke/flash.nvim",
         event = "VeryLazy",
@@ -15,27 +15,29 @@ return {
                     enabled = false,
                 },
                 char = {
-                    jump_labels = true
-                }
-            }
+                    jump_labels = true,
+                },
+            },
         },
+        -- stylua: ignore start
         keys = {
             { "s",     function() require("flash").jump() end,              mode = { "n", "x", "o" }, desc = "Flash" },
             { "S",     function() require("flash").treesitter() end,        mode = { "n", "x", "o" }, desc = "Flash Treesitter" },
             { "r",     function() require("flash").remote() end,            mode = { "o" },           desc = "Remote Flash" },
             { "R",     function() require("flash").treesitter_search() end, mode = { "o", "x" },      desc = "Treesitter Search" },
             { "<c-s>", function() require("flash").toggle() end,            mode = { "c" },           desc = "Toggle Flash" }
-        }
+        },
+        -- stylua: ignore end
     },
-    { "numToStr/Comment.nvim",          lazy = false, opts = {} }, -- comment block
-    { "christoomey/vim-tmux-navigator", lazy = false },            -- use same keymap to switch pane and buffer
+    { "numToStr/Comment.nvim", lazy = false, opts = {} }, -- comment block
+    { "christoomey/vim-tmux-navigator", lazy = false }, -- use same keymap to switch pane and buffer
     {
         "pocco81/auto-save.nvim",
         enabled = false,
         lazy = false,
         keys = {
-            { '<leader>as', '<cmd>ASToggle<CR>', desc = "Toggle autosave" }
-        }
+            { "<leader>as", "<cmd>ASToggle<CR>", desc = "Toggle autosave" },
+        },
     },
     {
         "windwp/nvim-autopairs",
@@ -51,7 +53,7 @@ return {
         end,
         dependencies = {
             "hrsh7th/nvim-cmp",
-        }
+        },
     },
     {
         "rmagatti/auto-session", -- restore previous dir session
@@ -67,30 +69,32 @@ return {
                     -- close everything useless before save session
                     require("nvim-tree.api").tree.close,
                     require("aerial").close,
-                    require("kerooz.dap.init").closeUI
-                }
+                    require("kerooz.dap.init").closeUI,
+                },
             }
-        end
+        end,
     },
     {
         -- Manipulaite array string etc
-        'Wansmer/treesj',
+        "Wansmer/treesj",
+        -- stylua: ignore start
         keys = {
             { '<leader>mjt', function() require("treesj").toggle() end, desc = 'Toggle' },
             { '<leader>mjs', function() require("treesj").split() end,  desc = 'Split' },
             { '<leader>mjj', function() require("treesj").join() end,   desc = 'Join' },
         },
-        dependencies = { 'nvim-treesitter/nvim-treesitter' },
+        -- stylua: ignore end
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
         opts = {
             use_default_keymaps = false,
-        }
+        },
     },
     {
-        'MeanderingProgrammer/render-markdown.nvim',
+        "MeanderingProgrammer/render-markdown.nvim",
         ft = { "markdown", "codecompanion" },
-        dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+        dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
         ---@module 'render-markdown'
         ---@type render.md.UserConfig
         opts = {},
-    }
+    },
 }
