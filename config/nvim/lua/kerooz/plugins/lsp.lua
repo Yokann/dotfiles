@@ -19,21 +19,21 @@ return {
             require("kerooz.lib.lsp.config").configure()
 
             -- Display diagnostic on hover the line
-            vim.api.nvim_create_autocmd(
-                { "CursorHold" },
-                { command = "lua vim.diagnostic.open_float(nil, {focus=false})" }
-            )
+            -- vim.api.nvim_create_autocmd(
+            --     { "CursorHold" },
+            --     { command = "lua vim.diagnostic.open_float(nil, {focus=false})" }
+            -- )
 
             --  Floating window styles {{
             --
-            vim.diagnostic.config({
-                virtual_text = false,
-                signs = true,
-                float = {
-                    source = true,
-                    border = "rounded",
-                },
-            })
+            -- vim.diagnostic.config({
+            --     virtual_text = false,
+            --     signs = true,
+            --     float = {
+            --         source = true,
+            --         border = "rounded",
+            --     },
+            -- })
             require("lspconfig.ui.windows").default_options.border = "single"
             -- }}
         end,
@@ -43,9 +43,14 @@ return {
     },
     {
         "j-hui/fidget.nvim",
-        tag = "legacy",
         event = "LspAttach",
-        opts = {},
+        opts = {
+            notification = {
+                window = {
+                    winblend = 0,
+                },
+            },
+        },
     }, --loader for lsp
     {
         "towolf/vim-helm",

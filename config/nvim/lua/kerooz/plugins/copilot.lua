@@ -11,21 +11,21 @@ return {
                 auto_trigger = true,
                 hide_during_completion = true,
                 keymap = {
-                    accept = '<M-l>',
-                    accept_word = '<M-i>',
-                    accept_line = '<M-o>',
-                    next = '<M-j>',
-                    prev = '<M-k>',
-                    dismiss = '<M-h>',
+                    accept = "<M-l>",
+                    accept_word = "<M-i>",
+                    accept_line = "<M-o>",
+                    next = "<M-j>",
+                    prev = "<M-k>",
+                    dismiss = "<M-h>",
                 },
-            }
+            },
         },
         config = function(_, opts)
-            local cmp = require 'cmp'
-            local copilot = require 'copilot.suggestion'
-            local luasnip = require 'luasnip'
+            local cmp = require("cmp")
+            local copilot = require("copilot.suggestion")
+            local luasnip = require("luasnip")
 
-            require('copilot').setup(opts)
+            require("copilot").setup(opts)
 
             local function set_trigger(trigger)
                 vim.b.copilot_suggestion_auto_trigger = trigger
@@ -33,7 +33,7 @@ return {
             end
 
             -- Hide the completion when menu is open.
-            cmp.event:on('menu_opened', function()
+            cmp.event:on("menu_opened", function()
                 if copilot.is_visible() then
                     copilot.dismiss()
                 end
@@ -50,12 +50,12 @@ return {
             -- end, { desc = "Super Tab" })
 
             -- Disable when snippet.
-            cmp.event:on('menu_closed', function()
+            cmp.event:on("menu_closed", function()
                 set_trigger(not luasnip.expand_or_locally_jumpable())
             end)
 
-            vim.api.nvim_create_autocmd('User', {
-                pattern = { 'LuasnipInsertNodeEnter', 'LuasnipInsertNodeLeave' },
+            vim.api.nvim_create_autocmd("User", {
+                pattern = { "LuasnipInsertNodeEnter", "LuasnipInsertNodeLeave" },
                 callback = function()
                     set_trigger(not luasnip.expand_or_locally_jumpable())
                 end,
@@ -75,12 +75,13 @@ return {
                 loading = " ",
             },
             debug = false,
-        }
+        },
     },
     {
         "olimorris/codecompanion.nvim",
         event = "VeryLazy",
         dependencies = {
+            "j-hui/fidget.nvim",
             "nvim-lua/plenary.nvim",
             "nvim-treesitter/nvim-treesitter",
         },
@@ -89,10 +90,15 @@ return {
                 log_level = "DEBUG",
             },
         },
+        init = function()
+            require("kerooz.lib.codecompanion.fidget-spinner").init()
+        end,
+        -- stylua: ignore start
         keys = {
             -- Show prompts actions with telescope
             { "<leader>ct", "<cmd>CodeCompanionChat<CR>",    mode = "n",          desc = "CodeCompanionChat - Toggle" },
             { "<leader>cp", "<cmd>CodeCompanionActions<CR>", mode = { "n", "v" }, desc = "CodeCompanionChat - Prompt actions" },
-        }
-    }
+        },
+        -- stylua: ignore end
+    },
 }
