@@ -1,6 +1,5 @@
 local M = {}
 
-local builtin = require("telescope.builtin")
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local capabilities = cmp_nvim_lsp.default_capabilities()
 local lsp_flags = {
@@ -12,14 +11,15 @@ local lsp_flags = {
 M.configure = function()
     vim.lsp.config("*", {
         on_attach = function(client, bufnr)
-            vim.keymap.set("n", "gd", function() builtin.lsp_definitions() end, { desc = "[G]o [D]efinition" })
-            vim.keymap.set("n", "gtd", function() builtin.lsp_type_definitions() end,
+            vim.keymap.set("n", "gd", function() Snacks.picker.lsp_definitions() end, { desc = "[G]o [D]efinition" })
+            vim.keymap.set("n", "gtd", function() Snacks.picker.lsp_type_definitions() end,
                 { desc = "[G]o [T]ype [D]efinition" })
-            vim.keymap.set("n", "gr", function() builtin.lsp_references() end, { desc = "[G]oto [R]eferences" })
-            vim.keymap.set("n", "<leader>s", function() builtin.lsp_document_symbols() end, { desc = "[F]ind [S]ymbols" })
-            vim.keymap.set("n", "<leader>ws", function() builtin.lsp_workspace_symbols() end,
+            vim.keymap.set("n", "gr", function() Snacks.picker.lsp_references() end, { desc = "[G]oto [R]eferences" })
+            vim.keymap.set("n", "<leader>s", function() Snacks.picker.lsp_symbols() end, { desc = "[F]ind [S]ymbols" })
+            vim.keymap.set("n", "<leader>ws", function() Snacks.picker.lsp_workspace_symbols() end,
                 { desc = "[F]ind [W]orkspace [S]ymbols" })
-            vim.keymap.set("n", "gi", function() builtin.lsp_implementations() end, { desc = "[G]o [I]mplemention" })
+            vim.keymap.set("n", "gi", function() Snacks.picker.lsp_implementations() end,
+                { desc = "[G]o [I]mplemention" })
             -- vim.keymap.set("n", "fmt", function() vim.lsp.buf.format({ async = true }) end, { desc = "[F]or[M]a[T]" })
             vim.keymap.set("n", "K", function() vim.lsp.buf.hover({ border = "rounded" }) end)
             vim.keymap.set("n", "]d", function() vim.diagnostic.jump({ count = 1 }) end,

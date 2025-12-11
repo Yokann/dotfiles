@@ -3,7 +3,7 @@ return {
         "nvim-treesitter/nvim-treesitter",
         lazy = false,
         build = function()
-            local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+            local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
             ts_update()
         end,
         dependencies = {
@@ -20,6 +20,9 @@ return {
             local configs = require("nvim-treesitter.configs")
 
             configs.setup({
+                modules = {},
+                ignore_install = {},
+                auto_install = false,
                 sync_install = false,
                 ensure_installed = {
                     "bash",
@@ -69,6 +72,6 @@ return {
             require("ts_context_commentstring").setup({
                 enable_autocmd = true,
             })
-        end
+        end,
     },
 }

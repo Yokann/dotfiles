@@ -68,9 +68,9 @@ return {
                 -- pattern = [[\b(KEYWORDS)\b]], -- match without the extra colon. You'll likely get false positives
             },
         },
-        keys = {
-            { "<leader>e", "<cmd>TodoTelescope<cr>", desc = "Find Todos", silent = true },
-        },
+        -- keys = {
+        --     { "<leader>e", "<cmd>TodoTelescope<cr>", desc = "Find Todos", silent = true },
+        -- },
     },
     {
         "iamcco/markdown-preview.nvim",
