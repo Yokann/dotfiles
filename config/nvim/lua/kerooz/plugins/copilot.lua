@@ -96,8 +96,20 @@ return {
         -- stylua: ignore start
         keys = {
             -- Show prompts actions with telescope
-            { "<leader>ct", "<cmd>CodeCompanionChat<CR>",    mode = "n",          desc = "CodeCompanionChat - Toggle" },
-            { "<leader>cp", "<cmd>CodeCompanionActions<CR>", mode = { "n", "v" }, desc = "CodeCompanionChat - Prompt actions" },
+            { "<leader>ct", "<cmd>CodeCompanionChat<CR>", mode = "n", desc = "CodeCompanionChat - Toggle" },
+            {
+                "<leader>cp",
+                function()
+                    require("codecompanion").actions({
+                        provider = {
+                            name = "snacks",
+                            -- opts = require("kerooz.lib.telescope.helper").get_dropdown(15, 0.5, false)
+                        }
+                    })
+                end,
+                mode = { "n", "v" },
+                desc = "CodeCompanionChat - Prompt actions"
+            },
         },
         -- stylua: ignore end
     },

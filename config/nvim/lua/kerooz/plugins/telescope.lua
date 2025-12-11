@@ -40,16 +40,7 @@ return {
                     -- the default case_mode is "smart_case"
                 },
                 ["ui-select"] = {
-                    require("telescope.themes").get_dropdown({
-                        layout_strategy = "vertical",
-                        layout_config = {
-                            prompt_position = "bottom",
-                            vertical = {
-                                width = 0.5,
-                                height = 20,
-                            },
-                        },
-                    }),
+                    require("kerooz.lib.telescope.helper").get_dropdown(0.5, 20, true),
                 },
             },
             pickers = {
