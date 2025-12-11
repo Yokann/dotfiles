@@ -123,7 +123,7 @@ return {
             require("incline").setup({
                 window = {
                     margin = {
-                            horizontal = 0,
+                        horizontal = 0,
                         vertical = 0,
                     },
                 },
@@ -139,7 +139,7 @@ return {
                     local modified = vim.bo[props.buf].modified
                     return {
                         ft_icon and { " ", ft_icon, " ", guibg = ft_color, guifg = helpers.contrast_color(ft_color) }
-                        or "",
+                            or "",
                         " ",
                         { filename, gui = modified and "bold,italic" or "bold" },
                         " ",
@@ -213,7 +213,7 @@ return {
                 "StatusLineNC",
                 "EndOfBuffer",
             },
-            extra_groups = {},   -- table: additional groups that should be cleared
+            extra_groups = {}, -- table: additional groups that should be cleared
             exclude_groups = {}, -- table: groups you don't want to clear
             on_clear = function() end,
         },

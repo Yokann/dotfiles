@@ -1,12 +1,20 @@
 return {
     "folke/snacks.nvim",
-    priority = 1000,
+    priority = 500,
     lazy = false,
     ---@type snacks.Config
     opts = {
-        picker = {},
+        picker = {
+            sources = {
+                explorer = { hidden = true, ignored = false },
+            },
+            previewers = {
+                cmd = { "delta" },
+            },
+        },
         explorer = {},
         lazygit = {},
+        bigfile = {},
         dashboard = {
             sections = {
                 { section = "header" },
@@ -36,8 +44,8 @@ return {
                 },
                 { section = "startup" },
             },
-           preset = {
-               header = [[
+            preset = {
+                header = [[
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣿⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⣿⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -51,27 +59,27 @@ return {
 ⠀⠀⠀⣴⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣷⣦⡀⠀⠀⠀
 ⠀⢀⣾⣿⣿⠿⠟⠛⠋⠉⠉⠀⠀⠀⠀⠀⠀⠉⠉⠙⠛⠻⠿⣿⣿⣷⡀⠀
 ⣠⠟⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠻⣄
-           ]]
-           }
-        }
+           ]],
+            },
+        },
     },
     -- stylua: ignore start
     keys = {
-        { "<leader><space>", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
-        { "<leader>f", function() Snacks.picker.files() end, desc = "Find Files" },
-        { "<leader>b", function() Snacks.picker.buffers() end, desc = "Find Buffers" },
-        { "<leader>h", function() Snacks.picker.help() end, desc = "Find Help" },
-        { "<leader>k", function() Snacks.picker.keymaps() end, desc = "Find Keymaps" },
-        { "<leader>d", function() Snacks.picker.diagnostics() end, desc = "Find Diagnostics" },
-        { "<leader>gco", function() Snacks.picker.git_branches() end, desc = "Git Checkout Branch" },
-        { "<leader>ghco", function() Snacks.picker.gh_pr() end, desc = "Github Checkout PR" },
-        { "<leader>gg", function() Snacks.picker.grep() end, desc = "Live Grep" },
+        { "<leader><space>", function() Snacks.picker.smart() end,           desc = "Smart Find Files" },
+        { "<leader>f",       function() Snacks.picker.files() end,           desc = "Find Files" },
+        { "<leader>b",       function() Snacks.picker.buffers() end,         desc = "Find Buffers" },
+        { "<leader>h",       function() Snacks.picker.help() end,            desc = "Find Help" },
+        { "<leader>k",       function() Snacks.picker.keymaps() end,         desc = "Find Keymaps" },
+        { "<leader>d",       function() Snacks.picker.diagnostics() end,     desc = "Find Diagnostics" },
+        { "<leader>gco",     function() Snacks.picker.git_branches() end,    desc = "Git Checkout Branch" },
+        { "<leader>ghco",    function() Snacks.picker.gh_pr() end,           desc = "Github Checkout PR" },
+        { "<leader>gg",      function() Snacks.picker.grep() end,            desc = "Live Grep" },
         -- { "<leader>n", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Neovim config" },
-        { "<leader>u", function() Snacks.picker.resume() end, desc = "Resume" },
-        { "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
-        { "<leader>t", function() Snacks.explorer() end, desc = "Open File Explorer" },
-        { "<leader>e", function() Snacks.picker.todo_comments() end, desc = "Find Todos" },
-        { "<leader>git", function() Snacks.lazygit() end, desc = "Open LazyGit" },
+        { "<leader>u",       function() Snacks.picker.resume() end,          desc = "Resume" },
+        { "<leader>:",       function() Snacks.picker.command_history() end, desc = "Command History" },
+        { "<leader>t",       function() Snacks.explorer() end,               desc = "Open File Explorer" },
+        { "<leader>e",       function() Snacks.picker.todo_comments() end,   desc = "Find Todos" },
+        { "<leader>git",     function() Snacks.lazygit() end,                desc = "Open LazyGit" },
     },
     -- stylue: ignore end
 }
