@@ -1,82 +1,4 @@
 return {
-    {
-        "goolord/alpha-nvim",
-        event = "VimEnter",
-        enabled = true,
-        init = false,
-        opts = function()
-            local dashboard = require("alpha.themes.dashboard")
-            local logo = [[
-        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣿⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⣿⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢿⣿⣿⣿⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣷⣤⣙⢻⣿⣿⣿⣿⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-        ⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡀⠀⠀⠀⠀⠀⠀⠀⠀
-        ⠀⠀⠀⠀⠀⠀⠀⢠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡄⠀⠀⠀⠀⠀⠀⠀
-        ⠀⠀⠀⠀⠀⠀⢠⣿⣿⣿⣿⣿⡿⠛⠛⠿⣿⣿⣿⣿⣿⡄⠀⠀⠀⠀⠀⠀
-        ⠀⠀⠀⠀⠀⢠⣿⣿⣿⣿⣿⠏⠀⠀⠀⠀⠙⣿⣿⣿⣿⣿⡄⠀⠀⠀⠀⠀
-        ⠀⠀⠀⠀⣰⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⢿⣿⣿⣿⣿⠿⣆⠀⠀⠀⠀
-        ⠀⠀⠀⣴⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣷⣦⡀⠀⠀⠀
-        ⠀⢀⣾⣿⣿⠿⠟⠛⠋⠉⠉⠀⠀⠀⠀⠀⠀⠉⠉⠙⠛⠻⠿⣿⣿⣷⡀⠀
-        ⣠⠟⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠻⣄
-    ]]
-
-            dashboard.section.header.val = vim.split(logo, "\n")
-            -- stylua: ignore
-            dashboard.section.buttons.val = {
-                dashboard.button("f", " " .. " Find file", "<cmd> Telescope find_files <cr>"),
-                dashboard.button("n", " " .. " New file", "<cmd> ene <BAR> startinsert <cr>"),
-                dashboard.button("r", " " .. " Recent files", "<cmd> Telescope oldfiles <cr>"),
-                dashboard.button("g", " " .. " Find text", "<cmd> Telescope live_grep <cr>"),
-                dashboard.button("s", " " .. " Restore Session", [[<cmd>AutoSession restore<cr>]]),
-                dashboard.button("l", "󰒲 " .. " Lazy", "<cmd> Lazy <cr>"),
-                dashboard.button("q", " " .. " Quit", "<cmd> qa <cr>"),
-            }
-            for _, button in ipairs(dashboard.section.buttons.val) do
-                button.opts.hl = "AlphaButtons"
-                button.opts.hl_shortcut = "AlphaShortcut"
-            end
-            dashboard.section.header.opts.hl = "AlphaHeader"
-            dashboard.section.buttons.opts.hl = "AlphaButtons"
-            dashboard.section.footer.opts.hl = "AlphaFooter"
-            dashboard.opts.layout[1].val = 8
-            return dashboard
-        end,
-        config = function(_, dashboard)
-            local lazy = require("lazy")
-            -- close Lazy and re-open when the dashboard is ready
-            if vim.o.filetype == "lazy" then
-                vim.cmd.close()
-                vim.api.nvim_create_autocmd("User", {
-                    once = true,
-                    pattern = "AlphaReady",
-                    callback = function()
-                        lazy.show()
-                    end,
-                })
-            end
-
-            require("alpha").setup(dashboard.opts)
-
-            vim.api.nvim_create_autocmd("User", {
-                once = true,
-                pattern = "LazyVimStarted",
-                callback = function()
-                    local stats = lazy.stats()
-                    local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-                    dashboard.section.footer.val = "⚡ Neovim loaded "
-                        .. stats.loaded
-                        .. "/"
-                        .. stats.count
-                        .. " plugins in "
-                        .. ms
-                        .. "ms"
-                    pcall(vim.cmd.AlphaRedraw)
-                end,
-            })
-        end,
-    },
     -- Aerial
     {
         "stevearc/aerial.nvim", -- move inside code by symbols
@@ -107,116 +29,6 @@ return {
         init = function()
             vim.diagnostic.config({ virtual_text = false }) -- Disable Neovim's default virtual text diagnostics
         end,
-    },
-
-    -- Nvim Tree
-    {
-        "nvim-tree/nvim-tree.lua",
-        dependencies = {
-            "nvim-tree/nvim-web-devicons", -- optional, for file icons
-            "b0o/nvim-tree-preview.lua",
-        },
-        init = function()
-            vim.g.loaded_netrw = 1
-            vim.g.loaded_netrwPlugin = 1
-        end,
-        opts = {
-            actions = {
-                open_file = {
-                    quit_on_open = true,
-                },
-            },
-            update_focused_file = {
-                enable = true,
-            },
-            disable_netrw = true,
-            diagnostics = {
-                enable = true,
-            },
-            git = {
-                enable = true,
-                timeout = 400, -- (in ms)
-            },
-            filters = {
-                git_ignored = false,
-                dotfiles = false,
-                custom = { "^.git$", ".idea" },
-            },
-            view = {
-                side = "right",
-                float = {
-                    enable = true,
-                    open_win_config = {
-                        border = "single",
-                        height = 60,
-                        width = 50,
-                    },
-                },
-            },
-            trash = {
-                cmd = "trash",
-                require_confirm = true,
-            },
-            renderer = {
-                highlight_git = true,
-            },
-            on_attach = function(bufnr)
-                local api = require("nvim-tree.api")
-
-                -- Important: When you supply an `on_attach` function, nvim-tree won't
-                -- automatically set up the default keymaps. To set up the default keymaps,
-                -- call the `default_on_attach` function. See `:help nvim-tree-quickstart-custom-mappings`.
-                api.config.mappings.default_on_attach(bufnr)
-
-                local function opts(desc)
-                    return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
-                end
-
-                local preview = require("nvim-tree-preview")
-
-                -- vim.keymap.set('n', 'P', preview.watch, opts 'Preview (Watch)')
-                vim.keymap.set("n", "<Esc>", preview.unwatch, opts("Close Preview/Unwatch"))
-                vim.keymap.set("n", "<C-f>", function()
-                    return preview.scroll(4)
-                end, opts("Scroll Down"))
-                vim.keymap.set("n", "<C-b>", function()
-                    return preview.scroll(-4)
-                end, opts("Scroll Up"))
-                vim.keymap.set("n", "<Tab>", function()
-                    local ok, node = pcall(api.tree.get_node_under_cursor)
-                    if ok and node then
-                        if node.type == "directory" then
-                            api.node.open.edit()
-                        else
-                            preview.watch()
-                            -- preview.node(node, { toggle_focus = true })
-                        end
-                    end
-                end, opts("Preview"))
-            end,
-        },
-        keys = {
-            {
-                "<leader>t",
-                function()
-                    require("nvim-tree.api").tree.toggle(false, false)
-                end,
-                desc = "Toggle NvimTree",
-            },
-            -- { "<leader>tr", function() require('nvim-tree.api').tree.focus() end, desc = "Focus Nvim[T][R]ee" },
-            {
-                "<leader>dgg",
-                function()
-                    local node = require("nvim-tree.api").tree.get_node_under_cursor()
-                    if node.type == "directory" then
-                        require("kerooz.lib.telescope.pickers").prettyGrepPicker({
-                            picker = "live_grep",
-                            options = { cwd = node.absolute_path, debounce = 100 },
-                        })
-                    end
-                end,
-            },
-        },
     },
 
     {
@@ -311,7 +123,7 @@ return {
             require("incline").setup({
                 window = {
                     margin = {
-                        horizontal = 0,
+                            horizontal = 0,
                         vertical = 0,
                     },
                 },
@@ -327,7 +139,7 @@ return {
                     local modified = vim.bo[props.buf].modified
                     return {
                         ft_icon and { " ", ft_icon, " ", guibg = ft_color, guifg = helpers.contrast_color(ft_color) }
-                            or "",
+                        or "",
                         " ",
                         { filename, gui = modified and "bold,italic" or "bold" },
                         " ",
@@ -375,8 +187,7 @@ return {
         "xiyaowong/transparent.nvim",
         lazy = false,
         opts = {
-            groups = { -- table: default groups
-                "Normal",
+            groups = { -- table: default group                "Normal",
                 "NormalNC",
                 "Comment",
                 "Constant",
@@ -402,7 +213,7 @@ return {
                 "StatusLineNC",
                 "EndOfBuffer",
             },
-            extra_groups = {}, -- table: additional groups that should be cleared
+            extra_groups = {},   -- table: additional groups that should be cleared
             exclude_groups = {}, -- table: groups you don't want to clear
             on_clear = function() end,
         },

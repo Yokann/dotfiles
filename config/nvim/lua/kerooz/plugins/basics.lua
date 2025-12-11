@@ -67,7 +67,7 @@ return {
                 auto_session_create_enabled = true,
                 pre_save_cmds = {
                     -- close everything useless before save session
-                    require("nvim-tree.api").tree.close,
+                    require("snacks.explorer.actions").actions.explorer_close(),
                     require("aerial").close,
                     require("kerooz.dap.init").closeUI,
                 },

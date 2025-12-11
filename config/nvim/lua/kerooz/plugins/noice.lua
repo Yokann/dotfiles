@@ -62,7 +62,7 @@ return {
     },
     keys = {
         { '<S-Enter>',  function() require('noice').redirect(vim.fn.getcmdline()) end, mode = 'c', desc = 'Redirect Cmdline' },
-        { '<leader>nh', function() require('noice').cmd('history') end,                mode = 'n', desc = 'Notifications history' }
+        { '<leader>nh', function() require('noice').cmd('snacks') end,                mode = 'n', desc = 'Notifications history' }
     },
     dependencies = {
         {

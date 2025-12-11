@@ -1,12 +1,5 @@
 return {
     {
-        "kdheepak/lazygit.nvim",
-        lazy = false,
-        keys = {
-            { "<leader>git", "<Cmd>:LazyGit<CR>", desc = "Open LazyGit" }
-        }
-    },
-    {
         "lewis6991/gitsigns.nvim",
         event = 'BufEnter',
         opts = {
