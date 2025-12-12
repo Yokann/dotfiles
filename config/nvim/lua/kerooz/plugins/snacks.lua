@@ -78,7 +78,7 @@ return {
         { "<leader>b",       function() Snacks.picker.buffers() end,         desc = "Find Buffers" },
         { "<leader>h",       function() Snacks.picker.help() end,            desc = "Find Help" },
         { "<leader>k",       function() Snacks.picker.keymaps() end,         desc = "Find Keymaps" },
-        { "<leader>d",       function() Snacks.picker.diagnostics() end,     desc = "Find Diagnostics" },
+        { "<leader>dl",      function() Snacks.picker.diagnostics() end,     desc = "Find Diagnostics" },
         { "<leader>gco",     function() Snacks.picker.git_branches() end,    desc = "Git Checkout Branch" },
         { "<leader>gl",      function() Snacks.picker.git_log() end,         desc = "Git Log" },
         { "<leader>gho",     function() Snacks.picker.gh_pr() end,           desc = "Github Checkout PR" },
@@ -91,4 +91,51 @@ return {
         { "<leader>git",     function() Snacks.lazygit() end,                desc = "Open LazyGit" },
     },
     -- stylue: ignore end
+    ui_select = true,
+    layout = "small_no_preview", -- = default layout
+    layouts = {                  -- define available layouts
+        small_no_preview = {
+            layout = {
+                box = "horizontal",
+                width = 0.65,
+                height = 0.6,
+                border = "none",
+                {
+                    box = "vertical",
+                    border = vim.o.winborder --[[@as "rounded"|"single"|"double"|"solid"]],
+                    title = "{title} {live} {flags}",
+                    { win = "input", height = 1,     border = "bottom" },
+                    { win = "list",  border = "none" },
+                },
+            },
+        },
+        very_vertical = {
+            preset = "small_no_preview",
+            layout = { height = 0.95, width = 0.45 },
+        },
+        wide_with_preview = {
+            preset = "small_no_preview",
+            layout = {
+                width = 0.99,
+                [2] = { -- as second column
+                    win = "preview",
+                    title = "{preview}",
+                    border = vim.o.winborder --[[@as "rounded"|"single"|"double"|"solid"]],
+                    width = 0.5,
+                    wo = { number = false, statuscolumn = " ", signcolumn = "no" },
+                },
+            },
+        },
+        toggled_preview = { ---@diagnostic disable-line: missing-fields
+            preset = "big_preview",
+            preview = false, ---@diagnostic disable-line: assign-type-mismatch
+        },
+        big_preview = {
+            preset = "wide_with_preview",
+            layout = {
+                height = 0.85,
+                [2] = { width = 0.6 }, -- second win is the preview
+            },
+        },
+    },
 }
