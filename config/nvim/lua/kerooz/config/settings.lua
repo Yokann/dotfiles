@@ -1,5 +1,5 @@
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- Numbers {{{
 
@@ -12,18 +12,17 @@ vim.opt.relativenumber = true
 
 vim.opt.ruler = true
 vim.opt.hidden = true
-vim.opt.encoding = 'utf-8'
-vim.opt.fileencoding = 'utf-8'
+vim.opt.encoding = "utf-8"
+vim.opt.fileencoding = "utf-8"
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 -- exclude usetab as we do not want to jump to buffers in already open tabs
 -- do not use split or vsplit to ensure we don't open any new windows
-vim.opt.switchbuf = 'useopen,uselast'
+vim.opt.switchbuf = "useopen,uselast"
 -- o.fillchars:append { diff = " " }
 vim.opt.laststatus = 3
 
 -- }}}
-
 
 -- Display {{{
 
@@ -42,18 +41,27 @@ vim.opt.scrolloff = 8
 vim.opt.colorcolumn = "128"
 vim.opt.cursorline = true
 vim.opt.fillchars:append({
-    eob = ' ',
-    vert = '▕',
-    fold = ' ',
-    diff = ' ',
-    msgsep = '‾',
-    foldopen = '▾',
-    foldsep = '│',
-    foldclose = '▸'
+    eob = " ",
+    vert = "▕",
+    fold = " ",
+    diff = " ",
+    msgsep = "‾",
+    foldopen = "▾",
+    foldsep = "│",
+    foldclose = "▸",
+    lastline = "↓",
 })
 vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
-
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+-- vim.opt.fillchars:append({
+--     horiz = "▄",
+--     vert = "█",
+--     horizup = "█",
+--     horizdown = "▄",
+--     vertleft = "█",
+--     vertright = "█",
+--     verthoriz = "█",
+-- })
 -- }}}
 
 -- Indentation {{{
@@ -83,7 +91,7 @@ vim.opt.updatetime = 250
 -- these only read ".vim" files {{{
 
 vim.opt.secure = true -- Disable autocmd etc for project local vimrc files.
-vim.opt.exrc = true   -- Allow project local vimrc files example .nvimrc see :h exrc
+vim.opt.exrc = true -- Allow project local vimrc files example .nvimrc see :h exrc
 
 -- }}}
 
@@ -101,9 +109,9 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.g.gitblame_enabled = 0
 vim.g.user_emmet_leader_key = "<A-e>"
-vim.opt.clipboard:append 'unnamedplus' -- use system clipboard
-vim.opt.mouse = 'a'                    -- enable mouse for all modes
-vim.opt.mousemoveevent = true          -- Allow hovering in bufferline
+vim.opt.clipboard:append("unnamedplus") -- use system clipboard
+vim.opt.mouse = "a" -- enable mouse for all modes
+vim.opt.mousemoveevent = true -- Allow hovering in bufferline
 
 -- Environments
 vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH

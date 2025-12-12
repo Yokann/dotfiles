@@ -69,6 +69,8 @@ return {
             lspSymbol("Info", "", palette.sky)
             lspSymbol("Warn", "", palette.yellow)
 
+            vim.api.nvim_set_hl(0, "SnacksPickerPreview", { bg = palette.base })
+
             vim.cmd.colorscheme("catppuccin")
         end,
     },
@@ -139,7 +141,7 @@ return {
                     local modified = vim.bo[props.buf].modified
                     return {
                         ft_icon and { " ", ft_icon, " ", guibg = ft_color, guifg = helpers.contrast_color(ft_color) }
-                        or "",
+                            or "",
                         " ",
                         { filename, gui = modified and "bold,italic" or "bold" },
                         " ",
@@ -214,7 +216,7 @@ return {
                 "StatusLineNC",
                 "EndOfBuffer",
             },
-            extra_groups = {},   -- table: additional groups that should be cleared
+            extra_groups = {}, -- table: additional groups that should be cleared
             exclude_groups = {}, -- table: groups you don't want to clear
             on_clear = function() end,
         },
