@@ -9,11 +9,11 @@ return {
         messages = {
             -- NOTE: If you enable messages, then the cmdline is enabled automatically.
             -- This is a current Neovim limitation.
-            enabled = true, -- enables the Noice messages UI
-            view = "mini", -- default view for messages
-            view_error = "mini", -- view for errors
-            view_warn = "mini", -- view for warnings
-            view_history = "messages", -- view for :messages
+            enabled = true,              -- enables the Noice messages UI
+            view = "mini",               -- default view for messages
+            view_error = "mini",         -- view for errors
+            view_warn = "mini",          -- view for warnings
+            view_history = "messages",   -- view for :messages
             view_search = "virtualtext", -- view for search count messages. Set to `false` to disable
         },
         routes = {
@@ -21,8 +21,8 @@ return {
             {
                 filter = {
                     any = {
-                        { event = "msg_show", kind = "", find = "written" },
-                        { event = "msg_show", kind = "", find = "ago" },
+                        { event = "msg_show", kind = "",        find = "written" },
+                        { event = "msg_show", kind = "",        find = "ago" },
                         { event = "msg_show", find = "AutoSave" },
                     },
                 },
@@ -45,8 +45,8 @@ return {
             hover = {
                 enabled = true,
                 silent = true, -- set to true to not show a message if hover is not available
-                view = nil, -- when nil, use defaults from documentation
-                opts = {}, -- merged with defaults from documentation
+                view = nil,    -- when nil, use defaults from documentation
+                opts = {},     -- merged with defaults from documentation
             },
             message = {
                 -- Messages shown by lsp servers
@@ -56,9 +56,9 @@ return {
             },
         },
         presets = {
-            bottom_search = true, -- use a classic bottom cmdline for search
+            bottom_search = true,         -- use a classic bottom cmdline for search
             long_message_to_split = true, -- long messages will be sent to a split
-            lsp_doc_border = true, -- add a border to hover docs and signature help
+            lsp_doc_border = true,        -- add a border to hover docs and signature help
         },
     },
     keys = {

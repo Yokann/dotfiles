@@ -139,7 +139,7 @@ return {
                     local modified = vim.bo[props.buf].modified
                     return {
                         ft_icon and { " ", ft_icon, " ", guibg = ft_color, guifg = helpers.contrast_color(ft_color) }
-                            or "",
+                        or "",
                         " ",
                         { filename, gui = modified and "bold,italic" or "bold" },
                         " ",
@@ -187,7 +187,8 @@ return {
         "xiyaowong/transparent.nvim",
         lazy = false,
         opts = {
-            groups = { -- table: default group                "Normal",
+            groups = { -- table: default group
+                "Normal",
                 "NormalNC",
                 "Comment",
                 "Constant",
@@ -213,7 +214,7 @@ return {
                 "StatusLineNC",
                 "EndOfBuffer",
             },
-            extra_groups = {}, -- table: additional groups that should be cleared
+            extra_groups = {},   -- table: additional groups that should be cleared
             exclude_groups = {}, -- table: groups you don't want to clear
             on_clear = function() end,
         },

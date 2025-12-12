@@ -6,7 +6,15 @@ return {
     opts = {
         picker = {
             sources = {
-                explorer = { hidden = true, ignored = false },
+                explorer = {
+                    hidden = true,
+                    ignored = false,
+                    auto_close = true,
+                    watch = true,
+                },
+                grep = { hidden = true, ignored = true },
+                noice = { layout = "ivy" },
+                git_branches = { layout = "vscode" },
             },
             previewers = {
                 cmd = { "delta" },
@@ -72,7 +80,8 @@ return {
         { "<leader>k",       function() Snacks.picker.keymaps() end,         desc = "Find Keymaps" },
         { "<leader>d",       function() Snacks.picker.diagnostics() end,     desc = "Find Diagnostics" },
         { "<leader>gco",     function() Snacks.picker.git_branches() end,    desc = "Git Checkout Branch" },
-        { "<leader>ghco",    function() Snacks.picker.gh_pr() end,           desc = "Github Checkout PR" },
+        { "<leader>gl",      function() Snacks.picker.git_log() end,         desc = "Git Log" },
+        { "<leader>gho",     function() Snacks.picker.gh_pr() end,           desc = "Github Checkout PR" },
         { "<leader>gg",      function() Snacks.picker.grep() end,            desc = "Live Grep" },
         -- { "<leader>n", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Neovim config" },
         { "<leader>u",       function() Snacks.picker.resume() end,          desc = "Resume" },

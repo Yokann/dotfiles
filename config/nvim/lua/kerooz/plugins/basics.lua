@@ -1,10 +1,10 @@
 return {
     "nvim-lua/plenary.nvim", -- Useful lua functions used ny lots of plugins
-    { "tpope/vim-surround", lazy = false },
-    { "tpope/vim-repeat", lazy = false },
+    { "tpope/vim-surround",   lazy = false },
+    { "tpope/vim-repeat",     lazy = false },
     { "tpope/vim-unimpaired", event = "VeryLazy" },
-    { "airblade/vim-rooter", lazy = false }, -- load root dir at vim startup on a file
-    { "ku1ik/vim-pasta", lazy = false }, -- Ajust indentation when pasting code
+    { "airblade/vim-rooter",  lazy = false }, -- load root dir at vim startup on a file
+    { "ku1ik/vim-pasta",      lazy = false }, -- Ajust indentation when pasting code
     {
         "folke/flash.nvim",
         event = "VeryLazy",
@@ -29,8 +29,8 @@ return {
         },
         -- stylua: ignore end
     },
-    { "numToStr/Comment.nvim", lazy = false, opts = {} }, -- comment block
-    { "christoomey/vim-tmux-navigator", lazy = false }, -- use same keymap to switch pane and buffer
+    { "numToStr/Comment.nvim",          lazy = false, opts = {} }, -- comment block
+    { "christoomey/vim-tmux-navigator", lazy = false },            -- use same keymap to switch pane and buffer
     {
         "pocco81/auto-save.nvim",
         enabled = false,
@@ -87,6 +87,17 @@ return {
         dependencies = { "nvim-treesitter/nvim-treesitter" },
         opts = {
             use_default_keymaps = false,
+        },
+    },
+    {
+        "folke/lazydev.nvim",
+        ft = "lua",
+        cmd = 'LazyDev',
+        opts = {
+            library = {
+                { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+                { path = "snacks.nvim",        words = { "Snacks" } },
+            },
         },
     },
     {
