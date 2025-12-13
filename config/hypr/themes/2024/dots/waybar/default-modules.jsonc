@@ -176,7 +176,8 @@
     "custom/twitch": {
         "format": "",
         "tooltip": false,
-        "on-click": "walker -m menus:twitch"
+        "on-click": "walker -m menus:twitch",
+        "on-click-middle": "livestream-ctl notif"
     },
     // Custom Pomodoro module install `cargo install pomodoro-cli`
     "custom/pomo": {
