@@ -1,37 +1,50 @@
 {
-    "widgets": [
-        "mpris",
-        "title",
-        "dnd",
-        "notifications",
-        "buttons-grid"
-    ],
-    "notification-visibility": {
-        "screen-share": {
-            "state": "muted",
-            "body": "Les détails sont masqués lors du partage d'écran"
-        },
-        "poweralertd": {
-            "state": "muted",
-            "app-name": "poweralertd"
-        }
+  "$schema": "/etc/xdg/swaync/configSchema.json",
+  "widgets": [
+    "mpris",
+    "volume",
+    "title",
+    "dnd",
+    "notifications",
+    "buttons-grid"
+  ],
+  "notification-visibility": {
+    "screen-share": {
+      "state": "muted",
+      "body": "Les détails sont masqués lors du partage d'écran"
     },
-    "widget-config": {
-        "buttons-grid": {
-            "actions": [
-                {
-                    "label": "",
-                    "command": "hyprlock"
-                },
-                {
-                    "label": "󰂯",
-                    "command": "overskride"
-                },
-                {
-                    "label": "",
-                    "command": "systemctl poweroff"
-                }
-            ]
-        }
+    "poweralertd": {
+      "state": "muted",
+      "app-name": "poweralertd"
     }
+  },
+  "widget-config": {
+    "title": {
+      "button-text": " 󰎟 "
+    },
+    "volume": {
+      "label": "󰕾",
+      "show-per-app": true
+    },
+    "buttons-grid": {
+      "actions": [
+        {
+          "label": "",
+          "command": "hyprlock"
+        },
+        {
+          "label": " ",
+          "command": "nm-connection-editor"
+        },
+        {
+          "label": "󰂯",
+          "command": "walker -m bluetooth"
+        },
+        {
+          "label": "",
+          "command": "systemctl poweroff"
+        }
+      ]
+    }
+  }
 }

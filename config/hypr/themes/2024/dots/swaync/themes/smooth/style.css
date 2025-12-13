@@ -1,0 +1,10 @@
+* {
+  color: @text;
+  all: unset;
+  font-size: 16px;
+  font-family: "Cantarell";
+  transition: 200ms;
+}
+
+@import 'notifications.css';
+@import 'control_center.css';
