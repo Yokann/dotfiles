@@ -74,6 +74,9 @@ function M.init()
             local handle = pop_progress_handle(request.data.id)
             if handle then
                 report_exit_status(handle, request)
+                if request.data.status == "success" then
+                    require("kerooz.lib.utils").PlaySound("pluck.mp3")
+                end
                 handle:finish()
             else
                 vim.notify("No progress handle found for id: " .. tostring(request.data.id), vim.log.levels.WARN)

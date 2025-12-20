@@ -78,24 +78,41 @@ return {
     },
     {
         "olimorris/codecompanion.nvim",
-        event = "VeryLazy",
+        cmd = { "CodeCompanion", "CodeCompanionChat", "CodeCompanionActions" },
         dependencies = {
             "j-hui/fidget.nvim",
             "nvim-lua/plenary.nvim",
             "nvim-treesitter/nvim-treesitter",
             "folke/snacks.nvim",
         },
+        -- https://github.com/olimorris/codecompanion.nvim/blob/main/lua/codecompanion/config.lua
         opts = {
             opts = {
                 log_level = "ERROR",
             },
+            prompt_library = {
+                markdown = {
+                    dirs = { vim.fn.stdpath("config") .. "/prompts" },
+                },
+            },
+            interactions = {
+                adapter = {
+                    name = "copilot",
+                    model = "gpt-5-mini",
+                },
+                -- tools = {
+                --     opts = {
+                --         default_tools = { "insert_edit_into_file" },
+                --     },
+                -- },
+            },
         },
-        init = function()
-            require("kerooz.lib.codecompanion.fidget-spinner").init()
+        config = function(_, opts)
+            require("kerooz.lib.codecompanion.setup").setup(opts)
         end,
         -- stylua: ignore start
         keys = {
-            { "<leader>ct", "<cmd>CodeCompanionChat<CR>",                                                         mode = "n",          desc = "CodeCompanionChat - Toggle" },
+            { "<leader>ct", "<cmd>CodeCompanionChat toggle<CR>",                                                  mode = "n",          desc = "CodeCompanionChat - Toggle" },
             { "<leader>cp", function() require("codecompanion").actions({ provider = { name = "snacks", } }) end, mode = { "n", "v" }, desc = "CodeCompanionChat - Prompt actions" },
         },
         -- stylua: ignore end
