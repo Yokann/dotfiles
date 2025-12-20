@@ -88,7 +88,7 @@ return {
         },
         opts = {
             opts = {
-                log_level = "DEBUG",
+                log_level = "ERROR",
             },
         },
         init = function()
