@@ -47,9 +47,6 @@ return {
                     noice = true,
                     notify = true,
                     mini = true,
-                    telescope = {
-                        enabled = true,
-                    },
                 },
                 compile = {
                     enabled = true,

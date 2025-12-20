@@ -14,8 +14,7 @@ fi
 CURRENT_DATE=$(date "+%Y-%m-%d-%H-%M-%S")
 
 install_vim () {
-    # Config neovim require sqlite for telescope grep history
-    $PACKAGE_INSTALLER neovim sqlite
+    $PACKAGE_INSTALLER neovim
     source $DOTFILES_PATH/setup/generic/config/neovim.sh
 }
 
@@ -27,7 +26,7 @@ install_dependencies () {
         $PACKAGE_INSTALLER ttf-fira-code libtree-bin
     fi
 
-    $PACKAGE_INSTALLER fzf btop starship tmux ripgrep git-delta lazygit xclip zoxide fd gum eza httpie bat
+    $PACKAGE_INSTALLER fzf btop starship tmux ripgrep git-delta lazygit xclip zoxide fd gum eza httpie bat sqlite
     source $DOTFILES_PATH/setup/generic/config/starship.sh
     source $DOTFILES_PATH/setup/generic/config/btop.sh
 }

@@ -1,4 +1,4 @@
-# Config neovim require sqlite for telescope grep history
+# Config neovim
 rm -rf $HOME/.config/nvim
 ln -s $DOTFILES_PATH/config/nvim $HOME/.config/nvim
 rm -rf $HOME/.editorconfig

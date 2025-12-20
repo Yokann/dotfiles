@@ -96,7 +96,6 @@ return {
         end,
         -- stylua: ignore start
         keys = {
-            -- Show prompts actions with telescope
             { "<leader>ct", "<cmd>CodeCompanionChat<CR>",                                                         mode = "n",          desc = "CodeCompanionChat - Toggle" },
             { "<leader>cp", function() require("codecompanion").actions({ provider = { name = "snacks", } }) end, mode = { "n", "v" }, desc = "CodeCompanionChat - Prompt actions" },
         },
