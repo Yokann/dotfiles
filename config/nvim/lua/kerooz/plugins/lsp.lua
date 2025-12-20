@@ -39,6 +39,7 @@ return {
         end,
         dependencies = {
             "nvimtools/none-ls.nvim",
+            "saghen/blink.nvim",
         },
     },
     {

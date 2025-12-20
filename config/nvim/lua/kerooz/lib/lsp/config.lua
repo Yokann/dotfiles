@@ -1,7 +1,6 @@
 local M = {}
 
-local cmp_nvim_lsp = require("cmp_nvim_lsp")
-local capabilities = cmp_nvim_lsp.default_capabilities()
+local capabilities = require("blink.cmp").get_lsp_capabilities()
 local lsp_flags = {
     allow_incremental_sync = true,
     debounce_text_changes = 150,
@@ -42,8 +41,6 @@ M.configure = function()
                 })
             end, { desc = "[V]iew [C]ode actions [O]thers" })
             vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, { desc = "[R]e[N]ame" })
-            vim.keymap.set({ "n", "i" }, "<A-h>", function() vim.lsp.buf.signature_help({ border = "rounded" }) end,
-                { desc = "View code signature" })
 
             vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
             -- -- Autoformat on save

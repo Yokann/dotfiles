@@ -3,6 +3,9 @@ return {
         "zbirenbaum/copilot.lua",
         cmd = "Copilot",
         event = "InsertEnter",
+        dependencies = {
+            "L3MON4D3/LuaSnip",
+        },
         opts = {
             panel = {
                 enabled = false,
@@ -16,29 +19,14 @@ return {
                     accept_line = "<M-o>",
                     next = "<M-j>",
                     prev = "<M-k>",
-                    dismiss = "<M-h>",
+                    dismiss = "<C-e>",
                 },
             },
         },
         config = function(_, opts)
-            local cmp = require("cmp")
             local copilot = require("copilot.suggestion")
             local luasnip = require("luasnip")
-
             require("copilot").setup(opts)
-
-            local function set_trigger(trigger)
-                vim.b.copilot_suggestion_auto_trigger = trigger
-                vim.b.copilot_suggestion_hidden = not trigger
-            end
-
-            -- Hide the completion when menu is open.
-            cmp.event:on("menu_opened", function()
-                if copilot.is_visible() then
-                    copilot.dismiss()
-                end
-                set_trigger(false)
-            end)
 
             -- Tab is tab when there is no suggestion
             -- vim.keymap.set('i', '<Tab>', function()
@@ -50,14 +38,25 @@ return {
             -- end, { desc = "Super Tab" })
 
             -- Disable when snippet.
-            cmp.event:on("menu_closed", function()
-                set_trigger(not luasnip.expand_or_locally_jumpable())
-            end)
-
             vim.api.nvim_create_autocmd("User", {
                 pattern = { "LuasnipInsertNodeEnter", "LuasnipInsertNodeLeave" },
                 callback = function()
-                    set_trigger(not luasnip.expand_or_locally_jumpable())
+                    vim.b.copilot_suggestion_hidden = not luasnip.expand_or_locally_jumpable()
+                end,
+            })
+
+            vim.api.nvim_create_autocmd("User", {
+                pattern = "BlinkCmpMenuOpen",
+                callback = function()
+                    copilot.dismiss()
+                    vim.b.copilot_suggestion_hidden = true
+                end,
+            })
+
+            vim.api.nvim_create_autocmd("User", {
+                pattern = "BlinkCmpMenuClose",
+                callback = function()
+                    vim.b.copilot_suggestion_hidden = false
                 end,
             })
         end,
