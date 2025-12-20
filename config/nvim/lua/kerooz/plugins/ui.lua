@@ -47,6 +47,9 @@ return {
                     noice = true,
                     notify = true,
                     mini = true,
+                    blink_cmp = {
+                        style = "bordered",
+                    },
                 },
                 compile = {
                     enabled = true,
