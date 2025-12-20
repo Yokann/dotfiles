@@ -1,6 +1,6 @@
 return {
     "hrsh7th/nvim-cmp",
-    event = { 'InsertEnter', 'CmdlineEnter' },
+    event = { "InsertEnter", "CmdlineEnter" },
     config = function()
         local cmp = require("cmp")
         local luasnip = require("luasnip")
@@ -15,31 +15,31 @@ return {
         }
 
         local kind_icons = {
-            Text = ' ',
-            Method = ' ',
-            Function = ' ',
-            Constructor = ' ',
-            Field = ' ',
-            Variable = ' ',
-            Class = ' ',
-            Interface = ' ',
-            Module = ' ',
-            Property = ' ',
-            Unit = ' ',
-            Value = ' ',
-            Enum = ' ',
-            Keyword = ' ',
-            Snippet = ' ',
-            Color = ' ',
-            File = ' ',
-            Reference = ' ',
-            Folder = ' ',
-            EnumMember = ' ',
-            Constant = ' ',
-            Struct = ' ',
-            Event = ' ',
-            Operator = ' ',
-            TypeParameter = ' ',
+            Text = " ",
+            Method = " ",
+            Function = " ",
+            Constructor = " ",
+            Field = " ",
+            Variable = " ",
+            Class = " ",
+            Interface = " ",
+            Module = " ",
+            Property = " ",
+            Unit = " ",
+            Value = " ",
+            Enum = " ",
+            Keyword = " ",
+            Snippet = " ",
+            Color = " ",
+            File = " ",
+            Reference = " ",
+            Folder = " ",
+            EnumMember = " ",
+            Constant = " ",
+            Struct = " ",
+            Event = " ",
+            Operator = " ",
+            TypeParameter = " ",
         }
 
         local crComplete = function(fallback)
@@ -72,49 +72,43 @@ return {
                 }),
                 -- ["<C-u>"] = cmp.mapping.scroll_docs(-4),
                 -- ["<C-d>"] = cmp.mapping.scroll_docs(4),
-                ['<M-a>'] = cmp.mapping({
+                ["<M-h>"] = cmp.mapping({
                     i = cmp.mapping.abort(),
                     c = cmp.mapping.close(),
                 }),
-                ['<M-m>'] = cmp.mapping({
-                    i = cmp.mapping.complete()
+                ["<M-m>"] = cmp.mapping({
+                    i = cmp.mapping.complete(),
                 }),
-                ['<Tab>'] = cmp.mapping(
-                    function(fallback)
-                        if cmp.visible() then
-                            cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
-                        elseif luasnip.locally_jumpable(1) then
-                            luasnip.jump(1)
-                        else
-                            fallback()
-                        end
-                    end, { 'i', 's' }
-                ),
-                ['<S-Tab>'] = cmp.mapping(
-                    function(fallback)
-                        if luasnip.locally_jumpable(-1) then
-                            luasnip.jump(-1)
-                        else
-                            fallback()
-                        end
-                    end, { 'i', 's' }
-                ),
-                ['<M-j>'] = cmp.mapping(
-                    function(fallback)
-                        if cmp.visible() then
-                            cmp.select_next_item(select_opts)
-                        else
-                            fallback()
-                        end
-                    end, { 'i', 's', 'c' }
-                ),
-                ['<M-k>'] = cmp.mapping(function(fallback)
+                ["<Tab>"] = cmp.mapping(function(fallback)
+                    if cmp.visible() then
+                        cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
+                    elseif luasnip.locally_jumpable(1) then
+                        luasnip.jump(1)
+                    else
+                        fallback()
+                    end
+                end, { "i", "s" }),
+                ["<S-Tab>"] = cmp.mapping(function(fallback)
+                    if luasnip.locally_jumpable(-1) then
+                        luasnip.jump(-1)
+                    else
+                        fallback()
+                    end
+                end, { "i", "s" }),
+                ["<M-j>"] = cmp.mapping(function(fallback)
+                    if cmp.visible() then
+                        cmp.select_next_item(select_opts)
+                    else
+                        fallback()
+                    end
+                end, { "i", "s", "c" }),
+                ["<M-k>"] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         cmp.select_prev_item(select_opts)
                     else
                         fallback()
                     end
-                end, { 'i', 's', 'c' }),
+                end, { "i", "s", "c" }),
             },
             window = {
                 documentation = cmp.config.window.bordered(),
@@ -125,7 +119,7 @@ return {
             },
             view = {
                 -- revert result order when completion display ahead of cursor
-                entries = { name = 'custom', selection_order = 'near_cursor' }
+                entries = { name = "custom", selection_order = "near_cursor" },
             },
             -- Custom result formating
             formatting = {
@@ -139,30 +133,30 @@ return {
             },
             -- Sort is important
             sources = {
-                { name = 'nvim_lsp', priority = 10, max_item_count = 6 },
-                { name = 'luasnip',  priority = 6,  max_item_count = 3 },
-                { name = 'buffer',   priority = 6,  keyword_length = 2, max_item_count = 5 },
-                { name = 'path',     priority = 4 },
-            }
+                { name = "nvim_lsp", priority = 10, max_item_count = 6 },
+                { name = "luasnip", priority = 6, max_item_count = 3 },
+                { name = "buffer", priority = 6, keyword_length = 2, max_item_count = 5 },
+                { name = "path", priority = 4 },
+            },
         })
 
-        cmp.setup.cmdline(':', {
+        cmp.setup.cmdline(":", {
             sources = cmp.config.sources({
-                { name = 'path' }
+                { name = "path" },
             }, {
                 {
-                    name = 'cmdline',
+                    name = "cmdline",
                     option = {
-                        ignore_cmds = { 'Man', '!' }
-                    }
-                }
-            })
+                        ignore_cmds = { "Man", "!" },
+                    },
+                },
+            }),
         })
 
-        cmp.setup.cmdline('/', {
+        cmp.setup.cmdline("/", {
             sources = {
-                { name = 'buffer' }
-            }
+                { name = "buffer" },
+            },
         })
 
         -- Customization for Pmenu
@@ -212,7 +206,7 @@ return {
                 config = function()
                     require("luasnip.loaders.from_vscode").lazy_load()
                 end,
-            }
+            },
         },
-    }
+    },
 }
