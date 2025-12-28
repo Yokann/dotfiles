@@ -20,24 +20,22 @@ function GetEntries()
         return entries
     end
 
-    if handle then
-        -- decode handle json output
-        local streams, _, err = json.decode(handle:read("*a"), 1, nil)
-        if err then
-            print("Error:", err)
-            return entries
-        end
-
-        for _, stream in ipairs(streams) do
-            table.insert(entries, {
-                Text = stream.channel,
-                Subtext = stream.title,
-                Value = stream.channel,
-                Icon = stream.thumbnail,
-            })
-        end
-        handle:close()
+    -- decode handle json output
+    local streams, _, err = json.decode(handle:read("*a"), 1, nil)
+    if err then
+        print("Error:", err)
+        return entries
     end
+
+    for _, stream in ipairs(streams) do
+        table.insert(entries, {
+            Text = stream.channel,
+            Subtext = stream.title,
+            Value = stream.channel,
+            Icon = stream.thumbnail,
+        })
+    end
+    handle:close()
 
     return entries
 end
