@@ -73,7 +73,7 @@ return {
         {
             "<leader>n",
             function()
-                require("noice").cmd("snacks")
+                require("noice").cmd("pick")
             end,
             mode = "n",
             desc = "Notifications history",

@@ -52,14 +52,7 @@ return {
                 documentation = { auto_show = false },
                 menu = {
                     draw = {
-                        padding = { 0, 1 },
-                        componentes = {
-                            kind_icons = {
-                                text = function(ctx)
-                                    return " " .. ctx.kind_icon .. ctx.icon_gap .. " "
-                                end,
-                            },
-                        },
+                        padding = { 1, 1 },
                     },
                 },
                 accept = {
