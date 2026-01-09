@@ -2,7 +2,7 @@
 # Custom loading configuration
 # - - - - - - - - - - - - - - - - - - - -
 BASE_CONF_PATH=$DOTFILES_PATH/config/zsh
-CUSTOM_CONF_PATH=$HOME/.dotfiles-custom/zsh
+CUSTOM_CONF_PATH=$HOME/.dotfiles-custom
 
 # Load the shell dotfiles, and then some:
 # * ~/.dotfiles-custom can be used for other settings you don’t want to commit.
@@ -11,7 +11,7 @@ for file in $BASE_CONF_PATH/definitions/{exports,aliases,functions}; do
 done
 unset file
 
-for file in $CUSTOM_CONF_PATH/{exports,aliases,functions,pre_zshrc}; do
+for file in $CUSTOM_CONF_PATH/zsh/{exports,aliases,functions,pre_zshrc}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file"
 done
 unset file
@@ -29,7 +29,7 @@ unset file
 # [[ -d $ZSH_CACHE_DIR/completions ]] && zinit creinstall $ZSH_CACHE_DIR/completions
 
 # Custom config
-[[ -f $CUSTOM_CONF_PATH/post_zshrc ]] && source $CUSTOM_CONF_PATH/post_zshrc
+[[ -f $CUSTOM_CONF_PATH/zsh/post_zshrc ]] && source $CUSTOM_CONF_PATH/zsh/post_zshrc
 
 # - - - - - - - - - - - - - - - - - - - -
 # Theme / Prompt Customization
