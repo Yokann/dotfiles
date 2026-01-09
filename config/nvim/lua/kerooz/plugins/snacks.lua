@@ -56,7 +56,11 @@ return {
         lazygit = {},
         picker = {
             sources = {
-                files = {},
+                files = {
+                    hidden = true,
+                    ignored = false,
+                    layout = "wide_with_preview",
+                },
                 explorer = {
                     layout = "sidebar",
                     hidden = true,
