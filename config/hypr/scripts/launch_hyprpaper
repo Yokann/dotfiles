@@ -4,8 +4,12 @@
 wallpaper=$(find "$WALLPAPERS_PATH" -type f \( -iname "*.jpg" -o -iname "*.png" \) | shuf -n 1)
 
 if [ ! -f /tmp/hyprpaper_runtime.conf ]; then
-    echo "preload = $wallpaper" > /tmp/hyprpaper_runtime.conf
-    echo "wallpaper = ,$wallpaper" >> /tmp/hyprpaper_runtime.conf
+    cat > /tmp/hyprpaper_runtime.conf <<EOF
+    wallpaper {
+       path = $wallpaper
+       fit_mode = cover
+    }
+EOF
 fi
 
 # Launch hyprpaper with the selected wallpaper
