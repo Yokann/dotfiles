@@ -5,10 +5,11 @@ wallpaper=$(find "$WALLPAPERS_PATH" -type f \( -iname "*.jpg" -o -iname "*.png" 
 
 if [ ! -f /tmp/hyprpaper_runtime.conf ]; then
     cat > /tmp/hyprpaper_runtime.conf <<EOF
-    wallpaper {
-       path = $wallpaper
-       fit_mode = cover
-    }
+wallpaper {
+    monitor =
+    path = $wallpaper
+    fit_mode = cover
+}
 EOF
 fi
 
