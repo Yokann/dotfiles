@@ -9,16 +9,16 @@
   {
     "context": "Pane",
     "bindings": {
-      "alt-d": "pane::CloseActiveItem"
-    }
+      "alt-d": "pane::CloseActiveItem",
+    },
   },
   {
     "context": "EmptyPane || SharedScreen",
     "bindings": {
       "space t r": "project_panel::ToggleFocus",
       "space t t": "workspace::ToggleLeftDock",
-      "space space": "file_finder::Toggle"
-    }
+      "space space": "file_finder::Toggle",
+    },
   },
   {
     "context": "Editor",
@@ -26,14 +26,13 @@
       "ctrl-h": "workspace::ActivatePaneLeft",
       "ctrl-l": "workspace::ActivatePaneRight",
       "ctrl-k": "workspace::ActivatePaneUp",
-      "ctrl-j": "workspace::ActivatePaneDown"
-    }
+      "ctrl-j": "workspace::ActivatePaneDown",
+    },
   },
   {
     "context": "ProjectPanel && not_editing",
     "bindings": {
-      "space t r": "project_panel::ToggleFocus",
-      "space t t": "workspace::ToggleLeftDock",
+      "space t": "workspace::ToggleLeftDock",
       "space space": "file_finder::Toggle",
       "a": "project_panel::NewFile",
       "r": "project_panel::Rename",
@@ -41,14 +40,14 @@
       "p": "project_panel::Paste",
       "d": "project_panel::Delete",
       "D": "project_panel::Trash",
-      "x": "project_panel::Cut"
-    }
+      "x": "project_panel::Cut",
+    },
   },
   {
     "context": "DebugPanel",
     "bindings": {
-      "alt-d": "workspace::CloseActiveDock"
-    }
+      "alt-d": "workspace::CloseActiveDock",
+    },
   },
   {
     "context": "AgentPanel",
@@ -56,8 +55,7 @@
       "alt-d": "workspace::CloseActiveDock",
       "alt-/": "agent::ToggleModelSelector",
       "alt-p": "agent::ToggleProfileSelector",
-      "alt-c": "agent::ToggleContextPicker"
-    }
+    },
   },
   {
     "context": "Editor && vim_mode == normal",
@@ -69,8 +67,7 @@
       "alt-h": "pane::ActivatePreviousItem",
       "alt-l": "pane::ActivateNextItem",
       "alt-d": "pane::CloseActiveItem",
-      "space t r": "project_panel::ToggleFocus",
-      "space t t": "workspace::ToggleLeftDock",
+      "space t": "workspace::ToggleLeftDock",
       "space d d": "workspace::ToggleBottomDock",
       "space c c": "editor::ToggleCodeActions",
       "g t d": "editor::GoToTypeDefinition",
@@ -80,7 +77,7 @@
       "K": "editor::Hover",
       "ctrl-r": "editor::Redo",
       "space c t": "agent::ToggleFocus",
-      "space b d": "pane::CloseInactiveItems",
+      "space b d": ["pane::CloseOtherItems", { "close_pinned": false }],
       "space g g": "workspace::NewSearch",
       "F1": "debug_panel::ToggleFocus",
       "F9": "debugger::Start",
@@ -90,31 +87,31 @@
       "space d R": "debugger::RunToCursor",
       "space d e": "debugger::EvaluateSelectedText",
       "space d x": "debugger::Stop",
-      "space g i t": "git_panel::ToggleFocus"
-    }
+      "space g i t": "git_panel::ToggleFocus",
+    },
   },
   {
     "context": "Editor && (showing_code_actions || showing_completions)",
     "bindings": {
       "alt-k": "editor::ContextMenuPrevious",
-      "alt-j": "editor::ContextMenuNext"
-    }
+      "alt-j": "editor::ContextMenuNext",
+    },
   },
   {
     "context": "Editor && vim_mode == insert",
     "bindings": {
       "k j": ["workspace::SendKeystrokes", "escape"],
-      "space e": "editor::ShowCompletions"
-    }
+      "space e": "editor::ShowCompletions",
+    },
   },
   {
     "context": "Editor && vim_mode == visual",
     "bindings": {
       "k j": ["workspace::SendKeystrokes", "escape"],
-      "J": "editor::MoveLineDown",
-      "K": "editor::MoveLineUp",
+      "down": "editor::MoveLineDown",
+      "up": "editor::MoveLineUp",
       "ctrl-w": "editor::SelectLargerSyntaxNode",
-      "ctrl-shift-w": "editor::SelectSmallerSyntaxNode"
-    }
-  }
+      "ctrl-shift-w": "editor::SelectSmallerSyntaxNode",
+    },
+  },
 ]
