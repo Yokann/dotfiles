@@ -93,7 +93,7 @@ yay -S --noconfirm --norebuild --needed \
     ufw-docker \
     uwsm \
     waybar \
-    wdisplays \
+    nwg-displays \
     wev \
     wget \
     xdg-desktop-portal-hyprland \
