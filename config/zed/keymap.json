@@ -101,7 +101,7 @@
     "context": "Editor && vim_mode == insert",
     "bindings": {
       "k j": ["workspace::SendKeystrokes", "escape"],
-      "space e": "editor::ShowCompletions",
+      "alt-e": "editor::ShowCompletions",
     },
   },
   {
