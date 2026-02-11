@@ -1,3 +1,13 @@
+local prefix_diffs = "<leader>df"
+local prefix_conflicts = "<leader>gc"
+local function toggle_diffview(cmd)
+    if next(require("diffview.lib").views) == nil then
+        vim.cmd(cmd)
+    else
+        vim.cmd("DiffviewClose")
+    end
+end
+
 return {
     {
         "lewis6991/gitsigns.nvim",
@@ -65,9 +75,41 @@ return {
     {
         "sindrets/diffview.nvim",
         lazy = false,
+        -- stylua: ignore
         keys = {
-            { "<leader>dfo", "<cmd>DiffviewOpen<CR>", mode = "n", desc = "Open diff tool" },
-            { "<leader>dfc", "<cmd>DiffviewClose<CR>", mode = "n", desc = "Close diff tool" },
+            { prefix_diffs .. "o", function() toggle_diffview("DiffviewOpen") end,          mode = "n",                        desc = "Open diff tool" },
+            { prefix_diffs .. "f", function() toggle_diffview("DiffviewFileHistory %") end, desc = "Diff Current File History" },
         },
+        opts = function(_, opts)
+            local actions = require("diffview.actions")
+            opts.enhanced_diff_hl = true
+            opts.view = {
+                default = { winbar_info = true },
+                file_history = { winbar_info = true },
+            }
+            opts.keymaps = {
+                -- stylua: ignore
+                view = {
+                    { "n", prefix_conflicts .. "o", actions.conflict_choose("ours"),       { desc = "Ours" } },
+                    { "n", prefix_conflicts .. "t", actions.conflict_choose("theirs"),     { desc = "Theirs" } },
+                    { "n", prefix_conflicts .. "b", actions.conflict_choose("base"),       { desc = "Base" } },
+                    { "n", prefix_conflicts .. "a", actions.conflict_choose("all"),        { desc = "All" } },
+                    { "n", prefix_conflicts .. "d", actions.conflict_choose("none"),       { desc = "Delete" } },
+                    { "n", prefix_conflicts .. "O", actions.conflict_choose_all("ours"),   { desc = "Ours (File)" } },
+                    { "n", prefix_conflicts .. "T", actions.conflict_choose_all("theirs"), { desc = "Theirs (File)" } },
+                    { "n", prefix_conflicts .. "B", actions.conflict_choose_all("base"),   { desc = "Base (File)" } },
+                    { "n", prefix_conflicts .. "A", actions.conflict_choose_all("all"),    { desc = "All (File)" } },
+                    { "n", prefix_conflicts .. "D", actions.conflict_choose_all("none"),   { desc = "Delete (File)" } },
+                },
+                -- stylua: ignore
+                file_panel = {
+                    { "n", prefix_conflicts .. "O", actions.conflict_choose_all("ours"),   { desc = "Ours (File)" } },
+                    { "n", prefix_conflicts .. "T", actions.conflict_choose_all("theirs"), { desc = "Theirs (File)" } },
+                    { "n", prefix_conflicts .. "B", actions.conflict_choose_all("base"),   { desc = "Base (File)" } },
+                    { "n", prefix_conflicts .. "A", actions.conflict_choose_all("all"),    { desc = "All (File)" } },
+                    { "n", prefix_conflicts .. "X", actions.conflict_choose_all("none"),   { desc = "Delete (File)" } },
+                },
+            }
+        end,
     },
 }
