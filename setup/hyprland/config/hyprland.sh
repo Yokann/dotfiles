@@ -20,4 +20,6 @@ if [ $STATE_FLAG = "first-install" ]; then
     echo '# env = HYPR_MAIN_MONITOR, DP-1' >> $XDG_HYPR_CONFIG_PATH/hyprland.conf
     echo '# monitor = DP-1, 1920x1080@60, 0x0, 1' >> $XDG_HYPR_CONFIG_PATH/hyprland.conf
     echo 'source = $configPath/hyprland.conf' >> $XDG_HYPR_CONFIG_PATH/hyprland.conf
+    echo 'source = ./monitors.conf' >> $XDG_HYPR_CONFIG_PATH/hyprland.conf
+    echo 'exec-once = [workspace 6 silent;noinitialfocus] signal-desktop' >> $XDG_HYPR_CONFIG_PATH/hyprland.conf
 fi

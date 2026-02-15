@@ -73,6 +73,7 @@ yay -S --noconfirm --norebuild --needed \
     gnu-netcat \
     nomacs \
     nwg-look \
+    nwg-displays \
     pipewire wireplumber \
     playerctl \
     polkit-gnome \
@@ -93,7 +94,6 @@ yay -S --noconfirm --norebuild --needed \
     ufw-docker \
     uwsm \
     waybar \
-    nwg-displays \
     wev \
     wget \
     wiki-tui \
