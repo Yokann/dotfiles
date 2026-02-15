@@ -22,7 +22,6 @@ yay -S --noconfirm --norebuild --needed \
     bluetuith bluez-obex \
     brightnessctl \
     btop \
-    cromite-bin \
     docker \
     docker-buildx \
     docker-compose \
@@ -46,6 +45,7 @@ yay -S --noconfirm --norebuild --needed \
     greetd-tuigreet \
     gvfs gvfs-smb \
     httpie \
+    helium-browser-bin \
     hyprland \
     hyprcursor \
     hypridle \
@@ -96,6 +96,7 @@ yay -S --noconfirm --norebuild --needed \
     nwg-displays \
     wev \
     wget \
+    wiki-tui \
     xdg-desktop-portal-hyprland \
     yazi \
     zoxide
