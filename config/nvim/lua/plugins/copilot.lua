@@ -114,7 +114,7 @@ return {
             },
         },
         config = function(_, opts)
-            require("utils.codecompanion.setup").setup(opts)
+            require("config.codecompanion").setup(opts)
         end,
         -- stylua: ignore start
         keys = {

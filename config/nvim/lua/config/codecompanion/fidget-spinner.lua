@@ -75,7 +75,7 @@ function M.init()
             if handle then
                 report_exit_status(handle, request)
                 if request.data.status == "success" then
-                    require("utils").PlaySound("pluck.mp3")
+                    require("utils").playsound("pluck.mp3")
                 end
                 handle:finish()
             else

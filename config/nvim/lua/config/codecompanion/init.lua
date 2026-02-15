@@ -12,7 +12,7 @@ end
 
 M.setup = function(opts)
     require("codecompanion").setup(opts)
-    require("utils.codecompanion.fidget-spinner").init()
+    require("config.codecompanion.fidget-spinner").init()
     addAutocmd()
 end
 
