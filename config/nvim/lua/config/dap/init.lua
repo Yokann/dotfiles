@@ -64,7 +64,7 @@ function M.setup()
     configure() -- Configuration
     configure_exts() -- Extensions
     configure_debuggers() -- Debugger
-    require("utils.dap.config").load_custom_configuration(dap)
+    require("config.dap.custom_config").load_custom_configuration(dap)
     require("config.dap.keymaps").setup(dap, dapui) -- Keymaps
 end
 
