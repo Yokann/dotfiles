@@ -95,6 +95,12 @@ return {
                     dirs = { vim.fn.stdpath("config") .. "/prompts" },
                 },
             },
+            display = {
+                chat = {
+                    show_settings = true,
+                    intro_message = "Hello! I'm IA du cul! Press ? for options",
+                },
+            },
             interactions = {
                 adapter = {
                     name = "copilot",
@@ -108,7 +114,7 @@ return {
             },
         },
         config = function(_, opts)
-            require("kerooz.lib.codecompanion.setup").setup(opts)
+            require("utils.codecompanion.setup").setup(opts)
         end,
         -- stylua: ignore start
         keys = {

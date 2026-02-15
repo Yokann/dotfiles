@@ -12,7 +12,7 @@ end
 
 M.setup = function(opts)
     require("codecompanion").setup(opts)
-    require("kerooz.lib.codecompanion.fidget-spinner").init()
+    require("utils.codecompanion.fidget-spinner").init()
     addAutocmd()
 end
 

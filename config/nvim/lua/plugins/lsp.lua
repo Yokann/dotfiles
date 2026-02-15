@@ -16,7 +16,7 @@ return {
             })
         end,
         config = function()
-            require("kerooz.lib.lsp.config").configure()
+            require("config.lsp").configure()
 
             -- Display diagnostic on hover the line
             -- vim.api.nvim_create_autocmd(

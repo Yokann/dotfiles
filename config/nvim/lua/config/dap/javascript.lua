@@ -4,7 +4,7 @@ local default_config = {
     js = {
         port = "${port}",
         host = "localhost",
-    }
+    },
 }
 
 local function setup_js_adapter(dap, config)
@@ -26,7 +26,7 @@ local function setup_js_adapter(dap, config)
     }
 end
 
-local function setup_js_configuration(dap,config)
+local function setup_js_configuration(dap, config)
     for _, language in ipairs({ "typescript", "javascript" }) do
         dap.configurations[language] = {
             {
@@ -40,7 +40,7 @@ local function setup_js_configuration(dap,config)
                 type = "pwa-node",
                 request = "attach",
                 name = "Attach debugger to existing `node --inspect` process",
-                processId = require("kerooz.dap.common").filtered_pick_process,
+                processId = require("config.dap.common").filtered_pick_process,
                 cwd = "${workspaceFolder}",
                 resolveSourceMapLocations = {
                     "${workspaceFolder}/**",
@@ -107,7 +107,7 @@ local function setup_js_configuration(dap,config)
 end
 
 function M.setup(dap, opts)
-    local config = vim.tbl_deep_extend('force', default_config, opts or {})
+    local config = vim.tbl_deep_extend("force", default_config, opts or {})
     setup_js_adapter(dap, config)
     setup_js_configuration(dap, config)
 end

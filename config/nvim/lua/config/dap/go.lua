@@ -46,7 +46,7 @@ local function setup_delve_adapter(dap, config)
 end
 
 local function setup_go_configuration(dap, config)
-    local common = require('kerooz.dap.common')
+    local common = require("config.dap.common")
     dap.configurations.go = {
         {
             type = "go",
@@ -98,7 +98,7 @@ local function setup_go_configuration(dap, config)
 end
 
 function M.setup(dap, opts)
-    local config = vim.tbl_deep_extend('force', default_config, opts or {})
+    local config = vim.tbl_deep_extend("force", default_config, opts or {})
     setup_delve_adapter(dap, config)
     setup_go_configuration(dap, config)
 end

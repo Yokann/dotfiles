@@ -69,7 +69,7 @@ return {
                     -- close everything useless before save session
                     require("snacks.explorer.actions").actions.explorer_close(),
                     require("aerial").close,
-                    require("kerooz.dap.init").closeUI,
+                    require("config.dap").closeUI,
                 },
             }
         end,

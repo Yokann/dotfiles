@@ -9,7 +9,7 @@ return {
             { "jbyuki/one-small-step-for-vimkind", module = "osv" },
         },
         config = function()
-            require("kerooz.dap").setup()
+            require("config.dap.init").setup()
         end,
     },
     {

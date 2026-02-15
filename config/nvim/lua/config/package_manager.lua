@@ -23,7 +23,7 @@ local opts = {
     fallback = true, -- get plugin from git if not found in path
   },
   change_detection = {
-      notify = false -- GTFO 
+      notify = false -- GTFO
   }
 }
 
@@ -32,4 +32,4 @@ if not present then
   return
 end
 
-lazy.setup("kerooz.plugins", opts)
+lazy.setup("plugins", opts)
