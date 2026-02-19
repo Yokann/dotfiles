@@ -1,3 +1,5 @@
+sudo pacman -S fakeroot base-devel --noconfirm
+
 # Install yay if missing, install golang on the way
 if ! command -v yay &> /dev/null; then
     git clone https://aur.archlinux.org/yay.git /tmp/yay
@@ -17,15 +19,24 @@ fi
 yay -S --noconfirm --norebuild --needed \
     1password \
     1password-cli \
+    acpi \
+    acpid \
     avahi \
     bat \
+    bind \
+    bluez-utils \
     bluetuith bluez-obex \
     brightnessctl \
     btop \
+    btrfs-progs \
+    cronie \
     docker \
     docker-buildx \
     docker-compose \
+    device-mapper \
+    dhclient \
     discord \
+    dnsmasq \
     dkms \
     cliphist wl-clipboard \
     cups \
@@ -36,6 +47,7 @@ yay -S --noconfirm --norebuild --needed \
     eza \
     fastfetch \
     fd \
+    ffmpegthumbnailer \
     firefox \
     foot \
     foot-terminfo \
@@ -52,6 +64,7 @@ yay -S --noconfirm --norebuild --needed \
     hyprlock \
     hyprpaper \
     hyprshot \
+    inetutils \
     inotify-tools \
     inxi \
     jq \
@@ -64,32 +77,43 @@ yay -S --noconfirm --norebuild --needed \
     lazyjournal-bin \
     less \
     localsend-bin \
+    logrotate \
     liboauth \
     lua luarocks \
+    man-db \
+    man-pages \
     mise \
     nemo \
     neovim \
     network-manager-applet \
+    nfs-utils \
     gnu-netcat \
     nomacs \
+    nss-mdns \
     nwg-look \
     nwg-displays \
     pipewire wireplumber \
     playerctl \
+    pamixer \
     polkit-gnome \
     poppler \
+    powertop  \
     qt5-wayland  qt6-wayland \
     qt5ct hyprqt6engine \
     rclone \
     ripgrep \
+    sbctl \
     seahorse \
     signal-desktop \
     socat \
+    sof-firmware \
     starship \
     sqlite \
     sworkstyle \
     ticktick \
+    tlp \
     tcpdump \
+    usbutils \
     ufw \
     ufw-docker \
     uwsm \
@@ -97,6 +121,7 @@ yay -S --noconfirm --norebuild --needed \
     wev \
     wget \
     wiki-tui \
+    xdg-user-dirs \
     xdg-desktop-portal-hyprland \
     yazi \
     zoxide

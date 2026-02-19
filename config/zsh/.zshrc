@@ -1,6 +1,10 @@
 # - - - - - - - - - - - - - - - - - - - -
 # Custom loading configuration
 # - - - - - - - - - - - - - - - - - - - -
+if [ -z "$DOTFILES_PATH" ]; then
+    echo "DOTFILES_PATH is not set. Please set it to the path of your dotfiles repository."
+    return
+fi
 BASE_CONF_PATH=$DOTFILES_PATH/config/zsh
 CUSTOM_CONF_PATH=$HOME/.dotfiles-custom
 
