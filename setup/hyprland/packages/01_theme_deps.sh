@@ -11,11 +11,12 @@ yay -S --noconfirm --norebuild --needed \
     elephant-symbols-bin \
     elephant-websearch-bin \
     elephant-windows-bin \
+    nwg-look \
+    nwg-displays \
     walker-bin \
     swappy \
     wf-recorder \
     swaync-git \
-    mpv mpv-mpris \
     hyprpicker \
     streamlink twitch-cli-bin \
     ttf-jetbrains-mono-nerd \

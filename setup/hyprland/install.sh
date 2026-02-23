@@ -34,6 +34,7 @@ source $SETUP_PATH/generic/config/neovim.sh
 source $SETUP_PATH/generic/config/zsh.sh
 source $SETUP_PATH/generic/config/tmux.sh
 source $SETUP_PATH/generic/config/fastfetch.sh
+source $SETUP_PATH/generic/config/foot.sh
 
 # Core config
 source $SETUP_PATH/hyprland/config/lua.sh

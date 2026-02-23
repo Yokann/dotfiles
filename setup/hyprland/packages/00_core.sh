@@ -17,8 +17,6 @@ fi
 
 # Install hyprland and core dependencies
 yay -S --noconfirm --norebuild --needed \
-    1password \
-    1password-cli \
     acpi \
     acpid \
     avahi \
@@ -35,7 +33,6 @@ yay -S --noconfirm --norebuild --needed \
     docker-compose \
     device-mapper \
     dhclient \
-    discord \
     dnsmasq \
     dkms \
     cliphist wl-clipboard \
@@ -43,12 +40,10 @@ yay -S --noconfirm --norebuild --needed \
     cups-browsed \
     cups-filters \
     cups-pdf \
-    cryptomator-bin \
     eza \
     fastfetch \
     fd \
     ffmpegthumbnailer \
-    firefox \
     foot \
     foot-terminfo \
     font-manager \
@@ -56,8 +51,6 @@ yay -S --noconfirm --norebuild --needed \
     gnome-keyring \
     greetd-tuigreet \
     gvfs gvfs-smb \
-    httpie \
-    helium-browser-bin \
     hyprland \
     hyprcursor \
     hypridle \
@@ -71,27 +64,21 @@ yay -S --noconfirm --norebuild --needed \
     scdoc geticons \
     git \
     git-delta \
-    gnome-calculator \
     gum \
-    lazygit \
-    lazyjournal-bin \
     less \
-    localsend-bin \
     logrotate \
     liboauth \
     lua luarocks \
     man-db \
     man-pages \
     mise \
-    nemo \
     neovim \
     network-manager-applet \
     nfs-utils \
+    ntp \
     gnu-netcat \
     nomacs \
     nss-mdns \
-    nwg-look \
-    nwg-displays \
     pipewire wireplumber \
     playerctl \
     pamixer \
@@ -102,15 +89,13 @@ yay -S --noconfirm --norebuild --needed \
     qt5ct hyprqt6engine \
     rclone \
     ripgrep \
+    ripgrep-all \
     sbctl \
-    seahorse \
-    signal-desktop \
     socat \
     sof-firmware \
     starship \
     sqlite \
     sworkstyle \
-    ticktick \
     tlp \
     tcpdump \
     usbutils \
@@ -120,7 +105,6 @@ yay -S --noconfirm --norebuild --needed \
     waybar \
     wev \
     wget \
-    wiki-tui \
     xdg-user-dirs \
     xdg-desktop-portal-hyprland \
     yazi \

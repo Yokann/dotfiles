@@ -1,7 +1,7 @@
-sudo systemctl enable --now greetd.service
-sudo systemctl enable --now NetworkManager.service
-sudo systemctl enable --now bluetooth.service
-sudo systemctl enable --now acpid.service
+#sudo systemctl enable --now greetd.service
+#sudo systemctl enable --now NetworkManager.service
+#sudo systemctl enable --now bluetooth.service
+#sudo systemctl enable --now acpid.service
 
 # Printer
 # Disable mDNS in systemd-resolved to avoid conflicts with Avahi
