@@ -74,6 +74,7 @@ return {
                 gh_pr = { layout = "wide_with_preview" },
                 git_log = { layout = "wide_with_preview" },
                 todo_comments = { layout = "ivy" },
+                -- select = { layout = "basic_no_preview" },
             },
             previewers = {
                 cmd = { "delta" },
