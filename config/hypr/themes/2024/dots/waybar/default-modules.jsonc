@@ -162,6 +162,7 @@
             "mpv": "",
             "pcmanfm|nemo": "",
             "signal": "󰚢",
+            "class<chrome-www.youtube.com__-Default>": "",
             "class<ticktick>": "",
             "steam": "",
         }
@@ -172,6 +173,7 @@
         "separate-outputs": true,
         "rewrite": {
             "(.*) — Mozilla Firefox": "$1",
+            "(.*) - Youtube": "Youtube",
         },
     },
     "custom/notification": {
