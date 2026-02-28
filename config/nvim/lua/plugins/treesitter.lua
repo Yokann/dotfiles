@@ -32,7 +32,9 @@ return {
                     "go",
                     "gomod",
                     "gosum",
+                    "gotmpl",
                     "gowork",
+                    "helm",
                     "html",
                     "javascript",
                     "jq",
@@ -72,6 +74,8 @@ return {
             require("ts_context_commentstring").setup({
                 enable_autocmd = true,
             })
+            -- Use bash parser for zsh files
+            vim.treesitter.language.register("bash", "zsh")
         end,
     },
 }
