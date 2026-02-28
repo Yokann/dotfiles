@@ -7,46 +7,40 @@ if [ -z "$DOTFILES_PATH" ]; then
     exit 1
 fi
 
-SETUP_PATH="$DOTFILES_PATH/setup"
-STATE_PATH="$HOME/.local/state/dotfiles"
-mkdir -p $STATE_PATH
+source $DOTFILES_PATH/setup/hyprland/lib/runtime.sh
+source $DOTFILES_PATH/setup/hyprland/lib/log.sh
+STATE_FLAG=$(hyprsetup:get_state_flag)
 
-# Set zsh as default shell
-if [ "$SHELL" != "$(which zsh)" ]; then
-    echo "Setting zsh as default shell..."
-    sudo chsh -s $(which zsh) $USER
-fi
-
+log_section "Update System"
 sudo pacman -Syu --noconfirm
 
-source $SETUP_PATH/hyprland/pre_install/init.sh
-
-# Install dependencies
+log_section "Installing Hyprland and dependencies"
 for package_script in $SETUP_PATH/hyprland/packages/*.sh; do
     source $package_script
 done
 
-# Post install deps configurations
-source $SETUP_PATH/generic/config/git.sh
-source $SETUP_PATH/generic/config/starship.sh
-source $SETUP_PATH/generic/config/btop.sh
-source $SETUP_PATH/generic/config/neovim.sh
-source $SETUP_PATH/generic/config/zsh.sh
-source $SETUP_PATH/generic/config/tmux.sh
-source $SETUP_PATH/generic/config/fastfetch.sh
-source $SETUP_PATH/generic/config/foot.sh
+TOOLS_GENERIC_CONFIGS=(
+    "zsh"
+    "git"
+    "starship"
+    "btop"
+    "neovim"
+    "tmux"
+    "fastfetch"
+    "foot"
+)
 
-# Core config
-source $SETUP_PATH/hyprland/config/lua.sh
-source $SETUP_PATH/hyprland/config/greeter.sh
-source $SETUP_PATH/hyprland/config/gtk-theme.sh
-source $SETUP_PATH/hyprland/config/electron.sh
-source $SETUP_PATH/hyprland/config/walker.sh
-source $SETUP_PATH/hyprland/config/docker.sh
-source $SETUP_PATH/hyprland/config/keyboard.sh
-source $SETUP_PATH/hyprland/config/mimetypes.sh
-source $SETUP_PATH/hyprland/config/node.sh
-source $SETUP_PATH/hyprland/config/systemd.sh
-source $SETUP_PATH/hyprland/config/hyprland.sh
+log_section "Configuring tools"
+for config in "${TOOLS_GENERIC_CONFIGS[@]}"; do
+    hyprsetup:source_if_exists $SETUP_PATH/generic/config/${config}.sh || {
+        log_warning "Failed to source ${config} config script. Skipping..."
+    }
+done
 
-touch $STATE_PATH/installed
+log_section "Configuring Hyprland environment"
+for config_script in $SETUP_PATH/hyprland/config/*.sh; do
+    log_info "Sourcing config script: $config_script"
+    source $config_script
+done
+
+hyprsetup:mark_as_installed

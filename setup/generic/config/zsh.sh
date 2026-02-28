@@ -8,3 +8,9 @@ if ! grep -q "source $DOTFILES_PATH/config/zsh/.zshrc" "$HOME/.zshrc" 2>/dev/nul
 else
     echo "Zsh is already configured. Skipping..."
 fi
+
+# Set zsh as default shell
+if [ "$SHELL" != "$(which zsh)" ]; then
+    echo "Setting zsh as default shell..."
+    sudo chsh -s $(which zsh) $USER
+fi

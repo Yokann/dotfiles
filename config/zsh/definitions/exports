@@ -22,7 +22,7 @@ export PROJECTS_ROOT_DIR="$HOME/projets"
 [[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
 
 # Extra paths
-export PATH=$HOME/bin:$DOTFILES_PATH/bin:/usr/local/bin:$HOME/.local/share/mise/shims:$PATH
+export PATH=$DOTFILES_PATH/bin:/usr/local/bin:$HOME/.local/share/mise/shims:$PATH
 export PATH=$HOME/go/bin:$PATH
 
 # AWS

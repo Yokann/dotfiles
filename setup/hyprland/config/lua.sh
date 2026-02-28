@@ -1,7 +1,3 @@
-cat > /tmp/luarock.sh <<'EOF'
-if [ command luarock --version >/dev/null 2>&1 ]; then
-    eval "$(luarocks path --bin)"
+if [ -f "$DOTFILES_PATH/setup/hyprland/assets/etc/profile.d/luarock.sh" ]; then
+    sudo cp $DOTFILES_PATH/setup/hyprland/assets/etc/profile.d/luarock.sh /etc/profile.d/luarock.sh
 fi
-EOF
-
-sudo mv /tmp/luarock.sh /etc/profile.d/luarock.sh
