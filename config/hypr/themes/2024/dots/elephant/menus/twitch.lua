@@ -53,3 +53,7 @@ function Both(value, args)
     Launch(value, args)
     OpenChat(value, args)
 end
+
+-- for _, entry in ipairs(GetEntries()) do
+--     print("Entry:", entry.Text, entry.Subtext, entry.Value)
+-- end
