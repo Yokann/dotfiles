@@ -15,4 +15,10 @@ yay -S --noconfirm --norebuild --needed \
     seahorse \
     signal-desktop \
     ticktick \
-    wiki-tui \
+    wiki-tui
+
+if command -v luarocks &> /dev/null; then
+    luarocks install --local dkjson
+else
+    echo "Luarocks is not installed, skipping installation"
+fi

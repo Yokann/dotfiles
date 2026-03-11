@@ -1,9 +1,20 @@
-#!/bin/sh
+#!/usr/bin/env bash
 sleep 4
-killall -e xdg-desktop-portal-wlr
 killall -e xdg-desktop-portal-hyprland
-killall xdg-desktop-portal
-/usr/lib/xdg-desktop-portal-gtk &
+killall -e xdg-desktop-portal-wlr
+killall -e xdg-desktop-portal-gtk
+killall -e xdg-desktop-portal
+systemctl --user stop xdg-desktop-portal
+systemctl --user stop xdg-desktop-portal-gtk
+systemctl --user stop xdg-desktop-portal-wlr
+systemctl --user stop xdg-desktop-portal-hyprland
+sleep "0.1"
 /usr/lib/xdg-desktop-portal-hyprland &
-sleep 4
+sleep 2
+/usr/lib/xdg-desktop-portal-gtk &
+sleep "0.5"
 /usr/lib/xdg-desktop-portal &
+
+systemctl --user start xdg-desktop-portal
+systemctl --user start xdg-desktop-portal-gtk
+systemctl --user start xdg-desktop-portal-hyprland

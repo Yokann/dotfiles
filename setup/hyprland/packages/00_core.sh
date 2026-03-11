@@ -82,6 +82,7 @@ yay -S --noconfirm --norebuild --needed \
     pipewire wireplumber \
     playerctl \
     pamixer \
+    pavucontrol \
     polkit-gnome \
     poppler \
     powertop  \
@@ -106,6 +107,7 @@ yay -S --noconfirm --norebuild --needed \
     wev \
     wget \
     xdg-user-dirs \
+    xdg-desktop-portal-gtk \
     xdg-desktop-portal-hyprland \
     yazi \
     zoxide
