@@ -27,4 +27,6 @@ source = ./monitors.conf
 exec-once = [workspace 6 silent;noinitialfocus] signal-desktop
 EOF
 
+    gsettings set org.gnome.desktop.interface color-sheme prefer-dark
+
 fi
