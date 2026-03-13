@@ -49,7 +49,6 @@ yay -S --noconfirm --norebuild --needed \
     font-manager \
     fzf \
     gnome-keyring \
-    greetd-tuigreet \
     gvfs gvfs-smb \
     hyprland \
     hyprcursor \
@@ -78,6 +77,7 @@ yay -S --noconfirm --norebuild --needed \
     ntp \
     gnu-netcat \
     nomacs \
+    nwg-hello \
     nss-mdns \
     pipewire wireplumber \
     playerctl \
