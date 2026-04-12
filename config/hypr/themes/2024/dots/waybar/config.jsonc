@@ -6,11 +6,11 @@
             "${DOTFILES_PATH}/config/hypr/themes/2024/dots/waybar/default-modules.jsonc"
         ],
         "modules-left": [
-            "custom/launcher",
+            // "custom/launcher",
             "custom/twitch",
             "group/hardware",
-            "custom/pomo",
-            "hyprland/window"
+            "custom/pomo"
+            // "hyprland/window"
         ],
         "modules-center": [
             "hyprland/workspaces",
@@ -33,10 +33,6 @@
         "output": "!${HYPR_MAIN_MONITOR}",
         "include": [
             "${DOTFILES_PATH}/config/hypr/themes/2024/dots/waybar/default-modules.jsonc"
-        ],
-        "modules-left": [
-            "custom/launcher",
-            "hyprland/window",
         ],
         "modules-center": [
             "hyprland/workspaces",

@@ -204,11 +204,11 @@ window#waybar.hidden {
 #custom-twitch {
     padding-right: 15px;
     color: white;
-    background: #6441a5;
+    background: rgba(100, 65, 165, 0.5);
 }
 
 #custom-twitch:hover {
-    background: rgba(100, 65, 165, 0.5);
+    background: #6441a5;
 }
 
 #custom-pomo {
