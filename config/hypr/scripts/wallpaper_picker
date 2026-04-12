@@ -1,7 +1,6 @@
 #!/usr/bin/env zsh
 
-# This script is used to set the wallpaper for the current session
-
+# This script is used to set the wallpaper for the active monitor
 wallpaper="$1"
 
 if [ ! -f "$1" ]; then
@@ -10,17 +9,12 @@ if [ ! -f "$1" ]; then
         exit 1
     fi
     exit 1
-    # format_string="echo 'img:${WALLPAPERS_PATH}/%s:text:'"
-    # wallpaper_selected="$(ls $WALLPAPERS_PATH | wofi --pre-display-cmd "$format_string" -c "$HOME/.config/wofi/config_img")"
-    # if [ -z "$wallpaper_selected" ]; then
-    #     echo "No wallpaper selected"
-    #     exit 1
-    # fi
-    # wallpaper=$WALLPAPERS_PATH/$wallpaper_selected
 fi
 
+active_monitor=$(hyprctl monitors -j | jq  -r '.[] | select(.focused) | .name')
+echo "Active monitor: $active_monitor"
 echo "Loading" $wallpaper
 
-hyprctl hyprpaper unload all
+# hyprctl hyprpaper unload all
 hyprctl hyprpaper preload $wallpaper
-hyprctl hyprpaper wallpaper ",$wallpaper"
+hyprctl hyprpaper wallpaper "$active_monitor,$wallpaper"

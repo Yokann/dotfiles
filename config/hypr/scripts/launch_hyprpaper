@@ -1,17 +1,19 @@
 #!/bin/sh
 
 # Get random wallpaper from the specified directory and get only jpg/png files
-wallpaper=$(find "$WALLPAPERS_PATH" -type f \( -iname "*.jpg" -o -iname "*.png" \) | shuf -n 1)
-
-if [ ! -f /tmp/hyprpaper_runtime.conf ]; then
-    cat > /tmp/hyprpaper_runtime.conf <<EOF
-wallpaper {
-    monitor =
-    path = $wallpaper
-    fit_mode = cover
+function get_random_wallpaper() {
+    find "$WALLPAPERS_PATH" -type f \( -iname "*.jpg" -o -iname "*.png" \) | shuf -n 1
 }
-EOF
-fi
+
+echo splash = false > $XDG_CONFIG_HOME/hypr/hyprpaper.conf
+for monitor in $(hyprctl monitors -j | jq -r '.[].name'); do
+    echo "wallpaper {" >> $XDG_CONFIG_HOME/hypr/hyprpaper.conf
+    echo "    monitor = $monitor" >> $XDG_CONFIG_HOME/hypr/hyprpaper.conf
+    echo "    path = $(get_random_wallpaper)" >> $XDG_CONFIG_HOME/hypr/hyprpaper.conf
+    echo "    fit_mode = cover" >> $XDG_CONFIG_HOME/hypr/hyprpaper.conf
+    echo "}" >> $XDG_CONFIG_HOME/hypr/hyprpaper.conf
+done
+
 
 # Launch hyprpaper with the selected wallpaper
-pidof hyprpaper || hyprpaper -c /tmp/hyprpaper_runtime.conf &
+pidof hyprpaper || uwsm app -- hyprpaper
