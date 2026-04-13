@@ -9,7 +9,7 @@ yay -S --noconfirm --norebuild --needed \
     httpie \
     lazygit \
     lazyjournal-bin \
-    localsend-bin \
+    localsend \
     mpv mpv-mpris \
     nemo \
     seahorse \
