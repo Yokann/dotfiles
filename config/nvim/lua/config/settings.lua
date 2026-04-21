@@ -115,3 +115,5 @@ vim.opt.mousemoveevent = true -- Allow hovering in bufferline
 
 -- Environments
 vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH
+vim.treesitter.language.register("bash", "zsh")
+

@@ -72,6 +72,7 @@ yay -S --noconfirm --norebuild --needed \
     man-pages \
     mise \
     neovim \
+    tree-sitter-cli \
     network-manager-applet \
     nfs-utils \
     ntp \
