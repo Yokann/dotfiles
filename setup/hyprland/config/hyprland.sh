@@ -31,6 +31,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("1password", { no_initial_focus = true, workspace = "2 silent" })
 end)
 
+--require("monitors")
 --hl.monitor({
 --    output = "DP-1",
 --    mode = "3840x2160@60",
