@@ -1,6 +1,6 @@
 #!/bin/sh
 
-pidof hyprlock || hyprlock -c $HYPR_CONFIG_PATH/themes/2024/dots/hyprlock.conf &
+pidof hyprlock || uwsm app -- hyprlock -c $HYPR_CONFIG_PATH/themes/2024/dots/hyprlock.conf &
 
 if pgreg -x "1password" > /dev/null; then
     1password --lock &
