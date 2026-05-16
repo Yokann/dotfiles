@@ -21,6 +21,7 @@ http-client.env.json
 # other IDE
 .vscode
 .fleet
+.zed
 
 # Sublime Text
 *.sublime-project
@@ -32,5 +33,11 @@ yarn-error.log
 .phpunit-watcher-cache.php
 .phpunit.result.cache
 
-# Log 
+# Log
 *.log
+
+# AI
+CLAUDE.local.md
+.codanna/
+.codannaignore
+.fastembed_cache
