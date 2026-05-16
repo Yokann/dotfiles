@@ -1,0 +1,14 @@
+pkgname=nodejs-dummy
+pkgver=1.0.0 # Set to your actual installed version
+pkgrel=1
+pkgdesc="Fake nodejs package - managed by mise"
+arch=('x86_64')
+provides=('nodejs=25.0.0' 'npm' 'yarn' 'pnpm')
+conflicts=('nodejs' 'nodejs-lts-hydrogen' 'nodejs-lts-iron' 'nodejs-lts-krypton' 'nodejs-lts-jod')
+
+build() {
+    return 0
+}
+package() {
+    return 0
+}

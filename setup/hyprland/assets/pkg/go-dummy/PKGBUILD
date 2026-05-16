@@ -1,0 +1,14 @@
+pkgname=go-dummy
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="Fake nodejs package - managed by mise"
+arch=('x86_64')
+provides=('go=1.27.0')
+conflicts=('go')
+
+build() {
+    return 0
+}
+package() {
+    return 0
+}
