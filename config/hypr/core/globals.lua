@@ -1,0 +1,6 @@
+MainMod = "SUPER"
+Terminal = "footclient"
+FileManager = "yazi"
+ConfigPath = os.getenv("DOTFILES_PATH") .. "/config/hypr"
+MachineType = "desktop"
+Uwsm = "uwsm app -- "
