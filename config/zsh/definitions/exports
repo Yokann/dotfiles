@@ -33,4 +33,6 @@ export SHOW_AWS_PROMPT=false # Disable reprompt inside aws zsh plugin
 # LuaRocks sets LUA_PATH to packages installed
 eval "$(luarocks path --bin)"
 
-# vim: set ft=zsh
+eval "$(zoxide init zsh)"
+
+# vim: set ft=sh
