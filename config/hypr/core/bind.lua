@@ -1,6 +1,6 @@
 hl.bind(MainMod .. " + G", hl.dsp.exec_cmd(Terminal))
 hl.bind(MainMod .. " + Q", hl.dsp.window.close())
-hl.bind(MainMod .. " + S", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(MainMod .. " + space", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(MainMod .. " + F", hl.dsp.window.fullscreen({ action = "toggle" }))
 
 hl.bind(MainMod .. " + H", hl.dsp.focus({ direction = "left" }))
@@ -55,7 +55,7 @@ hl.bind(MainMod .. " + V", hl.dsp.exec_cmd("walker -m clipboard"))
 -- Misc
 hl.bind(MainMod .. " + SHIFT + B", hl.dsp.exec_cmd(Uwsm .. "firefox -P Perso"))
 hl.bind(MainMod .. " + B", hl.dsp.exec_cmd(Uwsm .. "firefox"))
-hl.bind(MainMod .. " + C", hl.dsp.exec_cmd("ihyprctl reload"))
+hl.bind(MainMod .. " + C", hl.dsp.exec_cmd("hyprctl reload"))
 hl.bind(MainMod .. " + SHIFT + P", hl.dsp.exec_cmd("1password --toggle --quick-access"))
 hl.bind(MainMod .. " + SHIFT + C", hl.dsp.exec_cmd(ConfigPath .. "/scripts/colorpicker"))
 hl.bind(MainMod .. " + Y", hl.dsp.exec_cmd(Uwsm .. "fontclient yazi"))
