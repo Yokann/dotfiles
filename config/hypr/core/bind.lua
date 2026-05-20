@@ -1,7 +1,7 @@
 hl.bind(MainMod .. " + G", hl.dsp.exec_cmd(Terminal))
 hl.bind(MainMod .. " + Q", hl.dsp.window.close())
 hl.bind(MainMod .. " + space", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(MainMod .. " + F", hl.dsp.window.fullscreen({ action = "toggle" }))
+hl.bind(MainMod .. " + F", hl.dsp.window.fullscreen({ action = "toggle", mode = "maximized" }))
 
 hl.bind(MainMod .. " + H", hl.dsp.focus({ direction = "left" }))
 hl.bind(MainMod .. " + L", hl.dsp.focus({ direction = "right" }))
@@ -61,14 +61,14 @@ hl.bind(MainMod .. " + SHIFT + C", hl.dsp.exec_cmd(ConfigPath .. "/scripts/color
 hl.bind(MainMod .. " + Y", hl.dsp.exec_cmd(Uwsm .. "fontclient yazi"))
 hl.bind(MainMod .. " + SHIFT + K", hl.dsp.exec_cmd(Uwsm .. "slack"))
 hl.bind(MainMod .. " + SHIFT + F", hl.dsp.exec_cmd(Uwsm .. "nemo"))
-hl.bind(MainMod .. " + SHIFT + J", hl.dsp.exec_cmd("walker -m windows"))
-hl.bind(MainMod .. " + SHIFT + Y", hl.dsp.exec_cmd("walker -m menus:twitch"))
 hl.bind(MainMod .. " + SHIFT + N", hl.dsp.exec_cmd("swaync-client -t -sw")) -- Notifications center
 hl.bind(MainMod .. " + SHIFT + A", hl.dsp.exec_cmd("claude-desktop --toggle"))
 hl.bind(MainMod .. " + M", hl.dsp.exec_cmd("pkill -SIGUSR1 waybar")) -- Hide waybar
 
 -- Walker
 hl.bind(MainMod .. " + O", hl.dsp.exec_cmd(ConfigPath .. "/scripts/audio_switcher"))
+hl.bind(MainMod .. " + SHIFT + J", hl.dsp.exec_cmd("walker -m windows"))
+hl.bind(MainMod .. " + SHIFT + Y", hl.dsp.exec_cmd("walker -m menus:twitch"))
 hl.bind(MainMod .. " + D", hl.dsp.exec_cmd("walker"))
 hl.bind(MainMod .. " + SHIFT + D", hl.dsp.submap("walker"))
 hl.define_submap("walker", function()
