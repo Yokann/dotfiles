@@ -113,3 +113,17 @@ vim.api.nvim_create_autocmd("FocusGained", {
         end)
     end,
 })
+
+-- Run treesitter highlight on filetypes that support it, to avoid the delay on startup for large files.
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "*",
+    callback = function(ctx)
+        if vim.api.nvim_buf_line_count(ctx.buf) > 50000 then
+            return
+        end
+        local filetype = vim.bo.filetype
+        if filetype and filetype ~= "" then
+            pcall(vim.treesitter.start)
+        end
+    end,
+})
