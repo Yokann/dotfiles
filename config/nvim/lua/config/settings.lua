@@ -91,7 +91,7 @@ vim.opt.updatetime = 250
 -- these only read ".vim" files {{{
 
 vim.opt.secure = true -- Disable autocmd etc for project local vimrc files.
-vim.opt.exrc = true -- Allow project local vimrc files example .nvimrc see :h exrc
+vim.opt.exrc = true   -- Allow project local vimrc files example .nvimrc see :h exrc
 
 -- }}}
 
@@ -110,10 +110,8 @@ vim.opt.smartcase = true
 vim.g.gitblame_enabled = 0
 vim.g.user_emmet_leader_key = "<A-e>"
 vim.opt.clipboard:append("unnamedplus") -- use system clipboard
-vim.opt.mouse = "a" -- enable mouse for all modes
-vim.opt.mousemoveevent = true -- Allow hovering in bufferline
+vim.opt.mouse = "a"                     -- enable mouse for all modes
+vim.opt.mousemoveevent = true           -- Allow hovering in bufferline
 
 -- Environments
 vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH
-vim.treesitter.language.register("bash", "zsh")
-
