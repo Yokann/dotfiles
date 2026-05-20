@@ -15,6 +15,7 @@ yay -S --noconfirm --norebuild --needed \
     seahorse \
     signal-desktop \
     ticktick \
+    wayscriber \
     wiki-tui
 
 if command -v luarocks &> /dev/null; then

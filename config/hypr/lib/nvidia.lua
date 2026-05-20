@@ -10,3 +10,5 @@ M.loadEnv = function()
     -- next line require libva-vdpau-driver
     hl.env("NVD_BACKEND", "direct", true)
 end
+
+return M

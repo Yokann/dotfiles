@@ -11,6 +11,7 @@ yay -S --noconfirm --norebuild --needed \
     elephant-symbols-bin \
     elephant-websearch-bin \
     elephant-windows-bin \
+    elephant-wireplumber-bin \
     nwg-look \
     nwg-displays \
     walker-bin \

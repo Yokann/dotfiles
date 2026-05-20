@@ -18,7 +18,7 @@ M.setup = function(opts)
     require("config.core.env")
     require("config.themes." .. opts.theme .. ".env")
     if opts.enableNvidia then
-        require("lib.nvidia").loadEnv()
+        require("config.lib.nvidia").loadEnv()
     end
     opts.beforeExecs()
     require("config.core.execs")
@@ -32,7 +32,7 @@ end
 
 ---@params deviceNames string[]
 M.loadDevicesConfig = function(deviceNames)
-    local devices = require("devices")
+    local devices = require("config.devices")
     for _, deviceName in ipairs(deviceNames) do
         devices.loadConfig(deviceName)
     end
