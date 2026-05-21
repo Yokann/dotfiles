@@ -1,17 +1,8 @@
 -- Layer rules
-hl.layer_rule({
-    match = { namespace = "swaync-notification-window" },
-    animation = "slide top",
-})
-
-hl.layer_rule({
-    match = { namespace = "swaync-control-center" },
-    animation = "slide right",
-})
-hl.layer_rule({
-    match = { namespace = "walker" },
-    animation = "fade",
-})
+hl.layer_rule({ match = { namespace = "swaync-notification-window" }, animation = "slide top" })
+hl.layer_rule({ match = { namespace = "swaync-control-center" }, animation = "slide right" })
+hl.layer_rule({ match = { namespace = "walker" }, animation = "fade" })
+hl.layer_rule({ match = { namespace = "selection" }, no_anim = true }) -- slurp selection layer
 
 -- Window rules
 
