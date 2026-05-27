@@ -58,7 +58,7 @@ hl.bind(MainMod .. " + B", hl.dsp.exec_cmd(Uwsm .. "firefox"))
 hl.bind(MainMod .. " + C", hl.dsp.exec_cmd("hyprctl reload"))
 hl.bind(MainMod .. " + SHIFT + P", hl.dsp.exec_cmd("1password --toggle --quick-access"))
 hl.bind(MainMod .. " + SHIFT + C", hl.dsp.exec_cmd(ConfigPath .. "/scripts/colorpicker"))
-hl.bind(MainMod .. " + Y", hl.dsp.exec_cmd(Uwsm .. "fontclient yazi"))
+hl.bind(MainMod .. " + Y", hl.dsp.exec_cmd(Uwsm .. "footclient yazi"))
 hl.bind(MainMod .. " + SHIFT + K", hl.dsp.exec_cmd(Uwsm .. "slack"))
 hl.bind(MainMod .. " + SHIFT + F", hl.dsp.exec_cmd(Uwsm .. "nemo"))
 hl.bind(MainMod .. " + SHIFT + N", hl.dsp.exec_cmd("swaync-client -t -sw")) -- Notifications center

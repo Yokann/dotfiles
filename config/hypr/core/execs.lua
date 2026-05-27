@@ -8,7 +8,6 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("systemctl --user start hypridle.service")
     hl.exec_cmd("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
     hl.exec_cmd(Uwsm .. "walker --gapplication-service")
-    hl.exec_cmd(ConfigPath .. "/scripts/launch_waybar")
 end)
 
 hl.on("config.reloaded", function()

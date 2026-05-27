@@ -24,18 +24,11 @@ hl.window_rule({ match = { class = "org.gnome.Calculator" }, float = true, size 
 hl.window_rule({ match = { class = "nemo" }, opacity = 0.9 })
 
 -- Video
+hl.window_rule({ tag = "+pip", match = { class = "firefox", title = "Picture-in-Picture|Incrustation vidéo" } })
+hl.window_rule({ tag = "+pip", match = { class = "mpv" } })
 hl.window_rule({
-    name = "mpv",
-    match = { class = "mpv" },
-    float = true,
-    no_initial_focus = true,
-    monitor = 1,
-    move = { 1095, 121 },
-    size = { 800, 452 },
-})
-hl.window_rule({
-    name = "firefox-pip",
-    match = { class = "firefox", title = "Picture-in-Picture" },
+    name = "PiP",
+    match = { tag = "pip" },
     float = true,
     no_initial_focus = true,
     monitor = 1,
@@ -44,54 +37,23 @@ hl.window_rule({
 })
 
 -- Steam
-hl.window_rule({ tag = "steam-floats", match = { class = "[Ss]team" } })
-hl.window_rule({
-    name = "game-launcher",
-    match = {
-        tag = "game-launcher",
-        workspace = "8:silent",
-    },
-})
+hl.window_rule({ tag = "+game-launcher", match = { class = "[Ss]team" } })
+hl.window_rule({ name = "game-launcher", match = { tag = "game-launcher", workspace = "8:silent" } })
 
-hl.window_rule({ tag = "steam-floats", match = { title = "Steam", float = true } })
+hl.window_rule({ tag = "+steam-floats", match = { title = "Steam", float = true } })
 hl.window_rule({
     name = "steam-updater-floating-window",
-    match = {
-        tag = "steam-floats",
-    },
+    match = { tag = "steam-floats" },
     workspace = "8:silent",
     no_focus = true,
 })
-hl.window_rule({
-    name = "steam-float-dialogs-and-stuff",
-    match = {
-        title = "SteamTinkerLaunch",
-    },
-    float = true,
-})
 
-hl.window_rule({
-    tag = "misc-game",
-    match = {
-        class = "steam_app.*",
-        title = "^$",
-    },
-})
-hl.window_rule({
-    name = "non-game-windows-spawned-by-launching-games",
-    match = {
-        tag = "misc-game",
-    },
-    center = true,
-})
+hl.window_rule({ name = "steam-float-dialogs-and-stuff", match = { title = "SteamTinkerLaunch" }, float = true })
+hl.window_rule({ tag = "+misc-game", match = { class = "steam_app.*", title = "^$" } })
 
-hl.window_rule({
-    tag = "game",
-    match = {
-        class = "steam_app_.*",
-        title = "negative:^$",
-    },
-})
+hl.window_rule({ name = "non-game-windows-spawned-by-launching-games", match = { tag = "misc-game" }, center = true })
+
+hl.window_rule({ tag = "+game", match = { class = "steam_app_.*", title = "negative:^$" } })
 hl.window_rule({
     name = "game-windows",
     match = {
@@ -120,3 +82,6 @@ hl.window_rule({
     },
     no_screen_share = true,
 })
+
+-- Discord
+hl.window_rule({ name = "Discord", match = { class = "discord" }, workspace = "8:silent" })
