@@ -28,6 +28,7 @@ TOOLS_GENERIC_CONFIGS=(
     "tmux"
     "fastfetch"
     "foot"
+    "yazi"
 )
 
 log_section "Configuring tools"
