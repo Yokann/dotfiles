@@ -41,3 +41,5 @@ CLAUDE.local.md
 .codanna/
 .codannaignore
 .fastembed_cache
+
+**/.claude/settings.local.json
