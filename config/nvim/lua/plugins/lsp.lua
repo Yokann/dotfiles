@@ -91,6 +91,7 @@ return {
                 "phpactor",
                 "prettierd",
                 "rust_analyzer",
+                "shfmt",
                 "sqlls",
                 "sqlfmt",
                 "selene",
