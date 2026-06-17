@@ -85,3 +85,10 @@ hl.window_rule({
 
 -- Discord
 hl.window_rule({ name = "Discord", match = { class = "discord" }, workspace = "8:silent" })
+
+hl.window_rule({
+    name = "kdrive",
+    match = { title = "kDrive_client" },
+    move = { 2450, 50 },
+    float = true,
+})
