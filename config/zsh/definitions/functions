@@ -17,4 +17,8 @@ function y() {
 	command rm -f -- "$tmp"
 }
 
+reinstall_completion () {
+    zinit creinstall $DOTFILES_CUSTOM_PATH/completions
+}
+
 # vim: ft=zsh
