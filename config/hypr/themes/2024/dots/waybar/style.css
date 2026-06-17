@@ -169,8 +169,7 @@ window#waybar.hidden {
 }
 
 #custom-updates {
-    color: #1e1e2e;
-    background: #fab387;
+    background: none;
 }
 
 #custom-playerctl {
