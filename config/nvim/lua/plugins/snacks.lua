@@ -52,7 +52,10 @@ return {
            ]],
             },
         },
-        explorer = {},
+        explorer = {
+            replace_netrw = true,
+            trash = true,
+        },
         lazygit = {},
         picker = {
             sources = {
