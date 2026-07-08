@@ -38,6 +38,8 @@ yarn-error.log
 
 # AI
 CLAUDE.local.md
+AGENTS.local.md
+CRUSH.local.md
 .codanna/
 .codannaignore
 .fastembed_cache
