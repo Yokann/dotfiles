@@ -1,16 +1,16 @@
 sudo pacman -S fakeroot base-devel --noconfirm
 
 # Install yay if missing, install golang on the way
-if ! command -v yay &> /dev/null; then
+if ! command -v yay &>/dev/null; then
     git clone https://aur.archlinux.org/yay.git /tmp/yay
-cd /tmp/yay
+    cd /tmp/yay
     makepkg -si --noconfirm
     cd -
     rm -rf /tmp/yay
 fi
 
 # Install rustup if missing
-if ! command -v rustup &> /dev/null; then
+if ! command -v rustup &>/dev/null; then
     yay -S --noconfirm rustup
     rustup default stable
 fi
@@ -80,14 +80,15 @@ yay -S --noconfirm --norebuild --needed \
     nomacs \
     nwg-hello \
     nss-mdns \
+    pacutils \
     pipewire wireplumber \
     playerctl \
     pamixer \
     pavucontrol \
     polkit-gnome \
     poppler \
-    powertop  \
-    qt5-wayland  qt6-wayland \
+    powertop \
+    qt5-wayland qt6-wayland \
     qt5ct hyprqt6engine \
     rclone \
     ripgrep \
