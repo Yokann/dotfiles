@@ -7,6 +7,7 @@ hl.env("XDG_SESSION_DESKTOP", "Hyprland", true)
 hl.env("XDG_SESSION_TYPE", "wayland", true)
 hl.env("MOZ_ENABLE_WAYLAND", "1", true)
 hl.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
+hl.env("GDK_SCALE", "1", true)
 -- SDL
 hl.env("SDL_VIDEODRIVER", "wayland;x11")
 
