@@ -31,9 +31,22 @@ hl.config({
         -- See https://wiki.hyprland.org/Configuring/Variables/ for more
         force_default_wallpaper = 0, --  Set to 0 to disable the anime mascot wallpapers
         focus_on_activate = 1,
+        render_unfocused_fps = 5, -- FPS for unfocused windows
+        enable_anr_dialog = true, -- App not Responding dialog
     },
     xwayland = {
+        use_nearest_neighbor = true,
         force_zero_scaling = true,
+    },
+    opengl = {
+        nvidia_anti_flicker = true,
+    },
+    render = {
+        direct_scanout = 0, -- 0 = disabled, 1 = enabled, 2 = auto
+        expand_undersized_textures = true,
+    },
+    debug = {
+        -- damage_tracking = 0,
     },
 })
 

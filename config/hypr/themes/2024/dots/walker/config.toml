@@ -69,6 +69,10 @@ archlinuxpkgs = [
     { action = "set", bind = "Return", default = true, label = "Set Wallpaper" },
 ]
 
+"menus:shaders" = [
+    { action = "set", bind = "Return", default = true, label = "Set Shader" },
+]
+
 "menus:screenshots" = [
     { action = "view", bind = "Return", default = true, label = "View Screenshot" },
     { action = "annotate", bind = "Return" , label = "Annotate last screenshot"},

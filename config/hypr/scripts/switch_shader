@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+
+shader_path="${HYPR_CONFIG_PATH}/shaders/${1}"
+if [[ -z "$1" ]]; then
+    shader_path=""
+fi
+hyprctl eval "hl.config({ decoration = { screen_shader = \"${shader_path}\" }})"
