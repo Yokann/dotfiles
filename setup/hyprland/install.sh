@@ -27,6 +27,7 @@ TOOLS_GENERIC_CONFIGS=(
     "starship"
     "btop"
     "neovim"
+    "mpv"
     "tmux"
     "fastfetch"
     "foot"
