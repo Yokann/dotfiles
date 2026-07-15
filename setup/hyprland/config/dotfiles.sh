@@ -13,3 +13,17 @@ PATH=${HOME}/.local/bin:${HOME}/.cargo/bin:${HOME}/go/bin:${PATH}
 EOF
 fi
 
+# Create custom dotfiles directory if it doesn't exis8t
+if [ ! -d "$DOTFILES_CUSTOM_PATH" ]; then
+    mkdir -p "$DOTFILES_CUSTOM_PATH/zsh"
+    mkdir -p "$DOTFILES_CUSTOM_PATH/completions"
+    dotfcustom_files = (
+        "aliases"
+        "exports"
+        "functions"
+        "post_zshrc"
+    )
+    for file in "${dotfcustom_files[@]}"; do
+        touch "$DOTFILES_CUSTOM_PATH/zsh/$file"
+    done
+fi

@@ -7,6 +7,8 @@ if [ -z "$DOTFILES_PATH" ]; then
     exit 1
 fi
 
+DOTFILES_CUSTOM_PATH=${DOTFILES_CUSTOM_PATH:-"$HOME/.dotfiles-custom"}
+
 source $DOTFILES_PATH/setup/hyprland/lib/runtime.sh
 source $DOTFILES_PATH/setup/hyprland/lib/log.sh
 STATE_FLAG=$(hyprsetup:get_state_flag)
