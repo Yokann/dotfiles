@@ -25,7 +25,7 @@ symbol = " "
 [kubernetes]
 disabled = false
 symbol = "󱃾 "
-format = "[$symbol$context($namespace)]($style) "
+format = "[$symbol$context ($namespace)]($style) "
 contexts = [
   { context_pattern = "(.*)prod(.*)", style = "red bold" },
   { context_pattern = "(.*)staging(.*)", style = "green bold" },
