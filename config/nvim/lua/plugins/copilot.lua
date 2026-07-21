@@ -108,7 +108,7 @@ return {
                 chat = {
                     adapter = {
                         name = "claude_code",
-                        model = "sonnet-4.6",
+                        model = "sonnet",
                     },
                 },
                 inline = {
