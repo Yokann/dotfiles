@@ -45,6 +45,9 @@ hl.config({
         direct_scanout = 0, -- 0 = disabled, 1 = enabled, 2 = auto
         expand_undersized_textures = true,
     },
+    binds = {
+        movefocus_cycles_fullscreen = true,
+    },
     debug = {
         -- damage_tracking = 0,
     },
