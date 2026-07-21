@@ -67,7 +67,7 @@ hl.bind(MainMod .. " + M", hl.dsp.exec_cmd("pkill -SIGUSR1 waybar")) -- Hide way
 
 -- Walker
 hl.bind(MainMod .. " + O", hl.dsp.exec_cmd(ConfigPath .. "/scripts/audio_switcher"))
-hl.bind(MainMod .. " + SHIFT + J", hl.dsp.exec_cmd("walker -m windows"))
+hl.bind(MainMod .. " + SHIFT + W", hl.dsp.exec_cmd("walker -m windows"))
 hl.bind(MainMod .. " + SHIFT + Y", hl.dsp.exec_cmd("walker -m menus:twitch"))
 hl.bind(MainMod .. " + D", hl.dsp.exec_cmd("walker"))
 hl.bind(MainMod .. " + SHIFT + D", hl.dsp.submap("walker"))
