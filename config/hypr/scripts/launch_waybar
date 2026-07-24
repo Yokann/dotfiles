@@ -1,7 +1,23 @@
 #!/bin/sh
 
+# prevent multiple instances of waybar from running at the same time
+lock_file="$XDG_RUNTIME_DIR/waybar.lock"
+exec 200>$lock_file
+flock -n 200 || exit 0
+
 pkill -x waybar
-sleep 1
+sleep 0.5
+
+# Set WAYLAND_DISPLAY to the first available Wayland socket if not already set
+if [ -n "$WAYLAND_DISPLAY" ]; then
+    socket=$(find "$XDG_RUNTIME_DIR" -maxdepth 1 -type s -name "wayland-*" | head -n 1)
+    if [ -n "$socket" ]; then
+        export WAYLAND_DISPLAY=$(basename "$socket")
+    else
+        echo "No Wayland socket found in $XDG_RUNTIME_DIR"
+        exit 1
+    fi
+fi
 
 if [ -f "$WAYBAR_CONFIG_PATH" ]; then
     USER_CONFIG=$WAYBAR_CONFIG_PATH
@@ -19,3 +35,7 @@ else
     uwsm app -- waybar -c /tmp/waybar-config.jsonc \
         -s "${USER_STYLE:-"$HYPR_CONFIG_PATH/themes/2024/dots/waybar/style.css"}"
 fi
+
+# Release lock
+flock -u 200
+exec 200>&-
