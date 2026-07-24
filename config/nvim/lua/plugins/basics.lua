@@ -62,9 +62,11 @@ return {
             vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
             return {
                 log_level = "error",
-                auto_session_suppress_dirs = { "~/" },
-                auto_restore_enabled = false,
-                auto_session_create_enabled = true,
+                suppressed_dirs = { "~/", "/" },
+                auto_restore = false,
+                auto_restore_last_session = false,
+                auto_create = true,
+                -- continue_restore_on_error = false,
                 pre_save_cmds = {
                     -- close everything useless before save session
                     require("snacks.explorer.actions").actions.explorer_close(),
