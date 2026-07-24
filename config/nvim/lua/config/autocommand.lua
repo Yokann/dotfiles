@@ -70,9 +70,16 @@ vim.api.nvim_create_autocmd("FocusLost", {
     end,
 })
 
+-- Track when Neovim started
+local nvim_start_time = vim.uv.hrtime()
 vim.api.nvim_create_autocmd("FocusGained", {
     desc = "Close all non-existing buffers on `FocusGained`.",
     callback = function()
+        -- Don't run cleanup in the first 10 seconds after starting Neovim
+        if (vim.uv.hrtime() - nvim_start_time) < 10e9 then
+            return
+        end
+
         local allBufs = vim.fn.getbufinfo({ buflisted = 1 })
         local closedBuffers = vim.iter(allBufs):fold({}, function(acc, buf)
             if not vim.api.nvim_buf_is_valid(buf.bufnr) then
@@ -98,19 +105,6 @@ vim.api.nvim_create_autocmd("FocusGained", {
             local text = "- " .. table.concat(closedBuffers, "\n- ")
             vim.notify(text, nil, { title = "Buffers closed", icon = "󰅗" })
         end
-
-        -- If ending up in empty buffer, re-open the first oldfile that exists
-        vim.schedule(function()
-            if vim.api.nvim_buf_get_name(0) ~= "" then
-                return
-            end
-            for _, file in ipairs(vim.v.oldfiles) do
-                if vim.uv.fs_stat(file) and vim.fs.basename(file) ~= "COMMIT_EDITMSG" then
-                    vim.cmd.edit(file)
-                    return
-                end
-            end
-        end)
     end,
 })
 
