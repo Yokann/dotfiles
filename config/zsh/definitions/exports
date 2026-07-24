@@ -35,4 +35,4 @@ eval "$(luarocks path --bin)"
 
 eval "$(zoxide init zsh)"
 
-# vim: set ft=sh
+# vim: ft=zsh
