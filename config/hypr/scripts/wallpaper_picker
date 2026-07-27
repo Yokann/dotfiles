@@ -3,15 +3,20 @@
 # This script is used to set the wallpaper for the active monitor
 wallpaper="$1"
 
-if [ ! -f "$1" ]; then
+if [ -z "$wallpaper" ]; then
     if [ -z "$WALLPAPERS_PATH" ]; then
         echo "WALLPAPERS_PATH is not set"
         exit 1
     fi
+    # If no wallpaper is provided, pick a random one from the WALLPAPERS_PATH
+    wallpaper=$(find "$WALLPAPERS_PATH" -type f | shuf -n 1)
+fi
+
+if [ ! -f "$wallpaper" ]; then
     exit 1
 fi
 
-active_monitor=$(hyprctl monitors -j | jq  -r '.[] | select(.focused) | .name')
+active_monitor=$(hyprctl monitors -j | jq -r '.[] | select(.focused) | .name')
 echo "Active monitor: $active_monitor"
 echo "Loading" $wallpaper
 
