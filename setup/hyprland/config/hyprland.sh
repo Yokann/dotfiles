@@ -1,7 +1,7 @@
 CURRENT_DATE=$(date "+%Y-%m-%d-%H-%M-%S")
 XDG_HYPR_CONFIG_PATH=$HOME/.config/hypr
 
-if [ $STATE_FLAG = "first-install" ]; then
+if [ "$STATE_FLAG" = "first-install" ]; then
     echo "Setting up Hyprland configuration for the first time..."
     if [ -d $XDG_HYPR_CONFIG_PATH ]; then
         echo "Backing up existing Hyprland config to $XDG_HYPR_CONFIG_PATH.bak.$CURRENT_DATE"
@@ -13,7 +13,7 @@ if [ $STATE_FLAG = "first-install" ]; then
     touch $XDG_HYPR_CONFIG_PATH/workspaces.conf
     cp $DOTFILES_PATH/config/hypr/themes/2024/hyprqt6engine.conf $XDG_HYPR_CONFIG_PATH/hyprqt6engine.conf
 
-    cat > $XDG_HYPR_CONFIG_PATH/hyprland.lua <<"EOF"
+    cat >$XDG_HYPR_CONFIG_PATH/hyprland.lua <<"EOF"
 local hyprland = require("config.hyprland")
 local opts = {
     enableNvidia = false,
@@ -46,7 +46,7 @@ end)
 --})
 EOF
 
-    cat > $XDG_HYPR_CONFIG_PATH/hypridle.conf <<"EOF"
+    cat >$XDG_HYPR_CONFIG_PATH/hypridle.conf <<"EOF"
 source = $HYPR_CONFIG_PATH/hypridle-laptop.conf
 EOF
 
