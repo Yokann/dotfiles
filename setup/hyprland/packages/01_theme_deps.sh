@@ -3,6 +3,7 @@ yay -S --noconfirm --norebuild --needed \
     wofi \
     elephant-bin \
     elephant-archlinuxpkgs-bin \
+    elephant-bookmarks-bin \
     elephant-clipboard-bin \
     elephant-desktopapplications-bin \
     elephant-menus-bin \
@@ -33,4 +34,3 @@ yay -S --noconfirm --norebuild --needed \
 # Install GTK themes https://github.com/Fausto-Korpsvart/Catppuccin-GTK-Theme
 yay -S --noconfirm --norebuild --needed \
     gnome-theme-extra sassc murrine-engine gtk-engine-murrine
-
