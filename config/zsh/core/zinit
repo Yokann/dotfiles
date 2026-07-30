@@ -1,7 +1,6 @@
 # - - - - - - - - - - - - - - - - - - - -
 # Zinit
 # - - - - - - - - - - - - - - - - - - - -
-
 typeset -g ZINIT_PATH=${ZDOTDIR:-$HOME/.local/share}/zinit
 
 if [ ! -f $ZINIT_PATH/zinit.zsh ] && ((${+commands[git]})); then
@@ -16,6 +15,13 @@ if [ -f $ZINIT_PATH/zinit.zsh ]; then
     ZINIT[HOME_DIR]="$ZINIT_PATH"
 
     source $ZINIT_PATH/zinit.zsh
+
+    # compinit (and the real `compdef`) only runs later via turbo mode (see
+    # zicompinit/zicdreplay below). Anything that calls `compdef` before that
+    # -- e.g. bashcompinit-based `complete` calls in ~/.zshrc -- would fail
+    # with "command not found: compdef". Queue such calls instead; zicdreplay
+    # replays them once the real compinit has defined `compdef` for real.
+    (( $+functions[compdef] )) || compdef() { zicompdef "$@" }
 
     if [ -z "$skip_global_compinit" ]; then
       autoload -Uz _zinit
