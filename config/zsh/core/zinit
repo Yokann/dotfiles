@@ -32,9 +32,6 @@ if [ -f $ZINIT_PATH/zinit.zsh ]; then
         zinit self-update
 
     unset ZINIT_PATH # Use ZINIT[HOME_DIR] from now on
-
-    [ ${${(s:.:)ZSH_VERSION}[1]} -ge 5 ] && [ ${${(s:.:)ZSH_VERSION}[2]} -gt 2 ] && \
-      MY_ZINIT_USE_TURBO=true
 fi
 
 # - - - - - - - - - - - - - - - - - - - -

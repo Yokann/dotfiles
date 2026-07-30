@@ -3,12 +3,8 @@ export EDITOR='nvim'
 export VISUAL='nvim'
 
 # Make some commands not show up in history
-export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
-# And include the parameter for ZSH
 export HISTORY_IGNORE="(ls|cd|cd -|pwd|exit|date|* --help)"
-# Always enable colored `grep` output
-export GREP_OPTIONS="--color=auto"
-# set terminal in English
+# set everything in English
 export LC_ALL=en_US.UTF-8
 
 # Enhancd zsh plugin
@@ -22,8 +18,11 @@ export PROJECTS_ROOT_DIR="$HOME/projets"
 [[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
 
 # Extra paths
-export PATH=$DOTFILES_PATH/bin:/usr/local/bin:$HOME/.local/share/mise/shims:$PATH
+export PATH=$DOTFILES_PATH/bin:$PATH
 export PATH=$HOME/go/bin:$PATH
+
+#  Mise Path
+eval "$(mise activate zsh --shims)"
 
 # AWS
 export AWS_CLI_AUTO_PROMPT=off
@@ -32,7 +31,6 @@ export SHOW_AWS_PROMPT=false # Disable reprompt inside aws zsh plugin
 
 # LuaRocks sets LUA_PATH to packages installed
 eval "$(luarocks path --bin)"
-
 eval "$(zoxide init zsh)"
 
 # vim: ft=zsh

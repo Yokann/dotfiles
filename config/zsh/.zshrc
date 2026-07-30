@@ -22,7 +22,7 @@ unset file
 autoload -U colors && colors # Load Colors.
 autoload -Uz url-quote-magic
 
-# Load core files except style (needs compinit first)
+# Load core files
 for file in $DOTFILES_PATH/config/zsh/core/{options,zinit,style}; do
     [ -r "$file" ] && [ -f "$file" ] && source "$file"
 done
@@ -31,6 +31,8 @@ unset file
 # Load custom completions, execute once or after updates
 DOTFILES_STATE_PATH="$HOME/.local/state/dotfiles"
 if [[ ! -f "$DOTFILES_STATE_PATH/init_completion" ]]; then
+    mkdir -p "$DOTFILES_STATE_PATH"
+    [[ -d $DOTFILES_PATH/config/zsh/completions ]] && zinit creinstall $DOTFILES_PATH/config/zsh/completions
     [[ -d $DOTFILES_CUSTOM_PATH/completions ]] && zinit creinstall $DOTFILES_CUSTOM_PATH/completions
     [[ -d $ZSH_CACHE_DIR/completions ]] && zinit creinstall $ZSH_CACHE_DIR/completions
     touch $DOTFILES_STATE_PATH/init_completion
@@ -44,5 +46,3 @@ fi
 # - - - - - - - - - - - - - - - - - - - -
 eval "$(mise activate zsh --shims)"
 eval "$(starship init zsh)"
-# Keep Emacs style shell command Ctrl+A etc
-bindkey -e

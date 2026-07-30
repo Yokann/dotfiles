@@ -19,7 +19,7 @@ unsetopt menu_complete           # Do Not Autoselect The First Completion Entry.
 # History.
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=100000
-SAVEHIST=5000
+SAVEHIST=100000
 setopt appendhistory notify
 unsetopt beep nomatch
 

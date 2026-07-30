@@ -8,7 +8,7 @@ alias ....='cd ../../../'
 
 alias grep='grep --color=auto'
 alias egrep='grep -E --color=auto'
-alias fgrep='grep -F ---color=auto'
+alias fgrep='grep -F --color=auto'
 alias rgh='rg --hidden'
 
 # Git

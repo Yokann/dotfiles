@@ -18,6 +18,7 @@ function y() {
 }
 
 reinstall_completion () {
+    zinit creinstall $DOTFILES_PATH/config/zsh/completions
     zinit creinstall $DOTFILES_CUSTOM_PATH/completions
 }
 
