@@ -10,19 +10,20 @@ export DOTFILES_CUSTOM_PATH=${DOTFILES_CUSTOM_PATH:-"$HOME/.dotfiles-custom"}
 # Load the shell dotfiles, and then some:
 # * ~/.dotfiles-custom can be used for other settings you don’t want to commit.
 for file in $DOTFILES_PATH/config/zsh/definitions/{exports,aliases,functions}; do
-	[ -r "$file" ] && [ -f "$file" ] && source "$file"
+    [ -r "$file" ] && [ -f "$file" ] && source "$file"
 done
 unset file
 
 for file in $DOTFILES_CUSTOM_PATH/zsh/{exports,aliases,functions,pre_zshrc}; do
-	[ -r "$file" ] && [ -f "$file" ] && source "$file"
+    [ -r "$file" ] && [ -f "$file" ] && source "$file"
 done
 unset file
 
-autoload -U colors && colors    # Load Colors.
+autoload -U colors && colors # Load Colors.
 autoload -Uz url-quote-magic
 
-for file in $DOTFILES_PATH/config/zsh/core/*; do
+# Load core files except style (needs compinit first)
+for file in $DOTFILES_PATH/config/zsh/core/{options,zinit,style}; do
     [ -r "$file" ] && [ -f "$file" ] && source "$file"
 done
 unset file
@@ -36,7 +37,7 @@ if [[ ! -f "$DOTFILES_STATE_PATH/init_completion" ]]; then
 fi
 
 # Custom config
-[[ -f $DOTFILES_CUSTOM_PATH/zsh/post_zshrc ]] && source $DOTFILES_CUSTOM_PATH/zsh/post_zshrc
+# [[ -f $DOTFILES_CUSTOM_PATH/zsh/post_zshrc ]] && source $DOTFILES_CUSTOM_PATH/zsh/post_zshrc
 
 # - - - - - - - - - - - - - - - - - - - -
 # Theme / Prompt Customization
@@ -45,4 +46,3 @@ eval "$(mise activate zsh --shims)"
 eval "$(starship init zsh)"
 # Keep Emacs style shell command Ctrl+A etc
 bindkey -e
-
