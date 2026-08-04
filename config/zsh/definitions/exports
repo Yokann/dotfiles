@@ -18,7 +18,7 @@ export PROJECTS_ROOT_DIR="$HOME/projets"
 [[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
 
 # Extra paths
-export PATH=$DOTFILES_PATH/bin:$PATH
+export PATH=$DOTFILES_PATH/bin:$HOME/.local/bin:$PATH
 export PATH=$HOME/go/bin:$PATH
 
 #  Mise Path
