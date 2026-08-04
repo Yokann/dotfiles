@@ -8,6 +8,7 @@ local M = {}
 local defaultOptions = {
     theme = "2024",
     enableNvidia = false,
+    loadGlobals = function() end,
     beforeExecs = function() end,
 }
 
@@ -15,6 +16,7 @@ local defaultOptions = {
 M.setup = function(opts)
     opts = lib.table_merge(defaultOptions, opts or {})
     require("config.core.globals")
+    opts.loadGlobals()
     require("config.core.env")
     require("config.themes." .. opts.theme .. ".env")
     if opts.enableNvidia then
