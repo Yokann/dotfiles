@@ -39,7 +39,7 @@ if [[ ! -f "$DOTFILES_STATE_PATH/init_completion" ]]; then
 fi
 
 # Custom config
-# [[ -f $DOTFILES_CUSTOM_PATH/zsh/post_zshrc ]] && source $DOTFILES_CUSTOM_PATH/zsh/post_zshrc
+[[ -f $DOTFILES_CUSTOM_PATH/zsh/post_zshrc ]] && source $DOTFILES_CUSTOM_PATH/zsh/post_zshrc
 
 # - - - - - - - - - - - - - - - - - - - -
 # Theme / Prompt Customization
