@@ -1,5 +1,6 @@
 # List all files colorized in long format
 alias l="eza -laF"
+alias ls="ls --color=auto"
 alias cat="bat"
 
 alias ..='cd ..'
