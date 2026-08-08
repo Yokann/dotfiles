@@ -121,3 +121,38 @@ vim.api.nvim_create_autocmd("FileType", {
         end
     end,
 })
+
+-- Change line number colors based on mode
+local default_line
+local default_cursor
+local function set_line_number_colors(mode)
+    if mode == "i" then
+        -- Insert
+        vim.api.nvim_set_hl(0, "LineNr", { fg = "#a6da95" })
+        vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#b7bdf8", bold = true })
+    elseif mode == "v" or mode == "V" or mode == "\22" then
+        -- Visual, Visual Line, Visual Block
+        vim.api.nvim_set_hl(0, "LineNr", { fg = "#c6a0f6" })
+        vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#7dc4e4", bold = true })
+    else
+        -- Normal: restore theme defaults
+        vim.api.nvim_set_hl(0, "LineNr", default_line)
+        vim.api.nvim_set_hl(0, "CursorLineNr", default_cursor)
+    end
+end
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+    callback = function()
+        -- store defaults for the lineNr color swaps below
+        default_line = vim.api.nvim_get_hl(0, { name = "LineNr" })
+        default_cursor = vim.api.nvim_get_hl(0, { name = "CursorLineNr" })
+    end,
+})
+
+local group = vim.api.nvim_create_augroup("ModeLineNumbers", { clear = true })
+vim.api.nvim_create_autocmd({ "InsertEnter", "InsertLeave", "ModeChanged" }, {
+    group = group,
+    callback = function()
+        set_line_number_colors(vim.fn.mode())
+    end,
+})
