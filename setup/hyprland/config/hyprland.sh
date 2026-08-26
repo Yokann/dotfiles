@@ -7,20 +7,20 @@ if [ "$STATE_FLAG" = "first-install" ]; then
         echo "Backing up existing Hyprland config to $XDG_HYPR_CONFIG_PATH.bak.$CURRENT_DATE"
         mv $XDG_HYPR_CONFIG_PATH $XDG_HYPR_CONFIG_PATH.bak.$CURRENT_DATE
     fi
-    ln -s $DOTFILES_PATH/config/hypr $XDG_HYPR_CONFIG_PATH/config
     touch $XDG_HYPR_CONFIG_PATH/hyprpaper.conf
-    touch $XDG_HYPR_CONFIG_PATH/monitors.conf
-    touch $XDG_HYPR_CONFIG_PATH/workspaces.conf
     cp $DOTFILES_PATH/config/hypr/themes/2024/hyprqt6engine.conf $XDG_HYPR_CONFIG_PATH/hyprqt6engine.conf
 
     cat >$XDG_HYPR_CONFIG_PATH/hyprland.lua <<"EOF"
-local hyprland = require("config.hyprland")
+package.path = package.path .. ";" .. os.getenv("DOTFILES_PATH") .. "/config/hypr/init.lua"
+local hyprland = require("hypr")
+
 local opts = {
     enableNvidia = false,
     beforeExecs = function()
         hl.env("HYPR_MAIN_MONITOR", "DP-1", true)
     end,
 }
+
 hyprland.setup(opts)
 -- To load custom device config
 -- hyprland.loadConfig({ "steelseries-aerox" })
