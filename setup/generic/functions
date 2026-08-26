@@ -1,7 +1,7 @@
 if [[ "$OSTYPE" == "darwin"* ]]; then
     PACKAGE_INSTALLER="brew install"
 elif [[ "$OSTYPE" == "linux"* ]]; then
-    if ! command -v yay &> /dev/null; then
+    if ! command -v yay &>/dev/null; then
         echo "Yay is not installed. Please install yay first."
         exit 1
     fi
@@ -13,12 +13,12 @@ fi
 
 CURRENT_DATE=$(date "+%Y-%m-%d-%H-%M-%S")
 
-install_vim () {
+install_vim() {
     $PACKAGE_INSTALLER neovim
     source $DOTFILES_PATH/setup/generic/config/neovim.sh
 }
 
-install_dependencies () {
+install_dependencies() {
     if [[ "$OSTYPE" == "darwin"* ]]; then
         brew update
         $PACKAGE_INSTALLER --cask homebrew/cask-fonts/font-fira-code-nerd-font
@@ -31,18 +31,18 @@ install_dependencies () {
     source $DOTFILES_PATH/setup/generic/config/btop.sh
 }
 
-install_docker () {
+install_docker() {
     if [[ "$OSTYPE" == "linux"* ]]; then
-        $PACKAGE_INSTALLER docker docker-compose
+        $PACKAGE_INSTALLER docker docker-compose dtop-bin
         sudo usermod -aG docker $USER
     elif [[ "$OSTYPE" == "darwin"* ]]; then
         $PACKAGE_INSTALLER orbstack
     fi
 
-    $PACKAGE_INSTALLER ctop dive
+    $PACKAGE_INSTALLER dive
 }
 
-install_dev_dependencies () {
+install_dev_dependencies() {
     # GoLang
     $PACKAGE_INSTALLER go
     go install github.com/mitranim/gow@latest

@@ -35,6 +35,7 @@ yay -S --noconfirm --norebuild --needed \
     dhclient \
     dnsmasq \
     dkms \
+    dtop-bin \
     cliphist wl-clipboard \
     cups \
     cups-browsed \
