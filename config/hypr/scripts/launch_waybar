@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # prevent multiple instances of waybar from running at the same time
 lock_file="$XDG_RUNTIME_DIR/waybar.lock"

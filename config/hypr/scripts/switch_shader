@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/bin/bash
 
 shader_path="${HYPR_CONFIG_PATH}/shaders/${1}"
 if [[ -z "$1" ]]; then

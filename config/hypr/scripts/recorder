@@ -1,20 +1,19 @@
-#!/usr/bin/env sh
+#!/bin/bash
 set -x
 
 pgrep wf-recorder
 status=$?
 
 countdown() {
-  for i in 3 2 1; do
-    notify "Recording in $i" -t 1000
-    sleep 1
-  done
+    for i in 3 2 1; do
+        notify "Recording in $i" -t 1000
+        sleep 1
+    done
 }
-
 
 notify() {
     line=$1
-    shift    
+    shift
     notify-send "Recording" "${line}" -i /usr/share/icons/Papirus-Dark/32x32/devices/camera-video.svg $*
 }
 
@@ -30,9 +29,9 @@ if [ $status != 0 ]; then
     fi
 
     countdown
-    
+
     # Record audio
-    wf-recorder $@ -g "$area" --file="$target_path/$timestamp.mp4" 
+    wf-recorder $@ -g "$area" --file="$target_path/$timestamp.mp4"
 
     notify "Finished recording"
 else

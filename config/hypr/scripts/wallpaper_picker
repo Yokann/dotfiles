@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/bin/bash
 
 # This script is used to set the wallpaper for the active monitor
 wallpaper="$1"

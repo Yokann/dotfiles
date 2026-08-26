@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/bin/bash
 
 browser=$(xdg-settings get default-web-browser)
 

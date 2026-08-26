@@ -1,6 +1,6 @@
-#!/usr/bin/env sh
+#!/bin/sh
 
-selected=$(echo -e "hex \n rgb \n cmyk \n hsl \n hsv" | walker -d)
+selected=$(echo -e "hex \n rgb \n cmyk \n hsl \n hsv" | walker -d -p "Select color format")
 sleep 0.5
 if [ -n "$selected" ]; then
     hyprpicker --autocopy --format $selected
