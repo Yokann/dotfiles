@@ -12,7 +12,7 @@ export ENHANCD_FILTER="fzf"
 export ENHANCD_DOT_ARG="..."
 
 # Use to cdproj alias
-export PROJECTS_ROOT_DIR="$HOME/projets"
+export PROJECTS_ROOT_DIR="${XDG_PROJECTS_DIR:-$HOME/Projects}"
 
 # Rust
 [[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
@@ -31,6 +31,6 @@ export SHOW_AWS_PROMPT=false # Disable reprompt inside aws zsh plugin
 
 # LuaRocks sets LUA_PATH to packages installed
 eval "$(luarocks path --bin)"
-eval "$(zoxide init zsh)"
+eval "$(zoxide init zsh --cmd j)"
 
 # vim: ft=zsh
