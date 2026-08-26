@@ -27,6 +27,16 @@
 [push]
     default = current
 
+[branch]
+    sort = -committerdate
+
+[tag]
+    sort = -version:refname
+
+[rerere]
+    enabled = true
+    autoupdate = true
+
 [alias]
     # Thanks to https://github.com/whiteinge/dotfiles/blob/9b3650b05fcbb1716bc24206efad4612a57d156f/.gitconfig
 
