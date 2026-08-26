@@ -50,6 +50,7 @@ yay -S --noconfirm --norebuild --needed \
     font-manager \
     fzf \
     gnome-keyring \
+    gnome-disk-utility \
     gvfs gvfs-smb \
     hyprland \
     hyprcursor \
