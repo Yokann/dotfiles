@@ -18,21 +18,23 @@ alias git-yolo='git commit --amend --no-edit && git push origin HEAD --force-wit
 alias git-pull-all='find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} pull \;'
 alias ghco="gh pr checkout"
 
-alias sshconfig="vi ~/.ssh/config"
+alias cdp="cdproj"
 alias displaykey='cat ~/.ssh/id_rsa.public'
-alias zshconfig="$EDITOR ~/.zshrc"
-alias tailf='tail -f'
-alias hosts="sudoedit /etc/hosts"
-alias home="cd $HOME"
-alias vim="nvim"
-alias portused="sudo lsof -i -P -n | grep LISTEN"
 alias dotf="cd $DOTFILES_PATH && nvim"
 alias dotfc="cd $HOME/.dotfiles-custom && nvim"
-alias ranger="yazi"
-alias cdp="cdproj"
-alias sued="sudoedit"
+alias home="cd $HOME"
+alias hosts="sudoedit /etc/hosts"
 alias lgit="lazygit"
 alias lj="lazyjournal"
+alias ranger="yazi"
+alias sshconfig="vi ~/.ssh/config"
+alias sued="sudoedit"
+alias sytl="sudo systemctl"
+alias sytlu"systemctl --user"
+alias portused="sudo lsof -i -P -n | grep LISTEN"
+alias tailf='tail -f'
+alias vim="nvim"
+alias zshconfig="$EDITOR ~/.zshrc"
 
 # Special linux
 if [[ "$OSTYPE" == "linux"* ]]; then
