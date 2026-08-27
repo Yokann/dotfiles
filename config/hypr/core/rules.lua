@@ -1,11 +1,17 @@
+--
 -- Layer rules
+--
 hl.layer_rule({ match = { namespace = "swaync-notification-window" }, animation = "slide top" })
 hl.layer_rule({ match = { namespace = "swaync-control-center" }, animation = "slide right" })
 hl.layer_rule({ match = { namespace = "walker" }, animation = "fade" })
 hl.layer_rule({ match = { namespace = "selection" }, no_anim = true }) -- slurp selection layer
+-- Vicinae
+hl.layer_rule({ match = { namespace = "vicinae" }, name = "vicinae-blur", blur = true, ignore_alpha = 0 })
+hl.layer_rule({ match = { namespace = "vicinae" }, name = "vicinae-no-animation", no_anim = true })
 
+--
 -- Window rules
-
+--
 hl.window_rule({ match = { class = ".*" }, suppress_event = "maximize" })
 hl.window_rule({ match = { class = "org.pulseaudio.pavucontrol" }, float = true })
 hl.window_rule({ match = { class = "^(nv-connection-editor)$" }, float = true })

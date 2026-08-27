@@ -49,9 +49,6 @@ hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("pamixer -i 5"), { repeating = t
 hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl -c backlight set +10%"), { repeating = true })
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -c backlight set 10%-"), { repeating = true })
 
--- Clipboard
-hl.bind(MainMod .. " + V", hl.dsp.exec_cmd("walker -m clipboard"))
-
 -- Misc
 hl.bind(MainMod .. " + SHIFT + B", hl.dsp.exec_cmd(Uwsm .. "firefox -P Perso"))
 hl.bind(MainMod .. " + B", hl.dsp.exec_cmd(Uwsm .. "firefox"))
@@ -65,31 +62,6 @@ hl.bind(MainMod .. " + SHIFT + N", hl.dsp.exec_cmd("swaync-client -t -sw")) -- N
 hl.bind(MainMod .. " + SHIFT + A", hl.dsp.exec_cmd("claude-desktop --toggle"))
 hl.bind(MainMod .. " + M", hl.dsp.exec_cmd("pkill -SIGUSR1 waybar")) -- Hide waybar
 
--- Walker
-hl.bind(MainMod .. " + O", hl.dsp.exec_cmd(ConfigPath .. "/scripts/audio_switcher"))
-hl.bind(MainMod .. " + SHIFT + W", hl.dsp.exec_cmd("walker -m windows"))
-hl.bind(MainMod .. " + SHIFT + Y", hl.dsp.exec_cmd("walker -m menus:twitch"))
-hl.bind(MainMod .. " + D", hl.dsp.exec_cmd("walker"))
-hl.bind(MainMod .. " + SHIFT + D", hl.dsp.submap("walker"))
-hl.define_submap("walker", function()
-    hl.bind("S", function()
-        hl.dispatch(hl.dsp.exec_cmd("walker -m websearch"))
-        hl.dispatch(hl.dsp.submap("reset"))
-    end)
-    hl.bind("F", function()
-        hl.dispatch(hl.dsp.exec_cmd("walker -m finder"))
-        hl.dispatch(hl.dsp.submap("reset"))
-    end)
-    hl.bind("E", function()
-        hl.dispatch(hl.dsp.exec_cmd("walker -m symbols"))
-        hl.dispatch(hl.dsp.submap("reset"))
-    end)
-    hl.bind("W", function()
-        hl.dispatch(hl.dsp.exec_cmd("walker -m menus:wallpaperpicker"))
-        hl.dispatch(hl.dsp.submap("reset"))
-    end)
-    hl.bind("escape", hl.dsp.submap("reset"))
-end)
 
 -- Resize
 hl.bind("SUPER + R", hl.dsp.submap("resize"))
@@ -128,3 +100,12 @@ hl.define_submap(submapPower, function()
     end)
     hl.bind("escape", hl.dsp.submap("reset"))
 end)
+
+
+if Launcher == "walker" then
+    require("core.bind.walker")
+end
+
+if Launcher == "vicinae" then
+    require("core.bind.vicinae")
+end

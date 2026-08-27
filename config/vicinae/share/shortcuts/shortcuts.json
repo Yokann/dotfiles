@@ -1,0 +1,76 @@
+[
+  {
+    "id": "sct-42f1a0fb7597",
+    "name": "Google",
+    "icon": "icon://favicon/google.com?fallback=icon://omnicast/image?fill%3Dprimary-text",
+    "url": "https://google.com/search?q={argument}",
+    "app": "firefox.desktop",
+    "openCount": 1,
+    "createdAt": 1779270273,
+    "updatedAt": 1779270273,
+    "lastUsedAt": 1779270298
+  },
+  {
+    "id": "sct-3ae78c9dd603",
+    "name": "Github",
+    "icon": "icon://favicon/github.com?fallback=icon://omnicast/image?fill%3Dprimary-text",
+    "url": "https://github.com/search?q={argument name=\"query\"}",
+    "app": "firefox.desktop",
+    "openCount": 2,
+    "createdAt": 1779270398,
+    "updatedAt": 1779270398,
+    "lastUsedAt": 1787819679
+  },
+  {
+    "id": "sct-dab13575311f",
+    "name": "Amazon",
+    "icon": "icon://favicon/www.amazon.fr?fallback=icon://omnicast/image?fill%3Dprimary-text",
+    "url": "https://www.amazon.fr/s?k={argument name=\"query\"}",
+    "app": "firefox.desktop",
+    "openCount": 0,
+    "createdAt": 1779270480,
+    "updatedAt": 1779270480
+  },
+  {
+    "id": "sct-657883ab5ca5",
+    "name": "Repology",
+    "icon": "icon://favicon/repology.org?fallback=icon://omnicast/image?fill%3Dprimary-text",
+    "url": "https://repology.org/projects/?search={argument name=\"package\"}",
+    "app": "firefox.desktop",
+    "openCount": 0,
+    "createdAt": 1779270516,
+    "updatedAt": 1779270516
+  },
+  {
+    "id": "sct-8b06686caf07",
+    "name": "How Long To Beat",
+    "icon": "icon://favicon/howlongtobeat.com?fallback=icon://omnicast/image?fill%3Dprimary-text",
+    "url": "https://howlongtobeat.com/?q={argument name=\"Game name\"}",
+    "app": "firefox.desktop",
+    "openCount": 6,
+    "createdAt": 1779270556,
+    "updatedAt": 1779270556,
+    "lastUsedAt": 1787822998
+  },
+  {
+    "id": "sct-96080d5bdf5a",
+    "name": "Youtube",
+    "icon": "icon://favicon/www.youtube.com?fallback=icon://omnicast/image?fill%3Dprimary-text",
+    "url": "https://www.youtube.com/results?search_query={argument name=\"query\"}",
+    "app": "firefox.desktop",
+    "openCount": 0,
+    "createdAt": 1779270609,
+    "updatedAt": 1779270609
+  },
+  {
+    "id": "sct-169dbcb20945",
+    "name": "ProntonDB",
+    "icon": "icon://favicon/www.protondb.com?fallback=icon://omnicast/image?fill%3Dprimary-text",
+    "url": "https://www.protondb.com/search?q={argument name=\"game\"}",
+    "app": "firefox.desktop",
+    "openCount": 1,
+    "createdAt": 1779883099,
+    "updatedAt": 1779883099,
+    "lastUsedAt": 1787823115
+  }
+]
