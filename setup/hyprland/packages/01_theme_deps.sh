@@ -13,9 +13,10 @@ yay -S --noconfirm --norebuild --needed \
     elephant-websearch-bin \
     elephant-windows-bin \
     elephant-wireplumber-bin \
+    walker-bin \
+    vicinae-bin \
     nwg-look \
     nwg-displays \
-    walker-bin \
     swappy \
     wf-recorder \
     swaync-git \
