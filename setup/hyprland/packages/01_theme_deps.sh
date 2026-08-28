@@ -1,6 +1,5 @@
 # Install additional dependencies for theme
 yay -S --noconfirm --norebuild --needed \
-    wofi \
     elephant-bin \
     elephant-archlinuxpkgs-bin \
     elephant-bookmarks-bin \
