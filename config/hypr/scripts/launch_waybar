@@ -9,12 +9,14 @@ pkill -x waybar
 sleep 0.5
 
 # Set WAYLAND_DISPLAY to the first available Wayland socket if not already set
-echo "Current WAYLAND_DISPLAY: $WAYLAND_DISPLAY" > /tmp/waybar_start
+echo "Current WAYLAND_DISPLAY: $WAYLAND_DISPLAY" >/tmp/waybar_start
 if [ -z "$WAYLAND_DISPLAY" ] || [ "${WAYLAND_DISPLAY#wayland-}" = "$WAYLAND_DISPLAY" ]; then
     socket=$(find "$XDG_RUNTIME_DIR" -maxdepth 1 -type s -name "wayland-*" | head -n 1)
+    echo "Found Wayland socket: $socket" >>/tmp/waybar_start
     if [ -n "$socket" ]; then
         export WAYLAND_DISPLAY=$(basename "$socket")
     else
+        echo "No Wayland socket found in $XDG_RUNTIME_DIR" >>/tmp/waybar_start
         echo "No Wayland socket found in $XDG_RUNTIME_DIR"
         exit 1
     fi
@@ -28,13 +30,13 @@ if [ -f "$WAYBAR_STYLE_PATH" ]; then
     USER_STYLE=$WAYBAR_STYLE_PATH
 fi
 
-if [ -z "$HYPR_CONFIG_PATH" ]; then
+if [ -z "$DOTFILES_PATH" ]; then
     uwsm app -- waybar
 else
-    config=${USER_CONFIG:-"$HYPR_CONFIG_PATH/themes/2024/dots/waybar/config.jsonc"}
+    config=${USER_CONFIG:-"$DOTFILES_PATH/config/waybar/config.jsonc"}
     envsubst <$(echo $config) >/tmp/waybar-config.jsonc
     uwsm app -- waybar -c /tmp/waybar-config.jsonc \
-        -s "${USER_STYLE:-"$HYPR_CONFIG_PATH/themes/2024/dots/waybar/style.css"}"
+        -s "${USER_STYLE:-"$DOTFILES_PATH/config/waybar/style-$HYPR_THEME.css"}"
 fi
 
 # Release lock
