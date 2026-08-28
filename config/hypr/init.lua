@@ -19,8 +19,7 @@ local defaultOptions = {
 ---@params opts defaultOptions
 M.setup = function(opts)
     opts = lib.table_merge(defaultOptions, opts or {})
-    require("core.globals")
-    opts.loadGlobals()
+    require("core.globals").loadGlobals(opts)
     require("core.env")
     require("themes." .. opts.theme .. ".env")
     if opts.enableNvidia then
