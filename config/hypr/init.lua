@@ -38,7 +38,7 @@ end
 
 ---@params deviceNames string[]
 M.loadDevicesConfig = function(deviceNames)
-    local devices = require("config.devices")
+    local devices = require("devices")
     for _, deviceName in ipairs(deviceNames) do
         devices.loadConfig(deviceName)
     end
