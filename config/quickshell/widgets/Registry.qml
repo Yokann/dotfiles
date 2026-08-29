@@ -10,6 +10,7 @@ import qs.widgets.updates
 import qs.widgets.sysmonitor
 import qs.widgets.pomodoro
 import qs.widgets.button
+import qs.widgets.idleinhibitor
 
 Singleton {
     id: root
@@ -27,7 +28,8 @@ Singleton {
         updates: updatesDefinition,
         sysmonitor: sysmonitorDefinition,
         pomodoro: pomodoroDefinition,
-        button: buttonDefinition
+        button: buttonDefinition,
+        idleinhibitor: idleInhibitorDefinition
     })
 
     readonly property Definition clockDefinition: Definition {
@@ -70,6 +72,11 @@ Singleton {
         defaults: ({ label: "", onClick: "", onMiddleClick: "", onRightClick: "" })
     }
 
+    readonly property Definition idleInhibitorDefinition: Definition {
+        component: idleInhibitorComponent
+        defaults: ({})
+    }
+
     Component {
         id: clockComponent
         Clock {}
@@ -108,5 +115,10 @@ Singleton {
     Component {
         id: buttonComponent
         Button {}
+    }
+
+    Component {
+        id: idleInhibitorComponent
+        IdleInhibitorIndicator {}
     }
 }

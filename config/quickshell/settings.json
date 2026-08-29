@@ -30,6 +30,7 @@
             "updates",
             "tray",
             "audio",
+            "idleinhibitor",
             "clock_date",
             "clock_time"
           ]

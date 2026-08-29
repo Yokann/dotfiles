@@ -10,6 +10,9 @@ Rectangle {
     property var screen: null
     property var panelWindow: null
     property bool clickable: true
+    // Exposed so a derived instance can layer its own state-driven color on top
+    // of Pill's normal hover background (see widgets/idleinhibitor).
+    readonly property alias hovered: mouseArea.containsMouse
     signal clicked()
 
     readonly property var style: Settings.widgetStyle(instanceId, {
