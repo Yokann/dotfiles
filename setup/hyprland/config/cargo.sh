@@ -1,3 +1,3 @@
-if [ ! -f "/etc/profile.d/cargo.sh" ]; then
-    sudo cp $DOTFILES_PATH/setup/hyprland/assets/etc/profile.d/cargo.sh /etc/profile.d/cargo.sh
+if [ ! -f "$HOME/.config/profile.d/cargo.sh" ]; then
+    cp $DOTFILES_PATH/setup/hyprland/assets/config/profile.d/cargo.sh $HOME/.config/profile.d/cargo.sh
 fi

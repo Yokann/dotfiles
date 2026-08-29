@@ -1,5 +1,5 @@
-if [ ! -f "/etc/profile.d/luarock.sh" ]; then
-    sudo cp $DOTFILES_PATH/setup/hyprland/assets/etc/profile.d/luarocks.sh /etc/profile.d/luarocks.sh
+if [ ! -f "$HOME/.config/profile.d/luarock.sh" ]; then
+    cp $DOTFILES_PATH/setup/hyprland/assets/config/profile.d/luarocks.sh $HOME/.config/profile.d/luarocks.sh
 fi
 
 # We need luarocks to be in systemd env for Twitch walker menu
