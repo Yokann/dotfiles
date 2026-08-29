@@ -6,6 +6,7 @@ import qs.widgets.placeholder
 import qs.widgets.clock
 import qs.widgets.workspaces
 import qs.widgets.tray
+import qs.widgets.audio
 
 Singleton {
     id: root
@@ -19,7 +20,8 @@ Singleton {
         placeholder: placeholderDefinition,
         clock: clockDefinition,
         workspaces: workspacesDefinition,
-        tray: trayDefinition
+        tray: trayDefinition,
+        audio: audioDefinition
     })
 
     readonly property Definition placeholderDefinition: Definition {
@@ -42,6 +44,11 @@ Singleton {
         defaults: ({})
     }
 
+    readonly property Definition audioDefinition: Definition {
+        component: audioComponent
+        defaults: ({})
+    }
+
     Component {
         id: placeholderComponent
         Placeholder {}
@@ -60,5 +67,10 @@ Singleton {
     Component {
         id: trayComponent
         Tray {}
+    }
+
+    Component {
+        id: audioComponent
+        AudioIndicator {}
     }
 }
