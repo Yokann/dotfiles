@@ -47,3 +47,4 @@ hl.config({
 
 hl.curve("linear", { type = "bezier", points = { { 0.1, 0.1 }, { 0.1, 0.1 } } })
 hl.animation({ leaf = "borderangle", enabled = true, speed = 100, bezier = "linear", style = "loop" })
+hl.animation({ leaf = "specialWorkspace", enabled = true, speed = 1, style = "fade", bezier = "linear" })
