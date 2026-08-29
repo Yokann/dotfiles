@@ -9,6 +9,7 @@ import qs.widgets.tray
 import qs.widgets.audio
 import qs.widgets.updates
 import qs.widgets.sysmonitor
+import qs.widgets.pomodoro
 
 Singleton {
     id: root
@@ -25,7 +26,8 @@ Singleton {
         tray: trayDefinition,
         audio: audioDefinition,
         updates: updatesDefinition,
-        sysmonitor: sysmonitorDefinition
+        sysmonitor: sysmonitorDefinition,
+        pomodoro: pomodoroDefinition
     })
 
     readonly property Definition placeholderDefinition: Definition {
@@ -63,6 +65,11 @@ Singleton {
         defaults: ({})
     }
 
+    readonly property Definition pomodoroDefinition: Definition {
+        component: pomodoroComponent
+        defaults: ({})
+    }
+
     Component {
         id: placeholderComponent
         Placeholder {}
@@ -96,5 +103,10 @@ Singleton {
     Component {
         id: sysmonitorComponent
         SysmonitorIndicator {}
+    }
+
+    Component {
+        id: pomodoroComponent
+        PomodoroIndicator {}
     }
 }

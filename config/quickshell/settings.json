@@ -12,12 +12,14 @@
             "workspaces"
           ],
           "right": [
+            "pomodoro",
             "clock_time"
           ]
         },
         "DP-1": {
           "left": [
-            "sysmonitor"
+            "sysmonitor",
+            "pomodoro"
           ],
           "center": [
             "workspaces"
