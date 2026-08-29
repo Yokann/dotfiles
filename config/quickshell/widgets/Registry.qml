@@ -2,7 +2,6 @@ pragma Singleton
 
 import QtQuick
 import Quickshell
-import qs.widgets.placeholder
 import qs.widgets.clock
 import qs.widgets.workspaces
 import qs.widgets.tray
@@ -20,7 +19,6 @@ Singleton {
     }
 
     readonly property var definitions: ({
-        placeholder: placeholderDefinition,
         clock: clockDefinition,
         workspaces: workspacesDefinition,
         tray: trayDefinition,
@@ -29,11 +27,6 @@ Singleton {
         sysmonitor: sysmonitorDefinition,
         pomodoro: pomodoroDefinition
     })
-
-    readonly property Definition placeholderDefinition: Definition {
-        component: placeholderComponent
-        defaults: ({})
-    }
 
     readonly property Definition clockDefinition: Definition {
         component: clockComponent
@@ -68,11 +61,6 @@ Singleton {
     readonly property Definition pomodoroDefinition: Definition {
         component: pomodoroComponent
         defaults: ({})
-    }
-
-    Component {
-        id: placeholderComponent
-        Placeholder {}
     }
 
     Component {

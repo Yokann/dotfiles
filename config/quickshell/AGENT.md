@@ -53,13 +53,12 @@ All internal imports use `import qs.<path>` (resolved relative to `shell.qml` by
       "id": "secondary",
       "position": "bottom",
       "height": 34,
-      "layout": { "default": { "left": ["placeholder"] } }
+      "layout": { "default": { "left": ["tray"] } }
     }
   ],
   "widgets": {
     "clock_time": { "type": "clock", "format": "HH:mm" },
-    "clock_date": { "type": "clock", "format": "dddd d MMMM" },
-    "pomodoro": { "workMinutes": 25 }
+    "clock_date": { "type": "clock", "format": "dddd d MMMM" }
   }
 }
 ```
@@ -126,6 +125,7 @@ This covers color/hover/radius today; extending it to more style knobs (e.g. fon
 - Running an external command from a service: `Quickshell.Io.Process` (`import Quickshell.Io`, plus plain `import QtQuick` for `Timer` — easy to drop since most services here are push-based and don't otherwise need it) with `stdout: StdioCollector { onStreamFinished: ... }`, reading `text` once the stream closes rather than accumulating partial reads. Don't gate parsing on the process's exit code — `yay -Qu`/`pacman -Qu`-style tools exit non-zero for "nothing to report", which is not an error.
 - When a `sh -c "..."` command needs a section delimiter to split multi-command output (e.g. one `Process` gathering CPU+mem+disk in a single call), don't use `#`/`###` — an unquoted `#` starts a shell comment, silently swallowing the rest of the line (everything after it, including subsequent `;`-separated commands, vanishes: `sh -c "echo A; echo ###; echo B"` prints only `A`). Hit this building `services/Sysmonitor.qml`; use a plain word like `SPLIT` instead.
 - A service singleton and the widget that displays it want the same domain name (`Updates`) but a QML type name is its filename, so both can't be `Updates.qml`. Follow the precedent already set by `services/Audio.qml` + `widgets/audio/AudioIndicator.qml`: the widget file gets an `...Indicator` suffix, the service keeps the bare domain name.
+- Step 9 polish pass (removed the now-unused `widgets/placeholder/`, audited colors/spacing/hover for stray hardcoded values, checked memory: ~420MB RSS flat over several minutes, no lingering child processes from `Process` calls) found nothing to fix except one open item worth flagging rather than silently changing: `PomodoroPopup.qml`'s phase labels are in English ("Working time"/"Long break"/"Short break", a manual on-disk edit), while every other popup's UI text (Audio, Updates) is in French. Not touched since it looked like a deliberate choice, not an oversight — worth asking about if it comes up again.
 
 ## Decisions from scoping (step 0)
 
