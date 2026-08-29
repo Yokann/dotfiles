@@ -4,6 +4,7 @@
       "id": "main",
       "position": "top",
       "height": 34,
+      "background": "#6424273a",
       "layout": {
         "default": {
           "left": [
@@ -55,7 +56,7 @@
       "onClick": "xdg-open vicinae://launch/@Yokann/twitch/streams",
       "onRightClick": "livestream-ctl notif",
       "style": {
-        "background": "#322064",
+        "background": "#646441a5",
         "hoverBackground": "#6441a5"
       }
     },

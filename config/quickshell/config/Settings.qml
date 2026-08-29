@@ -8,7 +8,7 @@ Singleton {
 
     // A JsonAdapter list<JsonObject> doesn't deserialize a JSON array of objects
     // correctly, so bars are plain objects merged over these defaults here instead.
-    readonly property var bars: adapter.bars.map(bar => Object.assign({ id: "main", position: "top", height: 34, layout: {} }, bar))
+    readonly property var bars: adapter.bars.map(bar => Object.assign({ id: "main", position: "top", height: 34, background: "base", layout: {} }, bar))
     property alias widgets: adapter.widgets
 
     // Widget type ("clock", ...) backing an instance id. Defaults to the instance id

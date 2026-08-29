@@ -29,7 +29,7 @@ Scope {
             required property var modelData
 
             screen: modelData
-            color: Colors.base
+            color: Colors.resolve(root.barConfig.background)
             implicitHeight: root.barConfig.height
 
             anchors {
