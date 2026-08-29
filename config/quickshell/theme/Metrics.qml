@@ -12,5 +12,5 @@ Singleton {
     readonly property int radiusLarge: 14
 
     readonly property string fontFamily: "Sauce Code Pro Nerd Font"
-    readonly property int fontSize: 15
+    readonly property int fontSize: 16
 }

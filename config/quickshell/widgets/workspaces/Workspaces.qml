@@ -15,9 +15,10 @@ Rectangle {
     readonly property var workspaceList: Hyprland.workspaces.values.filter(ws => ws.monitor === root.monitor).sort((a, b) => a.id - b.id)
 
     readonly property var style: Settings.widgetStyle(instanceId, {
-        background: "surface0",
-        radius: Metrics.radiusMedium,
-        focusedBackground: "accent",
+        // background: "surface0",
+        background: "#821e1e2e",
+        radius: Metrics.radiusLarge,
+        focusedBackground: "lavender",
         focusedColor: "crust",
         activeColor: "accent",
         occupiedColor: "text",
@@ -49,7 +50,7 @@ Rectangle {
 
                 implicitWidth: Math.max(label.implicitWidth + Metrics.spacingSmall * 2, implicitHeight)
                 implicitHeight: Metrics.fontSize + Metrics.spacingSmall * 2
-                radius: Metrics.radiusSmall
+                radius: Metrics.radiusLarge
                 color: cell.focused ? Colors.resolve(root.style.focusedBackground) : "transparent"
 
                 Behavior on color {
