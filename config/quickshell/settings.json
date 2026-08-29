@@ -11,7 +11,15 @@
     }
   },
   "widgets": {
-    "clock_time": { "type": "clock", "format": "HH:mm" },
-    "clock_date": { "type": "clock", "format": "dddd d MMMM" }
+    "clock_time": {
+      "type": "clock",
+      "format": "HH:mm",
+      "style": { "hoverBackground": "accent" }
+    },
+    "clock_date": {
+      "type": "clock",
+      "format": "dddd d MMMM",
+      "showCalendar": false
+    }
   }
 }

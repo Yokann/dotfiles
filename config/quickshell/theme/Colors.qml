@@ -4,6 +4,14 @@ import QtQuick
 import Quickshell
 
 Singleton {
+    id: root
+
+    // Resolves a style token to a color: a palette key (e.g. "surface0") looks up
+    // that property here, anything else (e.g. "#ff0000") is used as a literal color.
+    function resolve(token: var): color {
+        return root[token] !== undefined ? root[token] : token;
+    }
+
     readonly property color rosewater: "#f4dbd6"
     readonly property color flamingo: "#f0c6c6"
     readonly property color pink: "#f5bde6"

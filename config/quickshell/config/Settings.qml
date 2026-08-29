@@ -23,6 +23,12 @@ Singleton {
         return Object.assign({}, defaults, instanceConfig);
     }
 
+    // Same merge as widgetConfig, scoped to the instance's "style" sub-object.
+    function widgetStyle(instanceId: string, defaults: var): var {
+        const instanceStyle = root.widgets[instanceId]?.style ?? {};
+        return Object.assign({}, defaults, instanceStyle);
+    }
+
     // Widget ids for one section of one bar, on one screen. A screen falls back to
     // "default" section-by-section: an entry only overrides the sections it defines.
     function sectionWidgets(barId: string, sectionId: string, screenName: string): var {

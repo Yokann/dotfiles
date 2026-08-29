@@ -65,6 +65,25 @@ No other file changes. Widget registration is a static declarative map, not a ru
 
 `Bar.qml` reads `Settings.sectionWidgets(barId, sectionId, screenName)` for each of the three sections; for each instance id it resolves the type via `Settings.widgetType`, instantiates `Registry.definitions[type].component`, and sets `instanceId` on the loaded item — **every widget must expose a settable `instanceId` string property** (inherited for free by anything built on `widgets/common/Pill.qml`) so it can look up its own config with `Settings.widgetConfig(instanceId, defaults)`.
 
+## Widget styling
+
+`widgets/common/Pill.qml` resolves its own look from `widgets.<instanceId>.style`, so any widget built on it is styleable through settings.json with **no extra plumbing**:
+
+```json
+"widgets": {
+  "clock_time": {
+    "type": "clock",
+    "style": { "background": "surface1", "hoverBackground": "accent", "radius": 8, "hoverDurationMs": 200 }
+  }
+}
+```
+
+`background`/`hoverBackground` accept either a `Colors` palette key (`"surface0"`, `"accent"`, ...) or a literal color string (`"#ff0000"`) — resolved by `Colors.resolve(token)`. `radius` and `hoverDurationMs` (the hover color transition) are plain numbers. Unset keys fall back to `Pill`'s built-in defaults (`Colors.surface0`/`surface1`, `Metrics.radiusMedium`, `120`ms).
+
+`Pill` also exposes `clickable: bool` (default `true`), set by the widget itself from its own domain setting — not from `style` — since "is this interactive" is widget-specific (e.g. Clock's `showCalendar`). When `clickable` is `false`, the background goes fully transparent, hover/cursor are disabled, and clicks don't register: the widget reads as plain text, not a button. A widget with an optional popup should also bind the popup's `LazyLoader.loading` to the same condition, so a disabled popup is never even built.
+
+This covers color/hover/radius today; extending it to more style knobs (e.g. font) means adding a key to `Pill`'s style defaults, not a new mechanism.
+
 ## Memory
 
 - Popups always sit behind a `LazyLoader` — nothing builds until the widget is first clicked. **Remember to set `loading: true` on the `LazyLoader`** — without it, `item` stays `null` forever since nothing ever triggers the load (this bit us on the clock's calendar popup). For a lightweight popup (a few dozen items, e.g. the calendar grid), it's fine to just toggle `popupLoader.item.visible` afterwards and leave it resident — this is Quickshell's own documented pattern. Only tear down on close (bind `LazyLoader.active` to visibility instead) for a popup with genuinely heavy content (e.g. a long list rebuilt from a process output).

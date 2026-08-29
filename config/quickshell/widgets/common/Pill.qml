@@ -1,4 +1,5 @@
 import QtQuick
+import qs.config
 import qs.theme
 
 Rectangle {
@@ -6,18 +7,31 @@ Rectangle {
 
     default property alias content: contentRow.data
     property string instanceId: ""
+    property bool clickable: true
     signal clicked()
+
+    readonly property var style: Settings.widgetStyle(instanceId, {
+        background: "surface0",
+        hoverBackground: "surface1",
+        radius: Metrics.radiusMedium,
+        hoverDurationMs: 120
+    })
 
     implicitWidth: contentRow.implicitWidth + Metrics.spacingMedium * 2
     implicitHeight: contentRow.implicitHeight + Metrics.spacingSmall * 2
-    radius: Metrics.radiusMedium
-    color: mouseArea.containsMouse ? Colors.surface1 : Colors.surface0
+    radius: style.radius
+    color: root.clickable ? (mouseArea.containsMouse ? Colors.resolve(style.hoverBackground) : Colors.resolve(style.background)) : "transparent"
+
+    Behavior on color {
+        ColorAnimation { duration: root.style.hoverDurationMs }
+    }
 
     MouseArea {
         id: mouseArea
         anchors.fill: parent
-        hoverEnabled: true
-        cursorShape: Qt.PointingHandCursor
+        enabled: root.clickable
+        hoverEnabled: root.clickable
+        cursorShape: root.clickable ? Qt.PointingHandCursor : Qt.ArrowCursor
         onClicked: root.clicked()
     }
 

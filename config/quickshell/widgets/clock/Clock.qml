@@ -7,8 +7,10 @@ import qs.widgets.common
 Pill {
     id: root
 
-    readonly property var config: Settings.widgetConfig(instanceId, { format: "HH:mm" })
+    readonly property var config: Settings.widgetConfig(instanceId, { format: "HH:mm", showCalendar: true })
     property string label: ""
+
+    clickable: config.showCalendar
 
     Text {
         text: root.label
@@ -29,7 +31,7 @@ Pill {
 
     LazyLoader {
         id: popupLoader
-        loading: true
+        loading: root.config.showCalendar
 
         CalendarPopup {
             anchor.item: root
