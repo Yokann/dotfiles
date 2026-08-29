@@ -11,6 +11,7 @@ import qs.widgets.sysmonitor
 import qs.widgets.pomodoro
 import qs.widgets.button
 import qs.widgets.idleinhibitor
+import qs.widgets.notifications
 
 Singleton {
     id: root
@@ -29,7 +30,8 @@ Singleton {
         sysmonitor: sysmonitorDefinition,
         pomodoro: pomodoroDefinition,
         button: buttonDefinition,
-        idleinhibitor: idleInhibitorDefinition
+        idleinhibitor: idleInhibitorDefinition,
+        notifications: notificationsDefinition
     })
 
     readonly property Definition clockDefinition: Definition {
@@ -77,6 +79,11 @@ Singleton {
         defaults: ({})
     }
 
+    readonly property Definition notificationsDefinition: Definition {
+        component: notificationsComponent
+        defaults: ({})
+    }
+
     Component {
         id: clockComponent
         Clock {}
@@ -120,5 +127,10 @@ Singleton {
     Component {
         id: idleInhibitorComponent
         IdleInhibitorIndicator {}
+    }
+
+    Component {
+        id: notificationsComponent
+        NotificationsIndicator {}
     }
 }
