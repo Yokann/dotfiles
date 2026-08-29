@@ -11,8 +11,16 @@ Singleton {
     property alias widgets: adapter.widgets
     property alias display: adapter.display
 
-    function widgetConfig(id: string, defaults: var): var {
-        return Object.assign({}, defaults, root.widgets[id] ?? {});
+    // Widget type ("clock", ...) backing an instance id. Defaults to the instance id
+    // itself, so a single unconfigured instance needs no entry in `widgets` at all.
+    function widgetType(instanceId: string): string {
+        return root.widgets[instanceId]?.type ?? instanceId;
+    }
+
+    function widgetConfig(instanceId: string, defaults: var): var {
+        const instanceConfig = Object.assign({}, root.widgets[instanceId] ?? {});
+        delete instanceConfig.type;
+        return Object.assign({}, defaults, instanceConfig);
     }
 
     // Widget ids for one section of one bar, on one screen. A screen falls back to

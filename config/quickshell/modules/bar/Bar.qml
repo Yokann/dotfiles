@@ -9,7 +9,9 @@ Scope {
 
     component WidgetLoader: Loader {
         required property string modelData
-        sourceComponent: Registry.definitions[modelData]?.component ?? null
+
+        sourceComponent: Registry.definitions[Settings.widgetType(modelData)]?.component ?? null
+        onLoaded: item.instanceId = modelData
     }
 
     Variants {

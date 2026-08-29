@@ -5,6 +5,7 @@ Rectangle {
     id: root
 
     default property alias content: contentRow.data
+    property string instanceId: ""
     signal clicked()
 
     implicitWidth: contentRow.implicitWidth + Metrics.spacingMedium * 2

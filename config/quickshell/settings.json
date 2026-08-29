@@ -6,11 +6,12 @@
   "display": {
     "main_bar": {
       "default": {
-        "left_section": [
-          "clock"
-        ]
+        "left_section": ["clock_date", "clock_time"]
       }
     }
   },
-  "widgets": {}
+  "widgets": {
+    "clock_time": { "type": "clock", "format": "HH:mm" },
+    "clock_date": { "type": "clock", "format": "dddd d MMMM" }
+  }
 }

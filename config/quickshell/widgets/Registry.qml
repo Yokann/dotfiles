@@ -25,7 +25,7 @@ Singleton {
 
     readonly property Definition clockDefinition: Definition {
         component: clockComponent
-        defaults: ({})
+        defaults: ({ format: "HH:mm" })
     }
 
     Component {
