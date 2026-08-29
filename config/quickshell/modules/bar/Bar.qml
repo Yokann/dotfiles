@@ -5,7 +5,9 @@ import qs.theme
 import qs.widgets
 
 Scope {
-    property string barId: "main_bar"
+    id: root
+
+    required property var barConfig
 
     component WidgetLoader: Loader {
         required property string modelData
@@ -24,11 +26,11 @@ Scope {
 
             screen: modelData
             color: Colors.base
-            implicitHeight: Settings.bar.height
+            implicitHeight: root.barConfig.height
 
             anchors {
-                top: Settings.bar.position === "top"
-                bottom: Settings.bar.position === "bottom"
+                top: root.barConfig.position === "top"
+                bottom: root.barConfig.position === "bottom"
                 left: true
                 right: true
             }
@@ -40,7 +42,7 @@ Scope {
                 spacing: Metrics.spacingMedium
 
                 Repeater {
-                    model: Settings.sectionWidgets(barId, "left_section", panel.modelData.name)
+                    model: Settings.sectionWidgets(root.barConfig, "left", panel.modelData.name)
                     delegate: WidgetLoader {}
                 }
             }
@@ -50,7 +52,7 @@ Scope {
                 spacing: Metrics.spacingMedium
 
                 Repeater {
-                    model: Settings.sectionWidgets(barId, "center_section", panel.modelData.name)
+                    model: Settings.sectionWidgets(root.barConfig, "center", panel.modelData.name)
                     delegate: WidgetLoader {}
                 }
             }
@@ -62,7 +64,7 @@ Scope {
                 spacing: Metrics.spacingMedium
 
                 Repeater {
-                    model: Settings.sectionWidgets(barId, "right_section", panel.modelData.name)
+                    model: Settings.sectionWidgets(root.barConfig, "right", panel.modelData.name)
                     delegate: WidgetLoader {}
                 }
             }

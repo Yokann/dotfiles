@@ -9,7 +9,6 @@ shell.qml            ShellRoot, imports modules/bar
 settings.json         user config, committed with sane defaults
 config/
   Settings.qml         Singleton: FileView + JsonAdapter over settings.json
-  BarSettings.qml       JsonObject: bar section (position, height)
 theme/
   Colors.qml             Singleton: Catppuccin Macchiato palette
   Metrics.qml             Singleton: shared spacing/radius/font sizes
@@ -18,26 +17,39 @@ widgets/
   common/                   shared chrome (Pill, PopupWindow)
   <name>/                   one self-contained widget per directory
 modules/
-  bar/Bar.qml               Variants over Quickshell.screens, one PanelWindow per screen
+  bar/Bar.qml               One bar, parameterized by a bar config; Variants over
+                             Quickshell.screens, one PanelWindow per screen
 services/
   <Name>.qml                Singleton wrapping a system integration (added as needed per widget)
 ```
+
+`shell.qml` instantiates one `Bar { barConfig: ... }` per entry of `Settings.bars` (`Variants { model: Settings.bars }`) — this is what makes multiple bars possible, see Settings below.
 
 All internal imports use `import qs.<path>` (resolved relative to `shell.qml` by Quickshell itself — no manual `qmldir`).
 
 ## Settings
 
-`settings.json` has a `bar` section, a `display` section (per-bar, per-screen widget placement), and a `widgets` dictionary keyed by **instance id** for widget-specific settings:
+`settings.json` has a `bars` array (each entry: identity, geometry, and per-screen layout) and a `widgets` dictionary keyed by **instance id** for widget-specific settings:
 
 ```json
 {
-  "bar": { "position": "top", "height": 34 },
-  "display": {
-    "main_bar": {
-      "default": { "left_section": ["clock_date", "clock_time"] },
-      "HDMI-1": { "left_section": ["clock_time", "pomodoro"] }
+  "bars": [
+    {
+      "id": "main",
+      "position": "top",
+      "height": 34,
+      "layout": {
+        "default": { "left": ["clock_date", "clock_time"] },
+        "HDMI-1": { "left": ["clock_time", "pomodoro"] }
+      }
+    },
+    {
+      "id": "secondary",
+      "position": "bottom",
+      "height": 34,
+      "layout": { "default": { "left": ["placeholder"] } }
     }
-  },
+  ],
   "widgets": {
     "clock_time": { "type": "clock", "format": "HH:mm" },
     "clock_date": { "type": "clock", "format": "dddd d MMMM" },
@@ -46,24 +58,26 @@ All internal imports use `import qs.<path>` (resolved relative to `shell.qml` by
 }
 ```
 
-`display.<barId>` maps a screen name (as reported by Hyprland/Quickshell, e.g. `HDMI-1`, `DP-1`) to a set of sections (`left_section`, `center_section`, `right_section`), each an ordered array of **instance ids** — array order is display order, there's no separate `order` field. `default` is the layout used for any screen without its own entry. **A screen's own entry only overrides the sections it defines**: it falls back to `default` section-by-section, so e.g. defining `left_section` for `HDMI-1` still inherits `default`'s `center_section` if `HDMI-1` doesn't define one. A widget not listed in any section for a screen simply isn't shown there — there's no separate `enabled` flag.
+Each `bars[]` entry becomes one independent bar, rendered on every screen (`shell.qml`: `Variants { model: Settings.bars }` instantiating `Bar { barConfig: ... }`) — `id` just needs to be unique per entry, it isn't otherwise interpreted. `Settings.bars` is computed by merging each raw entry over `{ id: "main", position: "top", height: 34, layout: {} }` in `Settings.qml`, so a `bars[]` entry can omit any field it doesn't need to override. (A `list<JsonObject>`-typed adapter property doesn't deserialize a JSON array of objects correctly in this Quickshell version — `bars` is `property var` on the `JsonAdapter`, with defaults applied in QML instead of via a typed sub-object like the rest of this doc's `defaults` pattern.)
+
+`bar.layout` (one bar's layout, i.e. one entry of `Settings.bars`) maps a screen name (as reported by Hyprland/Quickshell, e.g. `HDMI-1`, `DP-1`) to a set of sections (`left`, `center`, `right`), each an ordered array of **instance ids** — array order is display order, there's no separate `order` field. `default` is the layout used for any screen without its own entry. **A screen's own entry only overrides the sections it defines**: it falls back to `default` section-by-section, so e.g. defining `left` for `HDMI-1` still inherits `default`'s `center` if `HDMI-1` doesn't define one. A widget not listed in any section for a screen simply isn't shown there — there's no separate `enabled` flag.
 
 ### Instance ids vs widget types
 
-`display` never names a widget type directly — it names an **instance id**. An instance id is resolved to a widget type (a key in `widgets/Registry.qml`) via `widgets.<instanceId>.type`; if that's absent, the instance id doubles as the type id. This is what lets `clock_time` and `clock_date` both be `type: "clock"` with a different `format`, i.e. the same widget declared twice with different config — for a widget you only need once, skip `widgets` entirely and put the type id straight into `display` (e.g. plain `"clock"`).
+A layout section never names a widget type directly — it names an **instance id**. An instance id is resolved to a widget type (a key in `widgets/Registry.qml`) via `widgets.<instanceId>.type`; if that's absent, the instance id doubles as the type id. This is what lets `clock_time` and `clock_date` both be `type: "clock"` with a different `format`, i.e. the same widget declared twice with different config — for a widget you only need once, skip `widgets` entirely and put the type id straight into the layout (e.g. plain `"clock"`).
 
-`Settings.widgetType(instanceId)` resolves the type; `Settings.widgetConfig(instanceId, defaults)` merges that instance's config (minus `type`) over the type's defaults. `widgets` and `display` are both `property var` on the `JsonAdapter`, not typed objects — **`Settings.qml` never needs to change when a widget is added**, which is what keeps the architecture plugin-friendly.
+`Settings.widgetType(instanceId)` resolves the type; `Settings.widgetConfig(instanceId, defaults)` merges that instance's config (minus `type`) over the type's defaults. `widgets` and `bar.layout` are both `property var`, not typed objects — **`Settings.qml` never needs to change when a widget is added**, which is what keeps the architecture plugin-friendly.
 
 ## Widget contract
 
 A widget is a directory under `widgets/<name>/` with at minimum a `<Name>.qml` bar component (and a `<Name>Popup.qml` if it has one). To register it:
 
 1. Add one line to `widgets/Registry.qml` mapping its type id to its `Component` and default config.
-2. Reference that type id (or an instance id declared under `widgets` with a matching `type`) from a section in `settings.json`'s `display.main_bar` to actually show it.
+2. Reference that type id (or an instance id declared under `widgets` with a matching `type`) from a section in one of `settings.json`'s `bars[].layout` to actually show it.
 
 No other file changes. Widget registration is a static declarative map, not a runtime dynamic loader — simpler and safer in QML than resolving component paths from strings at runtime.
 
-`Bar.qml` reads `Settings.sectionWidgets(barId, sectionId, screenName)` for each of the three sections; for each instance id it resolves the type via `Settings.widgetType`, instantiates `Registry.definitions[type].component`, and sets `instanceId` on the loaded item — **every widget must expose a settable `instanceId` string property** (inherited for free by anything built on `widgets/common/Pill.qml`) so it can look up its own config with `Settings.widgetConfig(instanceId, defaults)`.
+`Bar.qml` reads `Settings.sectionWidgets(barConfig, sectionId, screenName)` for each of the three sections; for each instance id it resolves the type via `Settings.widgetType`, instantiates `Registry.definitions[type].component`, and sets `instanceId` on the loaded item — **every widget must expose a settable `instanceId` string property** (inherited for free by anything built on `widgets/common/Pill.qml`) so it can look up its own config with `Settings.widgetConfig(instanceId, defaults)`.
 
 ## Widget styling
 
@@ -98,5 +112,6 @@ This covers color/hover/radius today; extending it to more style knobs (e.g. fon
 - **Updates**: single `yay -Qu` call (covers repo + AUR); no separate `checkupdates` call.
 - **Calendar**: month-view popup only, no external agenda/ICS integration.
 - **Pomodoro**: in-memory state only, no disk persistence across Quickshell restarts.
-- **Multi-screen**: bar renders on every screen; per-screen `display.main_bar` placement controls which widgets actually show where (see Settings above).
+- **Multi-screen**: each bar renders on every screen; per-screen `bar.layout` placement controls which widgets actually show where (see Settings above).
+- **Multi-bar**: `settings.json`'s `bars` is a list — any number of independent bars (own id, position, height, layout) can coexist, e.g. a top status bar and a bottom dock-like bar.
 - **Audio**: output + input (mic) + sink/source device picker, via `Quickshell.Services.Pipewire`.

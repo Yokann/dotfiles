@@ -1,15 +1,16 @@
 {
-  "bar": {
-    "position": "top",
-    "height": 34
-  },
-  "display": {
-    "main_bar": {
-      "default": {
-        "left_section": ["clock_date", "clock_time"]
+  "bars": [
+    {
+      "id": "main",
+      "position": "top",
+      "height": 34,
+      "layout": {
+        "default": {
+          "left": ["clock_date", "clock_time"]
+        }
       }
     }
-  },
+  ],
   "widgets": {
     "clock_time": {
       "type": "clock",
