@@ -79,11 +79,13 @@ A widget is a directory under `widgets/<name>/` with at minimum a `<Name>.qml` b
 
 No other file changes. Widget registration is a static declarative map, not a runtime dynamic loader — simpler and safer in QML than resolving component paths from strings at runtime.
 
-`Bar.qml` reads `Settings.sectionWidgets(barConfig, sectionId, screenName)` for each of the three sections; for each instance id it resolves the type via `Settings.widgetType`, instantiates `Registry.definitions[type].component`, and sets `instanceId` on the loaded item — **every widget must expose a settable `instanceId` string property** (inherited for free by anything built on `ui/Pill.qml`) so it can look up its own config with `Settings.widgetConfig(instanceId, defaults)`.
+`Bar.qml` reads `Settings.sectionWidgets(barConfig, sectionId, screenName)` for each of the three sections; for each instance id it resolves the type via `Settings.widgetType`, instantiates `Registry.definitions[type].component`, and sets `instanceId` **and `screen`** on the loaded item — **every widget must expose settable `instanceId` (string) and `screen` (the `ShellScreen` it's rendered on) properties** (both inherited for free by anything built on `ui/Pill.qml`) so it can look up its own config with `Settings.widgetConfig(instanceId, defaults)` and, if relevant, scope itself to its screen (e.g. Workspaces uses `Quickshell.Hyprland`'s `Hyprland.monitorFor(screen)` to only show that monitor's workspaces). A widget that doesn't extend `Pill` must declare both properties itself (see `widgets/workspaces/Workspaces.qml`).
 
 ## UI building blocks (`ui/`)
 
 `ui/` holds generic, widget-agnostic pieces of chrome — not widgets themselves, nothing in there is registered or configured directly. `Pill.qml` and `Popup.qml` live here because they're meant to be reused by any future widget; if a new reusable building block (e.g. a slider, a toggle) comes up while building a widget, it belongs in `ui/`, not in that widget's own directory.
+
+Not every widget fits `Pill` (a single clickable item — `clickable: false` makes it fully transparent, which only makes sense for a single interactive element, not a container). `widgets/workspaces/Workspaces.qml` needs a background *container* around several independently-clickable items, so it has its own root `Rectangle` and duplicates `Pill`'s small style-resolution snippet (`Settings.widgetStyle(instanceId, { background, radius })` → `Colors.resolve`) instead of extending it. Leave that duplicated until a third widget needs the same "styleable container, independently-clickable children" shape — then extract it into `ui/` (rule of three), not before.
 
 ## Widget styling
 
@@ -109,7 +111,7 @@ This covers color/hover/radius today; extending it to more style knobs (e.g. fon
 - Popups always sit behind a `LazyLoader` — nothing builds until the widget is first clicked. **Remember to set `loading: true` on the `LazyLoader`** — without it, `item` stays `null` forever since nothing ever triggers the load (this bit us on the clock's calendar popup). For a lightweight popup (a few dozen items, e.g. the calendar grid), it's fine to just toggle `popupLoader.item.visible` afterwards and leave it resident — this is Quickshell's own documented pattern. Only tear down on close (bind `LazyLoader.active` to visibility instead) for a popup with genuinely heavy content (e.g. a long list rebuilt from a process output).
 - On a `PopupWindow`-derived type, set `implicitWidth`/`implicitHeight`, not `width`/`height` — the latter is deprecated and logs a warning.
 - Polling services (updates, sysmonitor) use a `refCount` property incremented/decremented by whichever widget instances are alive; their `Timer` only runs while `refCount > 0`. Do not add a free-running `Timer` to a service.
-- Audio and tray are push-based (Pipewire, SystemTray) — no polling `Process`/`Timer` needed for those.
+- Audio, tray, and Hyprland workspaces are push-based (Pipewire, SystemTray, `Quickshell.Hyprland`'s own event-socket listener) — no polling `Process`/`Timer` needed for those.
 - A widget not referenced by any section for a screen is not instantiated there at all, not just hidden with `visible: false`.
 
 ## Decisions from scoping (step 0)
@@ -121,3 +123,5 @@ This covers color/hover/radius today; extending it to more style knobs (e.g. fon
 - **Multi-screen**: each bar renders on every screen; per-screen `bar.layout` placement controls which widgets actually show where (see Settings above).
 - **Multi-bar**: `settings.json`'s `bars` is a list — any number of independent bars (own id, position, height, layout) can coexist, e.g. a top status bar and a bottom dock-like bar.
 - **Audio**: output + input (mic) + sink/source device picker, via `Quickshell.Services.Pipewire`.
+- **Workspaces**: dynamic, not a fixed count — only workspaces that exist in `Hyprland.workspaces` are shown, scoped per-screen via `Hyprland.monitorFor(screen)`. Default Hyprland behavior destroys empty non-active workspaces (no `persistent` rule found in `config/hypr/`), so this already reflects "workspaces actually in use" rather than needing a separate persistence setting. No `services/Hyprland.qml` wrapper — `Quickshell.Hyprland`'s `Hyprland` singleton is already fully reactive with nothing to derive, a wrapper would add nothing.
+- **Workspace focus indicator**: use `Hyprland.focusedWorkspace?.id === workspace.id`, not `workspace.focused` — the latter didn't update on a monitor-focus change in testing (only `activeworkspace`/keyboard-focus events reliably retarget `Hyprland.focusedWorkspace`; per-monitor `focused` can lag, matching the docs' note that some monitor-state changes don't emit an event at all). Each workspace cell in `Workspaces.qml` is its own fixed-size `Rectangle` (not just a `Text`) so the whole cell is clickable, not only the glyph — do this for any future multi-item widget, don't rely on a `Text`'s tight bounding box as a click target.

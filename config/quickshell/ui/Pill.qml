@@ -7,6 +7,7 @@ Rectangle {
 
     default property alias content: contentRow.data
     property string instanceId: ""
+    property var screen: null
     property bool clickable: true
     signal clicked()
 

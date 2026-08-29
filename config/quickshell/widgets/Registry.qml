@@ -4,6 +4,7 @@ import QtQuick
 import Quickshell
 import qs.widgets.placeholder
 import qs.widgets.clock
+import qs.widgets.workspaces
 
 Singleton {
     id: root
@@ -15,7 +16,8 @@ Singleton {
 
     readonly property var definitions: ({
         placeholder: placeholderDefinition,
-        clock: clockDefinition
+        clock: clockDefinition,
+        workspaces: workspacesDefinition
     })
 
     readonly property Definition placeholderDefinition: Definition {
@@ -28,6 +30,11 @@ Singleton {
         defaults: ({ format: "HH:mm" })
     }
 
+    readonly property Definition workspacesDefinition: Definition {
+        component: workspacesComponent
+        defaults: ({})
+    }
+
     Component {
         id: placeholderComponent
         Placeholder {}
@@ -36,5 +43,10 @@ Singleton {
     Component {
         id: clockComponent
         Clock {}
+    }
+
+    Component {
+        id: workspacesComponent
+        Workspaces {}
     }
 }

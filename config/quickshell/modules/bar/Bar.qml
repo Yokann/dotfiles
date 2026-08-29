@@ -13,7 +13,10 @@ Scope {
         required property string modelData
 
         sourceComponent: Registry.definitions[Settings.widgetType(modelData)]?.component ?? null
-        onLoaded: item.instanceId = modelData
+        onLoaded: {
+            item.instanceId = modelData;
+            item.screen = panel.modelData;
+        }
     }
 
     Variants {
