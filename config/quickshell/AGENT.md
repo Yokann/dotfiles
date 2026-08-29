@@ -123,11 +123,13 @@ This covers color/hover/radius today; extending it to more style knobs (e.g. fon
 - Audio, tray, and Hyprland workspaces are push-based (Pipewire, SystemTray, `Quickshell.Hyprland`'s own event-socket listener) — no polling `Process`/`Timer` needed for those.
 - A widget not referenced by any section for a screen is not instantiated there at all, not just hidden with `visible: false`.
 - Instance pragmas (`//@ pragma ...` at the top of `shell.qml`, e.g. `UseQApplication`) only take effect on a full `quickshell` restart, never on hot reload — say so explicitly if a change needs one, don't just wait for the reload to "fix" it.
+- Running an external command from a service: `Quickshell.Io.Process` (`import Quickshell.Io`, plus plain `import QtQuick` for `Timer` — easy to drop since most services here are push-based and don't otherwise need it) with `stdout: StdioCollector { onStreamFinished: ... }`, reading `text` once the stream closes rather than accumulating partial reads. Don't gate parsing on the process's exit code — `yay -Qu`/`pacman -Qu`-style tools exit non-zero for "nothing to report", which is not an error.
+- A service singleton and the widget that displays it want the same domain name (`Updates`) but a QML type name is its filename, so both can't be `Updates.qml`. Follow the precedent already set by `services/Audio.qml` + `widgets/audio/AudioIndicator.qml`: the widget file gets an `...Indicator` suffix, the service keeps the bare domain name.
 
 ## Decisions from scoping (step 0)
 
 - **Theme**: Catppuccin Macchiato, matching the current Hyprland theme (`config/hypr/themes/2024/macchiato.conf`).
-- **Updates**: single `yay -Qu` call (covers repo + AUR); no separate `checkupdates` call.
+- **Updates**: single `yay -Qu` call (covers repo + AUR); no separate `checkupdates` call. `services/Updates.qml` runs it via `Process`/`StdioCollector` on a `refCount`-gated 15-minute `Timer`, plus a manual `poll()` callable from the popup's refresh control. Each output line (`name oldVersion -> newVersion`, with an optional trailing `[age]` suffix some AUR helpers append) is split on whitespace, taking indices 0/1/3 — the bracketed suffix, if present, is simply never read. `UpdatesIndicator.qml` shows `✓` (up to date), `↑N` in `Colors.yellow` (N pending), or `…` while a check is in flight; `UpdatesPopup.qml` lists pending packages with old → new version.
 - **Calendar**: month-view popup only, no external agenda/ICS integration.
 - **Pomodoro**: in-memory state only, no disk persistence across Quickshell restarts.
 - **Multi-screen**: each bar renders on every screen; per-screen `bar.layout` placement controls which widgets actually show where (see Settings above).

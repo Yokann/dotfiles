@@ -7,6 +7,7 @@ import qs.widgets.clock
 import qs.widgets.workspaces
 import qs.widgets.tray
 import qs.widgets.audio
+import qs.widgets.updates
 
 Singleton {
     id: root
@@ -21,7 +22,8 @@ Singleton {
         clock: clockDefinition,
         workspaces: workspacesDefinition,
         tray: trayDefinition,
-        audio: audioDefinition
+        audio: audioDefinition,
+        updates: updatesDefinition
     })
 
     readonly property Definition placeholderDefinition: Definition {
@@ -49,6 +51,11 @@ Singleton {
         defaults: ({})
     }
 
+    readonly property Definition updatesDefinition: Definition {
+        component: updatesComponent
+        defaults: ({})
+    }
+
     Component {
         id: placeholderComponent
         Placeholder {}
@@ -72,5 +79,10 @@ Singleton {
     Component {
         id: audioComponent
         AudioIndicator {}
+    }
+
+    Component {
+        id: updatesComponent
+        UpdatesIndicator {}
     }
 }

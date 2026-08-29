@@ -15,6 +15,7 @@
           ],
           "right": [
             "audio",
+            "updates",
             "tray"
           ]
         }
