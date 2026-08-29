@@ -11,6 +11,6 @@ Singleton {
     readonly property int radiusMedium: 10
     readonly property int radiusLarge: 14
 
-    readonly property string fontFamily: "sans-serif"
-    readonly property int fontSize: 13
+    readonly property string fontFamily: "Sauce Code Pro Nerd Font"
+    readonly property int fontSize: 15
 }

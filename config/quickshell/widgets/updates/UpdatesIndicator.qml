@@ -14,6 +14,7 @@ Pill {
         color: Updates.count > 0 ? Colors.yellow : Colors.text
         font.family: Metrics.fontFamily
         font.pixelSize: Metrics.fontSize
+        font.weight: root.style.fontWeight
     }
 
     onClicked: popupLoader.item.visible = !popupLoader.item.visible

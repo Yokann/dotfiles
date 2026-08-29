@@ -24,7 +24,8 @@ Rectangle {
         hoverBackground: "surface1",
         hoverTextColor: "text",
         radius: Metrics.radiusMedium,
-        hoverDurationMs: 120
+        hoverDurationMs: 120,
+        fontWeight: Font.Normal
     })
 
     implicitWidth: label.implicitWidth + Metrics.spacingMedium * 2
@@ -43,6 +44,7 @@ Rectangle {
         color: Colors.resolve(mouseArea.containsMouse ? root.style.hoverTextColor : root.style.textColor)
         font.family: Metrics.fontFamily
         font.pixelSize: Metrics.fontSize
+        font.weight: root.style.fontWeight
 
         Behavior on color {
             ColorAnimation { duration: root.style.hoverDurationMs }

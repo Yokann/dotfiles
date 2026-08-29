@@ -13,10 +13,11 @@ Rectangle {
     signal clicked()
 
     readonly property var style: Settings.widgetStyle(instanceId, {
-        background: "surface0",
-        hoverBackground: "surface1",
-        radius: Metrics.radiusMedium,
-        hoverDurationMs: 120
+            background: "#821e1e2e",
+            hoverBackground: "surface1",
+            radius: Metrics.radiusMedium,
+            hoverDurationMs: 120,
+            fontWeight: 600
     })
 
     implicitWidth: contentRow.implicitWidth + Metrics.spacingMedium * 2

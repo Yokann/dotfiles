@@ -12,20 +12,23 @@ Pill {
         color: Colors.text
         font.family: Metrics.fontFamily
         font.pixelSize: Metrics.fontSize
+        font.weight: root.style.fontWeight
     }
 
     Text {
-        text: `󰍛 ${Math.round(Sysmonitor.memUsage)}%`
+        text: ` 󰍛 ${Math.round(Sysmonitor.memUsage)}%`
         color: Colors.text
         font.family: Metrics.fontFamily
         font.pixelSize: Metrics.fontSize
+        font.weight: root.style.fontWeight
     }
 
     Text {
-        text: `󰋊 ${Math.round(Sysmonitor.diskUsage)}%`
+        text: ` 󰋊 ${Math.round(Sysmonitor.diskUsage)}%`
         color: Colors.text
         font.family: Metrics.fontFamily
         font.pixelSize: Metrics.fontSize
+        font.weight: root.style.fontWeight
     }
 
     onClicked: popupLoader.item.visible = !popupLoader.item.visible

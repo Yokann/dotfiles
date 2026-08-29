@@ -3,8 +3,8 @@
     {
       "id": "main",
       "position": "top",
-      "height": 34,
-      "background": "#6424273a",
+      "height": 40,
+      "background": "#0024273a",
       "layout": {
         "default": {
           "left": [

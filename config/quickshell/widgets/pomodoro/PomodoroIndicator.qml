@@ -18,6 +18,7 @@ Pill {
         color: Pomodoro.phase === "work" ? Colors.text : Colors.green
         font.family: Metrics.fontFamily
         font.pixelSize: Metrics.fontSize
+        font.weight: root.style.fontWeight
         opacity: Pomodoro.running ? 1 : 0.6
     }
 
