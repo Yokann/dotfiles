@@ -9,6 +9,7 @@ import qs.widgets.audio
 import qs.widgets.updates
 import qs.widgets.sysmonitor
 import qs.widgets.pomodoro
+import qs.widgets.button
 
 Singleton {
     id: root
@@ -25,7 +26,8 @@ Singleton {
         audio: audioDefinition,
         updates: updatesDefinition,
         sysmonitor: sysmonitorDefinition,
-        pomodoro: pomodoroDefinition
+        pomodoro: pomodoroDefinition,
+        button: buttonDefinition
     })
 
     readonly property Definition clockDefinition: Definition {
@@ -63,6 +65,11 @@ Singleton {
         defaults: ({})
     }
 
+    readonly property Definition buttonDefinition: Definition {
+        component: buttonComponent
+        defaults: ({ label: "", onClick: "", onMiddleClick: "", onRightClick: "" })
+    }
+
     Component {
         id: clockComponent
         Clock {}
@@ -96,5 +103,10 @@ Singleton {
     Component {
         id: pomodoroComponent
         PomodoroIndicator {}
+    }
+
+    Component {
+        id: buttonComponent
+        Button {}
     }
 }

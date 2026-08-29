@@ -42,7 +42,7 @@ Popup {
             spacing: Metrics.spacingSmall / 2
 
             Text {
-                text: `Mémoire — ${Math.round(Sysmonitor.memUsage)}%`
+                text: `Memory — ${Math.round(Sysmonitor.memUsage)}%`
                 color: Colors.text
                 font.family: Metrics.fontFamily
                 font.pixelSize: Metrics.fontSize
@@ -60,7 +60,7 @@ Popup {
             spacing: Metrics.spacingSmall / 2
 
             Text {
-                text: `Disque — ${Math.round(Sysmonitor.diskUsage)}%`
+                text: `Disk — ${Math.round(Sysmonitor.diskUsage)}%`
                 color: Colors.text
                 font.family: Metrics.fontFamily
                 font.pixelSize: Metrics.fontSize

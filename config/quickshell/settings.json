@@ -18,6 +18,7 @@
         },
         "DP-1": {
           "left": [
+            "twitch",
             "sysmonitor",
             "pomodoro"
           ],
@@ -47,6 +48,28 @@
     "clock_date": {
       "type": "clock",
       "format": "dddd d MMMM"
+    },
+    "twitch": {
+      "type": "button",
+      "label": "",
+      "onClick": "xdg-open vicinae://launch/@Yokann/twitch/streams",
+      "onRightClick": "livestream-ctl notif",
+      "style": {
+        "background": "#322064",
+        "hoverBackground": "#6441a5"
+      }
+    },
+    "test_button": {
+      "type": "button",
+      "label": "Test",
+      "onClick": "notify-send 'Bouton' 'clic gauche'",
+      "onMiddleClick": "notify-send 'Bouton' 'clic milieu'",
+      "onRightClick": "notify-send 'Bouton' 'clic droit'",
+      "style": {
+        "background": "surface0",
+        "hoverBackground": "accent",
+        "hoverTextColor": "crust"
+      }
     }
   }
 }

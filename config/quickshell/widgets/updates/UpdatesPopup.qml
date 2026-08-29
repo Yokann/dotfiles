@@ -28,7 +28,7 @@ Popup {
 
             Text {
                 width: parent.width - 24
-                text: Updates.count > 0 ? `${Updates.count} mise(s) à jour` : "À jour"
+                text: Updates.count > 0 ? `${Updates.count} update(s)` : "Up to date"
                 color: Colors.text
                 font.family: Metrics.fontFamily
                 font.pixelSize: Metrics.fontSize

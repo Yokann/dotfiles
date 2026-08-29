@@ -27,7 +27,7 @@ Popup {
             spacing: Metrics.spacingSmall
 
             Text {
-                text: Audio.sinkMuted ? "Sortie (muet)" : "Sortie"
+                text: Audio.sinkMuted ? "Output (muted)" : "Output"
                 color: Colors.text
                 font.family: Metrics.fontFamily
                 font.pixelSize: Metrics.fontSize
@@ -62,7 +62,7 @@ Popup {
             spacing: Metrics.spacingSmall
 
             Text {
-                text: Audio.sourceMuted ? "Micro (muet)" : "Micro"
+                text: Audio.sourceMuted ? "Micro (muted)" : "Micro"
                 color: Colors.text
                 font.family: Metrics.fontFamily
                 font.pixelSize: Metrics.fontSize
