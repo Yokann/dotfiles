@@ -12,6 +12,9 @@
           ],
           "center": [
             "workspaces"
+          ],
+          "right": [
+            "tray"
           ]
         }
       }

@@ -5,6 +5,7 @@ import Quickshell
 import qs.widgets.placeholder
 import qs.widgets.clock
 import qs.widgets.workspaces
+import qs.widgets.tray
 
 Singleton {
     id: root
@@ -17,7 +18,8 @@ Singleton {
     readonly property var definitions: ({
         placeholder: placeholderDefinition,
         clock: clockDefinition,
-        workspaces: workspacesDefinition
+        workspaces: workspacesDefinition,
+        tray: trayDefinition
     })
 
     readonly property Definition placeholderDefinition: Definition {
@@ -35,6 +37,11 @@ Singleton {
         defaults: ({})
     }
 
+    readonly property Definition trayDefinition: Definition {
+        component: trayComponent
+        defaults: ({})
+    }
+
     Component {
         id: placeholderComponent
         Placeholder {}
@@ -48,5 +55,10 @@ Singleton {
     Component {
         id: workspacesComponent
         Workspaces {}
+    }
+
+    Component {
+        id: trayComponent
+        Tray {}
     }
 }

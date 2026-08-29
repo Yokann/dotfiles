@@ -1,3 +1,5 @@
+//@ pragma UseQApplication
+
 import Quickshell
 import qs.config
 import "modules/bar"

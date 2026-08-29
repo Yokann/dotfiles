@@ -9,6 +9,7 @@ Rectangle {
 
     property string instanceId: ""
     property var screen: null
+    property var panelWindow: null
 
     readonly property var monitor: root.screen ? Hyprland.monitorFor(root.screen) : null
     readonly property var workspaceList: Hyprland.workspaces.values.filter(ws => ws.monitor === root.monitor).sort((a, b) => a.id - b.id)

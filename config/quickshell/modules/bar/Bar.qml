@@ -16,6 +16,7 @@ Scope {
         onLoaded: {
             item.instanceId = modelData;
             item.screen = panel.modelData;
+            item.panelWindow = panel;
         }
     }
 
