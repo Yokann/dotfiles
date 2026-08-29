@@ -8,6 +8,7 @@ import qs.widgets.workspaces
 import qs.widgets.tray
 import qs.widgets.audio
 import qs.widgets.updates
+import qs.widgets.sysmonitor
 
 Singleton {
     id: root
@@ -23,7 +24,8 @@ Singleton {
         workspaces: workspacesDefinition,
         tray: trayDefinition,
         audio: audioDefinition,
-        updates: updatesDefinition
+        updates: updatesDefinition,
+        sysmonitor: sysmonitorDefinition
     })
 
     readonly property Definition placeholderDefinition: Definition {
@@ -56,6 +58,11 @@ Singleton {
         defaults: ({})
     }
 
+    readonly property Definition sysmonitorDefinition: Definition {
+        component: sysmonitorComponent
+        defaults: ({})
+    }
+
     Component {
         id: placeholderComponent
         Placeholder {}
@@ -84,5 +91,10 @@ Singleton {
     Component {
         id: updatesComponent
         UpdatesIndicator {}
+    }
+
+    Component {
+        id: sysmonitorComponent
+        SysmonitorIndicator {}
     }
 }

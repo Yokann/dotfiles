@@ -7,16 +7,27 @@
       "layout": {
         "default": {
           "left": [
-            "clock_date",
-            "clock_time"
           ],
           "center": [
             "workspaces"
           ],
           "right": [
-            "audio",
+            "clock_time"
+          ]
+        },
+        "DP-1": {
+          "left": [
+            "sysmonitor"
+          ],
+          "center": [
+            "workspaces"
+          ],
+          "right": [
             "updates",
-            "tray"
+            "tray",
+            "audio",
+            "clock_date",
+            "clock_time"
           ]
         }
       }
@@ -26,14 +37,14 @@
     "clock_time": {
       "type": "clock",
       "format": "HH:mm",
+      "showCalendar": false,
       "style": {
         "hoverBackground": "accent"
       }
     },
     "clock_date": {
       "type": "clock",
-      "format": "dddd d MMMM",
-      "showCalendar": false
+      "format": "dddd d MMMM"
     }
   }
 }
