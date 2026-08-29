@@ -1,6 +1,6 @@
 import QtQuick
 import qs.theme
-import qs.widgets.common
+import qs.ui
 
 Pill {
     Text {

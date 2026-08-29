@@ -1,7 +1,7 @@
 import QtQuick
 import Quickshell
 import qs.theme
-import qs.widgets.common
+import qs.ui
 
 Popup {
     id: root

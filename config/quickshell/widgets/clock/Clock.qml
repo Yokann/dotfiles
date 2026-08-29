@@ -2,7 +2,7 @@ import QtQuick
 import Quickshell
 import qs.config
 import qs.theme
-import qs.widgets.common
+import qs.ui
 
 Pill {
     id: root

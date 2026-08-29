@@ -12,9 +12,11 @@ config/
 theme/
   Colors.qml             Singleton: Catppuccin Macchiato palette
   Metrics.qml             Singleton: shared spacing/radius/font sizes
+ui/
+  Pill.qml                 reusable clickable bar-item chrome
+  Popup.qml                 reusable popup chrome (background, LazyLoader-friendly)
 widgets/
   Registry.qml             Singleton: static id -> Component map
-  common/                   shared chrome (Pill, PopupWindow)
   <name>/                   one self-contained widget per directory
 modules/
   bar/Bar.qml               One bar, parameterized by a bar config; Variants over
@@ -77,11 +79,15 @@ A widget is a directory under `widgets/<name>/` with at minimum a `<Name>.qml` b
 
 No other file changes. Widget registration is a static declarative map, not a runtime dynamic loader — simpler and safer in QML than resolving component paths from strings at runtime.
 
-`Bar.qml` reads `Settings.sectionWidgets(barConfig, sectionId, screenName)` for each of the three sections; for each instance id it resolves the type via `Settings.widgetType`, instantiates `Registry.definitions[type].component`, and sets `instanceId` on the loaded item — **every widget must expose a settable `instanceId` string property** (inherited for free by anything built on `widgets/common/Pill.qml`) so it can look up its own config with `Settings.widgetConfig(instanceId, defaults)`.
+`Bar.qml` reads `Settings.sectionWidgets(barConfig, sectionId, screenName)` for each of the three sections; for each instance id it resolves the type via `Settings.widgetType`, instantiates `Registry.definitions[type].component`, and sets `instanceId` on the loaded item — **every widget must expose a settable `instanceId` string property** (inherited for free by anything built on `ui/Pill.qml`) so it can look up its own config with `Settings.widgetConfig(instanceId, defaults)`.
+
+## UI building blocks (`ui/`)
+
+`ui/` holds generic, widget-agnostic pieces of chrome — not widgets themselves, nothing in there is registered or configured directly. `Pill.qml` and `Popup.qml` live here because they're meant to be reused by any future widget; if a new reusable building block (e.g. a slider, a toggle) comes up while building a widget, it belongs in `ui/`, not in that widget's own directory.
 
 ## Widget styling
 
-`widgets/common/Pill.qml` resolves its own look from `widgets.<instanceId>.style`, so any widget built on it is styleable through settings.json with **no extra plumbing**:
+`ui/Pill.qml` resolves its own look from `widgets.<instanceId>.style`, so any widget built on it is styleable through settings.json with **no extra plumbing**:
 
 ```json
 "widgets": {
