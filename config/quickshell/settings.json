@@ -3,11 +3,14 @@
     "position": "top",
     "height": 34
   },
-  "widgets": {
-    "placeholder": {
-      "enabled": true,
-      "screens": "all",
-      "order": 0
+  "display": {
+    "main_bar": {
+      "default": {
+        "left_section": [
+          "clock"
+        ]
+      }
     }
-  }
+  },
+  "widgets": {}
 }

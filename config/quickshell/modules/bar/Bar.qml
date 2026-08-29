@@ -5,6 +5,13 @@ import qs.theme
 import qs.widgets
 
 Scope {
+    property string barId: "main_bar"
+
+    component WidgetLoader: Loader {
+        required property string modelData
+        sourceComponent: Registry.definitions[modelData]?.component ?? null
+    }
+
     Variants {
         model: Quickshell.screens
 
@@ -12,7 +19,6 @@ Scope {
             id: panel
 
             required property var modelData
-            readonly property bool isPrimary: modelData === Quickshell.screens[0]
 
             screen: modelData
             color: Colors.base
@@ -32,15 +38,30 @@ Scope {
                 spacing: Metrics.spacingMedium
 
                 Repeater {
-                    model: {
-                        const ids = Object.keys(Registry.definitions);
-                        return ids.filter(id => Settings.widgetVisibleOnScreen(id, Registry.definitions[id].defaults, modelData.name, panel.isPrimary)).sort((a, b) => Settings.widgetConfig(a, Registry.definitions[a].defaults).order - Settings.widgetConfig(b, Registry.definitions[b].defaults).order);
-                    }
+                    model: Settings.sectionWidgets(barId, "left_section", panel.modelData.name)
+                    delegate: WidgetLoader {}
+                }
+            }
 
-                    delegate: Loader {
-                        required property string modelData
-                        sourceComponent: Registry.definitions[modelData].component
-                    }
+            Row {
+                anchors.centerIn: parent
+                spacing: Metrics.spacingMedium
+
+                Repeater {
+                    model: Settings.sectionWidgets(barId, "center_section", panel.modelData.name)
+                    delegate: WidgetLoader {}
+                }
+            }
+
+            Row {
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.right: parent.right
+                anchors.rightMargin: Metrics.spacingMedium
+                spacing: Metrics.spacingMedium
+
+                Repeater {
+                    model: Settings.sectionWidgets(barId, "right_section", panel.modelData.name)
+                    delegate: WidgetLoader {}
                 }
             }
         }
