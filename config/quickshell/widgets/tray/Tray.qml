@@ -19,6 +19,18 @@ Row {
 
     spacing: Metrics.spacingSmall
 
+    // Sized off the actual rendered text height (not a raw font.pixelSize, which
+    // undershoots real glyph ascent/descent) so tray squares match ui/Pill.qml's
+    // implicitHeight exactly and sit vertically centered next to Pill-based
+    // siblings in the same bar section - a plain `Metrics.fontSize + ...` here
+    // came out a few px shorter and looked top-aligned instead.
+    Text {
+        id: heightReference
+        visible: false
+        font.family: Metrics.fontFamily
+        font.pixelSize: Metrics.fontSize
+    }
+
     Repeater {
         model: SystemTray.items
 
@@ -27,7 +39,7 @@ Row {
 
             required property SystemTrayItem modelData
 
-            width: Metrics.fontSize + Metrics.spacingMedium
+            width: heightReference.implicitHeight + Metrics.spacingSmall * 2
             height: width
             radius: root.style.radius
             color: mouseArea.containsMouse ? Colors.resolve(root.style.hoverBackground) : "transparent"
