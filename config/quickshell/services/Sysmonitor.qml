@@ -3,6 +3,7 @@ pragma Singleton
 import QtQuick
 import Quickshell
 import Quickshell.Io
+import Quickshell.Services.UPower
 
 Singleton {
     id: root
@@ -11,6 +12,10 @@ Singleton {
     property real cpuUsage: 0
     property real memUsage: 0
     property real diskUsage: 0
+
+    readonly property bool hasBattery: UPower.displayDevice.isLaptopBattery
+    readonly property int batteryPercent: Math.round(UPower.displayDevice.percentage * 100)
+    readonly property bool batteryCharging: !UPower.onBattery
 
     property var _prevCpu: null
 
