@@ -28,7 +28,7 @@ BarWidget {
     WidgetButton {
         id: button
         anchors.fill: parent
-        style: root.resolveStyle({
+        styleOverrides: root.resolveStyle({
                 background: "surfaceBackground",
                 textColor: "text",
                 hoverBackground: "hoverSurfaceBackground",

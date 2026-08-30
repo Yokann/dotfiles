@@ -4,53 +4,31 @@ import Quickshell.Io
 import qs.config
 import qs.theme
 import qs.services
+import qs.ui
 
-Rectangle {
+BarWidget {
     id: root
 
-    property string instanceId: ""
-    property var screen: null
-    property var panelWindow: null
+    implicitWidth: button.implicitWidth
+    implicitHeight: button.implicitHeight
 
-    readonly property var style: Settings.widgetStyle(instanceId, {
-            background: Notifications.count > 0 ? "activeSurfaceBackground" : "surfaceBackground",
-            hoverBackground: "hoverSurfaceBackground",
-            radius: Metrics.radiusMedium,
-            hoverDurationMs: 120,
-            fontWeight: Font.Normal
-    })
-
-    implicitWidth: label.implicitWidth + Metrics.spacingMedium * 2
-    implicitHeight: label.implicitHeight + Metrics.spacingSmall * 2
-    radius: root.style.radius
-    color: mouseArea.containsMouse ? Colors.resolve(root.style.hoverBackground) : Colors.resolve(root.style.background)
-
-    Behavior on color {
-        ColorAnimation { duration: root.style.hoverDurationMs }
-    }
-
-    Text {
-        id: label
-        anchors.centerIn: parent
-        text: Notifications.dnd ? ` ${Notifications.count}` : ` ${Notifications.count}`
-        color: Colors.text
-        font.family: Metrics.fontFamily
-        font.pixelSize: Metrics.fontSize
-        font.weight: root.style.fontWeight
-    }
-
-    MouseArea {
-        id: mouseArea
+    WidgetButton {
+        id: button
         anchors.fill: parent
-        hoverEnabled: true
-        cursorShape: Qt.PointingHandCursor
-        acceptedButtons: Qt.LeftButton | Qt.RightButton
+        styleOverrides: root.resolveStyle({
+                background: "activeSurfaceBackground"
+        })
+        idle: Notifications.count === 0
 
-        onClicked: mouse => {
-            if (mouse.button === Qt.LeftButton)
-            togglePanelProcess.running = true;
-            else if (mouse.button === Qt.RightButton)
-            toggleDndProcess.running = true;
+        onClicked: togglePanelProcess.running = true
+        onRightClicked: toggleDndProcess.running = true
+
+        Text {
+            text: Notifications.dnd ? ` ${Notifications.count}` : ` ${Notifications.count}`
+            color: Colors.text
+            font.family: Metrics.fontFamily
+            font.pixelSize: Metrics.fontSize
+            font.weight: button.style.fontWeight
         }
     }
 

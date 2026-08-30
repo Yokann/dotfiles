@@ -6,7 +6,7 @@ Rectangle {
 
     default property alias content: contentRow.data
 
-    property var style: ({
+    readonly property var defaultStyle: ({
             background: "surfaceBackground",
             hoverBackground: "hoverSurfaceBackground",
             idleBackground: "surfaceBackground",
@@ -20,6 +20,12 @@ Rectangle {
             fontWeight: 600
     })
 
+    // Whatever a composing widget passes in — may omit any key it doesn't care
+    // about, since it's merged over defaultStyle below rather than replacing it.
+    property var styleOverrides: ({})
+
+    readonly property var style: Object.assign({}, root.defaultStyle, root.styleOverrides)
+
     property bool clickable: true
     property bool idle: false
     property bool inactive: false
@@ -27,16 +33,16 @@ Rectangle {
     readonly property alias hovered: mouseArea.containsMouse
 
     readonly property color resolvedBackground: !root.clickable
-        ? "transparent"
-        : root.inactive ? Colors.resolve(root.style.inactiveBackground)
-        : root.idle ? Colors.resolve(root.style.idleBackground)
-        : root.hovered ? Colors.resolve(root.style.hoverBackground)
-        : Colors.resolve(root.style.background)
+    ? "transparent"
+    : root.hovered ? Colors.resolve(root.style.hoverBackground)
+    : root.idle ? Colors.resolve(root.style.idleBackground)
+    : root.inactive ? Colors.resolve(root.style.inactiveBackground)
+    : Colors.resolve(root.style.background)
 
     readonly property color resolvedTextColor: root.inactive ? Colors.resolve(root.style.inactiveTextColor)
-        : root.idle ? Colors.resolve(root.style.idleTextColor)
-        : root.hovered ? Colors.resolve(root.style.hoverTextColor)
-        : Colors.resolve(root.style.textColor)
+    : root.hovered ? Colors.resolve(root.style.hoverTextColor)
+    : root.idle ? Colors.resolve(root.style.idleTextColor)
+    : Colors.resolve(root.style.textColor)
 
     signal clicked()
     signal middleClicked()
@@ -62,11 +68,11 @@ Rectangle {
 
         onClicked: mouse => {
             if (mouse.button === Qt.LeftButton)
-                root.clicked();
+            root.clicked();
             else if (mouse.button === Qt.MiddleButton)
-                root.middleClicked();
+            root.middleClicked();
             else if (mouse.button === Qt.RightButton)
-                root.rightClicked();
+            root.rightClicked();
         }
         onWheel: wheel => root.scrolled(wheel.angleDelta.y)
     }
