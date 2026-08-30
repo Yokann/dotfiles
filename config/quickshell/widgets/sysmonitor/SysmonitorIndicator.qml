@@ -4,7 +4,7 @@ import qs.theme
 import qs.ui
 import qs.services
 
-Pill {
+BarWidget {
     id: root
 
     function usageColor(value: real): color {
@@ -38,74 +38,83 @@ Pill {
         })[tier];
     }
 
-    Text {
-        text: `󰻠 ${Math.round(Sysmonitor.cpuUsage)}%`
-        color: root.usageColor(Sysmonitor.cpuUsage)
-        font.family: Metrics.fontFamily
-        font.pixelSize: Metrics.fontSize
-        font.weight: root.style.fontWeight
-    }
+    implicitWidth: button.implicitWidth
+    implicitHeight: button.implicitHeight
 
-    Text {
-        text: ` 󰍛 ${Math.round(Sysmonitor.memUsage)}%`
-        color: root.usageColor(Sysmonitor.memUsage)
-        font.family: Metrics.fontFamily
-        font.pixelSize: Metrics.fontSize
-        font.weight: root.style.fontWeight
-    }
+    WidgetButton {
+        id: button
+        anchors.fill: parent
+        styleOverrides: root.resolveStyle({})
 
-    Text {
-        text: ` 󰋊 ${Math.round(Sysmonitor.diskUsage)}%`
-        color: root.usageColor(Sysmonitor.diskUsage)
-        font.family: Metrics.fontFamily
-        font.pixelSize: Metrics.fontSize
-        font.weight: root.style.fontWeight
-    }
+        onClicked: popupLoader.item.visible = !popupLoader.item.visible
 
-    Text {
-        id: batteryText
-        visible: Sysmonitor.hasBattery
-        text: ` ${root.batteryIcon()} ${Sysmonitor.batteryPercent}%`
-        color: root.batteryColor()
-        font.family: Metrics.fontFamily
-        font.pixelSize: Metrics.fontSize
-        font.weight: root.style.fontWeight
-    }
-
-    SequentialAnimation {
-        running: Sysmonitor.hasBattery && Sysmonitor.batteryPercent < 5
-        loops: Animation.Infinite
-
-        onRunningChanged: if (!running)
-            batteryText.opacity = 1
-
-        NumberAnimation {
-            target: batteryText
-            property: "opacity"
-            to: 0.3
-            duration: 600
-            easing.type: Easing.InOutQuad
+        Text {
+            text: `󰻠 ${Math.round(Sysmonitor.cpuUsage)}%`
+            color: root.usageColor(Sysmonitor.cpuUsage)
+            font.family: Metrics.fontFamily
+            font.pixelSize: Metrics.fontSize
+            font.weight: button.style.fontWeight
         }
-        NumberAnimation {
-            target: batteryText
-            property: "opacity"
-            to: 1
-            duration: 600
-            easing.type: Easing.InOutQuad
+
+        Text {
+            text: ` 󰍛 ${Math.round(Sysmonitor.memUsage)}%`
+            color: root.usageColor(Sysmonitor.memUsage)
+            font.family: Metrics.fontFamily
+            font.pixelSize: Metrics.fontSize
+            font.weight: button.style.fontWeight
         }
-    }
 
-    onClicked: popupLoader.item.visible = !popupLoader.item.visible
+        Text {
+            text: ` 󰋊 ${Math.round(Sysmonitor.diskUsage)}%`
+            color: root.usageColor(Sysmonitor.diskUsage)
+            font.family: Metrics.fontFamily
+            font.pixelSize: Metrics.fontSize
+            font.weight: button.style.fontWeight
+        }
 
-    Component.onCompleted: Sysmonitor.refCount++
-    Component.onDestruction: Sysmonitor.refCount--
+        Text {
+            id: batteryText
+            visible: Sysmonitor.hasBattery
+            text: ` ${root.batteryIcon()} ${Sysmonitor.batteryPercent}%`
+            color: root.batteryColor()
+            font.family: Metrics.fontFamily
+            font.pixelSize: Metrics.fontSize
+            font.weight: button.style.fontWeight
+        }
 
-    LazyLoader {
-        id: popupLoader
-        loading: true
+        SequentialAnimation {
+            running: Sysmonitor.hasBattery && Sysmonitor.batteryPercent < 5
+            loops: Animation.Infinite
 
-        SysmonitorPopup {
-            anchor.item: root
+            onRunningChanged: if (!running)
+                batteryText.opacity = 1
+
+            NumberAnimation {
+                target: batteryText
+                property: "opacity"
+                to: 0.3
+                duration: 600
+                easing.type: Easing.InOutQuad
+            }
+            NumberAnimation {
+                target: batteryText
+                property: "opacity"
+                to: 1
+                duration: 600
+                easing.type: Easing.InOutQuad
+            }
+        }
+
+        Component.onCompleted: Sysmonitor.refCount++
+        Component.onDestruction: Sysmonitor.refCount--
+
+        LazyLoader {
+            id: popupLoader
+            loading: true
+
+            SysmonitorPopup {
+                anchor.item: root
+            }
         }
     }
 }

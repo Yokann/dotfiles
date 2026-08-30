@@ -4,22 +4,30 @@ import Quickshell.Wayland
 import qs.theme
 import qs.ui
 
-Pill {
+BarWidget {
     id: root
 
     property bool inhibiting: false
 
-    color: root.inhibiting ? Colors.lavender : (root.hovered ? Colors.resolve(root.style.hoverBackground) : Colors.resolve(root.style.background))
+    implicitWidth: button.implicitWidth
+    implicitHeight: button.implicitHeight
 
-    Text {
-        text: root.inhibiting ? "" : "󰷛"
-        color: root.inhibiting ? Colors.crust : Colors.text
-        font.family: Metrics.fontFamily
-        font.pixelSize: Metrics.fontSize
-        font.weight: root.style.fontWeight
+    WidgetButton {
+        id: button
+        anchors.fill: parent
+        styleOverrides: root.resolveStyle({})
+        color: root.inhibiting ? Colors.lavender : button.resolvedBackground
+
+        onClicked: root.inhibiting = !root.inhibiting
+
+        Text {
+            text: root.inhibiting ? "" : "󰷛"
+            color: root.inhibiting ? Colors.crust : button.resolvedTextColor
+            font.family: Metrics.fontFamily
+            font.pixelSize: Metrics.fontSize
+            font.weight: button.style.fontWeight
+        }
     }
-
-    onClicked: root.inhibiting = !root.inhibiting
 
     IdleInhibitor {
         enabled: root.inhibiting

@@ -20,10 +20,10 @@ Row {
     spacing: Metrics.spacingSmall
 
     // Sized off the actual rendered text height (not a raw font.pixelSize, which
-    // undershoots real glyph ascent/descent) so tray squares match ui/Pill.qml's
-    // implicitHeight exactly and sit vertically centered next to Pill-based
-    // siblings in the same bar section - a plain `Metrics.fontSize + ...` here
-    // came out a few px shorter and looked top-aligned instead.
+    // undershoots real glyph ascent/descent) so tray squares match a WidgetButton's
+    // implicitHeight exactly and sit vertically centered next to sibling widgets
+    // in the same bar section - a plain `Metrics.fontSize + ...` here came out a
+    // few px shorter and looked top-aligned instead.
     Text {
         id: heightReference
         visible: false

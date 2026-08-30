@@ -4,38 +4,46 @@ import qs.config
 import qs.theme
 import qs.ui
 
-Pill {
+BarWidget {
     id: root
 
     readonly property var config: Settings.widgetConfig(instanceId, { format: "HH:mm", showCalendar: true })
     property string label: ""
 
-    clickable: config.showCalendar
+    implicitWidth: button.implicitWidth
+    implicitHeight: button.implicitHeight
 
-    Text {
-        text: root.label
-        color: Colors.text
-        font.family: Metrics.fontFamily
-        font.pixelSize: Metrics.fontSize
-        font.weight: root.style.fontWeight
-    }
+    WidgetButton {
+        id: button
+        anchors.fill: parent
+        clickable: root.config.showCalendar
+        styleOverrides: root.resolveStyle({})
 
-    onClicked: popupLoader.item.visible = !popupLoader.item.visible
+        onClicked: popupLoader.item.visible = !popupLoader.item.visible
 
-    Timer {
-        interval: 1000
-        running: true
-        repeat: true
-        triggeredOnStart: true
-        onTriggered: root.label = Qt.formatDateTime(new Date(), root.config.format)
-    }
+        Text {
+            text: root.label
+            color: Colors.text
+            font.family: Metrics.fontFamily
+            font.pixelSize: Metrics.fontSize
+            font.weight: button.style.fontWeight
+        }
 
-    LazyLoader {
-        id: popupLoader
-        loading: root.config.showCalendar
+        Timer {
+            interval: 1000
+            running: true
+            repeat: true
+            triggeredOnStart: true
+            onTriggered: root.label = Qt.formatDateTime(new Date(), root.config.format)
+        }
 
-        CalendarPopup {
-            anchor.item: root
+        LazyLoader {
+            id: popupLoader
+            loading: root.config.showCalendar
+
+            CalendarPopup {
+                anchor.item: root
+            }
         }
     }
 }

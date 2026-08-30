@@ -4,32 +4,40 @@ import qs.theme
 import qs.ui
 import qs.services
 
-Pill {
+BarWidget {
     id: root
 
     readonly property string label: Updates.checking ? "…" : (Updates.count > 0 ? "↑" + Updates.count : "✓")
 
-    color: root.hovered ? Colors.resolve(root.style.hoverBackground) : (Updates.count > 0 ? Colors.resolve(root.style.background) : Colors.transparent)
+    implicitWidth: button.implicitWidth
+    implicitHeight: button.implicitHeight
 
-    Text {
-        text: root.label
-        color: Updates.count > 0 ? Colors.yellow : Colors.text
-        font.family: Metrics.fontFamily
-        font.pixelSize: Metrics.fontSize
-        font.weight: root.style.fontWeight
-    }
+    WidgetButton {
+        id: button
+        anchors.fill: parent
+        idle: Updates.count === 0
+        styleOverrides: root.resolveStyle({ idleBackground: "transparent" })
 
-    onClicked: popupLoader.item.visible = !popupLoader.item.visible
+        onClicked: popupLoader.item.visible = !popupLoader.item.visible
 
-    Component.onCompleted: Updates.refCount++
-    Component.onDestruction: Updates.refCount--
+        Text {
+            text: root.label
+            color: Updates.count > 0 ? Colors.yellow : Colors.text
+            font.family: Metrics.fontFamily
+            font.pixelSize: Metrics.fontSize
+            font.weight: button.style.fontWeight
+        }
 
-    LazyLoader {
-        id: popupLoader
-        loading: true
+        Component.onCompleted: Updates.refCount++
+        Component.onDestruction: Updates.refCount--
 
-        UpdatesPopup {
-            anchor.item: root
+        LazyLoader {
+            id: popupLoader
+            loading: true
+
+            UpdatesPopup {
+                anchor.item: root
+            }
         }
     }
 }

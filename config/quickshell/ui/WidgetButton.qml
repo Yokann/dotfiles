@@ -34,9 +34,9 @@ Rectangle {
 
     readonly property color resolvedBackground: !root.clickable
     ? "transparent"
+    : root.inactive ? Colors.resolve(root.style.inactiveBackground)
     : root.hovered ? Colors.resolve(root.style.hoverBackground)
     : root.idle ? Colors.resolve(root.style.idleBackground)
-    : root.inactive ? Colors.resolve(root.style.inactiveBackground)
     : Colors.resolve(root.style.background)
 
     readonly property color resolvedTextColor: root.inactive ? Colors.resolve(root.style.inactiveTextColor)
