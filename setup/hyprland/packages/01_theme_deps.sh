@@ -13,6 +13,7 @@ yay -S --noconfirm --norebuild --needed \
     elephant-windows-bin \
     elephant-wireplumber-bin \
     walker-bin \
+    quickshell \
     vicinae-bin \
     nwg-look \
     nwg-displays \

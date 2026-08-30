@@ -10,6 +10,7 @@ yay -S --noconfirm --norebuild --needed \
     brightnessctl \
     btop \
     btrfs-progs \
+    cliamp-bin \
     cronie \
     docker \
     docker-buildx \
