@@ -28,6 +28,7 @@
             "updates"
           ],
           "right": [
+            "mpris",
             "tray",
             "audio",
             "idleinhibitor",
@@ -41,7 +42,7 @@
   "widgets": {
     "clock_time": {
       "type": "clock",
-      "format": "HH:mm",
+      "format": "HH:mm:ss",
       "showCalendar": false,
       "style": {
         "hoverBackground": "accent"
