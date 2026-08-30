@@ -28,9 +28,14 @@ Scope {
 
             required property var modelData
 
+            readonly property bool hasWidgets: Settings.sectionWidgets(root.barConfig, "left", modelData.name).length > 0
+                || Settings.sectionWidgets(root.barConfig, "center", modelData.name).length > 0
+                || Settings.sectionWidgets(root.barConfig, "right", modelData.name).length > 0
+
             screen: modelData
             color: Colors.resolve(root.barConfig.background)
             implicitHeight: root.barConfig.height
+            visible: hasWidgets
 
             anchors {
                 top: root.barConfig.position === "top"
