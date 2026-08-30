@@ -43,9 +43,11 @@ PopupWindow {
         // Flickable's own wheel handling doesn't reliably reach this content inside a
         // Quickshell popup window; drive contentY from wheel events explicitly instead.
         // acceptedButtons: NoButton lets clicks/drags fall through to the Flickable and
-        // its children below, only wheel is intercepted here.
+        // its children below, only wheel is intercepted here. z: -1 keeps it behind the
+        // Flickable's content so it doesn't shadow cursorShape set by nested MouseAreas.
         MouseArea {
             anchors.fill: flickable
+            z: -1
             acceptedButtons: Qt.NoButton
 
             onWheel: event => {

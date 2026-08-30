@@ -27,12 +27,27 @@ Popup {
             height: refreshLabel.implicitHeight
 
             Text {
-                width: parent.width - 24
+                width: parent.width - 48
                 text: Updates.count > 0 ? `${Updates.count} update(s)` : "Up to date"
                 color: Colors.text
                 font.family: Metrics.fontFamily
                 font.pixelSize: Metrics.fontSize
                 font.bold: true
+            }
+
+            Text {
+                id: updateLabel
+                width: 24
+                horizontalAlignment: Text.AlignRight
+                text: "⇧"
+                color: Updates.count > 0 ? Colors.yellow : Colors.subtext0
+                font.pixelSize: Metrics.fontSize
+
+                MouseArea {
+                    anchors.fill: parent
+                    cursorShape: Qt.PointingHandCursor
+                    onClicked: Updates.runUpdate()
+                }
             }
 
             Text {

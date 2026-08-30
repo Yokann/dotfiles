@@ -19,6 +19,10 @@ Singleton {
         checkProcess.running = true;
     }
 
+    function runUpdate(): void {
+        updateProcess.running = true;
+    }
+
     Process {
         id: checkProcess
         command: ["yay", "-Qu"]
@@ -32,6 +36,13 @@ Singleton {
                 root.checking = false;
             }
         }
+    }
+
+    Process {
+        id: updateProcess
+        command: ["footclient", "-H", "-T", "yay -Syu", "-e", "yay", "-Syu"]
+
+        onExited: root.poll()
     }
 
     Timer {
