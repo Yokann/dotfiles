@@ -12,6 +12,7 @@ Singleton {
         return root[token] !== undefined ? root[token] : token;
     }
 
+    // Catppuccin Latte palette colors
     readonly property color rosewater: "#f4dbd6"
     readonly property color flamingo: "#f0c6c6"
     readonly property color pink: "#f5bde6"
@@ -44,4 +45,11 @@ Singleton {
     readonly property color crust: "#181926"
 
     readonly property color accent: mauve
+
+    // Palette colors for backgrounds of widgets, panels, etc.
+    readonly property color baseBackground: "#821e1e2e"
+    readonly property color surfaceBackground: "#821e1e2e"
+    readonly property color activeSurfaceBackground: crust
+    readonly property color inactiveSurfaceBackground: "#00000000"
+    readonly property color hoverSurfaceBackground: surface1
 }

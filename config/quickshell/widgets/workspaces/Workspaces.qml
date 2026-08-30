@@ -15,14 +15,14 @@ Rectangle {
     readonly property var workspaceList: Hyprland.workspaces.values.filter(ws => ws.monitor === root.monitor).sort((a, b) => a.id - b.id)
 
     readonly property var style: Settings.widgetStyle(instanceId, {
-        // background: "surface0",
-        background: "#821e1e2e",
-        radius: Metrics.radiusLarge,
-        focusedBackground: "lavender",
-        focusedColor: "crust",
-        activeColor: "accent",
-        occupiedColor: "text",
-        idleColor: "subtext0"
+            // background: "surface0",
+            background: "surfaceBackground",
+            radius: Metrics.radiusLarge,
+            focusedBackground: "#eba6e0",
+            focusedColor: "crust",
+            activeColor: "subtext0",
+            occupiedColor: "text",
+            idleColor: "blue"
     })
 
     implicitWidth: row.implicitWidth + Metrics.spacingMedium * 2

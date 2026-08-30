@@ -13,8 +13,8 @@ Rectangle {
     property var panelWindow: null
 
     readonly property var style: Settings.widgetStyle(instanceId, {
-            background: Notifications.count > 0 ? "#1e1e2e" : "#821e1e2e",
-            hoverBackground: "surface1",
+            background: Notifications.count > 0 ? "activeSurfaceBackground" : "surfaceBackground",
+            hoverBackground: "hoverSurfaceBackground",
             radius: Metrics.radiusMedium,
             hoverDurationMs: 120,
             fontWeight: Font.Normal

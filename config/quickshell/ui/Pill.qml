@@ -16,8 +16,8 @@ Rectangle {
     signal clicked()
 
     readonly property var style: Settings.widgetStyle(instanceId, {
-            background: "#821e1e2e",
-            hoverBackground: "surface1",
+            background: "surfaceBackground",
+            hoverBackground: "hoverSurfaceBackground",
             radius: Metrics.radiusMedium,
             hoverDurationMs: 120,
             fontWeight: 600

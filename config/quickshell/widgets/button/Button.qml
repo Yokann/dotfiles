@@ -12,20 +12,20 @@ Rectangle {
     property var panelWindow: null
 
     readonly property var config: Settings.widgetConfig(instanceId, {
-        label: "",
-        onClick: "",
-        onMiddleClick: "",
-        onRightClick: ""
+            label: "",
+            onClick: "",
+            onMiddleClick: "",
+            onRightClick: ""
     })
 
     readonly property var style: Settings.widgetStyle(instanceId, {
-        background: "surface0",
-        textColor: "text",
-        hoverBackground: "surface1",
-        hoverTextColor: "text",
-        radius: Metrics.radiusMedium,
-        hoverDurationMs: 120,
-        fontWeight: Font.Normal
+            background: "surfaceBackground",
+            textColor: "text",
+            hoverBackground: "hoverSurfaceBackground",
+            hoverTextColor: "text",
+            radius: Metrics.radiusMedium,
+            hoverDurationMs: 120,
+            fontWeight: Font.Normal
     })
 
     implicitWidth: label.implicitWidth + Metrics.spacingMedium * 2
