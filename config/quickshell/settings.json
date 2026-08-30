@@ -23,16 +23,16 @@
             "pomodoro"
           ],
           "center": [
-            "workspaces"
+            "clock_time",
+            "workspaces",
+            "updates"
           ],
           "right": [
-            "updates",
             "tray",
             "audio",
             "idleinhibitor",
             "notifications",
-            "clock_date",
-            "clock_time"
+            "clock_date"
           ]
         }
       }
