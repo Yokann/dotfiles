@@ -7,7 +7,7 @@ import qs.services
 Pill {
     id: root
 
-    readonly property string label: Audio.sinkMuted ? "muet" : `${Math.round(Audio.sinkVolume * 100)}%`
+    readonly property string label: Audio.sinkMuted ? "" : ` ${Math.round(Audio.sinkVolume * 100)}%`
 
     Text {
         text: root.label
