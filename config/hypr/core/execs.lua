@@ -10,8 +10,9 @@ hl.on("hyprland.start", function()
     if Launcher == "walker" then
         hl.exec_cmd(Uwsm .. "walker --gapplication-service")
     end
+    hl.exec_cmd(Uwsm .. "quickshell")
 end)
 
-hl.on("config.reloaded", function()
-    hl.exec_cmd(ConfigPath .. "/scripts/launch_waybar")
-end)
+-- hl.on("config.reloaded", function()
+--     hl.exec_cmd(ConfigPath .. "/scripts/launch_waybar")
+-- end)
