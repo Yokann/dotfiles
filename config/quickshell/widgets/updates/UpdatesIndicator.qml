@@ -9,6 +9,8 @@ Pill {
 
     readonly property string label: Updates.checking ? "…" : (Updates.count > 0 ? "↑" + Updates.count : "✓")
 
+    color: root.hovered ? Colors.resolve(root.style.hoverBackground) : (Updates.count > 0 ? Colors.resolve(root.style.background) : Colors.transparent)
+
     Text {
         text: root.label
         color: Updates.count > 0 ? Colors.yellow : Colors.text

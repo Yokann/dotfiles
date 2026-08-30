@@ -45,11 +45,12 @@ Singleton {
     readonly property color crust: "#181926"
 
     readonly property color accent: mauve
+    readonly property color transparent: "#00000000"
 
     // Palette colors for backgrounds of widgets, panels, etc.
     readonly property color baseBackground: "#821e1e2e"
     readonly property color surfaceBackground: "#821e1e2e"
     readonly property color activeSurfaceBackground: crust
-    readonly property color inactiveSurfaceBackground: "#00000000"
+    readonly property color inactiveSurfaceBackground: transparent
     readonly property color hoverSurfaceBackground: surface1
 }
