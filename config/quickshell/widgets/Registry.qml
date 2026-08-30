@@ -12,6 +12,7 @@ import qs.widgets.pomodoro
 import qs.widgets.button
 import qs.widgets.idleinhibitor
 import qs.widgets.notifications
+import qs.widgets.mpris
 
 Singleton {
     id: root
@@ -31,7 +32,8 @@ Singleton {
         pomodoro: pomodoroDefinition,
         button: buttonDefinition,
         idleinhibitor: idleInhibitorDefinition,
-        notifications: notificationsDefinition
+        notifications: notificationsDefinition,
+        mpris: mprisDefinition
     })
 
     readonly property Definition clockDefinition: Definition {
@@ -84,6 +86,11 @@ Singleton {
         defaults: ({})
     }
 
+    readonly property Definition mprisDefinition: Definition {
+        component: mprisComponent
+        defaults: ({})
+    }
+
     Component {
         id: clockComponent
         Clock {}
@@ -132,5 +139,10 @@ Singleton {
     Component {
         id: notificationsComponent
         NotificationsIndicator {}
+    }
+
+    Component {
+        id: mprisComponent
+        MprisIndicator {}
     }
 }
