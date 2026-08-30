@@ -16,12 +16,15 @@ BarWidget {
         id: button
         anchors.fill: parent
         styleOverrides: root.resolveStyle({})
+        color: Audio.sinkMuted ? Colors.red : button.resolvedBackground
 
         onClicked: popupLoader.item.visible = !popupLoader.item.visible
+        onRightClicked: Audio.toggleSinkMute()
+        onScrolled: delta => Audio.setSinkVolume(Math.max(0, Math.min(1, Audio.sinkVolume + (delta > 0 ? 0.05 : -0.05))))
 
         Text {
             text: root.label
-            color: Colors.text
+            color: Audio.sinkMuted ? Colors.crust : Colors.text
             font.family: Metrics.fontFamily
             font.pixelSize: Metrics.fontSize
             font.weight: button.style.fontWeight
