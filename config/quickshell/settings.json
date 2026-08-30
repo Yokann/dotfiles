@@ -19,21 +19,35 @@
         "DP-1": {
           "left": [
             "twitch",
-            "sysmonitor",
-            "pomodoro"
+            "sysmonitor"
           ],
           "center": [
-            "clock_time",
-            "workspaces",
-            "updates"
+            "workspaces"
           ],
           "right": [
-            "mpris",
             "tray",
+            "updates",
             "audio",
             "idleinhibitor",
             "notifications",
             "clock_date"
+          ]
+        }
+      }
+    },
+    {
+      "id": "secondary",
+      "position": "bottom",
+      "height": 30,
+      "background": "#0024273a",
+      "layout": {
+        "DP-1": {
+          "left": [
+            "mpris"
+          ],
+          "right": [
+            "pomodoro",
+            "clock_time"
           ]
         }
       }
