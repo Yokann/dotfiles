@@ -13,8 +13,8 @@ Row {
     property var panelWindow: null
 
     readonly property var style: Settings.widgetStyle(instanceId, {
-        hoverBackground: "surface1",
-        radius: Metrics.radiusSmall
+            hoverBackground: "surface1",
+            radius: Metrics.radiusSmall
     })
 
     spacing: Metrics.spacingSmall
@@ -39,6 +39,21 @@ Row {
 
             required property SystemTrayItem modelData
 
+            // A tray app's SNI icon property can go transiently empty an empty
+            // source leaves IconImage.status at Image.Null, not Image.Error, so it
+            // must be treated as its own "no icon" case rather than folded into the
+            // error check below, or the icon just goes blank with no fallback.
+            readonly property string iconSource: {
+                const iconName = trayItem.modelData.icon;
+                if (!iconName)
+                return "";
+                if (iconName.includes("?path=")) {
+                    const [name, path] = iconName.split("?path=");
+                    return `file://${path}/${name.slice(name.lastIndexOf("/") + 1)}`;
+                }
+                return iconName;
+            }
+
             width: heightReference.implicitHeight + Metrics.spacingSmall * 2
             height: width
             radius: root.style.radius
@@ -54,22 +69,15 @@ Row {
                 anchors.fill: parent
                 anchors.margins: Metrics.spacingSmall / 2
                 asynchronous: true
-                visible: status !== Image.Error
-                source: {
-                    const icon = trayItem.modelData.icon;
-                    if (icon.includes("?path=")) {
-                        const [name, path] = icon.split("?path=");
-                        return `file://${path}/${name.slice(name.lastIndexOf("/") + 1)}`;
-                    }
-                    return icon;
-                }
+                visible: trayItem.iconSource !== "" && status !== Image.Error
+                source: trayItem.iconSource
             }
 
             Text {
                 // Some tray apps (e.g. wayscriber) ship no icon file at all, only a raw
                 // IconPixmap over D-Bus — SystemTrayItem doesn't expose that, so this is
                 // the best we can do without talking to D-Bus ourselves.
-                visible: icon.status === Image.Error
+                visible: trayItem.iconSource === "" || icon.status === Image.Error
                 anchors.centerIn: parent
                 text: (trayItem.modelData.title || trayItem.modelData.id || "?").charAt(0).toUpperCase()
                 color: Colors.subtext0
@@ -87,9 +95,9 @@ Row {
 
                 onClicked: mouse => {
                     if (mouse.button === Qt.LeftButton)
-                        trayItem.modelData.activate();
+                    trayItem.modelData.activate();
                     else if (mouse.button === Qt.MiddleButton)
-                        trayItem.modelData.secondaryActivate();
+                    trayItem.modelData.secondaryActivate();
                     else if (trayItem.modelData.hasMenu) {
                         const pos = trayItem.mapToItem(null, mouse.x, mouse.y);
                         trayItem.modelData.display(root.panelWindow, pos.x, pos.y);
