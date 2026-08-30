@@ -2,6 +2,8 @@
 
 Quickshell 0.3 bar for Hyprland. Read this before adding or changing anything.
 
+**Never judge a visual result (spacing, colors, layout, whether a popup rendered/looks right, etc.) by taking a screenshot yourself and eyeballing it.** After making a visual change, describe what changed and ask the user to check it live instead of self-verifying with grim/screenshots.
+
 ## Layout
 
 ```
@@ -94,6 +96,8 @@ Not every widget fits `Pill` (a single clickable item — `clickable: false` mak
 
 `widgets/button/Button.qml` (a fully generic, user-scripted button — label + a shell command per mouse button + full color control) also skips `Pill` for a different reason: `Pill.clicked()` only fires for a left click, and its hover effect only recolors the background, not text — this widget needs all three mouse buttons wired to independent commands *and* a hover-reactive text color. Own root `Rectangle` + `MouseArea` (`acceptedButtons: Qt.LeftButton | Qt.MiddleButton | Qt.RightButton`), same shape as `Tray.qml`.
 
+Ask if a design change should affect everything, if so, affect change in the UI class instead repeating change in every widget.
+
 ## Widget styling
 
 `ui/Pill.qml` resolves its own look from `widgets.<instanceId>.style`, so any widget built on it is styleable through settings.json with **no extra plumbing**:
@@ -136,7 +140,7 @@ This covers color/hover/radius today; extending it to more style knobs (e.g. fon
 - This QML engine's typed-parameter support (`function f(x: SomeType): ReturnType`, used throughout for e.g. `PwNode`/`string`/`void`) does **not** extend to default parameter values on a typed param (`function f(x: real = 1)`) — errors "Type annotations are not supported (yet)" at the `=`. Give the parameter type `var` and default it manually inside the body instead (`x ?? 1`) if this comes up again.
 - Before hardcoding a Nerd Font icon codepoint (like `SysmonitorIndicator.qml`/`PomodoroIndicator.qml` do), check it actually has a real glyph rather than just trusting fontconfig's charset claim: `fc-match -a ":charset=<hex-codepoint-no-0x>"` lists every font fontconfig *thinks* covers it, but some Nerd Font builds declare covering a whole PUA block without every slot in it having an actual glyph drawn — this happened with the idle-inhibitor widget's "disabled" icon (U+F0DDB, "covered" per `fc-match` by the same fonts as every other working glyph in the bar, yet renders blank live). The only real test is rendering it — `fc-match` narrows down font names, it doesn't confirm the glyph exists. Also don't conclude a glyph is broken from a single screenshot right after a hot reload — a stale frame briefly showed the *other* (working, U+F0F4) icon on this same widget as blank too before a second reload/screenshot cleared it.
 
-## Decisions from scoping (step 0)
+## Decisions from scoping
 
 - **Theme**: Catppuccin Macchiato, matching the current Hyprland theme (`config/hypr/themes/2024/macchiato.conf`).
 - **Updates**: single `yay -Qu` call (covers repo + AUR); no separate `checkupdates` call. `services/Updates.qml` runs it via `Process`/`StdioCollector` on a `refCount`-gated 15-minute `Timer`, plus a manual `poll()` callable from the popup's refresh control. Each output line (`name oldVersion -> newVersion`, with an optional trailing `[age]` suffix some AUR helpers append) is split on whitespace, taking indices 0/1/3 — the bracketed suffix, if present, is simply never read. `UpdatesIndicator.qml` shows `✓` (up to date), `↑N` in `Colors.yellow` (N pending), or `…` while a check is in flight; `UpdatesPopup.qml` lists pending packages with old → new version.

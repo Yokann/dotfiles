@@ -11,6 +11,7 @@ PopupWindow {
     default property alias content: contentWrapper.data
     property real scrollContentHeight: 0
     color: "transparent"
+    anchor.rect: Qt.rect(0, 0, anchor.item.width, anchor.item.height + Metrics.spacingLarge)
 
     Rectangle {
         anchors.fill: parent

@@ -29,7 +29,6 @@ Popup {
     grabFocus: true
 
     anchor.edges: Edges.Bottom | Edges.Left
-    anchor.margins.top: Metrics.spacingSmall
 
     Column {
         id: contentColumn
