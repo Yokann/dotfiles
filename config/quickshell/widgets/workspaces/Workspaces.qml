@@ -42,6 +42,7 @@ Rectangle {
                 id: cell
 
                 required property var modelData
+                readonly property bool special: modelData.name.startsWith("special:")
                 readonly property bool occupied: modelData.toplevels.values.length > 0
                 // modelData.focused can lag behind actual monitor focus changes (Hyprland
                 // doesn't always emit an event for those); Hyprland.focusedWorkspace tracks
@@ -60,7 +61,7 @@ Rectangle {
                 Text {
                     id: label
                     anchors.centerIn: parent
-                    text: modelData.name || modelData.id
+                    text: cell.special ? "󰐃" : (modelData.name || modelData.id)
                     color: cell.focused ? Colors.resolve(root.style.focusedColor) : cell.modelData.active ? Colors.resolve(root.style.activeColor) : (cell.occupied ? Colors.resolve(root.style.occupiedColor) : Colors.resolve(root.style.idleColor))
                     font.family: Metrics.fontFamily
                     font.pixelSize: Metrics.fontSize
