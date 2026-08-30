@@ -12,9 +12,6 @@ Popup {
     visible: false
     grabFocus: true
 
-    anchor.edges: Edges.Bottom | Edges.Left
-    anchor.margins.top: Metrics.spacingSmall
-
     readonly property string phaseLabel: {
         if (Pomodoro.phase === "work")
         return "Working time";

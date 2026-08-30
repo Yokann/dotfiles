@@ -11,7 +11,24 @@ PopupWindow {
     default property alias content: contentWrapper.data
     property real scrollContentHeight: 0
     color: "transparent"
-    anchor.rect: Qt.rect(0, 0, anchor.item.width, anchor.item.height + Metrics.spacingLarge)
+
+    // A bottom bar's widgets sit at the screen's bottom edge, so a popup opening
+    // downward (the default, tuned for a top bar) would land off-screen below the
+    // bar - open upward instead, over the bar, whenever the anchor widget's own bar
+    // is bottom-positioned. anchor.item is always a bar widget (see widget contract
+    // in AGENT.md), which always exposes panelWindow.
+    readonly property bool opensAbove: anchor.item?.panelWindow?.position === "bottom"
+    readonly property real gap: Metrics.spacingLarge + Metrics.spacingSmall
+
+    anchor.rect: opensAbove
+        ? Qt.rect(0, -gap, anchor.item.width, anchor.item.height + gap)
+        : Qt.rect(0, 0, anchor.item.width, anchor.item.height + gap)
+    anchor.edges: opensAbove ? (Edges.Top | Edges.Left) : (Edges.Bottom | Edges.Left)
+    // gravity is the direction the popup expands from the anchorpoint selected by
+    // `edges` - defaults to Bottom|Right (grow downward), which must flip to
+    // Top|Right (grow upward) or the popup still grows down from the anchorpoint
+    // and ends up overlapping the bar instead of sitting above it.
+    anchor.gravity: opensAbove ? (Edges.Top | Edges.Right) : (Edges.Bottom | Edges.Right)
 
     Rectangle {
         anchors.fill: parent
