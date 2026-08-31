@@ -27,7 +27,11 @@ hl.window_rule({ match = { class = "ticktick" }, float = true })
 hl.window_rule({ match = { class = "firefox" }, idle_inhibit = "fullscreen" })
 hl.window_rule({ match = { class = "walker" }, no_initial_focus = true })
 hl.window_rule({ match = { class = "org.gnome.Calculator" }, float = true, size = { 400, 600 } })
+
+-- Nemo
+hl.window_rule({ tag = "+nemo-properties", match = { class = "nemo", title = "(.*) Properties$" } })
 hl.window_rule({ match = { class = "nemo" }, opacity = 0.9 })
+hl.window_rule({ match = { tag = "nemo-properties" }, float = true, size = { 600, 400 } })
 
 -- Video
 hl.window_rule({ tag = "+pip", match = { class = "firefox", title = "Picture-in-Picture|Incrustation vidéo" } })

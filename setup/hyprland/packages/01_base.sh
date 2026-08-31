@@ -62,7 +62,6 @@ yay -S --noconfirm --norebuild --needed \
     nfs-utils \
     ntp \
     gnu-netcat \
-    nomacs \
     nwg-hello \
     nss-mdns \
     pacutils \
@@ -83,6 +82,7 @@ yay -S --noconfirm --norebuild --needed \
     sof-firmware \
     starship \
     sqlite \
+    swayimg \
     sworkstyle \
     tlp \
     tcpdump \
