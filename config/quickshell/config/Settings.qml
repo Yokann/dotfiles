@@ -10,6 +10,10 @@ Singleton {
     // correctly, so bars are plain objects merged over these defaults here instead.
     readonly property var bars: adapter.bars.map(bar => Object.assign({ id: "main", position: "top", height: 34, background: "base", layout: {} }, bar))
     property alias widgets: adapter.widgets
+    // Config for background modules (not tied to any bar, e.g. hyprland_submap) -
+    // each module parses its own sub-object out of this dict itself, there's no
+    // shared instance/type-resolution mechanism like bar widgets have.
+    property alias modules: adapter.modules
 
     // Widget type ("clock", ...) backing an instance id. Defaults to the instance id
     // itself, so a single unconfigured instance needs no entry in `widgets` at all.
@@ -50,6 +54,7 @@ Singleton {
 
             property var bars: [{}]
             property var widgets: ({})
+            property var modules: ({})
         }
     }
 }

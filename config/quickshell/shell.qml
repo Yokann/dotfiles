@@ -3,6 +3,7 @@
 import Quickshell
 import qs.config
 import "modules/bar"
+import "modules/submap"
 
 ShellRoot {
     Variants {
@@ -13,4 +14,6 @@ ShellRoot {
             barConfig: modelData
         }
     }
+
+    SubmapIndicator {}
 }

@@ -30,13 +30,7 @@ PopupWindow {
     // and ends up overlapping the bar instead of sitting above it.
     anchor.gravity: opensAbove ? (Edges.Top | Edges.Right) : (Edges.Bottom | Edges.Right)
 
-    Rectangle {
-        anchors.fill: parent
-        radius: Metrics.radiusLarge
-        color: Colors.mantle
-        border.color: Colors.surface0
-        border.width: 1
-
+    PopupBackground {
         Flickable {
             id: flickable
 
