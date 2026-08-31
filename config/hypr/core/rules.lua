@@ -27,6 +27,7 @@ hl.window_rule({ match = { class = "ticktick" }, float = true })
 hl.window_rule({ match = { class = "firefox" }, idle_inhibit = "fullscreen" })
 hl.window_rule({ match = { class = "walker" }, no_initial_focus = true })
 hl.window_rule({ match = { class = "org.gnome.Calculator" }, float = true, size = { 400, 600 } })
+hl.window_rule({ match = { class = "cliamp.desktop" }, float = true, size = { 521, 592 } })
 
 -- Nemo
 hl.window_rule({ tag = "+nemo-properties", match = { class = "nemo", title = "(.*) Properties$" } })
