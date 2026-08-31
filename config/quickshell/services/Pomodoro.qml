@@ -2,6 +2,7 @@ pragma Singleton
 
 import QtQuick
 import Quickshell
+import Quickshell.Io
 
 Singleton {
     id: root
@@ -45,6 +46,23 @@ Singleton {
         _advancePhase();
     }
 
+    function _labelFor(phase: string): string {
+        if (phase === "work")
+            return "Work session";
+        if (phase === "longBreak")
+            return "Long break";
+        return "Short break";
+    }
+
+    function _notifyPhaseEnd(): void {
+        const endingLabel = root._labelFor(root.phase);
+        const nextPhase = root.phase === "work"
+            ? ((root.completedWorkSessions + 1) % root.cyclesBeforeLongBreak === 0 ? "longBreak" : "shortBreak")
+            : "work";
+        notifyProcess.command = ["notify-send", "-a", "Pomodoro", `${endingLabel} finished`, `Next up: ${root._labelFor(nextPhase)}`];
+        notifyProcess.running = true;
+    }
+
     function _advancePhase(): void {
         if (root.phase === "work") {
             root.completedWorkSessions++;
@@ -63,10 +81,14 @@ Singleton {
         running: root.running
         repeat: true
         onTriggered: {
-            if (root.remainingSeconds > 0)
+            if (root.remainingSeconds > 0) {
                 root.remainingSeconds--;
-            else
+            } else {
+                root._notifyPhaseEnd();
                 root._advancePhase();
+            }
         }
     }
+
+    Process { id: notifyProcess }
 }
