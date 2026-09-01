@@ -16,6 +16,7 @@ if [ ! -f "$HOME/.config/vicinae/settings.json" ]; then
          }
       }
    }
+}
 EOF
 fi
 
