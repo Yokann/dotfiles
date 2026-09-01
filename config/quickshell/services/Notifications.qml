@@ -12,7 +12,7 @@ Singleton {
 
     Process {
         id: subscribeProcess
-        command: ["swaync-client", "-swb"]
+        command: ["swaync-client", "-s"]
         running: true
 
         stdout: SplitParser {
