@@ -12,7 +12,7 @@ Singleton {
 
     Process {
         id: subscribeProcess
-        command: ["swaync-client", "-s"]
+        command: ["swaync-client", "-swb"]
         running: true
 
         stdout: SplitParser {
@@ -20,7 +20,7 @@ Singleton {
 
             onRead: data => {
                 if (!data.trim())
-                    return;
+                return;
                 const state = JSON.parse(data);
                 root.count = Number(state.text) || 0;
                 root.dnd = (state.alt ?? "").startsWith("dnd");
