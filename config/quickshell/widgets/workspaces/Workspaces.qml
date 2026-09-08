@@ -3,6 +3,7 @@ import Quickshell
 import Quickshell.Hyprland
 import qs.config
 import qs.theme
+import qs.ui
 
 Rectangle {
     id: root
@@ -49,7 +50,7 @@ Rectangle {
                 // the "focusedmon"/"workspace" events directly and stays accurate.
                 readonly property bool focused: Hyprland.focusedWorkspace?.id === modelData.id
 
-                implicitWidth: Math.max(label.implicitWidth + Metrics.spacingSmall * 2, implicitHeight)
+                implicitWidth: Math.max(cellContent.implicitWidth + Metrics.spacingSmall * 2, implicitHeight)
                 implicitHeight: Metrics.fontSize + Metrics.spacingSmall * 2
                 radius: Metrics.radiusLarge
                 color: cell.focused ? Colors.resolve(root.style.focusedBackground) : "transparent"
@@ -58,14 +59,37 @@ Rectangle {
                     ColorAnimation { duration: 150 }
                 }
 
-                Text {
-                    id: label
+                Row {
+                    id: cellContent
                     anchors.centerIn: parent
-                    text: cell.special ? "󰐃" : (modelData.name || modelData.id)
-                    color: cell.focused ? Colors.resolve(root.style.focusedColor) : cell.modelData.active ? Colors.resolve(root.style.activeColor) : (cell.occupied ? Colors.resolve(root.style.occupiedColor) : Colors.resolve(root.style.idleColor))
-                    font.family: Metrics.fontFamily
-                    font.pixelSize: Metrics.fontSize
-                    font.bold: cell.modelData.active
+                    spacing: Metrics.spacingSmall
+
+                    Text {
+                        id: label
+                        text: cell.special ? "󰐃" : (modelData.name || modelData.id)
+                        color: cell.focused ? Colors.resolve(root.style.focusedColor) : cell.modelData.active ? Colors.resolve(root.style.activeColor) : (cell.occupied ? Colors.resolve(root.style.occupiedColor) : Colors.resolve(root.style.idleColor))
+                        font.family: Metrics.fontFamily
+                        font.pixelSize: Metrics.fontSize
+                        font.bold: cell.modelData.active
+                    }
+
+                    Repeater {
+                        model: cell.modelData.toplevels.values
+
+                        delegate: Item {
+                            id: iconWrapper
+                            required property var modelData
+                            implicitWidth: Metrics.iconSize
+                            implicitHeight: label.implicitHeight
+
+                            AppIcon {
+                                anchors.centerIn: parent
+                                appId: iconWrapper.modelData.wayland?.appId ?? ""
+                                fallbackText: iconWrapper.modelData.title
+                                size: Metrics.iconSize
+                            }
+                        }
+                    }
                 }
 
                 MouseArea {
