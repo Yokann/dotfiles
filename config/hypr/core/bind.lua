@@ -62,7 +62,6 @@ hl.bind(MainMod .. " + SHIFT + N", hl.dsp.exec_cmd("swaync-client -t -sw")) -- N
 hl.bind(MainMod .. " + SHIFT + A", hl.dsp.exec_cmd("claude-desktop --toggle"))
 hl.bind(MainMod .. " + M", hl.dsp.exec_cmd("pkill -SIGUSR1 waybar")) -- Hide waybar
 
-
 -- Resize
 hl.bind("SUPER + R", hl.dsp.submap("resize"))
 hl.define_submap("resize", function()
@@ -101,7 +100,6 @@ hl.define_submap(submapPower, function()
     hl.bind("escape", hl.dsp.submap("reset"))
 end)
 
-
 if Launcher == "walker" then
     require("core.bind.walker")
 end
@@ -109,3 +107,33 @@ end
 if Launcher == "vicinae" then
     require("core.bind.vicinae")
 end
+
+hl.bind("SUPER + F1", function()
+    local game_mode = (hl.get_config("animations.enabled") == false)
+
+    if game_mode then
+        hl.exec_cmd("qs ipc call bar-all reveal")
+        hl.exec_cmd("hyprctl reload")
+        return
+    end
+
+    hl.config({
+        general = {
+            gaps_in = 0,
+            gaps_out = 0, -- Disable gaps
+            border_size = 0,
+        },
+
+        animations = {
+            enabled = false, -- Disable animations
+        },
+
+        -- Disable blur, shadow and window rounding
+        decoration = {
+            shadow = { enabled = false },
+            blur = { enabled = false },
+            rounding = 0,
+        },
+    })
+    hl.exec_cmd("qs ipc call bar-all hide")
+end)
