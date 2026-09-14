@@ -73,6 +73,11 @@ hl.window_rule({
     render_unfocused = true, -- fix workspace switches for games
     fullscreen = true,
 })
+hl.window_rule({
+    match = { tag = "game-launcher", title = "Liste de contacts" },
+    float = true,
+    size = { 400, 800 },
+})
 
 -- 1password
 hl.window_rule({
