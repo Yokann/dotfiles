@@ -1,5 +1,6 @@
 import QtQuick
 import Quickshell
+import Quickshell.Io
 import qs.config
 import qs.theme
 import qs.widgets
@@ -8,6 +9,7 @@ Scope {
     id: root
 
     required property var barConfig
+    property bool barVisible: true
 
     component WidgetLoader: Loader {
         required property string modelData
@@ -17,6 +19,26 @@ Scope {
             item.instanceId = modelData;
             item.screen = panel.modelData;
             item.panelWindow = panel;
+        }
+    }
+
+    IpcHandler {
+        target: "bar-" + root.barConfig.id
+
+        function toggle(): void {
+            root.barVisible = !root.barVisible;
+        }
+
+        function reveal(): void {
+            root.barVisible = true;
+        }
+
+        function hide(): void {
+            root.barVisible = false;
+        }
+
+        function isVisible(): bool {
+            return root.barVisible;
         }
     }
 
@@ -36,7 +58,7 @@ Scope {
             screen: modelData
             color: Colors.resolve(root.barConfig.background)
             implicitHeight: root.barConfig.height
-            visible: hasWidgets
+            visible: hasWidgets && root.barVisible
 
             anchors {
                 top: root.barConfig.position === "top"
