@@ -60,7 +60,7 @@ hl.bind(MainMod .. " + SHIFT + K", hl.dsp.exec_cmd(Uwsm .. "slack"))
 hl.bind(MainMod .. " + SHIFT + F", hl.dsp.exec_cmd(Uwsm .. "nemo"))
 hl.bind(MainMod .. " + SHIFT + N", hl.dsp.exec_cmd("swaync-client -t -sw")) -- Notifications center
 hl.bind(MainMod .. " + SHIFT + A", hl.dsp.exec_cmd("claude-desktop --toggle"))
-hl.bind(MainMod .. " + M", hl.dsp.exec_cmd("pkill -SIGUSR1 waybar")) -- Hide waybar
+hl.bind(MainMod .. " + M", hl.dsp.exec_cmd("qs ipc call bar-all toggle")) -- Hide quickshell bar
 
 -- Resize
 hl.bind("SUPER + R", hl.dsp.submap("resize"))
