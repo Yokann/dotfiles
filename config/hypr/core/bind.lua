@@ -52,9 +52,9 @@ hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -c backlight set
 -- Misc
 hl.bind(MainMod .. " + SHIFT + B", hl.dsp.exec_cmd(Uwsm .. "firefox -P Perso"))
 hl.bind(MainMod .. " + B", hl.dsp.exec_cmd(Uwsm .. "firefox"))
-hl.bind(MainMod .. " + C", hl.dsp.exec_cmd("hyprctl reload"))
+hl.bind(MainMod .. " + C", hl.dsp.exec_cmd(ConfigPath .. "/scripts/colorpicker"))
 hl.bind(MainMod .. " + SHIFT + P", hl.dsp.exec_cmd("1password --toggle --quick-access"))
-hl.bind(MainMod .. " + SHIFT + C", hl.dsp.exec_cmd(ConfigPath .. "/scripts/colorpicker"))
+hl.bind(MainMod .. " + SHIFT + C", hl.dsp.exec_cmd("hyprctl reload"))
 hl.bind(MainMod .. " + Y", hl.dsp.exec_cmd(Uwsm .. " " .. Terminal .. " yazi"))
 hl.bind(MainMod .. " + SHIFT + K", hl.dsp.exec_cmd(Uwsm .. "slack"))
 hl.bind(MainMod .. " + SHIFT + F", hl.dsp.exec_cmd(Uwsm .. "nemo"))
