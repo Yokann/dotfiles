@@ -4,10 +4,13 @@ yay -S --noconfirm --norebuild --needed \
     acpid \
     avahi \
     bind \
+    base-devel \
     bluez-utils \
     bluetuith bluez-obex \
     brightnessctl \
     btrfs-progs \
+    cmake \
+    cpio \
     cronie \
     docker \
     docker-buildx \
@@ -54,15 +57,15 @@ yay -S --noconfirm --norebuild --needed \
     nwg-hello \
     nss-mdns \
     pacutils \
-    pipewire wireplumber \
+    pipewire wireplumber libpulse pipewire-pulse \
     playerctl \
     pamixer \
     pavucontrol \
     polkit-gnome \
     poppler \
     powertop \
-    qt5-wayland qt6-wayland \
-    qt5ct hyprqt6engine \
+    qt6-wayland \
+    qt6ct hyprqt6engine \
     ripgrep \
     ripgrep-all \
     rclone \
@@ -81,6 +84,7 @@ yay -S --noconfirm --norebuild --needed \
     waybar \
     wget \
     xdg-user-dirs \
+    xdg-utils \
     xdg-desktop-portal-gtk \
     xdg-desktop-portal-hyprland
 
