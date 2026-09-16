@@ -33,8 +33,7 @@ install_dependencies() {
 
 install_docker() {
     if [[ "$OSTYPE" == "linux"* ]]; then
-        $PACKAGE_INSTALLER docker docker-compose dtop-bin
-        sudo usermod -aG docker $USER
+        $PACKAGE_INSTALLER docker docker-rootless-extras docker-compose dtop-bin
     elif [[ "$OSTYPE" == "darwin"* ]]; then
         $PACKAGE_INSTALLER orbstack
     fi

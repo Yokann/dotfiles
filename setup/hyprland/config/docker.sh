@@ -9,10 +9,14 @@ sudo tee /etc/docker/daemon.json >/dev/null <<'EOF'
 EOF
 
 # Start Docker automatically
-sudo systemctl enable docker
+sudo cat <<EOF >/etc/subuid
+$USER:231072:65536
+EOF
 
-# Give this user privileged Docker access
-sudo usermod -aG docker ${USER}
+sudo cat <<EOF >/etc/subgid
+$USER:231072:65536
+EOF
+systemctl --user enable --now docker.socket
 
 # Prevent Docker from preventing boot for network-online.target
 sudo mkdir -p /etc/systemd/system/docker.service.d
@@ -20,5 +24,3 @@ sudo tee /etc/systemd/system/docker.service.d/no-block-boot.conf <<'EOF'
 [Unit]
 DefaultDependencies=no
 EOF
-
-sudo systemctl daemon-reload

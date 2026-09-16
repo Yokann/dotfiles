@@ -13,6 +13,7 @@ yay -S --noconfirm --norebuild --needed \
     cpio \
     cronie \
     docker \
+    docker-rootless-extras \
     docker-buildx \
     docker-compose \
     device-mapper \
