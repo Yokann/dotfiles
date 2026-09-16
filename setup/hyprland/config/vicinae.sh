@@ -26,7 +26,6 @@ if [ ! -f "$HOME/.local/share/vicinae/shortcuts/shortcuts.json" ]; then
     cp $DOTFILES_PATH/config/vicinae/share/shortcuts/shortcuts.json $HOME/.local/share/vicinae/shortcuts/shortcuts.json
 fi
 
-
 systemctl --user enable --now vicinae.service
 
 #TODO: install vicinae package if not installed
@@ -36,7 +35,8 @@ systemctl --user enable --now vicinae.service
 # xdg-open vicinae://extensions/aurelleb/dashboard-icons
 # xdg-open vicinae://extensions/dagimg-dot/wifi-commander
 # xdg-open vicinae://extensions/knoopx/firefox
+# xdg-open vicinae://extensions/knoopx/systemd
 # xdg-open vicinae://extensions/rastsislaux/pulseaudio
 # xdg-open vicinae://extensions/rithvikvibhu/arch-packages
-
-
+# xdg-open vicinae://extensions/fbosch/protondb-search
+# xdg-open vicinae://extensions/harshnarayanjha/timer
