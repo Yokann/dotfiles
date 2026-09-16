@@ -10,6 +10,9 @@ hl.config({
         layout = "dwindle",
         allow_tearing = true,
     },
+    cursor = {
+        inactive_timeout = 5,
+    },
     decoration = {
         rounding = 10,
         blur = {
@@ -51,6 +54,12 @@ hl.config({
     debug = {
         -- damage_tracking = 0,
     },
+})
+
+hl.gesture({
+    fingers = 3,
+    direction = "horizontal",
+    action = "workspace",
 })
 
 hl.curve("overshot", { type = "bezier", points = { { 0.13, 0.99 }, { 0.29, 1.10 } } })
