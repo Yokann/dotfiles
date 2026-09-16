@@ -1,21 +1,24 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -e -o pipefail
 
-function opterr() { 
-    echo >&2 "stream: Unknown option '$1'" 
+function opterr() {
+    echo >&2 "stream: Unknown option '$1'"
 }
 
 chat="false"
 video="true"
 menu="false"
-while (( $# )); do
+while (($#)); do
     case $1 in
-        -c|--chat)          chat="true"                  ;;
-        -n|--no-video)      video="false"                ;;
-        -m|--dmenu)         menu="true"                  ;;
-        -*)                 opterr $1 && return 2        ;;
-        *)                  selected_channel=$1; break   ;;
+    -c | --chat) chat="true" ;;
+    -n | --no-video) video="false" ;;
+    -m | --dmenu) menu="true" ;;
+    -*) opterr $1 && return 2 ;;
+    *)
+        selected_channel=$1
+        break
+        ;;
     esac
     shift
 done
@@ -39,8 +42,6 @@ if [ $video == "true" ]; then
     livestream-ctl launch $selected_channel
 fi
 
-ACCESSTOKEN=$(cat "$HOME/.cache/livestream/twitch_credentials.json" | jq -r '.access_token') 2> /dev/null
 if [ $chat == "true" ]; then
-    # echo "oauth:$ACCESSTOKEN"
-    TWT_TOKEN="oauth:$ACCESSTOKEN" twt -c $selected_channel
+    twt -c $selected_channel
 fi
