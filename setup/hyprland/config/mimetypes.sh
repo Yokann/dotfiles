@@ -14,7 +14,7 @@ xdg-mime default swayimg.desktop image/webp
 xdg-mime default Neomvim-foot.desktop text/plain
 xdg-mime default Neomvim-foot.desktop text/csv
 xdg-mime default Neomvim-foot.desktop text/html
-xdg-mime default firefox.desktop application/pdf
+xdg-mime default mupdf.desktop application/pdf
 
 # Web browser
 xdg-mime default firefox.desktop x-scheme-handler/http

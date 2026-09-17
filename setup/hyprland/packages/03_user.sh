@@ -4,6 +4,7 @@ yay -S --noconfirm --norebuild --needed \
     cryptomator-bin \
     discord \
     firefox \
+    foliate \
     gnome-calculator \
     helium-browser-bin \
     httpie \
@@ -11,6 +12,8 @@ yay -S --noconfirm --norebuild --needed \
     lazyjournal-bin \
     localsend \
     mpv mpv-mpris \
+    mupdf \
+    mupdf-tools \
     nemo \
     seahorse \
     signal-desktop \
@@ -18,7 +21,7 @@ yay -S --noconfirm --norebuild --needed \
     wayscriber \
     wiki-tui
 
-if command -v luarocks &> /dev/null; then
+if command -v luarocks &>/dev/null; then
     luarocks install --local dkjson
 else
     echo "Luarocks is not installed, skipping installation"
