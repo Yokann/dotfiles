@@ -15,6 +15,7 @@ sudo pacman -Syu --noconfirm
 
 log_section "Installing Hyprland and dependencies"
 for package_script in $_HYPR_SETUP_PATH/hyprland/packages/*.sh; do
+    log_info "Sourcing package script: $package_script"
     source $package_script
 done
 
@@ -33,6 +34,7 @@ TOOLS_GENERIC_CONFIGS=(
 
 log_section "Configuring tools"
 for config in "${TOOLS_GENERIC_CONFIGS[@]}"; do
+    log_info "Sourcing generic config script for: $config"
     hyprsetup:source_if_exists $_HYPR_SETUP_PATH/generic/config/${config}.sh || {
         log_warning "Failed to source ${config} config script. Skipping..."
     }
