@@ -6,6 +6,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd(ConfigPath .. "/scripts/battery_notif")
     hl.exec_cmd("systemctl --user start hypridle.service")
     hl.exec_cmd("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
+    hl.exec_cmd(Uwsm .. "foot --server")
     hl.exec_cmd(ConfigPath .. "/scripts/launch_hyprpaper")
     if Launcher == "walker" then
         hl.exec_cmd(Uwsm .. "walker --gapplication-service")

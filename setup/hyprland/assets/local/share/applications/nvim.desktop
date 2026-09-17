@@ -1,8 +1,8 @@
 [Desktop Entry]
-Name=Neovim (foot)
+Name=Neovim
 GenericName=Text Editor
 Comment=Open text file with Neovim in foot terminal
-Exec=foot -e nvim %F
+Exec=footclient -e nvim %F
 Icon=nvim
 Terminal=false
 Type=Application

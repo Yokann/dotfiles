@@ -51,5 +51,6 @@ source = $HYPR_CONFIG_PATH/hypridle-laptop.conf
 EOF
 
     gsettings set org.gnome.desktop.interface color-sheme prefer-dark
+    gsettings set org.cinnamon.desktop.default-applications.terminal exec "footclient"
 
 fi
