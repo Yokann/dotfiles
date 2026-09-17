@@ -1,0 +1,25 @@
+#!/bin/bash
+
+selected_language=$(yay -Q | grep -E 'tesseract-data' | awk '{print $1}' | sed 's/tesseract-data-//g' | vicinae dmenu --placeholder "Select language to capture" --navigation-title "Text Capture")
+if [ -z "$selected_language" ]; then
+    echo "No Tesseract OCR languages found. Please install tesseract-data packages."
+    exit 1
+fi
+
+selection=$(slurp 2>/dev/null)
+
+if [ -z "$selection" ]; then
+    echo "No selection made."
+    exit 0
+fi
+
+content=$(grim -g "$selection" - | tesseract stdin stdout -l "$selected_language" 2>/dev/null)
+
+if [ -z "$content" ]; then
+    echo "No text detected in the selected area."
+    exit 0
+fi
+
+printf "%s" "$content" | wl-copy
+
+notify-send "Text Capture" "Text copied to clipboard."

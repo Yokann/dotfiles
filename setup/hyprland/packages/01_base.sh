@@ -76,6 +76,9 @@ yay -S --noconfirm --norebuild --needed \
     sqlite \
     swayimg \
     sworkstyle \
+    tesseract \
+    tesseract-data-eng \
+    tesseract-data-fra \
     tlp \
     tcpdump \
     usbutils \
