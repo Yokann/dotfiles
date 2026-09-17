@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Cliamp
+GenericName=Music Player
+Comment=A retro terminal music player inspired by Winamp 2.x
+Exec=cliamp %F --auto-play
+Icon=cliamp
+Terminal=true
+Type=Application
+Categories=Audio;Music;Player;AudioVideo;ConsoleOnly;
+Keywords=music;audio;player;winamp;radio;podcast;
+StartupNotify=false
