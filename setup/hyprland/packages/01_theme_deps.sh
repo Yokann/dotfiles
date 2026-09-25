@@ -1,18 +1,5 @@
 # Install additional dependencies for theme
 yay -S --noconfirm --norebuild --needed \
-    elephant-bin \
-    elephant-archlinuxpkgs-bin \
-    elephant-bookmarks-bin \
-    elephant-clipboard-bin \
-    elephant-desktopapplications-bin \
-    elephant-menus-bin \
-    elephant-providerlist-bin \
-    elephant-runner-bin \
-    elephant-symbols-bin \
-    elephant-websearch-bin \
-    elephant-windows-bin \
-    elephant-wireplumber-bin \
-    walker-bin \
     quickshell \
     vicinae-bin \
     nwg-look \
