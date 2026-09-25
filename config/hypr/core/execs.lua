@@ -8,9 +8,6 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
     hl.exec_cmd(Uwsm .. "foot --server")
     hl.exec_cmd(ConfigPath .. "/scripts/launch_hyprpaper")
-    if Launcher == "walker" then
-        hl.exec_cmd(Uwsm .. "walker --gapplication-service")
-    end
     hl.exec_cmd(
         Uwsm
             .. "swaync -c "
@@ -21,6 +18,12 @@ hl.on("hyprland.start", function()
             .. ThemeName
             .. ".css"
     )
+end)
+
+hl.on("hyprland.start", function()
+    if Launcher == "walker" then
+        hl.exec_cmd(Uwsm .. "walker --gapplication-service")
+    end
     hl.exec_cmd(Uwsm .. "quickshell")
 end)
 
