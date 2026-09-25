@@ -8,21 +8,17 @@ sudo tee /etc/docker/daemon.json >/dev/null <<'EOF'
 }
 EOF
 
-if id -nG "$USER_NAME" | tr ' ' '\n' | grep -qx docker; then
-   echo "Removing $USER_NAME from docker group..."
-   sudo gpasswd -d "$USER_NAME" docker
+if id -nG "$USER" | tr ' ' '\n' | grep -qx docker; then
+   echo "Removing $USER from docker group..."
+   sudo gpasswd -d "$USER" docker
 else
-    echo "$USER_NAME is not in docker group."
+    echo "$USER is not in docker group."
 fi
 
 # Start Docker automatically
-sudo cat <<EOF >/etc/subuid
-$USER:231072:65536
-EOF
+echo "$USER:231072:65536" | sudo tee /etc/subuid >/dev/null
 
-sudo cat <<EOF >/etc/subgid
-$USER:231072:65536
-EOF
+echo "$USER:231072:65536" | sudo tee /etc/subgid >/dev/null
 systemctl --user enable --now docker.socket
 
 # Prevent Docker from preventing boot for network-online.target

@@ -11,4 +11,7 @@ fi
 if ! command -v rustup &>/dev/null; then
     yay -S --noconfirm rustup
     rustup default stable
+else
+    # try update
+    rustup update
 fi

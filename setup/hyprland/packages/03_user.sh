@@ -10,7 +10,7 @@ yay -S --noconfirm --norebuild --needed \
     httpie \
     lazygit \
     lazyjournal-bin \
-    localsend \
+    localsend-bin \
     mpv mpv-mpris \
     mupdf \
     mupdf-tools \
