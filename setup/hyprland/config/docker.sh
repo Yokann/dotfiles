@@ -8,6 +8,13 @@ sudo tee /etc/docker/daemon.json >/dev/null <<'EOF'
 }
 EOF
 
+if id -nG "$USER_NAME" | tr ' ' '\n' | grep -qx docker; then
+   echo "Removing $USER_NAME from docker group..."
+   sudo gpasswd -d "$USER_NAME" docker
+else
+    echo "$USER_NAME is not in docker group."
+fi
+
 # Start Docker automatically
 sudo cat <<EOF >/etc/subuid
 $USER:231072:65536
