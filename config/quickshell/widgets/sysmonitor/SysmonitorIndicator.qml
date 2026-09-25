@@ -1,5 +1,7 @@
 import QtQuick
 import Quickshell
+import Quickshell.Io
+import qs.config
 import qs.theme
 import qs.ui
 import qs.services
@@ -7,34 +9,38 @@ import qs.services
 BarWidget {
     id: root
 
+    readonly property var config: Settings.widgetConfig(instanceId, {
+            onClick: "footclient -e btop"
+    })
+
     function usageColor(value: real): color {
         if (value > 90)
-            return Colors.red;
+        return Colors.red;
         if (value > 75)
-            return Colors.peach;
+        return Colors.peach;
         return Colors.text;
     }
 
     function batteryColor(): color {
         if (Sysmonitor.batteryPercent < 5)
-            return Colors.red;
+        return Colors.red;
         if (Sysmonitor.batteryPercent < 15)
-            return Colors.peach;
+        return Colors.peach;
         return Colors.text;
     }
 
     function batteryIcon(): string {
         const pct = Sysmonitor.batteryPercent;
         if (pct >= 100)
-            return "󰁹";
+        return "󰁹";
         if (Sysmonitor.batteryCharging)
-            return "󰂄";
+        return "󰂄";
         if (pct <= 5)
-            return "󰂃";
+        return "󰂃";
         const tier = Math.max(10, Math.min(90, Math.round(pct / 10) * 10));
         return ({
-            10: "󰁺", 20: "󰁻", 30: "󰁼", 40: "󰁽", 50: "󰁾",
-            60: "󰁿", 70: "󰂀", 80: "󰂁", 90: "󰂂"
+                10: "󰁺", 20: "󰁻", 30: "󰁼", 40: "󰁽", 50: "󰁾",
+                60: "󰁿", 70: "󰂀", 80: "󰂁", 90: "󰂂"
         })[tier];
     }
 
@@ -46,7 +52,12 @@ BarWidget {
         anchors.fill: parent
         styleOverrides: root.resolveStyle({})
 
-        onClicked: popupLoader.item.visible = !popupLoader.item.visible
+        onClicked: {
+            if (root.config.onClick) {
+                clickProcess.command = ["sh", "-c", root.config.onClick];
+                clickProcess.running = true;
+            }
+        }
 
         Text {
             text: `󰻠 ${Math.round(Sysmonitor.cpuUsage)}%`
@@ -87,7 +98,7 @@ BarWidget {
             loops: Animation.Infinite
 
             onRunningChanged: if (!running)
-                batteryText.opacity = 1
+            batteryText.opacity = 1
 
             NumberAnimation {
                 target: batteryText
@@ -107,14 +118,7 @@ BarWidget {
 
         Component.onCompleted: Sysmonitor.refCount++
         Component.onDestruction: Sysmonitor.refCount--
-
-        LazyLoader {
-            id: popupLoader
-            loading: true
-
-            SysmonitorPopup {
-                anchor.item: root
-            }
-        }
     }
+
+    Process { id: clickProcess }
 }
