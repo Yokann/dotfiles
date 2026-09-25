@@ -2,12 +2,13 @@
 
 set -eEo pipefail
 
+source $DOTFILES_PATH/setup/hyprland/lib/runtime.sh
+source $DOTFILES_PATH/setup/hyprland/lib/log.sh
+
 hyprsetup:check_dotfiles_path
 
 DOTFILES_CUSTOM_PATH=${DOTFILES_CUSTOM_PATH:-"$HOME/.dotfiles-custom"}
 
-source $DOTFILES_PATH/setup/hyprland/lib/runtime.sh
-source $DOTFILES_PATH/setup/hyprland/lib/log.sh
 STATE_FLAG=$(hyprsetup:get_state_flag)
 
 log_section "Update System"
