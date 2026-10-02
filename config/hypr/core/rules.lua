@@ -8,6 +8,7 @@ hl.layer_rule({ match = { namespace = "selection" }, no_anim = true }) -- slurp 
 -- Vicinae
 hl.layer_rule({ match = { namespace = "vicinae" }, name = "vicinae-blur", blur = true, ignore_alpha = 0 })
 hl.layer_rule({ match = { namespace = "vicinae" }, name = "vicinae-no-animation", no_anim = true })
+hl.layer_rule({ match = { namespace = "wayscriber" }, name = "wayscriber-no-animation", no_anim = true })
 
 --
 -- Window rules
@@ -36,6 +37,7 @@ hl.window_rule({ match = { tag = "nemo-properties" }, float = true, size = { 600
 
 -- Video
 hl.window_rule({ tag = "+pip", match = { class = "firefox", title = "Picture-in-Picture|Incrustation vidéo" } })
+hl.window_rule({ tag = "+pip", match = { title = "Picture in picture" } })
 hl.window_rule({ tag = "+pip", match = { class = "mpv" } })
 hl.window_rule({
     name = "PiP",
