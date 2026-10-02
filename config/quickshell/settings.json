@@ -53,6 +53,22 @@
       }
     }
   ],
+  "panels": [
+    {
+      "id": "control_center",
+      "position": "right",
+      "width": "20%",
+      "height": "95%",
+      "background": "mantle",
+      "columns": 2,
+      "items": [
+        "audio",
+        "updates",
+        "sysmonitor",
+        "tray"
+      ]
+    }
+  ],
   "widgets": {
     "clock_time": {
       "type": "clock",

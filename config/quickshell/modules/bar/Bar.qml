@@ -3,24 +3,13 @@ import Quickshell
 import Quickshell.Io
 import qs.config
 import qs.theme
-import qs.widgets
+import qs.ui
 
 Scope {
     id: root
 
     required property var barConfig
     property bool barVisible: true
-
-    component WidgetLoader: Loader {
-        required property string modelData
-
-        sourceComponent: Registry.definitions[Settings.widgetType(modelData)]?.component ?? null
-        onLoaded: {
-            item.instanceId = modelData;
-            item.screen = panel.modelData;
-            item.panelWindow = panel;
-        }
-    }
 
     IpcHandler {
         target: "bar-" + root.barConfig.id
@@ -75,7 +64,10 @@ Scope {
 
                 Repeater {
                     model: Settings.sectionWidgets(root.barConfig, "left", panel.modelData.name)
-                    delegate: WidgetLoader {}
+                    delegate: WidgetLoader {
+                        screen: panel.modelData
+                        panelWindow: panel
+                    }
                 }
             }
 
@@ -85,7 +77,10 @@ Scope {
 
                 Repeater {
                     model: Settings.sectionWidgets(root.barConfig, "center", panel.modelData.name)
-                    delegate: WidgetLoader {}
+                    delegate: WidgetLoader {
+                        screen: panel.modelData
+                        panelWindow: panel
+                    }
                 }
             }
 
@@ -97,7 +92,10 @@ Scope {
 
                 Repeater {
                     model: Settings.sectionWidgets(root.barConfig, "right", panel.modelData.name)
-                    delegate: WidgetLoader {}
+                    delegate: WidgetLoader {
+                        screen: panel.modelData
+                        panelWindow: panel
+                    }
                 }
             }
         }

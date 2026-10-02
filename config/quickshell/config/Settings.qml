@@ -9,6 +9,10 @@ Singleton {
     // A JsonAdapter list<JsonObject> doesn't deserialize a JSON array of objects
     // correctly, so bars are plain objects merged over these defaults here instead.
     readonly property var bars: adapter.bars.map(bar => Object.assign({ id: "main", position: "top", height: 34, background: "base", layout: {} }, bar))
+    // Same list-of-plain-objects treatment as bars. Unlike bars, panels default to
+    // an empty list - a panel is an opt-in overlay, not something every setup wants
+    // one of by default.
+    readonly property var panels: adapter.panels.map(panel => Object.assign({ id: "panel", position: "top", width: 300, height: 200, background: "mantle", columns: 3, items: [] }, panel))
     property alias widgets: adapter.widgets
     // Config for background modules (not tied to any bar, e.g. hyprland_submap) -
     // each module parses its own sub-object out of this dict itself, there's no
@@ -43,6 +47,13 @@ Singleton {
         return screenLayout[sectionId] ?? defaultLayout[sectionId] ?? [];
     }
 
+    // Tallest configured bar anchored to the given edge ("top" or "bottom"), or 0
+    // if none - lets a screen-anchored surface (e.g. ui/Panel.qml) avoid rendering
+    // underneath it, since a bar's exclusive zone doesn't push other panels away.
+    function barHeightAt(position: string): int {
+        return root.bars.filter(bar => bar.position === position).reduce((max, bar) => Math.max(max, bar.height), 0);
+    }
+
     FileView {
         path: Quickshell.shellPath("settings.json")
         watchChanges: true
@@ -53,6 +64,7 @@ Singleton {
             id: adapter
 
             property var bars: [{}]
+            property var panels: []
             property var widgets: ({})
             property var modules: ({})
         }

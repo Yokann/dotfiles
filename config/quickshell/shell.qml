@@ -4,6 +4,7 @@ import Quickshell
 import Quickshell.Io
 import qs.config
 import "modules/bar"
+import "modules/panel"
 import "modules/submap"
 
 ShellRoot {
@@ -15,6 +16,17 @@ ShellRoot {
         Bar {
             required property var modelData
             barConfig: modelData
+        }
+    }
+
+    Variants {
+        id: panels
+
+        model: Settings.panels
+
+        PanelInstance {
+            required property var modelData
+            panelConfig: modelData
         }
     }
 
