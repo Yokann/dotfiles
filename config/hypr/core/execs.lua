@@ -17,17 +17,18 @@ hl.on("hyprland.start", function()
             .. "/config/swaync/style-"
             .. ThemeName
             .. ".css"
+            .. " && "
+            .. Uwsm("quickshell")
     )
 end)
 
-hl.on("hyprland.start", function()
-    if Launcher == "walker" then
-        hl.exec_cmd(Uwsm .. "walker --gapplication-service")
-    end
-    hl.exec_cmd(Uwsm .. "quickshell")
-end)
-
 hl.on("config.reloaded", function()
-    hl.exec_cmd("notify-send 'Hyprland' 'Configuration reloaded'")
+    hl.notification.create({
+        title = "Hyprland",
+        text = "Configuration reloaded",
+        icon = "ok",
+        timeout = 2000,
+        urgency = "normal",
+    })
     --     hl.exec_cmd(ConfigPath .. "/scripts/launch_waybar")
 end)
