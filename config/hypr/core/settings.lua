@@ -1,7 +1,7 @@
 hl.config({
     general = {
-        gaps_in = 5,
-        gaps_out = 20,
+        gaps_in = 6,
+        gaps_out = 6,
         border_size = 2,
         col = {
             active_border = { colors = { "rgba(33ccffee)", "rgba(00ff99ee)" }, angle = 45 },
@@ -33,7 +33,7 @@ hl.config({
     misc = {
         -- See https://wiki.hyprland.org/Configuring/Variables/ for more
         force_default_wallpaper = 0, --  Set to 0 to disable the anime mascot wallpapers
-        focus_on_activate = 1,
+        focus_on_activate = true,
         render_unfocused_fps = 5, -- FPS for unfocused windows
         enable_anr_dialog = true, -- App not Responding dialog
     },
