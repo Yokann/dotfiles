@@ -18,7 +18,8 @@ hl.on("hyprland.start", function()
             .. ThemeName
             .. ".css"
             .. " && "
-            .. Uwsm("quickshell")
+            .. Uwsm
+            .. "quickshell"
     )
 end)
 
