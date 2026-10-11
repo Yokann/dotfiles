@@ -107,6 +107,9 @@ return {
                     "snippet_forward",
                     "fallback",
                 },
+                ["<M-y>"] = { "show", "fallback" },
+                ["<Esc>"] = { "hide", "fallback" },
+                ["<M-h>"] = { "show_documentation", "fallback" },
             },
             cmdline = {
                 keymap = { preset = "inherit" },

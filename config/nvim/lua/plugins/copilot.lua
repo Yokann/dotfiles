@@ -21,7 +21,7 @@ return {
                     accept_line = "<M-o>",
                     next = "<M-j>",
                     prev = "<M-k>",
-                    dismiss = "<C-e>",
+                    dismiss = "<C-c>",
                 },
             },
         },
@@ -50,7 +50,6 @@ return {
             vim.api.nvim_create_autocmd("User", {
                 pattern = "BlinkCmpMenuOpen",
                 callback = function()
-                    copilot.dismiss()
                     vim.b.copilot_suggestion_hidden = true
                 end,
             })
