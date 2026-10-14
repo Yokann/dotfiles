@@ -62,11 +62,16 @@ hl.window_rule({
 })
 
 hl.window_rule({ name = "steam-float-dialogs-and-stuff", match = { title = "SteamTinkerLaunch" }, float = true })
-hl.window_rule({ tag = "+misc-game", match = { class = "steam_app.*", title = "^$" } })
+hl.window_rule({ tag = "+misc-game", match = { class = "steam_app_default" } })
 
-hl.window_rule({ name = "non-game-windows-spawned-by-launching-games", match = { tag = "misc-game" }, center = true })
+hl.window_rule({
+    name = "non-game-windows-spawned-by-launching-games",
+    match = { tag = "misc-game" },
+    float = true,
+    center = true,
+})
 
-hl.window_rule({ tag = "+game", match = { class = "steam_app_.*", title = "negative:^$" } })
+hl.window_rule({ tag = "+game", match = { class = "steam_app_([0-9]*)" } })
 hl.window_rule({
     name = "game-windows",
     match = {
