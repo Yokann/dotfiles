@@ -108,7 +108,7 @@ return {
                     "fallback",
                 },
                 ["<M-y>"] = { "show", "fallback" },
-                ["<Esc>"] = { "hide", "fallback" },
+                ["<C-c>"] = { "hide", "fallback" },
                 ["<M-h>"] = { "show_documentation", "fallback" },
             },
             cmdline = {
