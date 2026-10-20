@@ -1,0 +1,12 @@
+[Unit]
+Description=Disable LE 2M PHY on the Bluetooth controller (Eyelash Corne drops its link on 2M)
+After=bluetooth.service
+After=suspend.target hibernate.target hybrid-sleep.target suspend-then-hibernate.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/bt-no-le2m
+
+[Install]
+WantedBy=bluetooth.service
+WantedBy=suspend.target hibernate.target hybrid-sleep.target suspend-then-hibernate.target

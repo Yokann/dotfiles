@@ -1,0 +1,18 @@
+#!/bin/sh
+# Disable the LE 2M PHY on hci0. The Eyelash Corne asks for 2M right after
+# connecting, then the link dies with Connection Timeout (0x08).
+# The setting is lost whenever the controller is reset, so this is re-run
+# after bluetooth.service starts and after every resume.
+PHYS="BR1M1SLOT BR1M3SLOT BR1M5SLOT EDR2M1SLOT EDR2M3SLOT EDR2M5SLOT EDR3M1SLOT EDR3M3SLOT EDR3M5SLOT LE1MTX LE1MRX LECODEDTX LECODEDRX"
+
+# The controller may not be ready yet right after boot or resume: retry.
+for _ in $(seq 1 15); do
+    if /usr/bin/btmgmt --index 0 phy $PHYS >/dev/null 2>&1 \
+        && ! /usr/bin/btmgmt --index 0 phy 2>&1 | grep -q 'Selected phys:.*LE2M'; then
+        exit 0
+    fi
+    sleep 1
+done
+
+echo "bt-no-le2m: could not disable LE 2M PHY on hci0" >&2
+exit 1
