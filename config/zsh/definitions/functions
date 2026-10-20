@@ -8,6 +8,10 @@ stream() {
    $DOTFILES_PATH/config/hypr/scripts/stream "$@"
 }
 
+hyprlog() {
+    cat $XDG_RUNTIME_DIR/hypr/$(ls -t $XDG_RUNTIME_DIR/hypr/ | head -n 2 | tail -n 1)/hyprland.log
+}
+
 # yazi wrapper
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
