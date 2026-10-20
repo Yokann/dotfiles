@@ -17,10 +17,8 @@ hl.on("hyprland.start", function()
             .. "/config/swaync/style-"
             .. ThemeName
             .. ".css"
-            .. " && "
-            .. Uwsm
-            .. "quickshell"
     )
+    hl.exec_cmd(Uwsm .. "quickshell")
 end)
 
 hl.on("config.reloaded", function()
