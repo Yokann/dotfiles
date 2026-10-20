@@ -86,6 +86,7 @@ yay -S --noconfirm --norebuild --needed \
     ufw-docker \
     uwsm \
     waybar \
+    weston \
     wget \
     xdg-user-dirs \
     xdg-utils \
