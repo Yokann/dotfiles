@@ -1,3 +1,4 @@
+---@type vim.lsp.Config
 return {
     settings = {
         gopls = {
@@ -33,9 +34,9 @@ return {
             staticcheck = true,
             directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules" },
             semanticTokens = true,
-        }
+        },
     },
     init_options = {
         usePlaceholders = true,
-    }
+    },
 }

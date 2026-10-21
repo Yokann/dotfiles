@@ -1,3 +1,4 @@
+---@type vim.lsp.Config
 return {
     settings = {
         yaml = {
@@ -7,7 +8,7 @@ return {
                 enable = false,
                 url = "",
             },
-            schemas = require('schemastore').yaml.schemas()
-        }
-    }
+            schemas = require("schemastore").yaml.schemas(),
+        },
+    },
 }

@@ -1,3 +1,4 @@
+---@type vim.lsp.Config
 return {
     settings = {
         Lua = {
@@ -18,7 +19,7 @@ return {
                 enable = true,
                 defaultConfig = {
                     indent_style = "space",
-                    indent_size = "4"
+                    indent_size = "4",
                 },
             },
         },
