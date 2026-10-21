@@ -138,6 +138,7 @@ return {
         -- { "<leader>n", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Neovim config" },
         { "<leader>u",       function() Snacks.picker.resume() end,          desc = "Resume" },
         { "<leader>:",       function() Snacks.picker.command_history() end, desc = "Command History" },
+        { "<leader>yy",      function() Snacks.picker.registers() end,       desc = "Yank registers" },
         { "<leader>t",       function() Snacks.explorer() end,               desc = "Open File Explorer" },
         { "<leader>e",       function() Snacks.picker.todo_comments() end,   desc = "Find Todos" },
         { "<leader>git",     function() Snacks.lazygit() end,                desc = "Open LazyGit" },
