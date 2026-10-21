@@ -1,35 +1,35 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", -- latest stable release
+        lazypath,
+    })
 end
 vim.opt.rtp:prepend(lazypath)
 
 local opts = {
-  defaults = {
-    lazy = true,
-  },
-  git = {
-    timeout = 60,
-  },
-  dev = {
-    path = "~/.local/share/nvim/dev",
-    fallback = true, -- get plugin from git if not found in path
-  },
-  change_detection = {
-      notify = false -- GTFO
-  }
+    defaults = {
+        lazy = true,
+    },
+    git = {
+        timeout = 60,
+    },
+    dev = {
+        path = "~/.local/share/nvim/dev",
+        fallback = true, -- get plugin from git if not found in path
+    },
+    change_detection = {
+        notify = false, -- GTFO
+    },
 }
 
 local present, lazy = pcall(require, "lazy")
 if not present then
-  return
+    return
 end
 
 lazy.setup("plugins", opts)

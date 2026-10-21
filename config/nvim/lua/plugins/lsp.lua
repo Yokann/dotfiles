@@ -140,4 +140,20 @@ return {
             })
         end,
     },
+    {
+        "stevearc/conform.nvim",
+        lazy = false,
+        opts = {
+            log_level = vim.log.levels.WARN,
+            default_format_opts = { lsp_format = "last" },
+            formatters_by_ft = {
+                json = { "prettierd" },
+                jsonc = { "prettierd" },
+            },
+            format_on_save = {
+                timeout_ms = 500,
+                lsp_format = "fallback",
+            },
+        },
+    },
 }
