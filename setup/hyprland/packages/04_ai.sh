@@ -3,6 +3,6 @@ if hyprsetup:yes_no_prompt "Do you want to install AI tools?" "n"; then
         claude-desktop-extras \
         herdr-bin \
         claude-code \
-        crush-bin \
-        opencode-bin
+        opencode-beta
+    uv tool install opentab-ai
 fi
