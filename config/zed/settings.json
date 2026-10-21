@@ -10,9 +10,6 @@
   "agent_servers": {
     "github-copilot-cli": {
       "type": "registry"
-    },
-    "claude-acp": {
-      "type": "registry"
     }
   },
   "project_panel": {
