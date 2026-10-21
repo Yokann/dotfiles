@@ -103,7 +103,7 @@ hl.define_submap(submapPower, function()
 end)
 
 -- Screenshot
-local submapScreenshot = "(r)egion | (w)indow | rec(o)rd"
+local submapScreenshot = "(r)egion | (w)indow | rec(o)rd | (a)nnote"
 hl.bind(MainMod .. " + F6", hl.dsp.submap(submapScreenshot))
 hl.define_submap(submapScreenshot, function()
     hl.bind("R", function()
@@ -116,6 +116,10 @@ hl.define_submap(submapScreenshot, function()
     end)
     hl.bind("O", function()
         hl.dispatch(lib.exec("recorder"))
+        hl.dispatch(hl.dsp.submap("reset"))
+    end)
+    hl.bind("A", function()
+        hl.dispatch(lib.exec("wl-paste | swappy -f -"))
         hl.dispatch(hl.dsp.submap("reset"))
     end)
     hl.bind("escape", hl.dsp.submap("reset"))
