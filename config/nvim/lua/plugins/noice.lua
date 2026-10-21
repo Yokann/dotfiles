@@ -32,6 +32,17 @@ return {
                 filter = { event = "msg_show", kind = { "", "echo", "echomsg" }, min_height = 3 },
                 view = "messages",
             },
+            {
+                -- fix command output
+                view = "split",
+                filter = {
+                    event = "msg_show",
+                    kind = {
+                        "shell_out",
+                        "shell_err",
+                    },
+                },
+            },
         },
         lsp = {
             progress = {
