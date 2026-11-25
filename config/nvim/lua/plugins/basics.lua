@@ -63,7 +63,7 @@ return {
                 -- continue_restore_on_error = false,
                 pre_save_cmds = {
                     -- close everything useless before save session
-                    require("snacks.explorer.actions").actions.explorer_close(),
+                    require("snacks.explorer.actions").actions.explorer_close,
                     require("aerial").close,
                     require("config.dap").closeUI,
                 },
