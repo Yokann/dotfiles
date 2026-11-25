@@ -1,6 +1,9 @@
 return {
     { "ThePrimeagen/refactoring.nvim", cmd = "Refactor" },
-    { "mattn/emmet-vim", ft = { "js", "ts", "html", "tsx", "jsx" } },
+    {
+        "mattn/emmet-vim",
+        ft = { "html", "css", "javascript", "typescript", "javascriptreact", "typescriptreact" },
+    },
     {
         "folke/todo-comments.nvim",
         lazy = false,
