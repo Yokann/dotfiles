@@ -12,6 +12,7 @@ end
 
 --  https://github.com/folke/lazy.nvim#-user-events
 require("config.settings")
+require("config.diagnostics")
 require("config.keymaps")
 require("config.autocommand")
 require("config.filetype")

@@ -24,25 +24,6 @@ return {
             })
 
             vim.lsp.enable("qml-language-server")
-
-            -- Display diagnostic on hover the line
-            -- vim.api.nvim_create_autocmd(
-            --     { "CursorHold" },
-            --     { command = "lua vim.diagnostic.open_float(nil, {focus=false})" }
-            -- )
-
-            --  Floating window styles {{
-            --
-            -- vim.diagnostic.config({
-            --     virtual_text = false,
-            --     signs = true,
-            --     float = {
-            --         source = true,
-            --         border = "rounded",
-            --     },
-            -- })
-            require("lspconfig.ui.windows").default_options.border = "single"
-            -- }}
         end,
         dependencies = {
             "saghen/blink.cmp",

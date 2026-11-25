@@ -26,9 +26,6 @@ return {
                 },
             },
         },
-        init = function()
-            vim.diagnostic.config({ virtual_text = false }) -- Disable Neovim's default virtual text diagnostics
-        end,
     },
 
     {
@@ -57,17 +54,6 @@ return {
                 },
             })
             local palette = require("catppuccin.palettes").get_palette()
-
-            local function lspSymbol(name, icon, color)
-                local signName = "DiagnosticSign" .. name
-                vim.fn.sign_define(signName, { text = icon, texthl = signName, numhl = signName, fg = color })
-            end
-
-            -- Change color from diagnostic icon
-            lspSymbol("Error", "", palette.red)
-            lspSymbol("Hint", "", palette.teal)
-            lspSymbol("Info", "", palette.sky)
-            lspSymbol("Warn", "", palette.yellow)
 
             vim.api.nvim_set_hl(0, "SnacksPickerPreview", { bg = palette.base })
 
