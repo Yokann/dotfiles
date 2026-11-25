@@ -1,11 +1,11 @@
 local set = vim.keymap.set
 
 -- Buffer
-set("n", "<M-j>", "<Cmd>:bn<CR>", { desc = "Next buffer", noremap = true })
-set("n", "<M-k>", "<Cmd>:bp<CR>", { desc = "Previous buffer", noremap = true })
-set("n", "<M-d>", "<Cmd>:bd<CR>", { desc = "Close buffer", noremap = true })
-set("n", "<M-D>", "<Cmd>:%bd!<CR>", { desc = "Close all buffer", noremap = true })
-set("n", "<C-s>", "<Cmd>:w<CR>", { desc = "Save buffer", noremap = true })
+set("n", "<M-j>", "<Cmd>bn<CR>", { desc = "Next buffer", noremap = true })
+set("n", "<M-k>", "<Cmd>bp<CR>", { desc = "Previous buffer", noremap = true })
+set("n", "<M-d>", function() Snacks.bufdelete() end, { desc = "Close buffer", noremap = true })
+set("n", "<M-D>", function() Snacks.bufdelete.all() end, { desc = "Close all buffer", noremap = true })
+set("n", "<C-s>", "<Cmd>w<CR>", { desc = "Save buffer", noremap = true })
 
 -- Move block selection up and down
 set("n", "<Down>", "<cmd>. move +1<CR>==", { desc = "󰜮 Move line down" })
@@ -28,9 +28,9 @@ set("n", "U", "<cmd>silent redo<CR>zv", { desc = "󰛒 Silent redo" })
 set("n", "Q", "<nop>") -- don't binding anything on this key
 set("i", "kj", "<Esc>")
 
-set("n", "<esc>", "<Cmd>:noh<CR>", { noremap = false })
+set("n", "<esc>", "<Cmd>noh<CR>", { noremap = false })
 
-set("n", "<leader>sr", ":%s/<C-R><C-W>/")
+set("n", "<leader>rs", ":%s/<C-R><C-W>/")
 -- set("n", "<C-$>", ":%s/<C-r>0//g<Left><Left>", { desc = "Replace last yanked text" })
 
 -- Resize windows
