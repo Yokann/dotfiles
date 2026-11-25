@@ -21,6 +21,7 @@ vim.opt.splitright = true
 vim.opt.switchbuf = "useopen,uselast"
 -- o.fillchars:append { diff = " " }
 vim.opt.laststatus = 3
+vim.opt.foldlevelstart = 99 -- open all folds by default
 vim.o.winborder = "rounded"
 
 -- }}}

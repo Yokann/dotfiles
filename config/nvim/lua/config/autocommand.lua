@@ -108,17 +108,20 @@ vim.api.nvim_create_autocmd("FocusGained", {
     end,
 })
 
--- Run treesitter highlight on filetypes that support it, to avoid the delay on startup for large files.
+-- Start treesitter (highlight, indent, folds) on filetypes that have a parser,
+-- skipping huge files to avoid the delay on startup.
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "*",
     callback = function(ctx)
         if vim.api.nvim_buf_line_count(ctx.buf) > 50000 then
             return
         end
-        local filetype = vim.bo.filetype
-        if filetype and filetype ~= "" then
-            pcall(vim.treesitter.start)
+        if ctx.match == "" or not pcall(vim.treesitter.start, ctx.buf) then
+            return
         end
+        vim.bo[ctx.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        vim.wo[0][0].foldmethod = "expr"
+        vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
     end,
 })
 

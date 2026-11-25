@@ -4,6 +4,14 @@ return {
         lazy = false,
         branch = "main",
         build = ":TSUpdate",
+        config = function()
+            require("nvim-treesitter").install({
+                "bash", "c", "cpp", "css", "diff", "dockerfile", "git_config", "gitcommit", "go",
+                "gomod", "gosum", "gotmpl", "helm", "hcl", "html", "java", "javascript", "json",
+                "lua", "luadoc", "markdown", "markdown_inline", "php", "query", "regex", "rust",
+                "sql", "terraform", "toml", "tsx", "typescript", "vim", "vimdoc", "xml", "yaml",
+            })
+        end,
         init = function()
             require("vim.treesitter.query").add_predicate("is-mise?", function(_, _, bufnr, _)
                 local filepath = vim.api.nvim_buf_get_name(tonumber(bufnr) or 0)
