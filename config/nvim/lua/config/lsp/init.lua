@@ -50,8 +50,32 @@ M.configure = function()
         desc = "Buffer-local LSP keymaps",
         callback = function(args)
             set_keymaps(args.buf)
+
+            local client = vim.lsp.get_client_by_id(args.data.client_id)
+            if not client then
+                return
+            end
+
+            if client:supports_method("textDocument/inlayHint") then
+                vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
+            end
+
+            if client:supports_method("textDocument/codeLens") then
+                vim.lsp.codelens.refresh({ bufnr = args.buf })
+                vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
+                    buffer = args.buf,
+                    desc = "Refresh code lenses",
+                    callback = function()
+                        vim.lsp.codelens.refresh({ bufnr = args.buf })
+                    end,
+                })
+            end
         end,
     })
+
+    vim.keymap.set("n", "<leader>ih", function()
+        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = 0 }), { bufnr = 0 })
+    end, { desc = "Toggle inlay hints" })
 end
 
 return M
