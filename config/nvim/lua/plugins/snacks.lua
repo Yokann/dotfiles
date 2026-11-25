@@ -56,6 +56,13 @@ return {
             replace_netrw = true,
             trash = true,
         },
+        ---@type snacks.indent.Config
+        indent = {
+            enabled = true,
+            animate = {
+                enabled = false,
+            },
+        },
         lazygit = {},
         picker = {
             sources = {
