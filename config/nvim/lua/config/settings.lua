@@ -10,10 +10,6 @@ vim.opt.relativenumber = true
 
 -- Window splitting and buffers {{{
 
-vim.opt.ruler = true
-vim.opt.hidden = true
-vim.opt.encoding = "utf-8"
-vim.opt.fileencoding = "utf-8"
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 -- exclude usetab as we do not want to jump to buffers in already open tabs
@@ -33,14 +29,13 @@ vim.o.winborder = "rounded"
 vim.opt.showmode = false
 vim.opt.linebreak = true -- lines wrap at words rather than random characters
 vim.opt.synmaxcol = 1024 -- don't syntax highlight long lines
-vim.opt.cmdheight = 1 -- Set command line height to two lines
+vim.opt.cmdheight = 1
 vim.opt.showbreak = [[↪ ]] -- Options include -> '…', '↳ ', '→','↪ '
 -- vim.g.vimsyn_embed = 'lPr' -- allow embedded syntax highlighting for lua,python and ruby
 vim.opt.termguicolors = true
-vim.opt.errorbells = false
 vim.opt.guicursor = "a:block-Cursor"
 vim.opt.scrolloff = 8
-vim.opt.colorcolumn = "128"
+vim.opt.colorcolumn = "120"
 vim.opt.cursorline = true
 vim.opt.fillchars:append({
     eob = " ",
@@ -72,7 +67,6 @@ vim.opt.wrap = false
 -- o.wrapmargin = true
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
-vim.opt.textwidth = 1024
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.smarttab = true
@@ -87,6 +81,7 @@ vim.opt.emoji = false
 -- Timings {{{
 
 vim.opt.updatetime = 250
+vim.opt.timeoutlen = 300
 
 -- }}}
 
@@ -101,12 +96,16 @@ vim.opt.exrc = true   -- Allow project local vimrc files example .nvimrc see :h 
 
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.undodir = vim.fn.stdpath("state") .. "/undo"
 vim.opt.undofile = true
 
 -- }}}
 
-vim.opt.incsearch = true
+vim.opt.inccommand = "split"
+vim.opt.signcolumn = "yes"
+vim.opt.splitkeep = "screen"
+vim.opt.confirm = true
+vim.opt.jumpoptions = "view"
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.g.gitblame_enabled = 0
