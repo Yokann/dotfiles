@@ -142,18 +142,37 @@ return {
     },
     {
         "stevearc/conform.nvim",
-        lazy = false,
+        event = "BufWritePre",
+        cmd = { "ConformInfo", "FormatToggle" },
+        init = function()
+            vim.api.nvim_create_user_command("FormatToggle", function()
+                vim.g.disable_autoformat = not vim.g.disable_autoformat
+                vim.notify("Autoformat " .. (vim.g.disable_autoformat and "disabled" or "enabled"))
+            end, { desc = "Toggle format on save" })
+        end,
         opts = {
             log_level = vim.log.levels.WARN,
-            default_format_opts = { lsp_format = "last" },
+            default_format_opts = { lsp_format = "fallback" },
             formatters_by_ft = {
+                go = { "goimports", "gofumpt" },
+                lua = { "stylua" },
+                sh = { "shfmt" },
+                sql = { "sqlfmt" },
                 json = { "prettierd" },
                 jsonc = { "prettierd" },
             },
-            format_on_save = {
-                timeout_ms = 500,
-                lsp_format = "fallback",
-            },
+            format_on_save = function(bufnr)
+                if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+                    return
+                end
+                if vim.bo[bufnr].filetype == "helm" then
+                    return
+                end
+                if vim.api.nvim_buf_line_count(bufnr) > 10000 then
+                    return
+                end
+                return { timeout_ms = 2000, lsp_format = "fallback" }
+            end,
         },
     },
 }

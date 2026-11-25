@@ -5,7 +5,7 @@ local function addAutocmd()
         desc = "User: format & show diff when CodeCompanion finished",
         pattern = "CodeCompanionInlineFinished",
         callback = vim.schedule_wrap(function(ctx)
-            vim.lsp.buf.format({ bufnr = ctx.buf, async = true })
+            require("conform").format({ bufnr = ctx.buf, async = true })
         end),
     })
 end
