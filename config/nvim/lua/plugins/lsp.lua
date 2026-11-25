@@ -45,7 +45,6 @@ return {
             -- }}
         end,
         dependencies = {
-            "nvimtools/none-ls.nvim",
             "saghen/blink.cmp",
         },
     },
@@ -80,11 +79,9 @@ return {
                 "docker_compose_language_service",
                 "gh_actions_ls",
                 "gopls",
-                "gomodifytags",
                 "goimports",
                 "golangci-lint",
                 "gofumpt",
-                "golines",
                 "html",
                 "helm_ls",
                 "hyprls",
@@ -113,7 +110,6 @@ return {
             debounce_hours = 5, -- at least 5 hours between attempts to install/update
             integrations = {
                 ["mason-lspconfig"] = true,
-                ["mason-null-ls"] = true,
                 ["mason-nvim-dap"] = true,
             },
         },
@@ -124,19 +120,18 @@ return {
         },
     },
     {
-        "nvimtools/none-ls.nvim",
-        opts = function(_, opts)
-            local nls = require("null-ls")
-            opts.sources = vim.list_extend(opts.sources or {}, {
-                nls.builtins.code_actions.gomodifytags,
-                nls.builtins.formatting.goimports,
-                nls.builtins.formatting.golines.with({
-                    extra_args = {
-                        "--max-len=120",
-                        "--base-formatter=gofumpt",
-                    },
-                }),
-                nls.builtins.diagnostics.golangci_lint,
+        "mfussenegger/nvim-lint",
+        event = { "BufReadPost", "BufWritePost" },
+        config = function()
+            local lint = require("lint")
+            lint.linters_by_ft = {
+                go = { "golangcilint" },
+            }
+            vim.api.nvim_create_autocmd("BufWritePost", {
+                group = vim.api.nvim_create_augroup("UserLint", { clear = true }),
+                callback = function()
+                    lint.try_lint()
+                end,
             })
         end,
     },
