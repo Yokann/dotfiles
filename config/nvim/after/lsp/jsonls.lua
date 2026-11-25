@@ -1,7 +1,7 @@
 ---@type vim.lsp.Config
 return {
     init_options = {
-        -- use Biome instead
+        -- formatting is handled by prettierd through conform
         provideFormatter = false,
         documentRangeFormattingProvider = false,
     },
