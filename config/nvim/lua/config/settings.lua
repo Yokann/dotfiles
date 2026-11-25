@@ -21,6 +21,7 @@ vim.opt.splitright = true
 vim.opt.switchbuf = "useopen,uselast"
 -- o.fillchars:append { diff = " " }
 vim.opt.laststatus = 3
+vim.o.winborder = "rounded"
 
 -- }}}
 
