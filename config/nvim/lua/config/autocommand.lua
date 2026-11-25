@@ -120,15 +120,34 @@ vim.api.nvim_create_autocmd("FileType", {
 -- Change line number colors based on mode
 local default_line
 local default_cursor
-local function set_line_number_colors(mode)
-    if mode == "i" then
-        -- Insert
-        vim.api.nvim_set_hl(0, "LineNr", { fg = "#a6da95" })
-        vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#b7bdf8", bold = true })
-    elseif mode == "v" or mode == "V" or mode == "\22" then
-        -- Visual, Visual Line, Visual Block
-        vim.api.nvim_set_hl(0, "LineNr", { fg = "#c6a0f6" })
-        vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#7dc4e4", bold = true })
+local current_kind
+
+local function mode_kind(mode)
+    if mode:find("^i") then
+        return "insert"
+    elseif mode:find("^[vV\22]") then
+        return "visual"
+    end
+    return "normal"
+end
+
+local function set_line_number_colors(kind)
+    if kind == current_kind or not default_line then
+        return
+    end
+    current_kind = kind
+    local ok, palette = pcall(function()
+        return require("catppuccin.palettes").get_palette()
+    end)
+    if not ok then
+        return
+    end
+    if kind == "insert" then
+        vim.api.nvim_set_hl(0, "LineNr", { fg = palette.green })
+        vim.api.nvim_set_hl(0, "CursorLineNr", { fg = palette.lavender, bold = true })
+    elseif kind == "visual" then
+        vim.api.nvim_set_hl(0, "LineNr", { fg = palette.mauve })
+        vim.api.nvim_set_hl(0, "CursorLineNr", { fg = palette.sapphire, bold = true })
     else
         -- Normal: restore theme defaults
         vim.api.nvim_set_hl(0, "LineNr", default_line)
@@ -141,13 +160,13 @@ vim.api.nvim_create_autocmd("ColorScheme", {
         -- store defaults for the lineNr color swaps below
         default_line = vim.api.nvim_get_hl(0, { name = "LineNr" })
         default_cursor = vim.api.nvim_get_hl(0, { name = "CursorLineNr" })
+        current_kind = "normal"
     end,
 })
 
-local group = vim.api.nvim_create_augroup("ModeLineNumbers", { clear = true })
-vim.api.nvim_create_autocmd({ "InsertEnter", "InsertLeave", "ModeChanged" }, {
-    group = group,
+vim.api.nvim_create_autocmd("ModeChanged", {
+    group = vim.api.nvim_create_augroup("ModeLineNumbers", { clear = true }),
     callback = function()
-        set_line_number_colors(vim.fn.mode())
+        set_line_number_colors(mode_kind(vim.fn.mode()))
     end,
 })
