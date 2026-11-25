@@ -11,6 +11,9 @@ return {
                 {
                     pane = 2,
                     section = "terminal",
+                    enabled = function()
+                        return vim.fn.executable("colorscript") == 1
+                    end,
                     cmd = "colorscript -e fade",
                     height = 5,
                     padding = 1,
@@ -78,7 +81,12 @@ return {
                     auto_close = true,
                     watch = true,
                 },
-                grep = { hidden = true, ignored = true, layout = "wide_with_preview" },
+                grep = {
+                    hidden = true,
+                    ignored = true,
+                    exclude = { ".git", "node_modules", "vendor" },
+                    layout = "wide_with_preview",
+                },
                 noice = { layout = "ivy" },
                 git_branches = { layout = "vscode" },
                 gh_pr = { layout = "big_preview" },
@@ -150,5 +158,5 @@ return {
         { "<leader>e",       function() Snacks.picker.todo_comments() end,   desc = "Find Todos" },
         { "<leader>git",     function() Snacks.lazygit() end,                desc = "Open LazyGit" },
     },
-    -- stylue: ignore end
+    -- stylua: ignore end
 }
