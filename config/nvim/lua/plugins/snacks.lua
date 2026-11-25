@@ -5,6 +5,7 @@ return {
     ---@type snacks.Config
     opts = {
         bigfile = {},
+        scroll = {},
         dashboard = {
             sections = {
                 { section = "header" },

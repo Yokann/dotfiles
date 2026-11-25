@@ -175,13 +175,6 @@ return {
         },
     },
     {
-        "karb94/neoscroll.nvim",
-        event = "VeryLazy",
-        opts = {
-            easing_function = "sine", -- Default easing function
-        },
-    },
-    {
         "nvim-lualine/lualine.nvim", -- Status bar
         event = "VeryLazy",
         opts = {
