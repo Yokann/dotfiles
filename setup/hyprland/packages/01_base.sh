@@ -20,6 +20,7 @@ yay -S --noconfirm --norebuild --needed \
     dhclient \
     dnsmasq \
     dkms \
+    duf \
     cliphist wl-clipboard \
     cups \
     cups-browsed \
