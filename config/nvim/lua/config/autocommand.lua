@@ -49,6 +49,18 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     end,
 })
 
+-- Reload buffers changed on disk (e.g. edited by an external tool)
+vim.opt.autoread = true
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
+    desc = "Check for external file changes",
+    group = vim.api.nvim_create_augroup("checktime", { clear = true }),
+    callback = function()
+        if vim.fn.getcmdwintype() == "" then
+            vim.cmd("checktime")
+        end
+    end,
+})
+
 -- Track when Neovim started
 local nvim_start_time = vim.uv.hrtime()
 vim.api.nvim_create_autocmd("FocusGained", {
@@ -64,7 +76,8 @@ vim.api.nvim_create_autocmd("FocusGained", {
             if not vim.api.nvim_buf_is_valid(buf.bufnr) then
                 return acc
             end
-            local stillExists = vim.uv.fs_stat(buf.name) ~= nil
+            local virtual = buf.name:match("^%w[%w+.-]*://") ~= nil
+            local stillExists = virtual or vim.uv.fs_stat(buf.name) ~= nil
             local specialBuffer = vim.bo[buf.bufnr].buftype ~= ""
             local newBuffer = buf.name == ""
             if stillExists or specialBuffer or newBuffer then
