@@ -131,7 +131,6 @@ return {
     },
     {
         "NvChad/nvim-colorizer.lua",
-        lazy = false,
         ft = {
             "html",
             "css",
@@ -165,7 +164,7 @@ return {
     },
     { -- run :TransparentToggle to activate bg transparency
         "xiyaowong/transparent.nvim",
-        lazy = false,
+        cmd = { "TransparentEnable", "TransparentDisable", "TransparentToggle" },
         opts = {
             groups = { -- table: default group
                 "Normal",
@@ -201,7 +200,7 @@ return {
     },
     {
         "karb94/neoscroll.nvim",
-        lazy = false,
+        event = "VeryLazy",
         opts = {
             easing_function = "sine", -- Default easing function
         },

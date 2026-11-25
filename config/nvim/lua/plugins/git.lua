@@ -74,7 +74,6 @@ return {
     },
     {
         "sindrets/diffview.nvim",
-        lazy = false,
         -- stylua: ignore
         keys = {
             { prefix_diffs .. "o", function() toggle_diffview("DiffviewOpen") end,          mode = "n",                        desc = "Open diff tool" },
