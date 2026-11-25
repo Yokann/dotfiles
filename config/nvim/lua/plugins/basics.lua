@@ -29,7 +29,6 @@ return {
         },
         -- stylua: ignore end
     },
-    { "nvim-mini/mini.comment", version = "*", lazy = false }, -- comment block
     { "christoomey/vim-tmux-navigator", lazy = false }, -- use same keymap to switch pane and buffer
     {
         "pocco81/auto-save.nvim",
