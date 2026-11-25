@@ -1,46 +1,8 @@
-local ok, lspconfig = pcall(require, "lspconfig")
-if not ok then
-    return
-end
-
-local Float = require "plenary.window.float"
-
-local lspPhpactorGroup = vim.api.nvim_create_augroup("LspPhpactor", { clear = true })
-vim.api.nvim_create_autocmd("Filetype",
-    {
-        pattern = "php",
-        group = lspPhpactorGroup,
-        command =
-        'command! -nargs=0 LspPhpactorReindex lua vim.lsp.buf_notify(0, "phpactor/indexer/reindex",{})'
-    })
-vim.api.nvim_create_autocmd("Filetype",
-    {
-        pattern = "php",
-        group = lspPhpactorGroup,
-        command =
-        "command! -nargs=0 LspPhpactorConfig lua LspPhpactorDumpConfig()"
-    })
-vim.api.nvim_create_autocmd("Filetype",
-    { pattern = "php", group = lspPhpactorGroup, command = "command! -nargs=0 LspPhpactorStatus lua LspPhpactorStatus()" })
-vim.api.nvim_create_autocmd("Filetype",
-    {
-        pattern = "php",
-        group = lspPhpactorGroup,
-        command =
-        "command! -nargs=0 LspPhpactorBlackfireStart lua LspPhpactorBlackfireStart()"
-    })
-vim.api.nvim_create_autocmd("Filetype",
-    {
-        pattern = "php",
-        group = lspPhpactorGroup,
-        command =
-        "command! -nargs=0 LspPhpactorBlackfireFinish lua LspPhpactorBlackfireFinish()"
-    })
-
 local function showWindow(title, syntax, contents)
-    local out = {};
+    local Float = require("plenary.window.float")
+    local out = {}
     for match in string.gmatch(contents, "[^\n]+") do
-        table.insert(out, match);
+        table.insert(out, match)
     end
 
     local float = Float.percentage_range_window(0.6, 0.4, { winblend = 0 }, {
@@ -59,24 +21,39 @@ local function showWindow(title, syntax, contents)
     vim.api.nvim_buf_set_lines(float.bufnr, 0, -1, false, out)
 end
 
-function LspPhpactorDumpConfig()
-    local results, _ = vim.lsp.buf_request_sync(0, "phpactor/debug/config", { ["return"] = true })
-    for _, res in pairs(results or {}) do
-        showWindow("Phpactor LSP Configuration", "json", res["result"])
+local function request(client, method, title, syntax)
+    local res = client:request_sync(method, { ["return"] = true }, 5000, 0)
+    if res and res.result then
+        showWindow(title, syntax, res.result)
     end
 end
 
-function LspPhpactorStatus()
-    local results, _ = vim.lsp.buf_request_sync(0, "phpactor/status", { ["return"] = true })
-    for _, res in pairs(results or {}) do
-        showWindow("Phpactor Status", "markdown", res["result"])
-    end
-end
+vim.api.nvim_create_autocmd("LspAttach", {
+    group = vim.api.nvim_create_augroup("LspPhpactor", { clear = true }),
+    desc = "Phpactor buffer-local commands",
+    callback = function(args)
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        if not client or client.name ~= "phpactor" then
+            return
+        end
+        local function cmd(name, fn, desc)
+            vim.api.nvim_buf_create_user_command(args.buf, name, fn, { nargs = 0, desc = desc })
+        end
 
-function LspPhpactorBlackfireStart()
-    local _, _ = vim.lsp.buf_request_sync(0, "blackfire/start", {})
-end
-
-function LspPhpactorBlackfireFinish()
-    local _, _ = vim.lsp.buf_request_sync(0, "blackfire/finish", {})
-end
+        cmd("LspPhpactorReindex", function()
+            client:notify("phpactor/indexer/reindex", {})
+        end, "Phpactor: reindex")
+        cmd("LspPhpactorConfig", function()
+            request(client, "phpactor/debug/config", "Phpactor LSP Configuration", "json")
+        end, "Phpactor: dump config")
+        cmd("LspPhpactorStatus", function()
+            request(client, "phpactor/status", "Phpactor Status", "markdown")
+        end, "Phpactor: status")
+        cmd("LspPhpactorBlackfireStart", function()
+            client:notify("blackfire/start", {})
+        end, "Phpactor: start blackfire")
+        cmd("LspPhpactorBlackfireFinish", function()
+            client:notify("blackfire/finish", {})
+        end, "Phpactor: finish blackfire")
+    end,
+})
