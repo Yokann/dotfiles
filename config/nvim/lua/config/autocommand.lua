@@ -49,27 +49,6 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     end,
 })
 
-vim.api.nvim_create_autocmd("WinScrolled", {
-    desc = "Exit snippet",
-    callback = function()
-        vim.snippet.stop()
-    end,
-})
-
-vim.api.nvim_create_autocmd("FocusLost", {
-    desc = "Auto-cleanup. Once a week, on first `FocusLost`, delete older files.",
-    once = true,
-    callback = function()
-        if jit.os ~= "OSX" then
-            return
-        end -- using macOS commands
-        if os.date("%a") == "Mon" then
-            vim.system({ "find", vim.o.undodir, "-mtime", "+30d", "-delete" })
-            vim.system({ "find", vim.lsp.log.get_filename(), "-size", "+20M", "-delete" })
-        end
-    end,
-})
-
 -- Track when Neovim started
 local nvim_start_time = vim.uv.hrtime()
 vim.api.nvim_create_autocmd("FocusGained", {
