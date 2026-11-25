@@ -23,7 +23,6 @@ return {
                     any = {
                         { event = "msg_show", kind = "", find = "written" },
                         { event = "msg_show", kind = "", find = "ago" },
-                        { event = "msg_show", find = "AutoSave" },
                     },
                 },
                 view = "mini",
@@ -51,7 +50,6 @@ return {
             override = {
                 ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
                 ["vim.lsp.util.stylize_markdown"] = true,
-                ["cmp.entry.get_documentation"] = true,
             },
             hover = {
                 enabled = true,

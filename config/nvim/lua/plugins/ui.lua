@@ -61,16 +61,6 @@ return {
         end,
     },
     {
-        -- TODO: remove after migrating to snacks indent
-        "lukas-reineke/indent-blankline.nvim",
-        main = "ibl",
-        lazy = false,
-        config = function()
-            require("ibl").setup()
-        end,
-        enabled = false,
-    },
-    {
         "tadaa/vimade",
         event = "VeryLazy",
         opts = {
