@@ -114,6 +114,8 @@ return {
                         border = "none",
                         {
                             title = "{title} {live} {flags}",
+                            title_pos = "center",
+                            border = "vpad", -- invisible border: a title needs a border row to be drawn
                             box = "vertical",
                             { win = "input", height = 1, border = "vpad" },
                             { win = "list", border = "none" },
@@ -128,6 +130,8 @@ return {
                         [2] = {
                             win = "preview",
                             title = "{preview}",
+                            title_pos = "center",
+                            border = "vpad",
                             width = 0.5,
                             wo = { number = false, statuscolumn = " ", signcolumn = "no" },
                         },

@@ -65,6 +65,7 @@ function M.setup()
     configure_exts() -- Extensions
     configure_debuggers() -- Debugger
     require("config.dap.custom_config").load_custom_configuration(dap)
+    require("plugins_custom.snacks-dap").setup() -- Configuration picker with preview
     require("config.dap.keymaps").setup(dap, dapui) -- Keymaps
 end
 
