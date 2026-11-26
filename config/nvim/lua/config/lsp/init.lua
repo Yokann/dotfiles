@@ -59,14 +59,7 @@ M.configure = function()
             end
 
             if client:supports_method("textDocument/codeLens") then
-                vim.lsp.codelens.refresh({ bufnr = args.buf })
-                vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
-                    buffer = args.buf,
-                    desc = "Refresh code lenses",
-                    callback = function()
-                        vim.lsp.codelens.refresh({ bufnr = args.buf })
-                    end,
-                })
+                vim.lsp.codelens.enable(true, { bufnr = args.buf })
             end
         end,
     })
