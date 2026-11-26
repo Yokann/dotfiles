@@ -5,7 +5,11 @@ return {
     ---@type snacks.Config
     opts = {
         bigfile = {},
-        scroll = {},
+        scroll = {
+            animate = {
+                easing = "inOutSine",
+            },
+        },
         dashboard = {
             sections = {
                 { section = "header" },

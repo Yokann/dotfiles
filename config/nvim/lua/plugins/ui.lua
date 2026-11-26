@@ -140,7 +140,7 @@ return {
     },
     { -- run :TransparentToggle to activate bg transparency
         "xiyaowong/transparent.nvim",
-        cmd = { "TransparentEnable", "TransparentDisable", "TransparentToggle" },
+        lazy = false,
         opts = {
             groups = { -- table: default group
                 "Normal",
