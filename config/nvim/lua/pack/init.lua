@@ -18,18 +18,20 @@ vim.api.nvim_create_autocmd("PackChanged", {
     end,
 })
 
+local pack = require("pack.util")
+
 -- Order matters: later modules use plugins from earlier ones
 -- (auto-session needs snacks + aerial, lsp needs blink, lualine/incline need devicons...).
-require("pack.snacks")
-require("pack.ui")
-require("pack.treesitter")
-require("pack.basics")
-require("pack.noice")
-require("pack.completion")
-require("pack.lsp") -- also loads pack.dap
-require("pack.copilot")
-require("pack.git")
-require("pack.miscellaneous")
+pack.module("pack.snacks")
+pack.module("pack.ui")
+pack.module("pack.treesitter")
+pack.module("pack.basics")
+pack.module("pack.noice")
+pack.module("pack.completion")
+pack.module("pack.lsp") -- also loads pack.dap
+pack.module("pack.copilot")
+pack.module("pack.git")
+pack.module("pack.miscellaneous")
 
 -- :PackList - browse installed plugins (name, loaded state, revision); <CR> browses the plugin's files
 vim.api.nvim_create_user_command("PackList", function()
@@ -86,3 +88,5 @@ end, {
         end, names)
     end,
 })
+
+require("pack.profile")

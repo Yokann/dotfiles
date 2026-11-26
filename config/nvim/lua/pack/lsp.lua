@@ -37,7 +37,7 @@ pack.lazy({
 pack.lazy({ plugins = "towolf/vim-helm", ft = "helm" })
 
 -- mason-nvim-dap (+ nvim-dap) must be present before mason-tool-installer
-require("pack.dap")
+pack.module("pack.dap")
 
 -- auto install lsp, formatter, dap
 pack.add({ "WhoIsSethDaniel/mason-tool-installer.nvim" })

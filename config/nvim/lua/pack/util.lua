@@ -1,6 +1,35 @@
 -- Small lazy-loading layer on top of vim.pack (replacement for lazy.nvim specs).
 local M = {}
 
+-- Profiling data, shown by :PackProfile (see pack/profile.lua)
+local hr = vim.uv.hrtime
+M.profile = {
+    t0 = hr(), -- roughly the start of the pack setup
+    modules = {}, -- eager modules: { name, ms (self time), total }
+    lazy = {}, -- lazy specs: { name, trigger?, ms?, packadd?, config?, at? }
+}
+local module_stack = {}
+
+--- require() a pack module and record how long it took (children excluded from `ms`).
+---@param name string
+function M.module(name)
+    local entry = { name = name, children = 0 }
+    table.insert(module_stack, entry)
+    local t = hr()
+    local ok, err = pcall(require, name)
+    entry.total = (hr() - t) / 1e6
+    entry.ms = entry.total - entry.children
+    table.remove(module_stack)
+    local parent = module_stack[#module_stack]
+    if parent then
+        parent.children = parent.children + entry.total
+    end
+    table.insert(M.profile.modules, entry)
+    if not ok then
+        error(err, 0)
+    end
+end
+
 local function normalize(plugins)
     local out = {}
     for _, p in ipairs(type(plugins) == "string" and { plugins } or plugins) do
@@ -66,11 +95,17 @@ function M.lazy(spec)
     local loaded = false
     local cleanup = {}
 
-    local function load()
+    local main = plugins[#plugins]
+    local entry = { name = main.name or main.src:match("([^/]+)$"):gsub("%.git$", "") }
+    table.insert(M.profile.lazy, entry)
+
+    ---@param trigger string what caused the load (for :PackProfile)
+    local function load(trigger)
         if loaded then
             return
         end
         loaded = true
+        local t0 = hr()
         vim.api.nvim_del_augroup_by_id(group)
         for _, fn in ipairs(cleanup) do
             fn()
@@ -78,9 +113,13 @@ function M.lazy(spec)
         for _, p in ipairs(plugins) do
             vim.cmd.packadd(p.name or p.src:match("([^/]+)$"):gsub("%.git$", ""))
         end
+        local t1 = hr()
         if spec.config then
             spec.config()
         end
+        local t2 = hr()
+        entry.trigger, entry.at = trigger, (t0 - M.profile.t0) / 1e6
+        entry.packadd, entry.config, entry.ms = (t1 - t0) / 1e6, (t2 - t1) / 1e6, (t2 - t0) / 1e6
     end
 
     local function list(v)
@@ -93,7 +132,9 @@ function M.lazy(spec)
                 group = group,
                 once = true,
                 callback = function()
-                    vim.schedule(load)
+                    vim.schedule(function()
+                        load("VeryLazy")
+                    end)
                 end,
             })
         else
@@ -102,7 +143,9 @@ function M.lazy(spec)
                 once = true,
                 callback = function(e)
                     if not loaded then
-                        load_and_replay(load, e)
+                        load_and_replay(function()
+                            load("event: " .. e.event)
+                        end, e)
                     end
                 end,
             })
@@ -115,7 +158,9 @@ function M.lazy(spec)
             pattern = list(spec.ft),
             callback = function(ev)
                 if not loaded then
-                    load_and_replay(load, ev)
+                    load_and_replay(function()
+                        load("ft: " .. ev.match)
+                    end, ev)
                 end
             end,
         })
@@ -123,7 +168,7 @@ function M.lazy(spec)
 
     for _, name in ipairs(spec.cmd and list(spec.cmd) or {}) do
         vim.api.nvim_create_user_command(name, function(args)
-            load()
+            load("cmd: " .. name)
             vim.cmd({
                 cmd = name,
                 args = args.fargs,
@@ -140,7 +185,7 @@ function M.lazy(spec)
         local lhs, rhs, mode = key[1], key[2], key.mode or "n"
         local opts = { desc = key.desc }
         vim.keymap.set(mode, lhs, function()
-            load()
+            load("key: " .. lhs)
             if type(rhs) == "function" then
                 rhs()
             else
