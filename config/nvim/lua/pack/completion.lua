@@ -1,0 +1,110 @@
+local pack = require("pack.util")
+
+pack.add({
+    { src = "L3MON4D3/LuaSnip", version = vim.version.range("2.x") },
+    "rafamadriz/friendly-snippets",
+})
+require("luasnip.loaders.from_vscode").lazy_load()
+require("luasnip.loaders.from_vscode").lazy_load({ paths = vim.fn.stdpath("config") .. "/snippets" })
+
+-- loaded eagerly: nvim-lspconfig needs it for capabilities
+pack.add({ { src = "saghen/blink.cmp", version = vim.version.range("1.x") } })
+require("blink.cmp").setup({
+    appearance = {
+        kind_icons = {
+            Text = " ",
+            Method = " ",
+            Function = " ",
+            Constructor = " ",
+            Field = " ",
+            Variable = " ",
+            Class = " ",
+            Interface = " ",
+            Module = " ",
+            Property = " ",
+            Unit = " ",
+            Value = " ",
+            Enum = " ",
+            Keyword = " ",
+            Snippet = " ",
+            Color = " ",
+            File = " ",
+            Reference = " ",
+            Folder = " ",
+            EnumMember = " ",
+            Constant = " ",
+            Struct = " ",
+            Event = " ",
+            Operator = " ",
+            TypeParameter = " ",
+        },
+    },
+    completion = {
+        documentation = { auto_show = false },
+        menu = {
+            draw = {
+                padding = { 1, 1 },
+            },
+        },
+        accept = {
+            auto_brackets = {
+                enabled = true,
+            },
+        },
+    },
+    snippets = { preset = "luasnip" },
+    sources = {
+        default = {
+            "lsp",
+            "snippets",
+            "buffer",
+            "path",
+        },
+        per_filetype = {
+            lua = { inherit_defaults = true, "lazydev" },
+        },
+        providers = {
+            lazydev = {
+                name = "LazyDev",
+                module = "lazydev.integrations.blink",
+                score_offset = 100, -- show at a higher priority than lsp
+            },
+            path = {
+                opts = { get_cwd = vim.uv.cwd },
+            },
+            lsp = {
+                fallbacks = {},
+            },
+            buffer = {
+                max_items = 2,
+                min_keyword_length = 2,
+                score_offset = -3,
+            },
+        },
+    },
+    keymap = {
+        preset = "super-tab",
+        ["<M-k>"] = { "select_prev", "fallback" },
+        ["<M-j>"] = { "select_next", "fallback" },
+        ["<Tab>"] = {
+            function(cmp)
+                if cmp.snippet_active() then
+                    return cmp.accept()
+                else
+                    return cmp.select_and_accept()
+                end
+            end,
+            "snippet_forward",
+            "fallback",
+        },
+        ["<M-y>"] = { "show", "fallback" },
+        ["<C-c>"] = { "hide", "fallback" },
+        ["<M-h>"] = { "show_documentation", "fallback" },
+    },
+    cmdline = {
+        keymap = { preset = "inherit" },
+        completion = {
+            menu = { auto_show = true },
+        },
+    },
+})
