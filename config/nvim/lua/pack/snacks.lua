@@ -38,15 +38,15 @@ require("snacks").setup({
                 ttl = 5 * 60,
                 indent = 3,
             },
-            -- the built-in "startup" section depends on lazy.nvim, show the plugin count instead
+            -- the built-in "startup" section depends on lazy.nvim: show plugin count + startup time instead
             function()
-                local count = #vim.pack.get()
-                return { { text = { { "⚡ " .. count .. " plugins", hl = "footer" } }, align = "center" } }
+                -- measured once, when the dashboard is first drawn (not on every resize)
+                vim.g.pack_startup_ms = vim.g.pack_startup_ms or (vim.uv.hrtime() - _G.nvim_start_hr) / 1e6
+                local text = ("⚡ %d plugins, started in %.1fms"):format(#vim.pack.get(), vim.g.pack_startup_ms)
+                return { { text = { { text, hl = "footer" } }, align = "center" } }
             end,
         },
         preset = {
-            -- Default keys, except "Restore Session": snacks only detects session plugins
-            -- through lazy.nvim, so auto-session is wired by hand (and the "Lazy" entry is dropped).
             -- stylua: ignore
             keys = {
                 { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },

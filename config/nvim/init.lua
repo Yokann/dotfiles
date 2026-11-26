@@ -1,3 +1,4 @@
+_G.nvim_start_hr = vim.uv.hrtime() -- for the dashboard startup time
 vim.loader.enable()
 
 if vim.env.PROF then
