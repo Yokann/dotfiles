@@ -81,14 +81,14 @@ vim.opt.emoji = false
 -- Timings {{{
 
 vim.opt.updatetime = 250
-vim.opt.timeoutlen = 300
+vim.opt.timeoutlen = 500
 
 -- }}}
 
 -- these only read ".vim" files {{{
 
 vim.opt.secure = true -- Disable autocmd etc for project local vimrc files.
-vim.opt.exrc = true   -- Allow project local vimrc files example .nvimrc see :h exrc
+vim.opt.exrc = true -- Allow project local vimrc files example .nvimrc see :h exrc
 
 -- }}}
 
