@@ -19,8 +19,6 @@ local function set_keymaps(bufnr)
     map("<leader>ws", function() Snacks.picker.lsp_workspace_symbols() end, "[F]ind [W]orkspace [S]ymbols")
     map("gi", function() Snacks.picker.lsp_implementations() end, "[G]o [I]mplemention")
     map("K", function() vim.lsp.buf.hover({ border = "rounded" }) end, "Hover")
-    map("]d", function() vim.diagnostic.jump({ count = 1 }) end, "Go to next [D]iagnostic message")
-    map("[d", function() vim.diagnostic.jump({ count = -1 }) end, "Go to previous [D]iagnostic message")
     map("ga", function() vim.lsp.buf.code_action() end, "[V]iew [C]ode [A]ction")
     map("gA", function()
         vim.lsp.buf.code_action({
