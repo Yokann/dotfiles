@@ -33,7 +33,7 @@ hl.config({
         },
         groupbar = {
             gaps_in = 5,
-            height = -5,
+            height = 1,
             font_family = "Cantarell",
             font_size = 13,
             text_color = "0xFFFFFFFF",
